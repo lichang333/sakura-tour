@@ -1,0 +1,263 @@
+.tips-page {
+  padding-bottom: 40px;
+}
+
+.tips-header {
+  padding: 20px 16px 0;
+  margin-bottom: 16px;
+}
+
+/* Bloom Card */
+.bloom-card {
+  margin: 0 16px 20px;
+  background: var(--sakura-pale);
+  border: 2px solid var(--sakura-light);
+  border-radius: 22px;
+  padding: 18px;
+  transition: background 0.25s;
+}
+
+.bloom-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.bloom-icon {
+  font-size: 32px;
+}
+
+.bloom-title {
+  font-size: 16px;
+  font-weight: 900;
+  color: var(--sakura-pink);
+}
+
+.bloom-sub {
+  font-size: 12px;
+  color: var(--text-mid);
+  font-weight: 600;
+}
+
+.live-badge {
+  margin-left: auto;
+  background: var(--duo-red);
+  color: white;
+  font-size: 11px;
+  font-weight: 900;
+  padding: 3px 9px;
+  border-radius: 8px;
+  letter-spacing: 0.5px;
+  animation: blink 2s infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.55; }
+}
+
+.bloom-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.bt-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.bt-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.bt-dot.early { background: #FFB3CC; }
+.bt-dot.peak  { background: var(--sakura-pink); box-shadow: 0 0 10px rgba(255,107,157,0.5); }
+.bt-dot.late  { background: #CC88DD; }
+
+.bt-info {
+  flex: 1;
+}
+
+.bt-label {
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--text-dark);
+}
+
+.bt-date {
+  font-size: 12px;
+  color: var(--text-mid);
+  font-weight: 600;
+}
+
+.bt-item.peak .bt-label {
+  color: var(--sakura-pink);
+}
+
+.peak-badge {
+  background: var(--sakura-pink);
+  color: white;
+  font-size: 12px;
+  font-weight: 800;
+  padding: 3px 10px;
+  border-radius: 12px;
+}
+
+/* Tips Accordion */
+.section {
+  padding: 0 16px;
+  margin-bottom: 20px;
+}
+
+.section-title {
+  font-size: 18px;
+  font-weight: 900;
+  color: var(--text-dark);
+  margin-bottom: 12px;
+  letter-spacing: -0.3px;
+}
+
+.tips-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.tip-card {
+  background: var(--bg-card);
+  border: 2px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: border-color 0.2s ease, background 0.25s;
+}
+
+.tip-card.open {
+  border-color: var(--sakura-pink);
+}
+
+.tip-header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px;
+  background: transparent;
+  text-align: left;
+  font-weight: 700;
+}
+
+.tip-icon {
+  font-size: 22px;
+  flex-shrink: 0;
+}
+
+.tip-title {
+  flex: 1;
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--text-dark);
+}
+
+.tip-arrow {
+  font-size: 12px;
+  color: var(--text-mid);
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
+}
+
+.tip-card.open .tip-arrow {
+  transform: rotate(180deg);
+}
+
+.tip-content {
+  padding: 0 14px 14px 46px;
+  font-size: 14px;
+  color: var(--text-mid);
+  font-weight: 600;
+  line-height: 1.65;
+}
+
+/* Food Grid */
+.food-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.food-card {
+  background: var(--bg-card);
+  border: 2px solid var(--border);
+  border-radius: 16px;
+  padding: 16px 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 6px;
+  box-shadow: var(--shadow-card);
+  transition: background 0.25s, border-color 0.25s;
+}
+
+.food-emoji {
+  font-size: 34px;
+}
+
+.food-name {
+  font-size: 14px;
+  font-weight: 900;
+  color: var(--text-dark);
+}
+
+.food-desc {
+  font-size: 11px;
+  color: var(--text-mid);
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+/* Pack List */
+.pack-list {
+  background: var(--bg-card);
+  border: 2px solid var(--border);
+  border-radius: 18px;
+  overflow: hidden;
+  transition: background 0.25s;
+}
+
+.pack-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 13px 16px;
+  border-bottom: 1px solid var(--border);
+  transition: border-color 0.25s;
+}
+
+.pack-item:last-child {
+  border-bottom: none;
+}
+
+.pack-icon {
+  font-size: 22px;
+  flex-shrink: 0;
+}
+
+.pack-text {
+  flex: 1;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-dark);
+}
+
+.pack-check {
+  font-size: 20px;
+  color: var(--border);
+  cursor: pointer;
+  transition: color 0.2s;
+}

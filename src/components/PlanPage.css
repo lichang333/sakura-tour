@@ -1,0 +1,914 @@
+.plan-page {
+  padding-bottom: 40px;
+}
+
+.plan-header {
+  padding: 20px 16px 0;
+  margin-bottom: 0;
+}
+
+/* ── Mode Tab Switcher ── */
+.plan-mode-tabs {
+  display: flex;
+  gap: 8px;
+  margin-top: 14px;
+  margin-bottom: 16px;
+  background: var(--bg-card2);
+  border-radius: 16px;
+  padding: 4px;
+}
+
+.pmt-btn {
+  flex: 1;
+  padding: 10px 12px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--text-mid);
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition: all 0.2s ease;
+}
+
+.pmt-btn.active {
+  background: var(--bg-card);
+  color: var(--sakura-pink);
+  box-shadow: var(--shadow-card);
+}
+
+.pmt-count {
+  background: var(--sakura-pink);
+  color: white;
+  font-size: 11px;
+  font-weight: 900;
+  padding: 1px 7px;
+  border-radius: 10px;
+  min-width: 20px;
+  text-align: center;
+}
+
+.pmt-green {
+  background: var(--duo-green);
+}
+
+/* ── Template Progress ── */
+.template-progress {
+  padding: 0 16px;
+  margin-bottom: 14px;
+}
+
+/* ── 我的清单 ── */
+.myplan-section {
+  padding: 0 16px;
+}
+
+/* 空状态 */
+.myplan-empty {
+  margin-top: 20px;
+  background: var(--bg-card);
+  border: 2px dashed var(--border);
+  border-radius: 24px;
+  padding: 40px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  text-align: center;
+}
+
+.mpe-icon {
+  font-size: 56px;
+  opacity: 0.5;
+}
+
+.mpe-title {
+  font-size: 18px;
+  font-weight: 900;
+  color: var(--text-dark);
+}
+
+.mpe-sub {
+  font-size: 14px;
+  color: var(--text-mid);
+  font-weight: 600;
+  line-height: 1.6;
+}
+
+.mpe-goto-btn {
+  margin-top: 8px;
+  padding: 13px 28px;
+  background: var(--sakura-pink);
+  color: white;
+  border-radius: 16px;
+  font-size: 15px;
+  font-weight: 900;
+  box-shadow: 0 4px 0 #C44E78;
+  transition: all 0.12s ease;
+}
+
+.mpe-goto-btn:active {
+  box-shadow: 0 2px 0 #C44E78;
+  transform: translateY(2px);
+}
+
+/* 进度 */
+.myplan-progress {
+  background: var(--bg-card);
+  border: 2px solid var(--border);
+  border-radius: 18px;
+  padding: 14px 16px;
+  margin-bottom: 16px;
+  box-shadow: var(--shadow-card);
+}
+
+.mpp-text {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-mid);
+  margin-bottom: 10px;
+}
+
+.mpp-xp {
+  color: var(--duo-orange);
+  font-weight: 900;
+}
+
+.mpp-dots {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.mpp-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  opacity: 0.85;
+}
+
+/* 景点卡片列表 */
+.myplan-list {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 16px;
+}
+
+.myspot-card {
+  display: flex;
+  gap: 0;
+}
+
+.msc-timeline {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 32px;
+  flex-shrink: 0;
+  margin-right: 12px;
+}
+
+.msc-num {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  color: white;
+  font-size: 13px;
+  font-weight: 900;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 16px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+.msc-line {
+  flex: 1;
+  width: 2px;
+  background: var(--border);
+  margin: 6px 0;
+  min-height: 16px;
+}
+
+.msc-body {
+  flex: 1;
+  padding-bottom: 14px;
+  min-width: 0;
+}
+
+.msc-card {
+  background: var(--bg-card);
+  border: 2px solid var(--border);
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+  margin-top: 8px;
+  transition: background 0.25s, border-color 0.25s;
+}
+
+.msc-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px 10px;
+}
+
+.msc-emoji-wrap {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.msc-emoji {
+  font-size: 24px;
+}
+
+.msc-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.msc-name {
+  font-size: 15px;
+  font-weight: 900;
+  color: var(--text-dark);
+  margin-bottom: 2px;
+}
+
+.msc-district {
+  font-size: 12px;
+  color: var(--text-mid);
+  font-weight: 600;
+}
+
+.msc-remove {
+  background: var(--bg-card2);
+  color: var(--text-mid);
+  border-radius: 8px;
+  width: 28px;
+  height: 28px;
+  font-size: 13px;
+  font-weight: 900;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.msc-remove:active {
+  background: var(--bg-red-tint);
+  color: var(--duo-red);
+}
+
+.msc-details {
+  padding: 0 14px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  border-top: 1px solid var(--border);
+  padding-top: 10px;
+}
+
+.msc-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-mid);
+  line-height: 1.4;
+}
+
+.msc-icon {
+  font-size: 14px;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.msc-footer {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px 12px;
+  border-top: 1px solid var(--border);
+  flex-wrap: wrap;
+}
+
+.msc-xp {
+  font-size: 13px;
+  font-weight: 900;
+}
+
+.msc-hot-badge {
+  background: var(--sakura-pale);
+  color: var(--sakura-pink);
+  font-size: 11px;
+  font-weight: 800;
+  padding: 2px 8px;
+  border-radius: 8px;
+  border: 1px solid var(--sakura-light);
+}
+
+.msc-tags {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+  margin-left: auto;
+}
+
+.msc-tag {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-mid);
+  background: var(--bg-card2);
+  border: 1px solid var(--border);
+  padding: 2px 7px;
+  border-radius: 7px;
+}
+
+/* 添加更多按钮 */
+.myplan-add-btn {
+  width: 100%;
+  padding: 14px;
+  background: var(--bg-card);
+  color: var(--sakura-pink);
+  border: 2px dashed var(--sakura-light);
+  border-radius: 16px;
+  font-size: 15px;
+  font-weight: 800;
+  margin-bottom: 8px;
+  transition: all 0.15s ease;
+}
+
+.myplan-add-btn:active {
+  background: var(--sakura-pale);
+}
+
+/* ── 推荐行程（原有样式） ── */
+.plan-progress {
+  margin-top: 12px;
+}
+
+
+.pp-text {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-mid);
+  margin-bottom: 6px;
+}
+
+.pp-pct {
+  color: var(--sakura-pink);
+  font-weight: 900;
+}
+
+.pp-bar {
+  height: 10px;
+  background: var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.pp-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--sakura-pink), #FF9EC4);
+  border-radius: 10px;
+  transition: width 0.6s ease;
+}
+
+/* Day Tabs */
+.day-tabs {
+  display: flex;
+  padding: 0 16px;
+  gap: 8px;
+  margin-bottom: 16px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.day-tabs::-webkit-scrollbar { display: none; }
+
+.day-tab {
+  flex-shrink: 0;
+  padding: 8px 22px;
+  border-radius: 20px;
+  border: 2px solid var(--border);
+  background: var(--bg-card);
+  color: var(--text-mid);
+  font-size: 14px;
+  font-weight: 800;
+  transition: all 0.2s ease;
+}
+
+.day-tab.active {
+  background: var(--sakura-pink);
+  border-color: var(--sakura-pink);
+  color: white;
+  box-shadow: 0 3px 0 #C44E78;
+}
+
+/* Day Content */
+.day-content {
+  padding: 0 16px;
+  margin-bottom: 20px;
+}
+
+.day-title-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.day-badge {
+  background: var(--sakura-pink);
+  color: white;
+  font-size: 12px;
+  font-weight: 900;
+  padding: 4px 12px;
+  border-radius: 20px;
+}
+
+.day-title {
+  font-size: 18px;
+  font-weight: 900;
+  color: var(--text-dark);
+  letter-spacing: -0.3px;
+}
+
+/* Activities Timeline */
+.activities {
+  display: flex;
+  flex-direction: column;
+}
+
+.activity-card {
+  display: flex;
+  gap: 0;
+  cursor: pointer;
+}
+
+.act-timeline {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 24px;
+  flex-shrink: 0;
+  margin-right: 12px;
+}
+
+.act-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--bg-card2);
+  border: 2px solid var(--border);
+  flex-shrink: 0;
+  margin-top: 16px;
+  transition: all 0.25s ease;
+}
+
+.act-dot.done {
+  background: var(--sakura-pink);
+  border-color: var(--sakura-pink);
+  box-shadow: 0 0 0 3px rgba(255,107,157,0.2);
+}
+
+.act-line {
+  flex: 1;
+  width: 2px;
+  background: var(--border);
+  margin: 4px 0;
+  min-height: 20px;
+}
+
+.act-body {
+  flex: 1;
+  padding-bottom: 16px;
+}
+
+.act-time {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-mid);
+  margin-bottom: 4px;
+  margin-top: 12px;
+  letter-spacing: 0.3px;
+}
+
+.act-card-inner {
+  background: var(--bg-card);
+  border: 2px solid var(--border);
+  border-radius: 16px;
+  padding: 12px 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.2s ease;
+  box-shadow: var(--shadow-card);
+}
+
+.activity-card:active .act-card-inner {
+  transform: scale(0.98);
+}
+
+.activity-card.done .act-card-inner {
+  background: var(--bg-green-tint);
+  border-color: var(--border-green);
+}
+
+.act-icon {
+  font-size: 22px;
+  flex-shrink: 0;
+}
+
+.act-text {
+  flex: 1;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-dark);
+  line-height: 1.4;
+}
+
+.act-check {
+  font-size: 16px;
+  font-weight: 900;
+  color: var(--border);
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 2px solid var(--border);
+  transition: all 0.25s ease;
+}
+
+.act-check.done {
+  background: var(--duo-green);
+  border-color: var(--duo-green);
+  color: white;
+}
+
+.day-xp-bar {
+  background: var(--bg-yellow-tint);
+  border: 2px solid var(--border-yellow);
+  border-radius: 16px;
+  padding: 12px 16px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--duo-orange);
+  margin-top: 4px;
+}
+
+[data-theme="dark"] .day-xp-bar {
+  color: var(--duo-yellow);
+}
+
+/* Overview */
+.overview-section {
+  padding: 0 16px;
+}
+
+.section-title {
+  font-size: 18px;
+  font-weight: 900;
+  color: var(--text-dark);
+  margin-bottom: 12px;
+  letter-spacing: -0.3px;
+}
+
+.overview-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.overview-card {
+  background: var(--bg-card);
+  border: 2px solid var(--border);
+  border-radius: 18px;
+  padding: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.overview-card:active {
+  transform: scale(0.97);
+}
+
+.overview-card.active {
+  border-color: var(--sakura-pink);
+  background: var(--sakura-pale);
+}
+
+.ov-day {
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--sakura-pink);
+  margin-bottom: 4px;
+  letter-spacing: 0.3px;
+}
+
+.ov-title {
+  font-size: 13px;
+  font-weight: 900;
+  color: var(--text-dark);
+  margin-bottom: 4px;
+}
+
+.ov-count {
+  font-size: 11px;
+  color: var(--text-mid);
+  font-weight: 600;
+}
+
+/* ══════════════════════════════════
+   新版推荐行程样式
+══════════════════════════════════ */
+
+/* ── 新版 Day Tabs — 卡片式 ── */
+.day-tabs-scroll {
+  display: flex;
+  gap: 10px;
+  padding: 0 16px 4px;
+  margin-bottom: 16px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.day-tabs-scroll::-webkit-scrollbar { display: none; }
+
+.day-tab-card {
+  flex-shrink: 0;
+  width: 96px;
+  padding: 12px 10px 11px;
+  border-radius: 18px;
+  border: 2px solid var(--border);
+  background: var(--bg-card);
+  text-align: center;
+  transition: all 0.25s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  box-shadow: var(--shadow-card);
+}
+
+.day-tab-card.active {
+  border-color: transparent;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+}
+
+.day-tab-card:active { transform: scale(0.96); }
+
+.dtc-top {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  width: 100%;
+}
+
+.dtc-day {
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--text-mid);
+  letter-spacing: 0.3px;
+}
+
+.dtc-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  opacity: 0.8;
+}
+
+.dtc-icon {
+  font-size: 22px;
+  margin: 2px 0;
+}
+
+.dtc-title {
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--text-dark);
+  line-height: 1.3;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 80px;
+}
+
+.dtc-progress-text {
+  font-size: 11px;
+  font-weight: 700;
+  margin-top: 2px;
+}
+
+/* ── 天主题卡头部 ── */
+.day-hero-card {
+  border-radius: 20px;
+  padding: 18px 20px;
+  margin: 0 16px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+}
+
+.dhc-left {
+  flex: 1;
+}
+
+.dhc-label {
+  font-size: 12px;
+  font-weight: 800;
+  color: rgba(255,255,255,0.75);
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+}
+
+.dhc-title {
+  font-size: 20px;
+  font-weight: 900;
+  color: white;
+  letter-spacing: -0.5px;
+  margin-bottom: 6px;
+}
+
+.dhc-sub {
+  font-size: 13px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.8);
+}
+
+/* ── 恢复提示条 ── */
+.restore-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 16px 10px;
+  background: var(--bg-yellow-tint);
+  border: 1.5px solid var(--border-yellow);
+  border-radius: 12px;
+  padding: 8px 14px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--duo-orange);
+}
+
+.restore-btn {
+  background: var(--duo-orange);
+  color: white;
+  font-size: 12px;
+  font-weight: 800;
+  padding: 4px 12px;
+  border-radius: 8px;
+}
+
+/* ── 活动移除按钮 ── */
+.act-remove-btn {
+  background: transparent;
+  color: var(--text-mid);
+  font-size: 12px;
+  font-weight: 900;
+  width: 22px;
+  height: 22px;
+  border-radius: 6px;
+  opacity: 0;
+  flex-shrink: 0;
+  transition: all 0.15s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 始终显示（避免需要 hover） */
+.act-card-inner:hover .act-remove-btn,
+.act-card-inner .act-remove-btn {
+  opacity: 0.45;
+}
+
+.act-remove-btn:active {
+  opacity: 1 !important;
+  background: var(--bg-red-tint);
+  color: var(--duo-red);
+}
+
+/* ── 自定义活动 ── */
+.activity-card.custom .act-card-inner {
+  background: var(--bg-card);
+  border-color: var(--sakura-light);
+  border-style: dashed;
+}
+
+.act-card-inner.custom-act {
+  border-style: dashed;
+}
+
+.custom-badge {
+  font-size: 10px;
+  font-weight: 800;
+  background: var(--sakura-pale);
+  color: var(--sakura-pink);
+  border: 1px solid var(--sakura-light);
+  padding: 2px 6px;
+  border-radius: 6px;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.act-dot.custom {
+  background: transparent;
+}
+
+/* ── 从清单加入 ── */
+.spots-add-section {
+  margin-top: 12px;
+  border-radius: 18px;
+  overflow: hidden;
+  border: 2px solid var(--border);
+  background: var(--bg-card);
+}
+
+.sas-toggle {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 13px 16px;
+  background: transparent;
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--sakura-pink);
+  text-align: left;
+}
+
+.sas-arrow {
+  font-size: 11px;
+  color: var(--text-mid);
+}
+
+.sas-list {
+  border-top: 1px solid var(--border);
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.sas-empty {
+  padding: 12px;
+  text-align: center;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-mid);
+}
+
+.sas-spot-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  background: var(--bg-card2);
+  border-radius: 12px;
+  text-align: left;
+  transition: all 0.15s ease;
+}
+
+.sas-spot-btn:active {
+  background: var(--sakura-pale);
+}
+
+.sas-emoji {
+  font-size: 20px;
+  flex-shrink: 0;
+}
+
+.sas-name {
+  flex: 1;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-dark);
+}
+
+.sas-add {
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--sakura-pink);
+  flex-shrink: 0;
+}
