@@ -604,6 +604,200 @@ const vancouverBloom = {
   late:  { label: "Late Bloom", date: "Apr 8 — Apr 25" },
 }
 
+/* ════════════════ 武汉 ════════════════ */
+const wuhanSpots = [
+  {
+    id: 'w1',
+    name: "武汉大学樱花大道",
+    nameEn: "Wuhan University Cherry Blossom Avenue",
+    emoji: "🎓",
+    district: "武昌区",
+    peakTime: "3月15日 - 3月31日",
+    peakDays: "3月15日 - 3月31日",
+    difficulty: "easy",
+    rating: 4.9,
+    reviews: 8820,
+    tags: ["今日盛放！", "百年哥特建筑", "全国最美校园"],
+    isHot: true,
+    ticket: "免费（3/15-31需预约）",
+    description: "武汉最著名的赏樱地！樱花大道、老斋舍、老图书馆周边大片樱花与百年哥特式建筑相映成趣，是全国最具人文气息的赏花地之一。3月15日至31日樱花期间需提前在武汉大学官方公众号预约，凭身份证入校。",
+    tips: "花期人流量极大，强烈建议提前预约，工作日体验更佳。老斋舍台阶上俯拍樱花大道效果绝美，不要错过。",
+    transport: "地铁2号线→珞珈山站，步行15分钟",
+    color: "#FF6B9D",
+    xp: 160,
+  },
+  {
+    id: 'w2',
+    name: "东湖磨山樱花园",
+    nameEn: "Moshan Cherry Garden, East Lake",
+    emoji: "🏞️",
+    district: "洪山区",
+    peakTime: "2月下旬 - 4月中旬",
+    peakDays: "3月10日 - 4月15日",
+    difficulty: "easy",
+    rating: 4.8,
+    reviews: 5430,
+    tags: ["全国最大", "品种丰富", "早晚樱接力"],
+    ticket: "60元（60-65岁半价，65岁以上免票）",
+    description: "全国最大的樱花专类园之一！品种丰富，花期从早樱延续至晚樱，时间跨度长达近两个月。园内有日本樱花、中国樱花、垂枝樱等数十个品种，是武汉赏樱规模最大、品种最全的胜地。",
+    tips: "面积大，建议早上开门即入，园内乘观光车节省体力。自带午餐在湖边野餐别有情趣。",
+    transport: "地铁8号线→梨园站，乘观光车前往",
+    color: "#58CC02",
+    xp: 140,
+  },
+  {
+    id: 'w3',
+    name: "堤角公园（樱花列车）",
+    nameEn: "Dijiao Park",
+    emoji: "🚋",
+    district: "江岸区",
+    peakTime: "3月中旬 - 4月初",
+    peakDays: "3月15日 - 4月5日",
+    difficulty: "easy",
+    rating: 4.7,
+    reviews: 3210,
+    tags: ["樱花列车", "最出片", "拍照首选"],
+    ticket: "免费",
+    description: "1500余株樱花，轻轨1号线从樱花林上空穿越，形成「樱花列车」独特景观，是武汉最出片的赏花地！每隔几分钟就有列车驶过，粉色花海配上飞驰的列车，构成武汉独一无二的都市春日画面。",
+    tips: "拍列车穿越樱花最佳机位在公园中央，建议提前踩点。轻轨班次约5-10分钟一班，等待时间不长。",
+    transport: "轻轨1号线→堤角站，步行5分钟；地址：江岸区解放大道2058号",
+    color: "#1CB0F6",
+    xp: 130,
+  },
+  {
+    id: 'w4',
+    name: "汉口江滩樱花林",
+    nameEn: "Hankou Riverside Cherry Blossoms",
+    emoji: "🌊",
+    district: "江岸区",
+    peakTime: "3月中旬 - 4月初",
+    peakDays: "3月15日 - 4月5日",
+    difficulty: "easy",
+    rating: 4.6,
+    reviews: 2870,
+    tags: ["江景+花景", "沿江800米", "免费打卡"],
+    ticket: "免费",
+    description: "沿江约800米的樱花林，从天津路闸口至粤汉码头共116株，三阳门附近一期樱园有200余株，长江壮阔江景与粉色花景融为一体。在这里赏樱可同时欣赏对岸武昌的城市天际线，景致独特。",
+    tips: "傍晚时分江面落日与樱花同框效果极佳。三阳门入口右行可直达樱花林。",
+    transport: "地铁6号线→汉口火车站，步行至沿江大道；地址：江岸区沿江大道，三阳门入口右行",
+    color: "#FF9600",
+    xp: 100,
+  },
+  {
+    id: 'w5',
+    name: "青山公园",
+    nameEn: "Qingshan Park",
+    emoji: "🌿",
+    district: "青山区",
+    peakTime: "3月中旬 - 4月初",
+    peakDays: "3月15日 - 4月5日",
+    difficulty: "easy",
+    rating: 4.5,
+    reviews: 1340,
+    tags: ["稀有品种", "人少舒适", "郁金樱"],
+    ticket: "免费",
+    description: "近700株樱花，「落樱缤纷」景区为主要花区，拥有「郁金」等武汉少见的稀有黄绿色品种。这里游客比武大和东湖少得多，可以悠闲地慢慢欣赏，是想避开人群的赏花者的理想选择。",
+    tips: "郁金樱是黄绿色的罕见品种，全武汉屈指可数，爱好植物的朋友不要错过。",
+    transport: "地铁5号线→青山公园站，步行5分钟",
+    color: "#CE82FF",
+    xp: 110,
+  },
+  {
+    id: 'w6',
+    name: "西北湖绿化广场（夜樱）",
+    nameEn: "Xibeihu Park Night Cherry",
+    emoji: "🌙",
+    district: "江汉区",
+    peakTime: "3月中旬 - 4月初",
+    peakDays: "3月15日 - 4月5日",
+    difficulty: "easy",
+    rating: 4.6,
+    reviews: 1980,
+    tags: ["夜赏樱", "灯光秀", "市中心"],
+    ticket: "免费",
+    description: "武汉夜赏樱的热门打卡地！夜间彩色灯光映照樱花，将粉白花瓣渲染得梦幻迷人，与白天截然不同的视觉体验。位于江汉区市中心，交通便利，适合晚饭后顺道赏花。",
+    tips: "夜间灯光约18:30-21:30开放，周末人流较多。建议结合附近万松园美食一并游览。",
+    transport: "地铁2号线→江汉路站，步行10分钟",
+    color: "#D94F7C",
+    xp: 120,
+  },
+]
+
+const wuhanNearby = [
+  { name: "木兰花乡", desc: "郊区赏花圣地，油菜花+樱花同期，适合自驾", emoji: "🌻", transport: "驾车约1.5小时" },
+  { name: "武汉植物园", desc: "中科院植物园，品种丰富，科普游览佳选", emoji: "🌿", transport: "地铁8号线→植物园站" },
+  { name: "解放公园", desc: "市区老公园，部分樱花树，环境清幽适合散步", emoji: "🏞️", transport: "地铁1号线→解放公园站" },
+]
+
+const wuhanItinerary = [
+  {
+    day: 1, title: "抵达·江城初印象", date: "Day 1",
+    activities: [
+      { time: "下午", icon: "✈️", text: "抵达武汉天河国际机场/高铁武汉站" },
+      { time: "傍晚", icon: "🌉", text: "黄鹤楼俯瞰武汉全景，感受千年古楼" },
+      { time: "晚上", icon: "🍜", text: "户部巷吃武汉小吃：热干面、豆皮、面窝" },
+    ]
+  },
+  {
+    day: 2, title: "赏樱·校园文化", date: "Day 2",
+    activities: [
+      { time: "早上8点", icon: "🎓", text: "武汉大学樱花大道（提前预约，早去人少）" },
+      { time: "下午", icon: "🌸", text: "东湖磨山樱花园（全国最大，品种齐全）" },
+      { time: "晚上", icon: "🌙", text: "西北湖绿化广场夜赏樱+灯光秀" },
+    ]
+  },
+  {
+    day: 3, title: "江景·打卡特色", date: "Day 3",
+    activities: [
+      { time: "上午", icon: "🚋", text: "堤角公园等候「樱花列车」，完美打卡" },
+      { time: "下午", icon: "🌊", text: "汉口江滩樱花林漫步，欣赏长江美景" },
+      { time: "晚上", icon: "🎵", text: "汉街夜游，品尝小龙虾+湖北特色菜" },
+    ]
+  },
+  {
+    day: 4, title: "深度·慢生活", date: "Day 4",
+    activities: [
+      { time: "上午", icon: "🌿", text: "青山公园寻找稀有「郁金」黄绿色樱花" },
+      { time: "下午", icon: "🏛️", text: "湖北省博物馆参观，欣赏编钟表演" },
+      { time: "晚上", icon: "🍺", text: "汉口老租界区漫步，江边喝武汉精酿啤酒" },
+    ]
+  },
+]
+
+const wuhanTips = [
+  { icon: "📅", title: "最佳时间", content: "3月15日-3月底为武汉中樱盛花期，2026年预计3月20-27日为黄金赏花窗口。今年（3月21日）正处高峰期！" },
+  { icon: "🌤️", title: "天气提示", content: "武汉3月气温12-20°C，阴晴多变，偶有小雨。带件薄外套和折叠伞，晴天出行赏花为佳，雨后花瓣凋落较快。" },
+  { icon: "📸", title: "拍照秘籍", content: "武大老斋舍台阶是俯拍樱花大道的绝佳机位；堤角公园等列车穿越樱花时快门不停；东湖磨山湖边倒影拍摄绝美。" },
+  { icon: "🎫", title: "预约须知", content: "武汉大学3月15-31日需提前在官方公众号「武汉大学」预约，凭身份证入校。东湖磨山可现场购票，也可线上购票省时。" },
+  { icon: "🚇", title: "交通攻略", content: "武汉地铁网络发达，覆盖主要赏樱地点。推荐购买地铁一日票，在主要赏樱地点间穿梭非常便捷。" },
+  { icon: "💰", title: "预算参考", content: "武汉消费亲民，人均每天150-250元（含住宿约80元、餐饮约50元、门票交通约50元）。东湖磨山门票60元是主要花费。" },
+]
+
+const wuhanFoods = [
+  { name: "热干面", emoji: "🍜", desc: "武汉早餐灵魂，芝麻酱香气四溢" },
+  { name: "豆皮", emoji: "🥞", desc: "三鲜豆皮，外脆内软，户部巷必吃" },
+  { name: "小龙虾", emoji: "🦞", desc: "武汉夏季标配，麻辣卤虾超级下饭" },
+  { name: "周黑鸭", emoji: "🦆", desc: "武汉特产，甜辣鸭脖带几包当伴手礼" },
+  { name: "面窝", emoji: "🍩", desc: "炸面圈，酥脆咸香，武汉独有小吃" },
+  { name: "藕汤", emoji: "🥘", desc: "湖北莲藕煨排骨汤，鲜甜浓郁暖胃" },
+]
+
+const wuhanPackList = [
+  { icon: "☂️", text: "折叠伞（武汉3月多阴雨）" },
+  { icon: "🧥", text: "薄外套（早晚温差约8°C）" },
+  { icon: "👟", text: "舒适运动鞋（武大坡道较多）" },
+  { icon: "🔋", text: "充电宝（拍照耗电快）" },
+  { icon: "📱", text: "下载高德地图+武汉大学公众号" },
+  { icon: "🪪", text: "身份证（武大进校必备）" },
+]
+
+const wuhanBloom = {
+  year: "2026",
+  early: { label: "早樱", date: "2月中旬 — 3月15日" },
+  peak:  { label: "🔥 中樱盛花期", date: "3月15日 — 3月31日", badge: "正当时！" },
+  late:  { label: "晚樱", date: "4月初 — 4月中旬" },
+}
+
 /* ════════════════ CITIES 汇总 ════════════════ */
 export const CITIES = [
   {
@@ -683,6 +877,32 @@ export const CITIES = [
     foods: vancouverFoods,
     packList: vancouverPackList,
     bloomInfo: vancouverBloom,
+  },
+  {
+    id: 'wuhan',
+    name: '武汉',
+    nameEn: 'Wuhan',
+    emoji: '🌸',
+    country: '中国',
+    tagline: '樱花之都，赏花非武大不可',
+    heroBadge: '武汉 · 2026春',
+    heroTitle: '中樱盛放中',
+    heroHighlight: '武汉最美三月天！',
+    heroDesc: '3月15日 — 3月31日，黄金花期正当时',
+    heroGradient: 'linear-gradient(160deg, #c0392b 0%, #e74c3c 45%, #FF9EC4 100%)',
+    quickTips: [
+      { icon: '🎫', text: '武大3月需提前预约' },
+      { icon: '⏰', text: '工作日早晨人流最少' },
+      { icon: '🚋', text: '堤角公园拍樱花列车' },
+      { icon: '🌙', text: '西北湖夜樱灯光超美' },
+    ],
+    spots: wuhanSpots,
+    nearbySpots: wuhanNearby,
+    itineraryDays: wuhanItinerary,
+    tips: wuhanTips,
+    foods: wuhanFoods,
+    packList: wuhanPackList,
+    bloomInfo: wuhanBloom,
   },
 ]
 
