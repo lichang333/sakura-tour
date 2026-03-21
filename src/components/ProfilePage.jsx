@@ -8,8 +8,9 @@ const allSpots = CITIES.flatMap(c => c.spots)
 export default function ProfilePage() {
   const { user, logout } = useUser()
 
-  const checkedSpots = allSpots.filter(s => user.checkedSpots?.includes(s.id))
-  const visitedSpots = allSpots.filter(s => user.visitedSpots?.includes(s.id))
+  const checkedSpots    = allSpots.filter(s => user.checkedSpots?.includes(s.id))
+  const visitedSpots    = allSpots.filter(s => user.visitedSpots?.includes(s.id))
+  const recommendedSpots = allSpots.filter(s => user.recommendedSpots?.includes(s.id))
 
   const totalXP   = user.xp || 0
   const level     = Math.floor(totalXP / 200) + 1
@@ -145,6 +146,33 @@ export default function ProfilePage() {
                     <div className="cs-district">{city?.emoji} {city?.name} · {spot.district}</div>
                   </div>
                   <span className="cs-xp" style={{ color: spot.color }}>+{spot.xp} XP</span>
+                </div>
+              )
+            })}
+          </div>
+        )}
+      </div>
+
+      {/* Recommended Spots — 我的推荐 */}
+      <div className="profile-section">
+        <h3 className="section-title">我的推荐 👍</h3>
+        {recommendedSpots.length === 0 ? (
+          <div className="empty-spots">
+            <span className="empty-icon">💌</span>
+            <span>还没有推荐过的景点<br />在景点详情页点击「推荐给朋友」吧！</span>
+          </div>
+        ) : (
+          <div className="checked-spots">
+            {recommendedSpots.map(spot => {
+              const city = CITIES.find(c => c.spots.some(s => s.id === spot.id))
+              return (
+                <div key={spot.id} className="checked-spot-row rec-row" style={{ borderLeftColor: spot.color }}>
+                  <span className="cs-emoji">{spot.emoji}</span>
+                  <div className="cs-info">
+                    <div className="cs-name">{spot.name}</div>
+                    <div className="cs-district">{city?.emoji} {city?.name} · {spot.district}</div>
+                  </div>
+                  <span className="cs-rec-badge">👍 已推荐</span>
                 </div>
               )
             })}

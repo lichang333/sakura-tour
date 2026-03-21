@@ -38,15 +38,22 @@ export default function SpotsPage() {
   const [selected,    setSelected]    = useState(null)
   const [reviewDraft, setReviewDraft] = useState('')
   const [reviewSaved, setReviewSaved] = useState(false)
-  const { user, toggleSpot, toggleVisited, rateSpot, reviewSpot, addXP } = useUser()
+  const { user, toggleSpot, toggleVisited, rateSpot, reviewSpot, toggleRecommend, addXP } = useUser()
   const { currentCity } = useCity()
   const { communityData, refresh: refreshReviews } = useReviews()
 
   const spots = currentCity.spots
   const nearby = currentCity.nearbySpots
 
-  const checkedIds  = new Set(user?.checkedSpots  || [])
-  const visitedIds  = new Set(user?.visitedSpots  || [])
+  const checkedIds     = new Set(user?.checkedSpots      || [])
+  const visitedIds     = new Set(user?.visitedSpots      || [])
+  const recommendedIds = new Set(user?.recommendedSpots  || [])
+
+  const handleRecommend = (spotId, e) => {
+    e?.stopPropagation()
+    toggleRecommend(spotId)
+    refreshReviews()
+  }
 
   const handleCheckBtn = (id, e) => {
     e.stopPropagation()
@@ -112,14 +119,14 @@ export default function SpotsPage() {
   if (selected !== null) {
     const spot = spots.find(s => s.id === selected)
     if (!spot) { setSelected(null); return null }
-    const isVisited   = visitedIds.has(spot.id)
-    const isChecked   = checkedIds.has(spot.id)
-    const myRating    = (user?.spotRatings  || {})[String(spot.id)] || 0
-    const savedReview = (user?.spotReviews  || {})[String(spot.id)] || ''
+    const isVisited      = visitedIds.has(spot.id)
+    const isChecked      = checkedIds.has(spot.id)
+    const isRecommended  = recommendedIds.has(spot.id)
+    const myRating       = (user?.spotRatings  || {})[String(spot.id)] || 0
+    const savedReview    = (user?.spotReviews  || {})[String(spot.id)] || ''
 
     // Community data for this spot
-    const community   = communityData[String(spot.id)] || { avgRating: 0, ratingCount: 0, reviews: [] }
-    // Filter out own review from community list to avoid duplicate
+    const community    = communityData[String(spot.id)] || { avgRating: 0, ratingCount: 0, reviews: [], recommendCount: 0, recommenders: [] }
     const otherReviews = community.reviews.filter(r => r.name !== user?.name)
 
     const handleSaveReview = () => {
@@ -192,6 +199,36 @@ export default function SpotsPage() {
               <span className="xp-amount" style={{ color: spot.color }}>+{spot.xp} XP</span>
               <span>🌟</span>
             </div>
+
+            {/* 推荐按钮 */}
+            <button
+              className={`recommend-btn ${isRecommended ? 'active' : ''}`}
+              onClick={(e) => handleRecommend(spot.id, e)}
+            >
+              <span className="rec-icon">{isRecommended ? '👍' : '👍'}</span>
+              <span className="rec-label">{isRecommended ? '已推荐' : '推荐给朋友'}</span>
+              {community.recommendCount > 0 && (
+                <span className="rec-count">{community.recommendCount + (isRecommended && !community.recommenders.some(r => r.name === user?.name) ? 1 : 0)}</span>
+              )}
+            </button>
+
+            {/* 推荐人头像列表 */}
+            {community.recommenders.length > 0 && (
+              <div className="recommenders-row">
+                <div className="rec-avatars">
+                  {community.recommenders.slice(0, 8).map((r, i) => (
+                    <span key={i} className="rec-avatar-chip" title={r.name}>{r.avatar}</span>
+                  ))}
+                  {community.recommenders.length > 8 && (
+                    <span className="rec-avatar-more">+{community.recommenders.length - 8}</span>
+                  )}
+                </div>
+                <span className="rec-summary">
+                  {community.recommenders.slice(0, 2).map(r => r.name === user?.name ? '你' : r.name).join('、')}
+                  {community.recommenders.length > 2 ? `等${community.recommenders.length}人推荐` : '推荐了这里'}
+                </span>
+              </div>
+            )}
 
             {/* 加入行程按钮 */}
             <button
@@ -346,6 +383,11 @@ export default function SpotsPage() {
                   <span className="spot-diff" style={{ color: difficultyColor[spot.difficulty] }}>
                     {difficultyLabel[spot.difficulty]}
                   </span>
+                  {communityData[String(spot.id)]?.recommendCount > 0 && (
+                    <span className="spot-rec-count">
+                      👍 {communityData[String(spot.id)].recommendCount}
+                    </span>
+                  )}
                   <span className="spot-xp">+{spot.xp} XP</span>
                 </div>
               </div>

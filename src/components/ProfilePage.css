@@ -295,6 +295,23 @@
   font-style: italic;
 }
 
+/* 推荐行 */
+.rec-row {
+  border-left-color: #1CB0F6;
+  background: rgba(28,176,246,0.04);
+}
+
+.cs-rec-badge {
+  font-size: 12px;
+  font-weight: 800;
+  flex-shrink: 0;
+  align-self: flex-start;
+  background: #1CB0F6;
+  color: white;
+  padding: 3px 10px;
+  border-radius: 12px;
+}
+
 /* Logout */
 .logout-btn {
   width: 100%;
