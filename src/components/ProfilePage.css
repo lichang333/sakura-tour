@@ -254,6 +254,22 @@
   color: var(--duo-orange);
 }
 
+.visited-row {
+  background: var(--bg-green-tint);
+  border-color: var(--border-green);
+  border-left-width: 4px;
+}
+
+.cs-visited-badge {
+  font-size: 12px;
+  font-weight: 800;
+  flex-shrink: 0;
+  background: #58CC02;
+  color: white;
+  padding: 3px 10px;
+  border-radius: 12px;
+}
+
 /* Logout */
 .logout-btn {
   width: 100%;

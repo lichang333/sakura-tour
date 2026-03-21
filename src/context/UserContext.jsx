@@ -94,8 +94,23 @@ export function UserProvider({ children }) {
     syncUser({ completedActivities: next })
   }
 
+  const toggleVisited = (spotId) => {
+    if (!user) return
+    const visited = user.visitedSpots || []
+    const isVisited = visited.includes(spotId)
+    const nextVisited = isVisited
+      ? visited.filter(id => id !== spotId)
+      : [...visited, spotId]
+    // Also add to checkedSpots (想去) when marking visited
+    const checked = user.checkedSpots || []
+    const nextChecked = (!isVisited && !checked.includes(spotId))
+      ? [...checked, spotId]
+      : checked
+    syncUser({ visitedSpots: nextVisited, checkedSpots: nextChecked })
+  }
+
   return (
-    <UserContext.Provider value={{ user, loading, signup, login, logout, addXP, toggleSpot, toggleActivity }}>
+    <UserContext.Provider value={{ user, loading, signup, login, logout, addXP, toggleSpot, toggleActivity, toggleVisited }}>
       {children}
     </UserContext.Provider>
   )

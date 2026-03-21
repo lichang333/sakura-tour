@@ -26,25 +26,63 @@
   font-size: 12px;
   font-weight: 700;
   color: var(--text-mid);
+}
+
+.pm-row {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 6px;
+  margin-bottom: 6px;
+}
+
+.pm-sep {
+  opacity: 0.4;
 }
 
 .pm-bar {
-  flex: 1;
+  position: relative;
   height: 8px;
   background: var(--border);
   border-radius: 8px;
   overflow: hidden;
+  display: flex;
 }
 
 .pm-fill {
   height: 100%;
-  background: linear-gradient(90deg, var(--sakura-pink), #FF9EC4);
   border-radius: 8px;
   transition: width 0.5s ease;
 }
+
+.pm-fill.visited-fill {
+  background: #58CC02;
+  z-index: 2;
+}
+
+.pm-fill.want-fill {
+  background: #1CB0F6;
+  z-index: 1;
+}
+
+.pm-legend {
+  display: flex;
+  gap: 12px;
+  margin-top: 5px;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-mid);
+}
+
+.pm-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-right: 3px;
+}
+
+.pm-dot.green { background: #58CC02; }
+.pm-dot.blue  { background: #1CB0F6; }
 
 /* Today Banner */
 .today-banner {
@@ -102,6 +140,11 @@
 }
 
 .spot-card.checked {
+  border-color: rgba(28,176,246,0.4);
+  background: rgba(28,176,246,0.06);
+}
+
+.spot-card.visited {
   border-color: var(--border-green);
   background: var(--bg-green-tint);
 }
@@ -161,6 +204,22 @@
   font-weight: 800;
   padding: 3px 10px;
   border-radius: 0 0 10px 10px;
+}
+
+.visited-ribbon {
+  position: absolute;
+  top: -1px;
+  right: 52px;
+  background: #58CC02;
+  color: white;
+  font-size: 11px;
+  font-weight: 800;
+  padding: 3px 10px;
+  border-radius: 0 0 10px 10px;
+}
+
+.check-btn.visited {
+  font-size: 14px;
 }
 
 .spot-peak {
@@ -461,4 +520,41 @@
 
 .checkin-btn:active {
   transform: translateY(3px);
+}
+
+/* 去过按钮 */
+.visited-btn {
+  width: 100%;
+  margin-top: 10px;
+  padding: 14px;
+  background: var(--bg-card2);
+  color: var(--text-mid);
+  border: 2px solid var(--border);
+  border-radius: 18px;
+  font-size: 15px;
+  font-weight: 800;
+  transition: all 0.15s ease;
+}
+
+.visited-btn.active {
+  background: var(--bg-green-tint);
+  color: #46A302;
+  border-color: var(--border-green);
+}
+
+.visited-btn:active {
+  transform: scale(0.98);
+}
+
+/* 去过 banner in detail */
+.detail-visited-banner {
+  background: rgba(88,204,2,0.25);
+  border: 1.5px solid rgba(88,204,2,0.5);
+  border-radius: 20px;
+  display: inline-block;
+  padding: 4px 14px;
+  font-size: 13px;
+  font-weight: 800;
+  color: white;
+  margin-bottom: 8px;
 }

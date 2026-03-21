@@ -18,10 +18,16 @@ db.exec(`
     xp        INTEGER NOT NULL DEFAULT 0,
     streak    INTEGER NOT NULL DEFAULT 0,
     last_active_date TEXT,
-    checked_spots     TEXT NOT NULL DEFAULT '[]',
+    checked_spots        TEXT NOT NULL DEFAULT '[]',
     completed_activities TEXT NOT NULL DEFAULT '[]',
+    visited_spots        TEXT NOT NULL DEFAULT '[]',
     created_at TEXT NOT NULL DEFAULT (datetime('now'))
   )
 `)
+
+// Migration: add visited_spots column if it doesn't exist yet
+try {
+  db.exec(`ALTER TABLE users ADD COLUMN visited_spots TEXT NOT NULL DEFAULT '[]'`)
+} catch { /* column already exists, ignore */ }
 
 export default db

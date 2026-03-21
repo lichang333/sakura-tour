@@ -8,34 +8,89 @@ const difficultyColor = { easy: '#58CC02', medium: '#FFD900', hard: '#FF4B4B' }
 
 export default function SpotsPage() {
   const [selected, setSelected] = useState(null)
-  const { user, toggleSpot, addXP } = useUser()
+  const { user, toggleSpot, toggleVisited, addXP } = useUser()
   const { currentCity } = useCity()
 
   const spots = currentCity.spots
   const nearby = currentCity.nearbySpots
 
-  // Derive checked state from user data in DB
-  const checkedIds = new Set(user?.checkedSpots || [])
+  const checkedIds  = new Set(user?.checkedSpots  || [])
+  const visitedIds  = new Set(user?.visitedSpots  || [])
 
-  const toggleCheck = (id, e) => {
+  const handleCheckBtn = (id, e) => {
     e.stopPropagation()
-    const wasChecked = checkedIds.has(id)
-    toggleSpot(id)
-    if (!wasChecked) {
-      const spot = spots.find(s => s.id === id)
-      if (spot) addXP(spot.xp)
+    const wasChecked  = checkedIds.has(id)
+    const wasVisited  = visitedIds.has(id)
+    const spot = spots.find(s => s.id === id)
+
+    if (wasVisited) {
+      // 去过 → 清除（取消去过 + 取消想去）
+      toggleVisited(id)
+      toggleSpot(id)   // remove from checkedSpots too
+    } else if (wasChecked) {
+      // 想去 → 去过
+      if (!wasVisited) {
+        toggleVisited(id)   // adds to visited (and keeps in checked)
+        if (spot) addXP(spot.xp)
+      }
+    } else {
+      // 未加入 → 想去
+      toggleSpot(id)
     }
+  }
+
+  const handleVisitedBtn = (id, e) => {
+    e?.stopPropagation()
+    const wasVisited = visitedIds.has(id)
+    const spot = spots.find(s => s.id === id)
+    toggleVisited(id)
+    if (!wasVisited && spot) addXP(spot.xp)
+  }
+
+  /* ── 三态按钮渲染 ── */
+  const SpotStateBtn = ({ id, style = {} }) => {
+    const visited = visitedIds.has(id)
+    const checked = checkedIds.has(id)
+
+    if (visited) return (
+      <button
+        className="check-btn visited"
+        style={{ background: '#58CC02', borderColor: '#58CC02', ...style }}
+        onClick={(e) => handleCheckBtn(id, e)}
+        title="点击取消"
+      >✈️</button>
+    )
+    if (checked) return (
+      <button
+        className="check-btn done"
+        style={{ background: 'transparent', borderColor: '#1CB0F6', color: '#1CB0F6', ...style }}
+        onClick={(e) => handleCheckBtn(id, e)}
+        title="点击标记去过"
+      >♡</button>
+    )
+    return (
+      <button
+        className="check-btn"
+        style={{ background: 'transparent', borderColor: '#DDD', ...style }}
+        onClick={(e) => handleCheckBtn(id, e)}
+        title="加入行程"
+      >+</button>
+    )
   }
 
   if (selected !== null) {
     const spot = spots.find(s => s.id === selected)
     if (!spot) { setSelected(null); return null }
+    const isVisited = visitedIds.has(spot.id)
+    const isChecked = checkedIds.has(spot.id)
+
     return (
       <div className="spots-page">
         <div className="spot-detail">
           <button className="back-btn" onClick={() => setSelected(null)}>← 返回</button>
           <div className="detail-hero" style={{ background: `linear-gradient(135deg, ${spot.color}CC, ${spot.color}88)` }}>
             {spot.isHot && <div className="detail-hot-banner">🔥 今日正值花期！</div>}
+            {isVisited && <div className="detail-visited-banner">✈️ 你已去过这里</div>}
             <div className="detail-emoji">{spot.emoji}</div>
             <h1 className="detail-name">{spot.name}</h1>
             <p className="detail-name-en">{spot.nameEn}</p>
@@ -88,13 +143,24 @@ export default function SpotsPage() {
               <span>🌟</span>
             </div>
 
+            {/* 加入行程按钮 */}
             <button
               className="checkin-btn"
-              style={{ background: checkedIds.has(spot.id) ? '#58CC02' : spot.color,
-                       boxShadow: `0 4px 0 ${checkedIds.has(spot.id) ? '#46A302' : spot.color}AA` }}
-              onClick={(e) => toggleCheck(spot.id, e)}
+              style={{
+                background: isChecked ? (isVisited ? '#58CC02' : '#1CB0F6') : spot.color,
+                boxShadow: `0 4px 0 ${isChecked ? (isVisited ? '#46A302' : '#0E86BB') : spot.color}AA`
+              }}
+              onClick={() => { if (!isChecked) { toggleSpot(spot.id) } }}
             >
-              {checkedIds.has(spot.id) ? '✅ 已加入行程！' : '加入我的行程 +'}
+              {isVisited ? '✈️ 已去过' : isChecked ? '♡ 已加入行程' : '加入我的行程 +'}
+            </button>
+
+            {/* 去过按钮 */}
+            <button
+              className={`visited-btn ${isVisited ? 'active' : ''}`}
+              onClick={() => handleVisitedBtn(spot.id)}
+            >
+              {isVisited ? '✅ 已标记为去过 · 点击取消' : '✈️ 我去过这里'}
             </button>
           </div>
         </div>
@@ -108,9 +174,20 @@ export default function SpotsPage() {
         <h2 className="page-title">{currentCity.name}赏樱地图 🌸</h2>
         <p className="page-sub">{spots.length}个精选赏樱点位，总有一款适合你</p>
         <div className="progress-mini">
-          <span>已选 {[...checkedIds].filter(id => spots.some(s => s.id === id)).length}/{spots.length} 个地点</span>
+          <div className="pm-row">
+            <span>想去 {[...checkedIds].filter(id => spots.some(s => s.id === id)).length}</span>
+            <span className="pm-sep">·</span>
+            <span>去过 {[...visitedIds].filter(id => spots.some(s => s.id === id)).length}/{spots.length}</span>
+          </div>
           <div className="pm-bar">
-            <div className="pm-fill" style={{ width: `${([...checkedIds].filter(id => spots.some(s => s.id === id)).length / spots.length) * 100}%` }} />
+            <div className="pm-fill visited-fill"
+              style={{ width: `${([...visitedIds].filter(id => spots.some(s => s.id === id)).length / spots.length) * 100}%` }} />
+            <div className="pm-fill want-fill"
+              style={{ width: `${([...checkedIds].filter(id => spots.some(s => s.id === id) && !visitedIds.has(id)).length / spots.length) * 100}%` }} />
+          </div>
+          <div className="pm-legend">
+            <span><span className="pm-dot green" />去过</span>
+            <span><span className="pm-dot blue" />想去</span>
           </div>
         </div>
       </div>
@@ -124,49 +201,47 @@ export default function SpotsPage() {
       )}
 
       <div className="spots-list">
-        {spots.map(spot => (
-          <div
-            key={spot.id}
-            className={`spot-card ${checkedIds.has(spot.id) ? 'checked' : ''} ${spot.isHot ? 'hot' : ''}`}
-            onClick={() => setSelected(spot.id)}
-            style={{ '--spot-color': spot.color }}
-          >
-            {spot.isHot && <div className="hot-ribbon">🔥 今日花开</div>}
-            <div className="spot-left">
-              <div className="spot-emoji-wrap" style={{ background: `${spot.color}22` }}>
-                <span className="spot-emoji">{spot.emoji}</span>
-              </div>
-            </div>
-            <div className="spot-info">
-              <div className="spot-name-row">
-                <span className="spot-name">{spot.name}</span>
-                <span className="spot-district">{spot.district}</span>
-              </div>
-              <div className="spot-peak">🌸 {spot.peakTime}</div>
-              <div className="spot-ticket">🎫 {spot.ticket}</div>
-              <div className="spot-tags">
-                {spot.tags.slice(0, 2).map(t => (
-                  <span key={t} className="spot-tag" style={{ background: `${spot.color}18`, color: spot.color }}>{t}</span>
-                ))}
-              </div>
-              <div className="spot-bottom">
-                <span className="spot-rating">⭐ {spot.rating}</span>
-                <span className="spot-diff" style={{ color: difficultyColor[spot.difficulty] }}>
-                  {difficultyLabel[spot.difficulty]}
-                </span>
-                <span className="spot-xp">+{spot.xp} XP</span>
-              </div>
-            </div>
-            <button
-              className={`check-btn ${checkedIds.has(spot.id) ? 'done' : ''}`}
-              onClick={(e) => toggleCheck(spot.id, e)}
-              style={{ background: checkedIds.has(spot.id) ? '#58CC02' : 'transparent',
-                       borderColor: checkedIds.has(spot.id) ? '#58CC02' : '#DDD' }}
+        {spots.map(spot => {
+          const visited = visitedIds.has(spot.id)
+          const checked = checkedIds.has(spot.id)
+          return (
+            <div
+              key={spot.id}
+              className={`spot-card ${visited ? 'visited' : checked ? 'checked' : ''} ${spot.isHot ? 'hot' : ''}`}
+              onClick={() => setSelected(spot.id)}
+              style={{ '--spot-color': spot.color }}
             >
-              {checkedIds.has(spot.id) ? '✓' : '+'}
-            </button>
-          </div>
-        ))}
+              {spot.isHot && !visited && <div className="hot-ribbon">🔥 今日花开</div>}
+              {visited && <div className="visited-ribbon">✈️ 去过</div>}
+              <div className="spot-left">
+                <div className="spot-emoji-wrap" style={{ background: `${spot.color}22` }}>
+                  <span className="spot-emoji">{spot.emoji}</span>
+                </div>
+              </div>
+              <div className="spot-info">
+                <div className="spot-name-row">
+                  <span className="spot-name">{spot.name}</span>
+                  <span className="spot-district">{spot.district}</span>
+                </div>
+                <div className="spot-peak">🌸 {spot.peakTime}</div>
+                <div className="spot-ticket">🎫 {spot.ticket}</div>
+                <div className="spot-tags">
+                  {spot.tags.slice(0, 2).map(t => (
+                    <span key={t} className="spot-tag" style={{ background: `${spot.color}18`, color: spot.color }}>{t}</span>
+                  ))}
+                </div>
+                <div className="spot-bottom">
+                  <span className="spot-rating">⭐ {spot.rating}</span>
+                  <span className="spot-diff" style={{ color: difficultyColor[spot.difficulty] }}>
+                    {difficultyLabel[spot.difficulty]}
+                  </span>
+                  <span className="spot-xp">+{spot.xp} XP</span>
+                </div>
+              </div>
+              <SpotStateBtn id={spot.id} />
+            </div>
+          )
+        })}
       </div>
 
       {/* Nearby Spots */}

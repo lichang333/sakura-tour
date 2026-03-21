@@ -30,6 +30,7 @@ const toPublic = (user) => ({
   lastActiveDate: user.last_active_date,
   checkedSpots: JSON.parse(user.checked_spots || '[]'),
   completedActivities: JSON.parse(user.completed_activities || '[]'),
+  visitedSpots: JSON.parse(user.visited_spots || '[]'),
   joinedAt: user.created_at,
 })
 
@@ -45,15 +46,16 @@ router.patch('/me', auth, (req, res) => {
   const user = db.prepare('SELECT * FROM users WHERE id = ?').get(req.userId)
   if (!user) return res.status(404).json({ error: '用户不存在' })
 
-  const { xp, checkedSpots, completedActivities } = req.body
+  const { xp, checkedSpots, completedActivities, visitedSpots } = req.body
 
   const newXp = xp !== undefined ? xp : user.xp
   const newSpots = checkedSpots !== undefined ? JSON.stringify(checkedSpots) : user.checked_spots
   const newActivities = completedActivities !== undefined ? JSON.stringify(completedActivities) : user.completed_activities
+  const newVisited = visitedSpots !== undefined ? JSON.stringify(visitedSpots) : user.visited_spots
 
   db.prepare(`
-    UPDATE users SET xp = ?, checked_spots = ?, completed_activities = ? WHERE id = ?
-  `).run(newXp, newSpots, newActivities, req.userId)
+    UPDATE users SET xp = ?, checked_spots = ?, completed_activities = ?, visited_spots = ? WHERE id = ?
+  `).run(newXp, newSpots, newActivities, newVisited, req.userId)
 
   const updated = db.prepare('SELECT * FROM users WHERE id = ?').get(req.userId)
   res.json(toPublic(updated))

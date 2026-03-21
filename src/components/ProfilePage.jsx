@@ -1,23 +1,34 @@
 import { useUser } from '../context/UserContext'
-import { sakuraSpots } from '../data/spots'
+import { CITIES } from '../data/cities'
 import './ProfilePage.css'
+
+// Gather all spots across all cities
+const allSpots = CITIES.flatMap(c => c.spots)
 
 export default function ProfilePage() {
   const { user, logout } = useUser()
 
-  const checkedSpots = sakuraSpots.filter(s => user.checkedSpots?.includes(s.id))
-  const totalXP = user.xp || 0
-  const level = Math.floor(totalXP / 200) + 1
+  const checkedSpots = allSpots.filter(s => user.checkedSpots?.includes(s.id))
+  const visitedSpots = allSpots.filter(s => user.visitedSpots?.includes(s.id))
+
+  const totalXP   = user.xp || 0
+  const level     = Math.floor(totalXP / 200) + 1
   const xpInLevel = totalXP % 200
-  const joinDate = new Date(user.joinedAt).toLocaleDateString('zh-CN', { year: 'numeric', month: 'long', day: 'numeric' })
+  const joinDate  = new Date(user.joinedAt).toLocaleDateString('zh-CN', { year: 'numeric', month: 'long', day: 'numeric' })
+
+  const visitedCount = visitedSpots.length
+  const checkedCount = checkedSpots.length
 
   const badges = [
-    { id: 'first', icon: '🌸', name: '樱花初探', desc: '完成注册', unlocked: true },
-    { id: 'spot1', icon: '📍', name: '第一站', desc: '加入第1个地点', unlocked: (user.checkedSpots?.length || 0) >= 1 },
-    { id: 'spot3', icon: '🗺️', name: '探索者', desc: '加入3个地点', unlocked: (user.checkedSpots?.length || 0) >= 3 },
-    { id: 'spot7', icon: '🏆', name: '赏樱达人', desc: '加入全部7个地点', unlocked: (user.checkedSpots?.length || 0) >= 7 },
-    { id: 'xp200', icon: '⭐', name: '积分新星', desc: '累计200 XP', unlocked: totalXP >= 200 },
-    { id: 'streak3', icon: '🔥', name: '坚持打卡', desc: '连续3天登录', unlocked: (user.streak || 0) >= 3 },
+    { id: 'first',    icon: '🌸', name: '樱花初探',  desc: '完成注册',         unlocked: true },
+    { id: 'spot1',    icon: '📍', name: '第一站',    desc: '加入第1个地点',     unlocked: checkedCount >= 1 },
+    { id: 'spot3',    icon: '🗺️', name: '探索者',    desc: '加入3个地点',       unlocked: checkedCount >= 3 },
+    { id: 'visited1', icon: '✈️', name: '首次出发',  desc: '标记第1个去过',     unlocked: visitedCount >= 1 },
+    { id: 'visited3', icon: '🏅', name: '旅行达人',  desc: '去过3个地点',       unlocked: visitedCount >= 3 },
+    { id: 'visited5', icon: '🏆', name: '赏樱大师',  desc: '去过5个地点',       unlocked: visitedCount >= 5 },
+    { id: 'xp200',    icon: '⭐', name: '积分新星',  desc: '累计200 XP',        unlocked: totalXP >= 200 },
+    { id: 'streak3',  icon: '🔥', name: '坚持打卡',  desc: '连续3天登录',       unlocked: (user.streak || 0) >= 3 },
+    { id: 'city2',    icon: '🌍', name: '环球赏樱',  desc: '去过2个城市的景点', unlocked: new Set(CITIES.filter(c => c.spots.some(s => user.visitedSpots?.includes(s.id))).map(c => c.id)).size >= 2 },
   ]
 
   return (
@@ -36,13 +47,18 @@ export default function ProfilePage() {
           </div>
           <div className="ps-divider" />
           <div className="ps-item">
-            <span className="ps-val">{user.streak || 0}</span>
-            <span className="ps-label">🔥 连续天</span>
+            <span className="ps-val">{visitedCount}</span>
+            <span className="ps-label">✈️ 去过</span>
           </div>
           <div className="ps-divider" />
           <div className="ps-item">
-            <span className="ps-val">{user.checkedSpots?.length || 0}</span>
-            <span className="ps-label">打卡地点</span>
+            <span className="ps-val">{checkedCount}</span>
+            <span className="ps-label">♡ 想去</span>
+          </div>
+          <div className="ps-divider" />
+          <div className="ps-item">
+            <span className="ps-val">{user.streak || 0}</span>
+            <span className="ps-label">🔥 连续天</span>
           </div>
         </div>
       </div>
@@ -73,26 +89,56 @@ export default function ProfilePage() {
         </div>
       </div>
 
-      {/* Checked Spots */}
+      {/* Visited Spots — 足迹 */}
       <div className="profile-section">
-        <h3 className="section-title">我的行程地点 🌸</h3>
-        {checkedSpots.length === 0 ? (
+        <h3 className="section-title">我的足迹 ✈️</h3>
+        {visitedSpots.length === 0 ? (
           <div className="empty-spots">
             <span className="empty-icon">🗺️</span>
-            <span>还没有加入任何地点，去「赏樱地」页面探索吧！</span>
+            <span>还没有「去过」的景点<br />在赏樱地页面点击「我去过这里」记录足迹吧！</span>
           </div>
         ) : (
           <div className="checked-spots">
-            {checkedSpots.map(spot => (
-              <div key={spot.id} className="checked-spot-row" style={{ borderLeftColor: spot.color }}>
-                <span className="cs-emoji">{spot.emoji}</span>
-                <div className="cs-info">
-                  <div className="cs-name">{spot.name}</div>
-                  <div className="cs-district">{spot.district} · {spot.peakTime}</div>
+            {visitedSpots.map(spot => {
+              const city = CITIES.find(c => c.spots.some(s => s.id === spot.id))
+              return (
+                <div key={spot.id} className="checked-spot-row visited-row" style={{ borderLeftColor: spot.color }}>
+                  <span className="cs-emoji">{spot.emoji}</span>
+                  <div className="cs-info">
+                    <div className="cs-name">{spot.name}</div>
+                    <div className="cs-district">{city?.emoji} {city?.name} · {spot.district}</div>
+                  </div>
+                  <span className="cs-visited-badge">✈️ 去过</span>
                 </div>
-                <span className="cs-xp" style={{ color: spot.color }}>+{spot.xp} XP</span>
-              </div>
-            ))}
+              )
+            })}
+          </div>
+        )}
+      </div>
+
+      {/* Want-to-go Spots — 想去 */}
+      <div className="profile-section">
+        <h3 className="section-title">我的心愿清单 ♡</h3>
+        {checkedSpots.filter(s => !user.visitedSpots?.includes(s.id)).length === 0 ? (
+          <div className="empty-spots">
+            <span className="empty-icon">💭</span>
+            <span>还没有「想去」的景点<br />在赏樱地页面加入行程吧！</span>
+          </div>
+        ) : (
+          <div className="checked-spots">
+            {checkedSpots.filter(s => !user.visitedSpots?.includes(s.id)).map(spot => {
+              const city = CITIES.find(c => c.spots.some(s => s.id === spot.id))
+              return (
+                <div key={spot.id} className="checked-spot-row" style={{ borderLeftColor: spot.color }}>
+                  <span className="cs-emoji">{spot.emoji}</span>
+                  <div className="cs-info">
+                    <div className="cs-name">{spot.name}</div>
+                    <div className="cs-district">{city?.emoji} {city?.name} · {spot.district}</div>
+                  </div>
+                  <span className="cs-xp" style={{ color: spot.color }}>+{spot.xp} XP</span>
+                </div>
+              )
+            })}
           </div>
         )}
       </div>
