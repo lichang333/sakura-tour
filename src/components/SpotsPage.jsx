@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import { sakuraSpots, nearbySpots } from '../data/spots'
 import { useUser } from '../context/UserContext'
+import { useCity } from '../context/CityContext'
 import './SpotsPage.css'
 
 const difficultyLabel = { easy: '轻松', medium: '一般', hard: '需体力' }
@@ -9,6 +9,10 @@ const difficultyColor = { easy: '#58CC02', medium: '#FFD900', hard: '#FF4B4B' }
 export default function SpotsPage() {
   const [selected, setSelected] = useState(null)
   const { user, toggleSpot, addXP } = useUser()
+  const { currentCity } = useCity()
+
+  const spots = currentCity.spots
+  const nearby = currentCity.nearbySpots
 
   // Derive checked state from user data in DB
   const checkedIds = new Set(user?.checkedSpots || [])
@@ -18,13 +22,14 @@ export default function SpotsPage() {
     const wasChecked = checkedIds.has(id)
     toggleSpot(id)
     if (!wasChecked) {
-      const spot = sakuraSpots.find(s => s.id === id)
+      const spot = spots.find(s => s.id === id)
       if (spot) addXP(spot.xp)
     }
   }
 
-  if (selected) {
-    const spot = sakuraSpots.find(s => s.id === selected)
+  if (selected !== null) {
+    const spot = spots.find(s => s.id === selected)
+    if (!spot) { setSelected(null); return null }
     return (
       <div className="spots-page">
         <div className="spot-detail">
@@ -100,24 +105,26 @@ export default function SpotsPage() {
   return (
     <div className="spots-page">
       <div className="spots-header">
-        <h2 className="page-title">成都赏樱地图 🌸</h2>
-        <p className="page-sub">7个精选赏樱点位，总有一款适合你</p>
+        <h2 className="page-title">{currentCity.name}赏樱地图 🌸</h2>
+        <p className="page-sub">{spots.length}个精选赏樱点位，总有一款适合你</p>
         <div className="progress-mini">
-          <span>已选 {checkedIds.size}/{sakuraSpots.length} 个地点</span>
+          <span>已选 {[...checkedIds].filter(id => spots.some(s => s.id === id)).length}/{spots.length} 个地点</span>
           <div className="pm-bar">
-            <div className="pm-fill" style={{ width: `${(checkedIds.size / sakuraSpots.length) * 100}%` }} />
+            <div className="pm-fill" style={{ width: `${([...checkedIds].filter(id => spots.some(s => s.id === id)).length / spots.length) * 100}%` }} />
           </div>
         </div>
       </div>
 
       {/* Today's Pick */}
-      <div className="today-banner">
-        <span className="tb-dot" />
-        <span>今日（3月21日）正处黄金花期 — 建议工作日清晨出发！</span>
-      </div>
+      {spots.some(s => s.isHot) && (
+        <div className="today-banner">
+          <span className="tb-dot" />
+          <span>{spots.find(s => s.isHot)?.name} 现正值花期 — 近期前往正是时候！</span>
+        </div>
+      )}
 
       <div className="spots-list">
-        {sakuraSpots.map(spot => (
+        {spots.map(spot => (
           <div
             key={spot.id}
             className={`spot-card ${checkedIds.has(spot.id) ? 'checked' : ''} ${spot.isHot ? 'hot' : ''}`}
@@ -163,22 +170,24 @@ export default function SpotsPage() {
       </div>
 
       {/* Nearby Spots */}
-      <div className="nearby-section">
-        <h3 className="nearby-title">📍 周边小众景点</h3>
-        <p className="nearby-sub">适合有额外时间的朋友顺道一游</p>
-        <div className="nearby-list">
-          {nearbySpots.map((s, i) => (
-            <div key={i} className="nearby-card">
-              <span className="nearby-emoji">{s.emoji}</span>
-              <div className="nearby-info">
-                <div className="nearby-name">{s.name}</div>
-                <div className="nearby-desc">{s.desc}</div>
-                <div className="nearby-transport">🚇 {s.transport}</div>
+      {nearby && nearby.length > 0 && (
+        <div className="nearby-section">
+          <h3 className="nearby-title">📍 周边小众景点</h3>
+          <p className="nearby-sub">适合有额外时间的朋友顺道一游</p>
+          <div className="nearby-list">
+            {nearby.map((s, i) => (
+              <div key={i} className="nearby-card">
+                <span className="nearby-emoji">{s.emoji}</span>
+                <div className="nearby-info">
+                  <div className="nearby-name">{s.name}</div>
+                  <div className="nearby-desc">{s.desc}</div>
+                  <div className="nearby-transport">🚇 {s.transport}</div>
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
-      </div>
+      )}
     </div>
   )
 }

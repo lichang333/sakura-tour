@@ -259,6 +259,17 @@
   flex-shrink: 0;
 }
 
+.todo-badge {
+  background: var(--bg-card2);
+  color: var(--text-mid);
+  border: 2px solid var(--border);
+  border-radius: 12px;
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 800;
+  flex-shrink: 0;
+}
+
 /* Quick Tips */
 .quick-tips {
   display: grid;

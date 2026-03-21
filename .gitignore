@@ -6,3 +6,7 @@ dist/
 *.db
 server/sakura.db
 .DS_Store
+server/*.db
+server/*.db-shm
+server/*.db-wal
+.claude/

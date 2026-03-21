@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { UserProvider, useUser } from './context/UserContext'
 import { ThemeProvider } from './context/ThemeContext'
+import { CityProvider } from './context/CityContext'
 import Header from './components/Header'
 import AuthPage from './components/AuthPage'
 import HomePage from './components/HomePage'
@@ -51,9 +52,11 @@ function AppInner() {
 export default function App() {
   return (
     <ThemeProvider>
-      <UserProvider>
-        <AppInner />
-      </UserProvider>
+      <CityProvider>
+        <UserProvider>
+          <AppInner />
+        </UserProvider>
+      </CityProvider>
     </ThemeProvider>
   )
 }

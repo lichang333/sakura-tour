@@ -123,6 +123,46 @@
   transform: rotate(20deg);
 }
 
+/* ── City Selector ── */
+.city-selector {
+  display: flex;
+  gap: 8px;
+  padding: 6px 16px 8px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.city-selector::-webkit-scrollbar { display: none; }
+
+.city-pill {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 14px;
+  border-radius: 20px;
+  border: 2px solid var(--border);
+  background: var(--bg-card2);
+  color: var(--text-mid);
+  font-size: 13px;
+  font-weight: 700;
+  white-space: nowrap;
+  transition: all 0.18s ease;
+  flex-shrink: 0;
+}
+
+.city-pill.active {
+  background: var(--sakura-pale);
+  border-color: var(--sakura-pink);
+  color: var(--sakura-pink);
+}
+
+.city-pill-emoji {
+  font-size: 16px;
+}
+
+.city-pill-name {
+  font-size: 13px;
+}
+
 /* ── Nav ── */
 .nav {
   display: flex;

@@ -1,10 +1,12 @@
 import { useUser } from '../context/UserContext'
 import { useTheme } from '../context/ThemeContext'
+import { useCity } from '../context/CityContext'
 import './Header.css'
 
 export default function Header({ activeTab, setActiveTab }) {
   const { user } = useUser()
   const { theme, toggle } = useTheme()
+  const { currentCity, selectCity, CITIES } = useCity()
 
   const tabs = [
     { id: 'home', label: '首页', icon: '🏠' },
@@ -40,6 +42,21 @@ export default function Header({ activeTab, setActiveTab }) {
           </button>
         </div>
       </div>
+
+      {/* City Selector */}
+      <div className="city-selector">
+        {CITIES.map(city => (
+          <button
+            key={city.id}
+            className={`city-pill ${currentCity.id === city.id ? 'active' : ''}`}
+            onClick={() => selectCity(city.id)}
+          >
+            <span className="city-pill-emoji">{city.emoji}</span>
+            <span className="city-pill-name">{city.name}</span>
+          </button>
+        ))}
+      </div>
+
       <nav className="nav">
         {tabs.map(tab => (
           <button

@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import { itineraryDays, sakuraSpots } from '../data/spots'
 import { useUser } from '../context/UserContext'
+import { useCity } from '../context/CityContext'
 import './PlanPage.css'
 
 /* ── 每天主题色 ── */
@@ -41,30 +41,39 @@ function saveSet(key, s) { localStorage.setItem(key, JSON.stringify([...s])) }
 function loadObj(key)    { try { return JSON.parse(localStorage.getItem(key) || '{}') }           catch { return {} } }
 function saveObj(key, o) { localStorage.setItem(key, JSON.stringify(o)) }
 
-const REMOVED_KEY = 'sakura_removed_acts'
-const CUSTOM_KEY  = 'sakura_custom_acts'
-
 export default function PlanPage({ setActiveTab }) {
   const [mode,      setMode]      = useState('myplan')
   const [activeDay, setActiveDay] = useState(1)
   const [showAdd,   setShowAdd]   = useState(false)
 
   const { user, toggleActivity, toggleSpot, addXP } = useUser()
+  const { currentCity } = useCity()
+
+  // Per-city localStorage keys
+  const REMOVED_KEY = `sakura_removed_acts_${currentCity.id}`
+  const CUSTOM_KEY  = `sakura_custom_acts_${currentCity.id}`
+
+  const itineraryDays = currentCity.itineraryDays
+  const citySpots     = currentCity.spots
 
   /* 我的清单 */
   const checkedIds = user?.checkedSpots || []
-  const mySpots    = sakuraSpots.filter(s => checkedIds.includes(s.id))
+  const mySpots    = citySpots.filter(s => checkedIds.includes(s.id))
 
   /* 推荐行程 — 完成 */
   const completedSet = new Set(user?.completedActivities || [])
 
   /* 推荐行程 — 移除 (localStorage) */
   const [removedActs, setRemovedActs] = useState(() => loadSet(REMOVED_KEY))
+  const [customActs,  setCustomActs]  = useState(() => loadObj(CUSTOM_KEY))
 
-  /* 推荐行程 — 自定义活动 (localStorage) */
-  const [customActs, setCustomActs] = useState(() => loadObj(CUSTOM_KEY))
+  // Re-sync when city changes
+  const cityRemovedKey = REMOVED_KEY
+  const cityCustomKey  = CUSTOM_KEY
 
   /* ── 推荐行程操作 ── */
+  const makeKey = (day, i) => `${currentCity.id}:${day}-${i}`
+
   const handleToggle = (key) => {
     if (removedActs.has(key)) return
     const wasDone = completedSet.has(key)
@@ -75,11 +84,11 @@ export default function PlanPage({ setActiveTab }) {
   const removeAct = (key, e) => {
     e.stopPropagation()
     const next = new Set(removedActs); next.add(key)
-    setRemovedActs(next); saveSet(REMOVED_KEY, next)
+    setRemovedActs(next); saveSet(cityRemovedKey, next)
   }
 
   const restoreAll = () => {
-    setRemovedActs(new Set()); localStorage.removeItem(REMOVED_KEY)
+    setRemovedActs(new Set()); localStorage.removeItem(cityRemovedKey)
   }
 
   /* ── 从清单加入今日 ── */
@@ -91,7 +100,7 @@ export default function PlanPage({ setActiveTab }) {
     const exist = customActs[dk] || []
     if (exist.some(a => a.id === id)) return
     const next = { ...customActs, [dk]: [...exist, { id, icon: spot.emoji, text: `${spot.name}（${spot.district}）`, time: '自定义', spotId: spot.id }] }
-    setCustomActs(next); saveObj(CUSTOM_KEY, next)
+    setCustomActs(next); saveObj(cityCustomKey, next)
     setShowAdd(false)
   }
 
@@ -99,12 +108,12 @@ export default function PlanPage({ setActiveTab }) {
     e.stopPropagation()
     const dk   = String(activeDay)
     const next = { ...customActs, [dk]: (customActs[dk] || []).filter(a => a.id !== actId) }
-    setCustomActs(next); saveObj(CUSTOM_KEY, next)
+    setCustomActs(next); saveObj(cityCustomKey, next)
   }
 
   /* ── 统计（推荐行程） ── */
-  const totalAll     = itineraryDays.reduce((a, d) => a + d.activities.filter((_, i) => !removedActs.has(`${d.day}-${i}`)).length, 0)
-  const completedAll = itineraryDays.reduce((a, d) => a + d.activities.filter((_, i) => !removedActs.has(`${d.day}-${i}`) && completedSet.has(`${d.day}-${i}`)).length, 0)
+  const totalAll     = itineraryDays.reduce((a, d) => a + d.activities.filter((_, i) => !removedActs.has(makeKey(d.day, i))).length, 0)
+  const completedAll = itineraryDays.reduce((a, d) => a + d.activities.filter((_, i) => !removedActs.has(makeKey(d.day, i)) && completedSet.has(makeKey(d.day, i))).length, 0)
   const hasRemoved   = removedActs.size > 0
 
   /* 当前天可加景点（未加过） */
@@ -115,7 +124,7 @@ export default function PlanPage({ setActiveTab }) {
       {/* ── 顶部 Header ── */}
       <div className="plan-header">
         <h2 className="page-title">我的行程 📅</h2>
-        <p className="page-sub">打卡景点 · 规划路线 · 记录足迹</p>
+        <p className="page-sub">{currentCity.emoji} {currentCity.name} · 打卡景点 · 规划路线</p>
         <div className="plan-mode-tabs">
           <button className={`pmt-btn ${mode === 'myplan' ? 'active' : ''}`} onClick={() => setMode('myplan')}>
             🗺️ 我的清单
@@ -200,12 +209,9 @@ export default function PlanPage({ setActiveTab }) {
           {/* Day Tabs — 含进度环 */}
           <div className="day-tabs-scroll">
             {itineraryDays.map((day, di) => {
-              const theme    = DAY_THEMES[di]
-              const visible  = day.activities.filter((_, i) => !removedActs.has(`${day.day}-${i}`))
-              const done     = visible.filter((_, i) => completedSet.has(`${day.day}-${visible.indexOf(visible[i])}`)).length
-              // recalculate properly
-              const doneN    = day.activities.filter((_, i) => !removedActs.has(`${day.day}-${i}`) && completedSet.has(`${day.day}-${i}`)).length
-              const totalN   = day.activities.filter((_, i) => !removedActs.has(`${day.day}-${i}`)).length
+              const theme    = DAY_THEMES[di % DAY_THEMES.length]
+              const doneN    = day.activities.filter((_, i) => !removedActs.has(makeKey(day.day, i)) && completedSet.has(makeKey(day.day, i))).length
+              const totalN   = day.activities.filter((_, i) => !removedActs.has(makeKey(day.day, i))).length
               const pct      = totalN > 0 ? doneN / totalN : 0
               const isActive = activeDay === day.day
               return (
@@ -234,10 +240,9 @@ export default function PlanPage({ setActiveTab }) {
           {/* Active Day 内容 */}
           {itineraryDays.map((day, di) => {
             if (activeDay !== day.day) return null
-            const theme   = DAY_THEMES[di]
-            const visible  = day.activities.filter((_, i) => !removedActs.has(`${day.day}-${i}`))
-            const doneN   = day.activities.filter((_, i) => !removedActs.has(`${day.day}-${i}`) && completedSet.has(`${day.day}-${i}`)).length
-            const totalN  = day.activities.filter((_, i) => !removedActs.has(`${day.day}-${i}`)).length + dayCustom(day.day).length
+            const theme   = DAY_THEMES[di % DAY_THEMES.length]
+            const doneN   = day.activities.filter((_, i) => !removedActs.has(makeKey(day.day, i)) && completedSet.has(makeKey(day.day, i))).length
+            const totalN  = day.activities.filter((_, i) => !removedActs.has(makeKey(day.day, i))).length + dayCustom(day.day).length
             const pct     = totalN > 0 ? doneN / totalN : 0
 
             return (
@@ -263,7 +268,7 @@ export default function PlanPage({ setActiveTab }) {
                 {/* Timeline 活动 */}
                 <div className="activities">
                   {day.activities.map((act, i) => {
-                    const key  = `${day.day}-${i}`
+                    const key  = makeKey(day.day, i)
                     const done = completedSet.has(key)
                     const gone = removedActs.has(key)
                     if (gone) return null
