@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useUser } from '../context/UserContext'
 import { useCity } from '../context/CityContext'
+import { useReviews } from '../hooks/useReviews'
 import './SpotsPage.css'
 
 const difficultyLabel = { easy: '轻松', medium: '一般', hard: '需体力' }
@@ -39,6 +40,7 @@ export default function SpotsPage() {
   const [reviewSaved, setReviewSaved] = useState(false)
   const { user, toggleSpot, toggleVisited, rateSpot, reviewSpot, addXP } = useUser()
   const { currentCity } = useCity()
+  const { communityData, refresh: refreshReviews } = useReviews()
 
   const spots = currentCity.spots
   const nearby = currentCity.nearbySpots
@@ -110,15 +112,20 @@ export default function SpotsPage() {
   if (selected !== null) {
     const spot = spots.find(s => s.id === selected)
     if (!spot) { setSelected(null); return null }
-    const isVisited  = visitedIds.has(spot.id)
-    const isChecked  = checkedIds.has(spot.id)
-    const myRating   = (user?.spotRatings  || {})[String(spot.id)] || 0
-    const savedReview = (user?.spotReviews || {})[String(spot.id)] || ''
+    const isVisited   = visitedIds.has(spot.id)
+    const isChecked   = checkedIds.has(spot.id)
+    const myRating    = (user?.spotRatings  || {})[String(spot.id)] || 0
+    const savedReview = (user?.spotReviews  || {})[String(spot.id)] || ''
+
+    // Community data for this spot
+    const community   = communityData[String(spot.id)] || { avgRating: 0, ratingCount: 0, reviews: [] }
+    // Filter out own review from community list to avoid duplicate
+    const otherReviews = community.reviews.filter(r => r.name !== user?.name)
 
     const handleSaveReview = () => {
       reviewSpot(spot.id, reviewDraft)
       setReviewSaved(true)
-      setTimeout(() => setReviewSaved(false), 2000)
+      setTimeout(() => { setReviewSaved(false); refreshReviews() }, 1500)
     }
 
     return (
@@ -138,8 +145,14 @@ export default function SpotsPage() {
             <div className="detail-stats">
               <div className="detail-stat">
                 <span className="ds-icon">⭐</span>
-                <span className="ds-val">{spot.rating}</span>
-                <span className="ds-sub">{spot.reviews}评</span>
+                <span className="ds-val">
+                  {community.ratingCount > 0 ? community.avgRating : spot.rating}
+                </span>
+                <span className="ds-sub">
+                  {community.ratingCount > 0
+                    ? `${community.ratingCount}人评分`
+                    : `${spot.reviews}评`}
+                </span>
               </div>
               <div className="detail-stat">
                 <span className="ds-icon">📅</span>
@@ -199,6 +212,27 @@ export default function SpotsPage() {
             >
               {isVisited ? '✅ 已标记为去过 · 点击取消' : '✈️ 我去过这里'}
             </button>
+
+            {/* 社区评价列表 */}
+            {community.reviews.length > 0 && (
+              <div className="community-reviews">
+                <h3 className="cr-title">旅行者评价 ({community.reviews.length})</h3>
+                {community.reviews.map((r, i) => (
+                  <div key={i} className={`cr-item ${r.name === user?.name ? 'cr-mine' : ''}`}>
+                    <div className="cr-header">
+                      <span className="cr-avatar">{r.avatar}</span>
+                      <span className="cr-name">{r.name === user?.name ? '我' : r.name}</span>
+                      {r.rating > 0 && (
+                        <span className="cr-stars">
+                          {'★'.repeat(r.rating)}{'☆'.repeat(5 - r.rating)}
+                        </span>
+                      )}
+                    </div>
+                    {r.text && <div className="cr-text">「{r.text}」</div>}
+                  </div>
+                ))}
+              </div>
+            )}
 
             {/* 评分 + 评价 — 仅去过后显示 */}
             {isVisited && (
@@ -304,7 +338,11 @@ export default function SpotsPage() {
                   ))}
                 </div>
                 <div className="spot-bottom">
-                  <span className="spot-rating">⭐ {spot.rating}</span>
+                  <span className="spot-rating">
+                    ⭐ {communityData[String(spot.id)]?.ratingCount > 0
+                      ? communityData[String(spot.id)].avgRating
+                      : spot.rating}
+                  </span>
                   <span className="spot-diff" style={{ color: difficultyColor[spot.difficulty] }}>
                     {difficultyLabel[spot.difficulty]}
                   </span>
