@@ -580,6 +580,13 @@
   flex-shrink: 0;
 }
 
+.cr-date {
+  font-size: 11px;
+  color: var(--text-dim);
+  flex-shrink: 0;
+  margin-left: 4px;
+}
+
 .cr-text {
   font-size: 13px;
   color: var(--text-mid);

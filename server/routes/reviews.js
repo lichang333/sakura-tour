@@ -31,9 +31,13 @@ router.get('/', (req, res) => {
       const r = ratings[key]
       const t = reviews[key]
       if (r) bySpot[key].ratings.push(r)
-      if (t) bySpot[key].reviews.push({
-        name: u.name, avatar: u.avatar, rating: r || 0, text: t,
-      })
+      if (t) {
+        const text = typeof t === 'string' ? t : t.text
+        const at   = typeof t === 'object' ? t.at : null
+        bySpot[key].reviews.push({
+          name: u.name, avatar: u.avatar, rating: r || 0, text, at,
+        })
+      }
     }
 
     for (const spotId of recommended) {

@@ -103,7 +103,8 @@ export default function ProfilePage() {
             {visitedSpots.map(spot => {
               const city    = CITIES.find(c => c.spots.some(s => s.id === spot.id))
               const rating  = (user.spotRatings  || {})[String(spot.id)] || 0
-              const review  = (user.spotReviews  || {})[String(spot.id)] || ''
+              const reviewObj = (user.spotReviews || {})[String(spot.id)]
+              const review    = typeof reviewObj === 'string' ? reviewObj : (reviewObj?.text || '')
               return (
                 <div key={spot.id} className="checked-spot-row visited-row" style={{ borderLeftColor: spot.color }}>
                   <span className="cs-emoji">{spot.emoji}</span>

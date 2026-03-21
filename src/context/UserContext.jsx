@@ -115,7 +115,9 @@ export function UserProvider({ children }) {
     if (!user) return
     const reviews = { ...(user.spotReviews || {}) }
     if (!text?.trim()) { delete reviews[String(spotId)] }
-    else               { reviews[String(spotId)] = text.trim() }
+    else {
+      reviews[String(spotId)] = { text: text.trim(), at: new Date().toISOString() }
+    }
     syncUser({ spotReviews: reviews })
   }
 

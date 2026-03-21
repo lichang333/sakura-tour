@@ -9,6 +9,21 @@ const difficultyColor = { easy: '#58CC02', medium: '#FFD900', hard: '#FF4B4B' }
 
 const STAR_LABELS = ['', '很一般', '还不错', '值得去', '非常棒', '必须去！']
 
+const formatReviewDate = (iso) => {
+  if (!iso) return ''
+  const d = new Date(iso)
+  const now = new Date()
+  const diff = now - d
+  const mins  = Math.floor(diff / 60000)
+  const hours = Math.floor(diff / 3600000)
+  const days  = Math.floor(diff / 86400000)
+  if (mins  <  1) return '刚刚'
+  if (mins  < 60) return `${mins}分钟前`
+  if (hours < 24) return `${hours}小时前`
+  if (days  <  7) return `${days}天前`
+  return `${d.getFullYear()}/${d.getMonth() + 1}/${d.getDate()}`
+}
+
 /* ── 星级选择器 ── */
 function StarRating({ spotId, current, onRate }) {
   const [hover, setHover] = useState(0)
@@ -123,7 +138,8 @@ export default function SpotsPage() {
     const isChecked      = checkedIds.has(spot.id)
     const isRecommended  = recommendedIds.has(spot.id)
     const myRating       = (user?.spotRatings  || {})[String(spot.id)] || 0
-    const savedReview    = (user?.spotReviews  || {})[String(spot.id)] || ''
+    const reviewObj      = (user?.spotReviews  || {})[String(spot.id)]
+    const savedReview    = typeof reviewObj === 'string' ? reviewObj : (reviewObj?.text || '')
 
     // Community data for this spot
     const community    = communityData[String(spot.id)] || { avgRating: 0, ratingCount: 0, reviews: [], recommendCount: 0, recommenders: [] }
@@ -264,6 +280,7 @@ export default function SpotsPage() {
                           {'★'.repeat(r.rating)}{'☆'.repeat(5 - r.rating)}
                         </span>
                       )}
+                      {r.at && <span className="cr-date">{formatReviewDate(r.at)}</span>}
                     </div>
                     {r.text && <div className="cr-text">「{r.text}」</div>}
                   </div>
