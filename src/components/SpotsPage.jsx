@@ -6,9 +6,38 @@ import './SpotsPage.css'
 const difficultyLabel = { easy: '轻松', medium: '一般', hard: '需体力' }
 const difficultyColor = { easy: '#58CC02', medium: '#FFD900', hard: '#FF4B4B' }
 
+const STAR_LABELS = ['', '很一般', '还不错', '值得去', '非常棒', '必须去！']
+
+/* ── 星级选择器 ── */
+function StarRating({ spotId, current, onRate }) {
+  const [hover, setHover] = useState(0)
+  const active = hover || current
+  return (
+    <div className="star-rating-row">
+      <span className="star-label-text">
+        {active ? STAR_LABELS[active] : '点击评分'}
+      </span>
+      <div className="stars">
+        {[1, 2, 3, 4, 5].map(n => (
+          <button
+            key={n}
+            className={`star-btn ${n <= active ? 'lit' : ''}`}
+            onMouseEnter={() => setHover(n)}
+            onMouseLeave={() => setHover(0)}
+            onClick={() => onRate(n === current ? 0 : n)}
+            aria-label={`${n}星`}
+          >★</button>
+        ))}
+      </div>
+    </div>
+  )
+}
+
 export default function SpotsPage() {
-  const [selected, setSelected] = useState(null)
-  const { user, toggleSpot, toggleVisited, addXP } = useUser()
+  const [selected,    setSelected]    = useState(null)
+  const [reviewDraft, setReviewDraft] = useState('')
+  const [reviewSaved, setReviewSaved] = useState(false)
+  const { user, toggleSpot, toggleVisited, rateSpot, reviewSpot, addXP } = useUser()
   const { currentCity } = useCity()
 
   const spots = currentCity.spots
@@ -81,13 +110,21 @@ export default function SpotsPage() {
   if (selected !== null) {
     const spot = spots.find(s => s.id === selected)
     if (!spot) { setSelected(null); return null }
-    const isVisited = visitedIds.has(spot.id)
-    const isChecked = checkedIds.has(spot.id)
+    const isVisited  = visitedIds.has(spot.id)
+    const isChecked  = checkedIds.has(spot.id)
+    const myRating   = (user?.spotRatings  || {})[String(spot.id)] || 0
+    const savedReview = (user?.spotReviews || {})[String(spot.id)] || ''
+
+    const handleSaveReview = () => {
+      reviewSpot(spot.id, reviewDraft)
+      setReviewSaved(true)
+      setTimeout(() => setReviewSaved(false), 2000)
+    }
 
     return (
       <div className="spots-page">
         <div className="spot-detail">
-          <button className="back-btn" onClick={() => setSelected(null)}>← 返回</button>
+          <button className="back-btn" onClick={() => { setSelected(null); setReviewDraft(''); setReviewSaved(false) }}>← 返回</button>
           <div className="detail-hero" style={{ background: `linear-gradient(135deg, ${spot.color}CC, ${spot.color}88)` }}>
             {spot.isHot && <div className="detail-hot-banner">🔥 今日正值花期！</div>}
             {isVisited && <div className="detail-visited-banner">✈️ 你已去过这里</div>}
@@ -162,6 +199,42 @@ export default function SpotsPage() {
             >
               {isVisited ? '✅ 已标记为去过 · 点击取消' : '✈️ 我去过这里'}
             </button>
+
+            {/* 评分 + 评价 — 仅去过后显示 */}
+            {isVisited && (
+              <div className="rating-section">
+                <div className="rating-title">你的评价 ✍️</div>
+
+                {/* 星级 */}
+                <StarRating
+                  spotId={spot.id}
+                  current={myRating}
+                  onRate={(r) => rateSpot(spot.id, r)}
+                />
+
+                {/* 文字评价 */}
+                <div className="review-box">
+                  <textarea
+                    className="review-input"
+                    placeholder="写下你的感受…（可选）"
+                    maxLength={200}
+                    defaultValue={savedReview}
+                    onChange={e => { setReviewDraft(e.target.value); setReviewSaved(false) }}
+                    onFocus={e => { if (!reviewDraft) setReviewDraft(savedReview) }}
+                    rows={3}
+                  />
+                  <div className="review-footer">
+                    <span className="review-hint">{(reviewDraft || savedReview).length}/200</span>
+                    <button
+                      className={`review-save-btn ${reviewSaved ? 'saved' : ''}`}
+                      onClick={handleSaveReview}
+                    >
+                      {reviewSaved ? '✓ 已保存' : '保存'}
+                    </button>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>

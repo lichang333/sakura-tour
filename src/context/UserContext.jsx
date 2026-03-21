@@ -94,6 +94,22 @@ export function UserProvider({ children }) {
     syncUser({ completedActivities: next })
   }
 
+  const rateSpot = (spotId, rating) => {
+    if (!user) return
+    const ratings = { ...(user.spotRatings || {}) }
+    if (rating === 0) { delete ratings[String(spotId)] }
+    else              { ratings[String(spotId)] = rating }
+    syncUser({ spotRatings: ratings })
+  }
+
+  const reviewSpot = (spotId, text) => {
+    if (!user) return
+    const reviews = { ...(user.spotReviews || {}) }
+    if (!text?.trim()) { delete reviews[String(spotId)] }
+    else               { reviews[String(spotId)] = text.trim() }
+    syncUser({ spotReviews: reviews })
+  }
+
   const toggleVisited = (spotId) => {
     if (!user) return
     const visited = user.visitedSpots || []
@@ -110,7 +126,7 @@ export function UserProvider({ children }) {
   }
 
   return (
-    <UserContext.Provider value={{ user, loading, signup, login, logout, addXP, toggleSpot, toggleActivity, toggleVisited }}>
+    <UserContext.Provider value={{ user, loading, signup, login, logout, addXP, toggleSpot, toggleActivity, toggleVisited, rateSpot, reviewSpot }}>
       {children}
     </UserContext.Provider>
   )

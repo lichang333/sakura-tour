@@ -100,13 +100,22 @@ export default function ProfilePage() {
         ) : (
           <div className="checked-spots">
             {visitedSpots.map(spot => {
-              const city = CITIES.find(c => c.spots.some(s => s.id === spot.id))
+              const city    = CITIES.find(c => c.spots.some(s => s.id === spot.id))
+              const rating  = (user.spotRatings  || {})[String(spot.id)] || 0
+              const review  = (user.spotReviews  || {})[String(spot.id)] || ''
               return (
                 <div key={spot.id} className="checked-spot-row visited-row" style={{ borderLeftColor: spot.color }}>
                   <span className="cs-emoji">{spot.emoji}</span>
                   <div className="cs-info">
                     <div className="cs-name">{spot.name}</div>
                     <div className="cs-district">{city?.emoji} {city?.name} · {spot.district}</div>
+                    {rating > 0 && (
+                      <div className="cs-rating">
+                        {'★'.repeat(rating)}{'☆'.repeat(5 - rating)}
+                        <span className="cs-rating-label"> {['','很一般','还不错','值得去','非常棒','必须去！'][rating]}</span>
+                      </div>
+                    )}
+                    {review && <div className="cs-review">「{review}」</div>}
                   </div>
                   <span className="cs-visited-badge">✈️ 去过</span>
                 </div>

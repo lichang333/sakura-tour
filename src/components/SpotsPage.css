@@ -522,6 +522,119 @@
   transform: translateY(3px);
 }
 
+/* ── 评分 + 评价 ── */
+.rating-section {
+  margin-top: 12px;
+  background: var(--bg-card2);
+  border: 2px solid var(--border);
+  border-radius: 18px;
+  padding: 16px;
+  transition: background 0.25s;
+}
+
+.rating-title {
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--text-dark);
+  margin-bottom: 12px;
+}
+
+.star-rating-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.stars {
+  display: flex;
+  gap: 4px;
+}
+
+.star-btn {
+  font-size: 28px;
+  color: var(--border);
+  background: transparent;
+  transition: color 0.15s, transform 0.1s;
+  line-height: 1;
+  padding: 0 2px;
+}
+
+.star-btn.lit {
+  color: #FFD900;
+}
+
+.star-btn:active {
+  transform: scale(0.88);
+}
+
+.star-label-text {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-mid);
+  min-width: 60px;
+}
+
+.review-box {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.review-input {
+  width: 100%;
+  background: var(--bg-input);
+  border: 2px solid var(--border);
+  border-radius: 12px;
+  padding: 10px 12px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-dark);
+  resize: none;
+  font-family: inherit;
+  line-height: 1.5;
+  transition: border-color 0.2s;
+  box-sizing: border-box;
+}
+
+.review-input:focus {
+  outline: none;
+  border-color: var(--sakura-pink);
+}
+
+.review-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.review-hint {
+  font-size: 11px;
+  color: var(--text-mid);
+  font-weight: 600;
+}
+
+.review-save-btn {
+  background: var(--sakura-pink);
+  color: white;
+  border-radius: 10px;
+  padding: 6px 18px;
+  font-size: 13px;
+  font-weight: 800;
+  box-shadow: 0 3px 0 #C44E78;
+  transition: all 0.12s;
+}
+
+.review-save-btn.saved {
+  background: #58CC02;
+  box-shadow: 0 3px 0 #46A302;
+}
+
+.review-save-btn:active {
+  transform: translateY(2px);
+  box-shadow: 0 1px 0 #C44E78;
+}
+
 /* 去过按钮 */
 .visited-btn {
   width: 100%;
