@@ -17,11 +17,16 @@
 /* Hero */
 .auth-hero {
   background: linear-gradient(160deg, #D94F7C 0%, #FF6B9D 45%, #FF9EC4 100%);
-  padding: 60px 24px 48px;
+  flex: 1;
+  min-height: 52vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 24px 36px;
   text-align: center;
   position: relative;
   overflow: hidden;
-  flex-shrink: 0;
 }
 
 .auth-petals {
@@ -33,61 +38,118 @@
 .auth-petal {
   position: absolute;
   top: -10px;
-  font-size: 18px;
-  opacity: 0.4;
+  font-size: 20px;
+  opacity: 0.35;
   animation: fall linear infinite;
 }
 
 @keyframes fall {
   0%   { transform: translateY(-20px) rotate(0deg); opacity: 0; }
-  10%  { opacity: 0.4; }
-  100% { transform: translateY(500px) rotate(360deg); opacity: 0; }
+  10%  { opacity: 0.35; }
+  100% { transform: translateY(600px) rotate(360deg); opacity: 0; }
 }
 
-.auth-mascot {
-  font-size: 72px;
-  margin-bottom: 16px;
-  filter: drop-shadow(0 6px 20px rgba(0,0,0,0.2));
-  animation: bloom 3s ease-in-out infinite;
+.auth-mascot-wrap {
+  position: relative;
+  margin-bottom: 20px;
 }
+
+.auth-mascot-main {
+  display: block;
+  font-size: 100px;
+  filter: drop-shadow(0 8px 28px rgba(0,0,0,0.22));
+  animation: bloom 3s ease-in-out infinite;
+  line-height: 1;
+}
+
+.auth-mascot-side {
+  position: absolute;
+  font-size: 36px;
+  top: 50%;
+  transform: translateY(-30%);
+  opacity: 0.7;
+  animation: sway 4s ease-in-out infinite;
+}
+
+.auth-mascot-side.left  { left: -44px; animation-delay: 0.5s; }
+.auth-mascot-side.right { right: -44px; transform: translateY(-30%) scaleX(-1); }
 
 @keyframes bloom {
   0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.1) rotate(4deg); }
+  50% { transform: scale(1.08) rotate(3deg); }
+}
+
+@keyframes sway {
+  0%, 100% { transform: translateY(-30%) rotate(-8deg); }
+  50% { transform: translateY(-30%) rotate(8deg); }
+}
+
+.auth-mascot-side.right {
+  animation-name: sway-r;
+}
+
+@keyframes sway-r {
+  0%, 100% { transform: translateY(-30%) scaleX(-1) rotate(-8deg); }
+  50% { transform: translateY(-30%) scaleX(-1) rotate(8deg); }
 }
 
 .auth-title {
-  font-size: 38px;
+  font-size: 42px;
   font-weight: 900;
   color: white;
   letter-spacing: -1.5px;
-  margin-bottom: 6px;
-  text-shadow: 0 2px 12px rgba(0,0,0,0.15);
+  text-shadow: 0 2px 16px rgba(0,0,0,0.18);
 }
 
-.auth-subtitle {
-  font-size: 16px;
-  font-weight: 700;
-  color: rgba(255,255,255,0.9);
-  margin-bottom: 10px;
+/* Bottom white section */
+.auth-bottom {
+  background: var(--bg);
+  padding: 28px 24px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  flex-shrink: 0;
 }
 
-.auth-desc {
-  font-size: 14px;
-  color: rgba(255,255,255,0.78);
-  font-weight: 600;
-  line-height: 1.6;
-  max-width: 280px;
-  margin: 0 auto;
+.auth-tagline {
+  font-size: 22px;
+  font-weight: 900;
+  color: var(--text-dark);
+  text-align: center;
+  line-height: 1.4;
+  letter-spacing: -0.3px;
+}
+
+/* Feature row */
+.auth-features {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+}
+
+.auth-feature {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.af-icon {
+  font-size: 26px;
+}
+
+.af-label {
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--text-mid);
+  letter-spacing: 0.3px;
 }
 
 /* Actions */
 .auth-actions {
-  padding: 28px 24px 32px;
   display: flex;
   flex-direction: column;
   gap: 12px;
-  background: var(--bg);
 }
 
 .auth-btn-primary {
@@ -125,6 +187,8 @@
   box-shadow: 0 1px 0 var(--border);
   transform: translateY(3px);
 }
+
+/* ── 旧欢迎页样式已移除（auth-subtitle / auth-desc） ── */
 
 /* Form Area */
 .auth-form-area {
