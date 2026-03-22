@@ -3,18 +3,10 @@ import { useTheme } from '../context/ThemeContext'
 import { useCity } from '../context/CityContext'
 import './Header.css'
 
-export default function Header({ activeTab, setActiveTab }) {
+export default function Header() {
   const { user } = useUser()
   const { theme, toggle } = useTheme()
   const { currentCity, selectCity, CITIES } = useCity()
-
-  const tabs = [
-    { id: 'home', label: '首页', icon: '🏠' },
-    { id: 'spots', label: '赏樱地', icon: '🌸' },
-    { id: 'plan', label: '行程', icon: '📅' },
-    { id: 'tips', label: '攻略', icon: '💡' },
-    { id: 'profile', label: '我的', icon: user?.avatar || '👤' },
-  ]
 
   return (
     <header className="header">
@@ -57,18 +49,6 @@ export default function Header({ activeTab, setActiveTab }) {
         ))}
       </div>
 
-      <nav className="nav">
-        {tabs.map(tab => (
-          <button
-            key={tab.id}
-            className={`nav-btn ${activeTab === tab.id ? 'active' : ''}`}
-            onClick={() => setActiveTab(tab.id)}
-          >
-            <span className="nav-icon">{tab.icon}</span>
-            <span className="nav-label">{tab.label}</span>
-          </button>
-        ))}
-      </nav>
     </header>
   )
 }

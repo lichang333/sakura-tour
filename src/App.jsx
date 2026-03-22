@@ -3,6 +3,7 @@ import { UserProvider, useUser } from './context/UserContext'
 import { ThemeProvider } from './context/ThemeContext'
 import { CityProvider } from './context/CityContext'
 import Header from './components/Header'
+import BottomNav from './components/BottomNav'
 import AuthPage from './components/AuthPage'
 import HomePage from './components/HomePage'
 import SpotsPage from './components/SpotsPage'
@@ -41,10 +42,11 @@ function AppInner() {
 
   return (
     <div className="app">
-      <Header activeTab={activeTab} setActiveTab={setActiveTab} />
+      <Header />
       <main className="main">
         {pages[activeTab]}
       </main>
+      <BottomNav activeTab={activeTab} setActiveTab={setActiveTab} />
     </div>
   )
 }
