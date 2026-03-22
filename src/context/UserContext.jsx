@@ -149,9 +149,12 @@ export function UserProvider({ children }) {
       ? [...checked, spotId]
       : checked
     // Merge XP into same syncUser call to avoid race condition
-    const nextXp = (!isVisited && xpAmount > 0)
-      ? (user.xp || 0) + xpAmount
-      : user.xp
+    const currentXp = user.xp || 0
+    const nextXp = xpAmount > 0
+      ? isVisited
+        ? Math.max(0, currentXp - xpAmount)   // 取消打卡：扣减 XP
+        : currentXp + xpAmount                 // 打卡：增加 XP
+      : currentXp
     syncUser({ visitedSpots: nextVisited, checkedSpots: nextChecked, xp: nextXp })
   }
 
