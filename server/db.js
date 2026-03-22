@@ -26,8 +26,9 @@ db.exec(`
 `)
 
 // Migrations: add columns that may not exist in older DBs
-try { db.exec(`ALTER TABLE users ADD COLUMN visited_spots  TEXT NOT NULL DEFAULT '[]'`) } catch {}
-try { db.exec(`ALTER TABLE users ADD COLUMN spot_ratings   TEXT NOT NULL DEFAULT '{}'`) } catch {}
-try { db.exec(`ALTER TABLE users ADD COLUMN spot_reviews   TEXT NOT NULL DEFAULT '{}'`) } catch {}
+try { db.exec(`ALTER TABLE users ADD COLUMN visited_spots       TEXT NOT NULL DEFAULT '[]'`) } catch {}
+try { db.exec(`ALTER TABLE users ADD COLUMN spot_ratings        TEXT NOT NULL DEFAULT '{}'`) } catch {}
+try { db.exec(`ALTER TABLE users ADD COLUMN spot_reviews        TEXT NOT NULL DEFAULT '{}'`) } catch {}
+try { db.exec(`ALTER TABLE users ADD COLUMN removed_activities  TEXT NOT NULL DEFAULT '[]'`) } catch {}
 
 export default db

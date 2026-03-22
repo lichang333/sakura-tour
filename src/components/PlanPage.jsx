@@ -35,10 +35,8 @@ function ProgressRing({ pct, size = 48, stroke = 4 }) {
   )
 }
 
-/* ── localStorage helpers ── */
-function loadSet(key)    { try { return new Set(JSON.parse(localStorage.getItem(key) || '[]')) } catch { return new Set() } }
-function saveSet(key, s) { localStorage.setItem(key, JSON.stringify([...s])) }
-function loadObj(key)    { try { return JSON.parse(localStorage.getItem(key) || '{}') }           catch { return {} } }
+/* ── localStorage helpers (custom acts only) ── */
+function loadObj(key)    { try { return JSON.parse(localStorage.getItem(key) || '{}') } catch { return {} } }
 function saveObj(key, o) { localStorage.setItem(key, JSON.stringify(o)) }
 
 export default function PlanPage({ setActiveTab }) {
@@ -46,11 +44,10 @@ export default function PlanPage({ setActiveTab }) {
   const [activeDay, setActiveDay] = useState(1)
   const [showAdd,   setShowAdd]   = useState(false)
 
-  const { user, toggleActivity, toggleSpot, toggleVisited, addXP } = useUser()
+  const { user, toggleActivity, toggleSpot, toggleVisited, addXP, removeActivity, restoreActivities } = useUser()
   const { currentCity } = useCity()
 
-  // Per-city localStorage keys
-  const REMOVED_KEY = `sakura_removed_acts_${currentCity.id}`
+  // Per-city localStorage key (custom acts only)
   const CUSTOM_KEY  = `sakura_custom_acts_${currentCity.id}`
 
   const itineraryDays = currentCity.itineraryDays
@@ -63,13 +60,11 @@ export default function PlanPage({ setActiveTab }) {
   /* 推荐行程 — 完成 */
   const completedSet = new Set(user?.completedActivities || [])
 
-  /* 推荐行程 — 移除 (localStorage) */
-  const [removedActs, setRemovedActs] = useState(() => loadSet(REMOVED_KEY))
-  const [customActs,  setCustomActs]  = useState(() => loadObj(CUSTOM_KEY))
+  /* 推荐行程 — 移除 (DB via user state) */
+  const removedActs = new Set(user?.removedActivities || [])
+  const [customActs, setCustomActs] = useState(() => loadObj(CUSTOM_KEY))
 
-  // Re-sync when city changes
-  const cityRemovedKey = REMOVED_KEY
-  const cityCustomKey  = CUSTOM_KEY
+  const cityCustomKey = CUSTOM_KEY
 
   /* ── 推荐行程操作 ── */
   const makeKey = (day, i) => `${currentCity.id}:${day}-${i}`
@@ -83,12 +78,11 @@ export default function PlanPage({ setActiveTab }) {
 
   const removeAct = (key, e) => {
     e.stopPropagation()
-    const next = new Set(removedActs); next.add(key)
-    setRemovedActs(next); saveSet(cityRemovedKey, next)
+    removeActivity(key)
   }
 
   const restoreAll = () => {
-    setRemovedActs(new Set()); localStorage.removeItem(cityRemovedKey)
+    restoreActivities(currentCity.id)
   }
 
   /* ── 从清单加入今日 ── */
