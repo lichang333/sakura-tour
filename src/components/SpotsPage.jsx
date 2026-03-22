@@ -98,8 +98,8 @@ export default function SpotsPage({ pendingSpot, clearPendingSpot }) {
     const spot = spots.find(s => s.id === id)
 
     if (wasVisited) {
-      // 去过 → 清除（取消去过 + 取消想去）
-      toggleVisited(id)
+      // 去过 → 清除（取消去过 + 取消想去，扣减 XP）
+      toggleVisited(id, spot?.xp || 0)
       toggleSpot(id)   // remove from checkedSpots too
     } else if (wasChecked) {
       // 想去 → 去过（合并 XP，避免两次 syncUser 竞态）
@@ -117,7 +117,7 @@ export default function SpotsPage({ pendingSpot, clearPendingSpot }) {
     const wasVisited = visitedIds.has(id)
     const spot = spots.find(s => s.id === id)
     // 合并 XP 进同一个 syncUser，避免两次 PATCH 竞态覆盖 visited_spots
-    toggleVisited(id, wasVisited ? 0 : (spot?.xp || 0))
+    toggleVisited(id, spot?.xp || 0)
   }
 
   /* ── 三态按钮渲染 ── */
