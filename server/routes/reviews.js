@@ -4,32 +4,27 @@ import db from '../db.js'
 const router = Router()
 
 // GET /api/reviews — public, no auth
-// Returns per-spot: avgRating, ratingCount, reviews[], recommendCount, recommenders[]
+// Returns aggregated ratings & reviews for every spot across all users
 router.get('/', (req, res) => {
   const users = db.prepare(
-    `SELECT name, avatar, visited_spots, spot_ratings,
-            spot_reviews, recommended_spots FROM users`
+    'SELECT name, avatar, visited_spots, spot_ratings, spot_reviews FROM users'
   ).all()
 
+  // spotId (string) → { ratings: number[], reviews: [{name, avatar, rating, text}] }
   const bySpot = {}
 
-  const ensure = (key) => {
-    if (!bySpot[key]) bySpot[key] = {
-      ratings: [], reviews: [], recommenders: []
-    }
-  }
-
   for (const u of users) {
-    const visited     = JSON.parse(u.visited_spots      || '[]')
-    const ratings     = JSON.parse(u.spot_ratings       || '{}')
-    const reviews     = JSON.parse(u.spot_reviews       || '{}')
-    const recommended = JSON.parse(u.recommended_spots  || '[]')
+    const visited = JSON.parse(u.visited_spots || '[]')
+    const ratings = JSON.parse(u.spot_ratings  || '{}')
+    const reviews = JSON.parse(u.spot_reviews  || '{}')
 
     for (const spotId of visited) {
       const key = String(spotId)
-      ensure(key)
+      if (!bySpot[key]) bySpot[key] = { ratings: [], reviews: [] }
+
       const r = ratings[key]
       const t = reviews[key]
+
       if (r) bySpot[key].ratings.push(r)
       if (t) {
         const text = typeof t === 'string' ? t : t.text
@@ -39,23 +34,16 @@ router.get('/', (req, res) => {
         })
       }
     }
-
-    for (const spotId of recommended) {
-      const key = String(spotId)
-      ensure(key)
-      bySpot[key].recommenders.push({ name: u.name, avatar: u.avatar })
-    }
   }
 
+  // Compute averages
   const result = {}
   for (const [key, data] of Object.entries(bySpot)) {
     const n = data.ratings.length
     result[key] = {
-      avgRating:      n > 0 ? +(data.ratings.reduce((a, b) => a + b, 0) / n).toFixed(1) : 0,
-      ratingCount:    n,
-      reviews:        data.reviews,
-      recommendCount: data.recommenders.length,
-      recommenders:   data.recommenders,
+      avgRating:   n > 0 ? +(data.ratings.reduce((a, b) => a + b, 0) / n).toFixed(1) : 0,
+      ratingCount: n,
+      reviews:     data.reviews,
     }
   }
 
