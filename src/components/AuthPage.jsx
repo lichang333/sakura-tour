@@ -65,18 +65,29 @@ export default function AuthPage() {
               }}>🌸</span>
             ))}
           </div>
-          <div className="auth-mascot">🌸</div>
+          <div className="auth-mascot-wrap">
+            <span className="auth-mascot-main">🌸</span>
+            <span className="auth-mascot-side left">🌿</span>
+            <span className="auth-mascot-side right">🌿</span>
+          </div>
           <h1 className="auth-title">Sakura Tour</h1>
-          <p className="auth-subtitle">成都赏樱旅行规划</p>
-          <p className="auth-desc">记录你的赏樱足迹，积累 XP，解锁专属花期报告</p>
         </div>
-        <div className="auth-actions">
-          <button className="auth-btn-primary" onClick={() => setMode('signup')}>
-            开始我的赏樱之旅 🌸
-          </button>
-          <button className="auth-btn-secondary" onClick={() => setMode('login')}>
-            已有账号，去登录
-          </button>
+
+        <div className="auth-bottom">
+          <p className="auth-tagline">免费、好玩又实用的<br/>赏樱旅行规划助手</p>
+          <div className="auth-features">
+            <div className="auth-feature"><span className="af-icon">🗺️</span><span className="af-label">记录足迹</span></div>
+            <div className="auth-feature"><span className="af-icon">⭐</span><span className="af-label">积累 XP</span></div>
+            <div className="auth-feature"><span className="af-icon">🌏</span><span className="af-label">多城探索</span></div>
+          </div>
+          <div className="auth-actions">
+            <button className="auth-btn-primary" onClick={() => setMode('signup')}>
+              开始我的赏樱之旅 🌸
+            </button>
+            <button className="auth-btn-secondary" onClick={() => setMode('login')}>
+              已有账号，去登录
+            </button>
+          </div>
         </div>
       </div>
     )
