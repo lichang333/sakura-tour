@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useUser } from '../context/UserContext'
 import { useCity } from '../context/CityContext'
 import './PlanPage.css'
@@ -63,6 +63,11 @@ export default function PlanPage({ setActiveTab }) {
   /* 推荐行程 — 移除 (DB via user state) */
   const removedActs = new Set(user?.removedActivities || [])
   const [customActs, setCustomActs] = useState(() => loadObj(CUSTOM_KEY))
+
+  // 城市切换时重新从 localStorage 加载自定义活动
+  useEffect(() => {
+    setCustomActs(loadObj(`sakura_custom_acts_${currentCity.id}`))
+  }, [currentCity.id])
 
   const cityCustomKey = CUSTOM_KEY
 
