@@ -46,7 +46,7 @@ export default function PlanPage({ setActiveTab }) {
   const [activeDay, setActiveDay] = useState(1)
   const [showAdd,   setShowAdd]   = useState(false)
 
-  const { user, toggleActivity, toggleSpot, addXP } = useUser()
+  const { user, toggleActivity, toggleSpot, toggleVisited, addXP } = useUser()
   const { currentCity } = useCity()
 
   // Per-city localStorage keys
@@ -104,11 +104,29 @@ export default function PlanPage({ setActiveTab }) {
     setShowAdd(false)
   }
 
-  const removeCustomAct = (actId, e) => {
+  const removeCustomAct = (act, e) => {
     e.stopPropagation()
     const dk   = String(activeDay)
-    const next = { ...customActs, [dk]: (customActs[dk] || []).filter(a => a.id !== actId) }
+    const next = { ...customActs, [dk]: (customActs[dk] || []).filter(a => a.id !== act.id) }
     setCustomActs(next); saveObj(cityCustomKey, next)
+    // 同步从"我的清单"移除
+    if (act.spotId != null && checkedIds.includes(act.spotId)) {
+      toggleSpot(act.spotId)
+    }
+  }
+
+  const handleCustomToggle = (act) => {
+    const wasDone = completedSet.has(act.id)
+    toggleActivity(act.id)
+    if (!wasDone) {
+      // 打✅ 时：标记去过 + XP 合并进一次 syncUser，避免竞态
+      if (act.spotId != null) toggleVisited(act.spotId, 20)
+      else addXP(20)
+    } else {
+      // 取消✅ 时撤销"去过"（如果当前是去过状态）
+      const visitedList = user?.visitedSpots || []
+      if (act.spotId != null && visitedList.includes(act.spotId)) toggleVisited(act.spotId)
+    }
   }
 
   /* ── 统计（推荐行程） ── */
@@ -298,23 +316,33 @@ export default function PlanPage({ setActiveTab }) {
                   })}
 
                   {/* 自定义活动（从景点加入的） */}
-                  {dayCustom(day.day).map((act, i) => (
-                    <div key={act.id} className="activity-card custom">
-                      <div className="act-timeline">
-                        <div className="act-dot custom" style={{ borderColor: theme.color, background: theme.color + '33' }} />
-                        {i < dayCustom(day.day).length - 1 && <div className="act-line" />}
-                      </div>
-                      <div className="act-body">
-                        <div className="act-time">{act.time}</div>
-                        <div className="act-card-inner custom-act">
-                          <span className="act-icon">{act.icon}</span>
-                          <span className="act-text">{act.text}</span>
-                          <span className="custom-badge">自定义</span>
-                          <button className="act-remove-btn" onClick={(e) => removeCustomAct(act.id, e)}>✕</button>
+                  {dayCustom(day.day).map((act, i) => {
+                    const done = completedSet.has(act.id)
+                    return (
+                      <div key={act.id} className={`activity-card custom ${done ? 'done' : ''}`}
+                        onClick={() => handleCustomToggle(act)}>
+                        <div className="act-timeline">
+                          <div className={`act-dot custom ${done ? 'done' : ''}`}
+                            style={done ? {} : { borderColor: theme.color, background: theme.color + '33' }} />
+                          {i < dayCustom(day.day).length - 1 && <div className="act-line" />}
+                        </div>
+                        <div className="act-body">
+                          <div className="act-time">{act.time}</div>
+                          <div className="act-card-inner custom-act">
+                            <span className="act-icon">{act.icon}</span>
+                            <span className="act-text">{act.text}</span>
+                            <span className="custom-badge">自定义</span>
+                            <button className="act-remove-btn" onClick={(e) => removeCustomAct(act, e)}>✕</button>
+                            <div className={`act-check ${done ? 'done' : ''}`}
+                              style={!done ? { borderColor: theme.color + '66' } : {}}
+                              onClick={(e) => { e.stopPropagation(); handleCustomToggle(act) }}>
+                              {done ? '✓' : '○'}
+                            </div>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  ))}
+                    )
+                  })}
                 </div>
 
                 {/* XP 条 */}

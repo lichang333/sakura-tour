@@ -102,24 +102,17 @@ export function UserProvider({ children }) {
     syncUser({ spotRatings: ratings })
   }
 
-  const toggleRecommend = (spotId) => {
-    if (!user) return
-    const list = user.recommendedSpots || []
-    const next = list.includes(spotId)
-      ? list.filter(id => id !== spotId)
-      : [...list, spotId]
-    syncUser({ recommendedSpots: next })
-  }
-
   const reviewSpot = (spotId, text) => {
     if (!user) return
     const reviews = { ...(user.spotReviews || {}) }
     if (!text?.trim()) { delete reviews[String(spotId)] }
-    else               { reviews[String(spotId)] = text.trim() }
+    else {
+      reviews[String(spotId)] = { text: text.trim(), at: new Date().toISOString() }
+    }
     syncUser({ spotReviews: reviews })
   }
 
-  const toggleVisited = (spotId) => {
+  const toggleVisited = (spotId, xpAmount = 0) => {
     if (!user) return
     const visited = user.visitedSpots || []
     const isVisited = visited.includes(spotId)
@@ -131,11 +124,15 @@ export function UserProvider({ children }) {
     const nextChecked = (!isVisited && !checked.includes(spotId))
       ? [...checked, spotId]
       : checked
-    syncUser({ visitedSpots: nextVisited, checkedSpots: nextChecked })
+    // Merge XP into same syncUser call to avoid race condition
+    const nextXp = (!isVisited && xpAmount > 0)
+      ? (user.xp || 0) + xpAmount
+      : user.xp
+    syncUser({ visitedSpots: nextVisited, checkedSpots: nextChecked, xp: nextXp })
   }
 
   return (
-    <UserContext.Provider value={{ user, loading, signup, login, logout, addXP, toggleSpot, toggleActivity, toggleVisited, rateSpot, reviewSpot, toggleRecommend }}>
+    <UserContext.Provider value={{ user, loading, signup, login, logout, addXP, toggleSpot, toggleActivity, toggleVisited, rateSpot, reviewSpot }}>
       {children}
     </UserContext.Provider>
   )

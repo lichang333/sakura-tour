@@ -20,6 +20,9 @@ rsync -avz --delete \
 
 echo "🔧 Deploying server files..."
 rsync -avz \
+  --exclude=sakura.db \
+  --exclude=sakura.db-shm \
+  --exclude=sakura.db-wal \
   -e "ssh -p $SSH_PORT" \
   server/ $VPS:$REMOTE/server/
 

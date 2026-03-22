@@ -9,6 +9,21 @@ const difficultyColor = { easy: '#58CC02', medium: '#FFD900', hard: '#FF4B4B' }
 
 const STAR_LABELS = ['', '很一般', '还不错', '值得去', '非常棒', '必须去！']
 
+const formatReviewDate = (iso) => {
+  if (!iso) return ''
+  const d = new Date(iso)
+  const now = new Date()
+  const diff = now - d
+  const mins  = Math.floor(diff / 60000)
+  const hours = Math.floor(diff / 3600000)
+  const days  = Math.floor(diff / 86400000)
+  if (mins  <  1) return '刚刚'
+  if (mins  < 60) return `${mins}分钟前`
+  if (hours < 24) return `${hours}小时前`
+  if (days  <  7) return `${days}天前`
+  return `${d.getFullYear()}/${d.getMonth() + 1}/${d.getDate()}`
+}
+
 /* ── 星级选择器 ── */
 function StarRating({ spotId, current, onRate }) {
   const [hover, setHover] = useState(0)
@@ -38,22 +53,15 @@ export default function SpotsPage() {
   const [selected,    setSelected]    = useState(null)
   const [reviewDraft, setReviewDraft] = useState('')
   const [reviewSaved, setReviewSaved] = useState(false)
-  const { user, toggleSpot, toggleVisited, rateSpot, reviewSpot, toggleRecommend, addXP } = useUser()
+  const { user, toggleSpot, toggleVisited, rateSpot, reviewSpot, addXP } = useUser()
   const { currentCity } = useCity()
   const { communityData, refresh: refreshReviews } = useReviews()
 
   const spots = currentCity.spots
   const nearby = currentCity.nearbySpots
 
-  const checkedIds     = new Set(user?.checkedSpots      || [])
-  const visitedIds     = new Set(user?.visitedSpots      || [])
-  const recommendedIds = new Set(user?.recommendedSpots  || [])
-
-  const handleRecommend = (spotId, e) => {
-    e?.stopPropagation()
-    toggleRecommend(spotId)
-    refreshReviews()
-  }
+  const checkedIds  = new Set(user?.checkedSpots  || [])
+  const visitedIds  = new Set(user?.visitedSpots  || [])
 
   const handleCheckBtn = (id, e) => {
     e.stopPropagation()
@@ -66,10 +74,9 @@ export default function SpotsPage() {
       toggleVisited(id)
       toggleSpot(id)   // remove from checkedSpots too
     } else if (wasChecked) {
-      // 想去 → 去过
+      // 想去 → 去过（合并 XP，避免两次 syncUser 竞态）
       if (!wasVisited) {
-        toggleVisited(id)   // adds to visited (and keeps in checked)
-        if (spot) addXP(spot.xp)
+        toggleVisited(id, spot?.xp || 0)
       }
     } else {
       // 未加入 → 想去
@@ -81,8 +88,8 @@ export default function SpotsPage() {
     e?.stopPropagation()
     const wasVisited = visitedIds.has(id)
     const spot = spots.find(s => s.id === id)
-    toggleVisited(id)
-    if (!wasVisited && spot) addXP(spot.xp)
+    // 合并 XP 进同一个 syncUser，避免两次 PATCH 竞态覆盖 visited_spots
+    toggleVisited(id, wasVisited ? 0 : (spot?.xp || 0))
   }
 
   /* ── 三态按钮渲染 ── */
@@ -121,12 +128,13 @@ export default function SpotsPage() {
     if (!spot) { setSelected(null); return null }
     const isVisited      = visitedIds.has(spot.id)
     const isChecked      = checkedIds.has(spot.id)
-    const isRecommended  = recommendedIds.has(spot.id)
     const myRating       = (user?.spotRatings  || {})[String(spot.id)] || 0
-    const savedReview    = (user?.spotReviews  || {})[String(spot.id)] || ''
+    const reviewObj      = (user?.spotReviews  || {})[String(spot.id)]
+    const savedReview    = typeof reviewObj === 'string' ? reviewObj : (reviewObj?.text || '')
 
     // Community data for this spot
-    const community    = communityData[String(spot.id)] || { avgRating: 0, ratingCount: 0, reviews: [], recommendCount: 0, recommenders: [] }
+    const community   = communityData[String(spot.id)] || { avgRating: 0, ratingCount: 0, reviews: [] }
+    // Filter out own review from community list to avoid duplicate
     const otherReviews = community.reviews.filter(r => r.name !== user?.name)
 
     const handleSaveReview = () => {
@@ -200,36 +208,6 @@ export default function SpotsPage() {
               <span>🌟</span>
             </div>
 
-            {/* 推荐按钮 */}
-            <button
-              className={`recommend-btn ${isRecommended ? 'active' : ''}`}
-              onClick={(e) => handleRecommend(spot.id, e)}
-            >
-              <span className="rec-icon">{isRecommended ? '👍' : '👍'}</span>
-              <span className="rec-label">{isRecommended ? '已推荐' : '推荐给朋友'}</span>
-              {community.recommendCount > 0 && (
-                <span className="rec-count">{community.recommendCount + (isRecommended && !community.recommenders.some(r => r.name === user?.name) ? 1 : 0)}</span>
-              )}
-            </button>
-
-            {/* 推荐人头像列表 */}
-            {community.recommenders.length > 0 && (
-              <div className="recommenders-row">
-                <div className="rec-avatars">
-                  {community.recommenders.slice(0, 8).map((r, i) => (
-                    <span key={i} className="rec-avatar-chip" title={r.name}>{r.avatar}</span>
-                  ))}
-                  {community.recommenders.length > 8 && (
-                    <span className="rec-avatar-more">+{community.recommenders.length - 8}</span>
-                  )}
-                </div>
-                <span className="rec-summary">
-                  {community.recommenders.slice(0, 2).map(r => r.name === user?.name ? '你' : r.name).join('、')}
-                  {community.recommenders.length > 2 ? `等${community.recommenders.length}人推荐` : '推荐了这里'}
-                </span>
-              </div>
-            )}
-
             {/* 加入行程按钮 */}
             <button
               className="checkin-btn"
@@ -264,6 +242,7 @@ export default function SpotsPage() {
                           {'★'.repeat(r.rating)}{'☆'.repeat(5 - r.rating)}
                         </span>
                       )}
+                      {r.at && <span className="cr-date">{formatReviewDate(r.at)}</span>}
                     </div>
                     {r.text && <div className="cr-text">「{r.text}」</div>}
                   </div>
@@ -383,11 +362,6 @@ export default function SpotsPage() {
                   <span className="spot-diff" style={{ color: difficultyColor[spot.difficulty] }}>
                     {difficultyLabel[spot.difficulty]}
                   </span>
-                  {communityData[String(spot.id)]?.recommendCount > 0 && (
-                    <span className="spot-rec-count">
-                      👍 {communityData[String(spot.id)].recommendCount}
-                    </span>
-                  )}
                   <span className="spot-xp">+{spot.xp} XP</span>
                 </div>
               </div>

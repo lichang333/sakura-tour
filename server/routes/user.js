@@ -31,9 +31,8 @@ const toPublic = (user) => ({
   checkedSpots: JSON.parse(user.checked_spots || '[]'),
   completedActivities: JSON.parse(user.completed_activities || '[]'),
   visitedSpots: JSON.parse(user.visited_spots || '[]'),
-  spotRatings:       JSON.parse(user.spot_ratings        || '{}'),
-  spotReviews:       JSON.parse(user.spot_reviews        || '{}'),
-  recommendedSpots:  JSON.parse(user.recommended_spots   || '[]'),
+  spotRatings:  JSON.parse(user.spot_ratings  || '{}'),
+  spotReviews:  JSON.parse(user.spot_reviews  || '{}'),
   joinedAt: user.created_at,
 })
 
@@ -49,24 +48,21 @@ router.patch('/me', auth, (req, res) => {
   const user = db.prepare('SELECT * FROM users WHERE id = ?').get(req.userId)
   if (!user) return res.status(404).json({ error: '用户不存在' })
 
-  const { xp, checkedSpots, completedActivities, visitedSpots,
-          spotRatings, spotReviews, recommendedSpots } = req.body
+  const { xp, checkedSpots, completedActivities, visitedSpots, spotRatings, spotReviews } = req.body
 
-  const newXp          = xp                 !== undefined ? xp                                    : user.xp
-  const newSpots       = checkedSpots        !== undefined ? JSON.stringify(checkedSpots)           : user.checked_spots
-  const newActivities  = completedActivities !== undefined ? JSON.stringify(completedActivities)    : user.completed_activities
-  const newVisited     = visitedSpots        !== undefined ? JSON.stringify(visitedSpots)           : user.visited_spots
-  const newRatings     = spotRatings         !== undefined ? JSON.stringify(spotRatings)            : user.spot_ratings
-  const newReviews     = spotReviews         !== undefined ? JSON.stringify(spotReviews)            : user.spot_reviews
-  const newRecommended = recommendedSpots    !== undefined ? JSON.stringify(recommendedSpots)       : user.recommended_spots
+  const newXp         = xp                 !== undefined ? xp                                 : user.xp
+  const newSpots      = checkedSpots        !== undefined ? JSON.stringify(checkedSpots)        : user.checked_spots
+  const newActivities = completedActivities !== undefined ? JSON.stringify(completedActivities) : user.completed_activities
+  const newVisited    = visitedSpots        !== undefined ? JSON.stringify(visitedSpots)        : user.visited_spots
+  const newRatings    = spotRatings         !== undefined ? JSON.stringify(spotRatings)         : user.spot_ratings
+  const newReviews    = spotReviews         !== undefined ? JSON.stringify(spotReviews)         : user.spot_reviews
 
   db.prepare(`
     UPDATE users
     SET xp = ?, checked_spots = ?, completed_activities = ?,
-        visited_spots = ?, spot_ratings = ?, spot_reviews = ?,
-        recommended_spots = ?
+        visited_spots = ?, spot_ratings = ?, spot_reviews = ?
     WHERE id = ?
-  `).run(newXp, newSpots, newActivities, newVisited, newRatings, newReviews, newRecommended, req.userId)
+  `).run(newXp, newSpots, newActivities, newVisited, newRatings, newReviews, req.userId)
 
   const updated = db.prepare('SELECT * FROM users WHERE id = ?').get(req.userId)
   res.json(toPublic(updated))
