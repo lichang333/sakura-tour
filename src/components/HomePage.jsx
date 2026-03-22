@@ -16,10 +16,81 @@ export default function HomePage({ setActiveTab }) {
     { label: '旅行攻略', value: String(tipCount),  icon: '💡' },
   ]
 
-  // Calculate progress based on user's checked spots for this city
-  const checkedIds = user?.checkedSpots || []
-  const cityChecked = checkedIds.filter(id => currentCity.spots.some(s => s.id === id)).length
+  // ── User progress for current city ──
+  const checkedIds  = user?.checkedSpots  || []
+  const visitedIds  = user?.visitedSpots  || []
+  const citySpots   = currentCity.spots
+  const cityChecked = checkedIds.filter(id => citySpots.some(s => s.id === id)).length
+  const cityVisited = visitedIds.filter(id => citySpots.some(s => s.id === id)).length
   const progressPct = spotCount > 0 ? Math.round((cityChecked / spotCount) * 100) : 0
+
+  // Completed plan activities for this city
+  const completedActs = (user?.completedActivities || [])
+    .filter(k => k.startsWith(`${currentCity.id}:`))
+  const totalActs = currentCity.itineraryDays
+    .reduce((sum, d) => sum + d.activities.length, 0)
+
+  // Reviews written for this city's spots
+  const reviewedCount = Object.keys(user?.spotReviews || {})
+    .filter(id => citySpots.some(s => String(s.id) === id)).length
+
+  // ── Dynamic task list ──
+  const status = (done, active) => done ? 'done' : active ? 'active' : 'idle'
+
+  const dailyTasks = [
+    {
+      id: 'explore',
+      icon: '🌸', iconBg: 'rgba(255,182,193,0.3)',
+      title: `探索${currentCity.name}赏樱地`,
+      desc: cityChecked === 0
+        ? `共 ${spotCount} 个景点，加入心愿清单吧`
+        : `已加入 ${cityChecked}/${spotCount} 个景点`,
+      progress: spotCount > 0 ? cityChecked / spotCount : 0,
+      xp: cityChecked * 50,
+      status: status(cityChecked >= spotCount, cityChecked > 0),
+      action: () => setActiveTab('spots'),
+      actionLabel: '继续探索',
+    },
+    {
+      id: 'plan',
+      icon: '📅', iconBg: 'rgba(255,217,0,0.2)',
+      title: '规划行程打卡',
+      desc: completedActs.length === 0
+        ? `${totalActs} 项行程等你完成`
+        : `已完成 ${completedActs.length}/${totalActs} 项活动`,
+      progress: totalActs > 0 ? completedActs.length / totalActs : 0,
+      xp: completedActs.length * 30,
+      status: status(completedActs.length >= totalActs && totalActs > 0, completedActs.length > 0),
+      action: () => setActiveTab('plan'),
+      actionLabel: '查看行程',
+    },
+    {
+      id: 'visit',
+      icon: '✈️', iconBg: 'rgba(28,176,246,0.15)',
+      title: '实地赏樱打卡',
+      desc: cityVisited === 0
+        ? `去过景点后在"赏樱地"标记`
+        : `已打卡 ${cityVisited}/${cityChecked || spotCount} 个景点`,
+      progress: (cityChecked || spotCount) > 0 ? cityVisited / (cityChecked || spotCount) : 0,
+      xp: cityVisited * 150,
+      status: status(cityVisited > 0 && cityVisited >= (cityChecked || spotCount), cityVisited > 0),
+      action: () => setActiveTab('spots'),
+      actionLabel: '去打卡',
+    },
+    cityVisited > 0 && {
+      id: 'review',
+      icon: '✍️', iconBg: 'rgba(88,204,2,0.15)',
+      title: '分享旅行感受',
+      desc: reviewedCount === 0
+        ? `去过 ${cityVisited} 个景点，写下你的感受`
+        : `已评价 ${reviewedCount}/${cityVisited} 个景点`,
+      progress: cityVisited > 0 ? reviewedCount / cityVisited : 0,
+      xp: reviewedCount * 100,
+      status: status(reviewedCount >= cityVisited, reviewedCount > 0),
+      action: () => setActiveTab('spots'),
+      actionLabel: '去评价',
+    },
+  ].filter(Boolean)
 
   return (
     <div className="home-page">
@@ -71,31 +142,35 @@ export default function HomePage({ setActiveTab }) {
         ))}
       </div>
 
-      {/* Daily Challenge */}
+      {/* Daily Tasks — fully dynamic */}
       <div className="section">
         <h2 className="section-title">今日任务 🎯</h2>
-        <div className="challenge-card">
-          <div className="challenge-left">
-            <div className="challenge-icon">📸</div>
-            <div>
-              <div className="challenge-title">确认出发日期</div>
-              <div className="challenge-desc">选择你的旅行时间，解锁专属花期预报</div>
+        {dailyTasks.map(task => (
+          <div key={task.id} className={`task-card ${task.status}`}>
+            <div className="task-top">
+              <div className="task-icon" style={{ background: task.iconBg }}>{task.icon}</div>
+              <div className="task-info">
+                <div className="task-title">{task.title}</div>
+                <div className="task-desc">{task.desc}</div>
+              </div>
+              {task.status === 'done'
+                ? <div className="task-badge done">✓ 完成</div>
+                : task.status === 'active'
+                  ? <button className="task-btn active" onClick={task.action}>{task.actionLabel}</button>
+                  : <button className="task-btn" onClick={task.action}>去完成</button>
+              }
+            </div>
+            <div className="task-bar-row">
+              <div className="task-bar">
+                <div className="task-bar-fill" style={{
+                  width: `${Math.round(task.progress * 100)}%`,
+                  background: task.status === 'done' ? '#58CC02' : 'var(--sakura-pink)',
+                }} />
+              </div>
+              <span className="task-xp">+{task.xp} XP</span>
             </div>
           </div>
-          <button className="challenge-btn" onClick={() => setActiveTab('plan')}>
-            去完成
-          </button>
-        </div>
-        <div className="challenge-card done">
-          <div className="challenge-left">
-            <div className="challenge-icon">✅</div>
-            <div>
-              <div className="challenge-title">{currentCity.name}赏樱地探索</div>
-              <div className="challenge-desc">已选 {cityChecked}/{spotCount} 个景点 · {cityChecked > 0 ? `+${cityChecked * 50} XP` : '快去打卡吧'}</div>
-            </div>
-          </div>
-          <div className={cityChecked > 0 ? 'done-badge' : 'todo-badge'}>{cityChecked > 0 ? '进行中！' : '未开始'}</div>
-        </div>
+        ))}
       </div>
 
       {/* Quick Tips */}

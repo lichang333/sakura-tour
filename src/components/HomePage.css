@@ -183,91 +183,112 @@
   margin-bottom: 12px;
 }
 
-/* Challenge Cards */
-.challenge-card {
+/* ── Dynamic Task Cards ── */
+.task-card {
   background: var(--bg-card);
   border: 2px solid var(--border);
   border-radius: 18px;
-  padding: 14px 16px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  padding: 14px 16px 12px;
   margin-bottom: 10px;
   box-shadow: var(--shadow-card);
-  transition: background 0.25s, border-color 0.25s;
+  transition: border-color 0.2s;
 }
+.task-card.active { border-color: var(--sakura-pink); }
+.task-card.done   { border-color: #58CC02; opacity: 0.75; }
 
-.challenge-card.done {
-  opacity: 0.65;
-  background: var(--bg-card2);
-}
-
-.challenge-left {
+.task-top {
   display: flex;
   align-items: center;
   gap: 12px;
-  flex: 1;
+  margin-bottom: 10px;
 }
 
-.challenge-icon {
-  font-size: 26px;
-  width: 46px;
-  height: 46px;
-  background: var(--sakura-pale);
-  border-radius: 14px;
+.task-icon {
+  font-size: 22px;
+  width: 44px;
+  height: 44px;
+  border-radius: 13px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
 }
 
-.challenge-title {
+.task-info { flex: 1; min-width: 0; }
+
+.task-title {
   font-size: 14px;
   font-weight: 800;
   color: var(--text-dark);
-  margin-bottom: 3px;
+  margin-bottom: 2px;
 }
 
-.challenge-desc {
+.task-desc {
   font-size: 12px;
   color: var(--text-mid);
   font-weight: 600;
 }
 
-.challenge-btn {
-  background: var(--sakura-pink);
-  color: white;
-  border-radius: 12px;
-  padding: 8px 16px;
-  font-size: 13px;
-  box-shadow: 0 3px 0 #C44E78;
-  flex-shrink: 0;
-}
-
-.challenge-btn:active {
-  box-shadow: 0 1px 0 #C44E78;
-  transform: translateY(2px);
-}
-
-.done-badge {
-  background: var(--duo-green);
-  color: white;
-  border-radius: 12px;
-  padding: 6px 12px;
-  font-size: 12px;
-  font-weight: 800;
-  flex-shrink: 0;
-}
-
-.todo-badge {
+.task-btn {
   background: var(--bg-card2);
   color: var(--text-mid);
   border: 2px solid var(--border);
   border-radius: 12px;
+  padding: 7px 13px;
+  font-size: 12px;
+  font-weight: 800;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+.task-btn.active {
+  background: var(--sakura-pink);
+  color: white;
+  border-color: var(--sakura-pink);
+  box-shadow: 0 3px 0 #C44E78;
+}
+.task-btn.active:active {
+  transform: translateY(2px);
+  box-shadow: 0 1px 0 #C44E78;
+}
+
+.task-badge {
+  border-radius: 12px;
   padding: 6px 12px;
   font-size: 12px;
   font-weight: 800;
   flex-shrink: 0;
+}
+.task-badge.done {
+  background: #58CC02;
+  color: white;
+}
+
+.task-bar-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.task-bar {
+  flex: 1;
+  height: 7px;
+  background: var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.task-bar-fill {
+  height: 100%;
+  border-radius: 10px;
+  transition: width 0.4s ease;
+  min-width: 4px;
+}
+
+.task-xp {
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--text-mid);
+  white-space: nowrap;
 }
 
 /* Quick Tips */
