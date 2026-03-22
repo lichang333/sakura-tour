@@ -102,6 +102,20 @@ export function UserProvider({ children }) {
     syncUser({ spotRatings: ratings })
   }
 
+  const removeActivity = (key) => {
+    if (!user) return
+    const list = user.removedActivities || []
+    if (list.includes(key)) return
+    syncUser({ removedActivities: [...list, key] })
+  }
+
+  const restoreActivities = (cityId) => {
+    if (!user) return
+    const list = user.removedActivities || []
+    const next = list.filter(k => !k.startsWith(`${cityId}:`))
+    syncUser({ removedActivities: next })
+  }
+
   const reviewSpot = (spotId, text) => {
     if (!user) return
     const reviews = { ...(user.spotReviews || {}) }
@@ -132,7 +146,7 @@ export function UserProvider({ children }) {
   }
 
   return (
-    <UserContext.Provider value={{ user, loading, signup, login, logout, addXP, toggleSpot, toggleActivity, toggleVisited, rateSpot, reviewSpot }}>
+    <UserContext.Provider value={{ user, loading, signup, login, logout, addXP, toggleSpot, toggleActivity, toggleVisited, rateSpot, reviewSpot, removeActivity, restoreActivities }}>
       {children}
     </UserContext.Provider>
   )
