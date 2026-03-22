@@ -15,6 +15,7 @@ import './App.css'
 function AppInner() {
   const { user, loading } = useUser()
   const [activeTab, setActiveTab] = useState('home')
+  const [pendingSpot, setPendingSpot] = useState(null)
 
   if (loading) {
     return (
@@ -32,12 +33,14 @@ function AppInner() {
     )
   }
 
+  const goToSpot = (spotId) => { setPendingSpot(spotId); setActiveTab('spots') }
+
   const pages = {
-    home: <HomePage setActiveTab={setActiveTab} />,
-    spots: <SpotsPage />,
-    plan: <PlanPage setActiveTab={setActiveTab} />,
-    tips: <TipsPage />,
-    profile: <ProfilePage />,
+    home:    <HomePage setActiveTab={setActiveTab} />,
+    spots:   <SpotsPage pendingSpot={pendingSpot} clearPendingSpot={() => setPendingSpot(null)} />,
+    plan:    <PlanPage setActiveTab={setActiveTab} />,
+    tips:    <TipsPage />,
+    profile: <ProfilePage goToSpot={goToSpot} />,
   }
 
   return (

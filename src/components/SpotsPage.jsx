@@ -1,8 +1,17 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useUser } from '../context/UserContext'
 import { useCity } from '../context/CityContext'
 import { useReviews } from '../hooks/useReviews'
 import './SpotsPage.css'
+
+export const REC_TAGS = [
+  { id: 'bloom',   label: '花开正好', emoji: '🌸' },
+  { id: 'photo',   label: '拍照绝佳', emoji: '📸' },
+  { id: 'quiet',   label: '人少清净', emoji: '😌' },
+  { id: 'transit', label: '交通方便', emoji: '🚇' },
+  { id: 'family',  label: '亲子友好', emoji: '👨‍👩‍👧' },
+  { id: 'value',   label: '性价比高', emoji: '💰' },
+]
 
 const difficultyLabel = { easy: '轻松', medium: '一般', hard: '需体力' }
 const difficultyColor = { easy: '#58CC02', medium: '#FFD900', hard: '#FF4B4B' }
@@ -49,19 +58,38 @@ function StarRating({ spotId, current, onRate }) {
   )
 }
 
-export default function SpotsPage() {
-  const [selected,    setSelected]    = useState(null)
-  const [reviewDraft, setReviewDraft] = useState('')
-  const [reviewSaved, setReviewSaved] = useState(false)
-  const { user, toggleSpot, toggleVisited, rateSpot, reviewSpot, addXP } = useUser()
+export default function SpotsPage({ pendingSpot, clearPendingSpot }) {
+  const [selected,      setSelected]      = useState(null)
+  const [reviewDraft,   setReviewDraft]   = useState('')
+  const [reviewSaved,   setReviewSaved]   = useState(false)
+  const { user, toggleSpot, toggleVisited, rateSpot, reviewSpot, addXP, toggleRecommend } = useUser()
   const { currentCity } = useCity()
   const { communityData, refresh: refreshReviews } = useReviews()
+
+  // Navigate to spot detail when coming from Profile page
+  useEffect(() => {
+    if (pendingSpot != null) {
+      setSelected(pendingSpot)
+      clearPendingSpot?.()
+    }
+  }, [pendingSpot])
 
   const spots = currentCity.spots
   const nearby = currentCity.nearbySpots
 
   const checkedIds  = new Set(user?.checkedSpots  || [])
   const visitedIds  = new Set(user?.visitedSpots  || [])
+
+  const recommendedIds = new Map(
+    (user?.recommendedSpots || []).map(r =>
+      typeof r === 'object' ? [r.id, r] : [r, { id: r, tag: null }]
+    )
+  )
+
+  const handleRecommend = (spotId, tag) => {
+    toggleRecommend(spotId, tag)
+    refreshReviews()
+  }
 
   const handleCheckBtn = (id, e) => {
     e.stopPropagation()
@@ -133,9 +161,11 @@ export default function SpotsPage() {
     const savedReview    = typeof reviewObj === 'string' ? reviewObj : (reviewObj?.text || '')
 
     // Community data for this spot
-    const community   = communityData[String(spot.id)] || { avgRating: 0, ratingCount: 0, reviews: [] }
+    const community   = communityData[String(spot.id)] || { avgRating: 0, ratingCount: 0, reviews: [], recommendCount: 0, recommenders: [], topTag: null }
     // Filter out own review from community list to avoid duplicate
     const otherReviews = community.reviews.filter(r => r.name !== user?.name)
+    // Recommend state
+    const myRec = recommendedIds.get(spot.id)
 
     const handleSaveReview = () => {
       reviewSpot(spot.id, reviewDraft)
@@ -202,11 +232,19 @@ export default function SpotsPage() {
               <p>{spot.transport}</p>
             </div>
 
-            <div className="xp-reward" style={{ borderColor: spot.color }}>
-              <span>打卡获得</span>
-              <span className="xp-amount" style={{ color: spot.color }}>+{spot.xp} XP</span>
-              <span>🌟</span>
-            </div>
+            {isVisited ? (
+              <div className="xp-reward earned">
+                <span>✓ 已获得</span>
+                <span className="xp-amount earned-amount">+{spot.xp} XP</span>
+                <span>🌟</span>
+              </div>
+            ) : (
+              <div className="xp-reward" style={{ borderColor: spot.color }}>
+                <span>打卡获得</span>
+                <span className="xp-amount" style={{ color: spot.color }}>+{spot.xp} XP</span>
+                <span>🌟</span>
+              </div>
+            )}
 
             {/* 加入行程按钮 */}
             <button
@@ -219,6 +257,70 @@ export default function SpotsPage() {
             >
               {isVisited ? '✈️ 已去过' : isChecked ? '♡ 已加入行程' : '加入我的行程 +'}
             </button>
+
+            {/* Recommend Section — unified card, only shown after visiting */}
+            {isVisited && (
+              <div className={`rec-card ${myRec ? 'active' : ''}`}>
+                <div className="rec-card-header">
+                  <span className="rec-card-icon">{myRec ? '✅' : '👍'}</span>
+                  <div className="rec-card-texts">
+                    <span className="rec-card-title">{myRec ? '已推荐给朋友' : '推荐给朋友'}</span>
+                    <span className="rec-card-sub">
+                      {myRec
+                        ? (myRec.tag
+                            ? `${REC_TAGS.find(t => t.id === myRec.tag)?.emoji} ${REC_TAGS.find(t => t.id === myRec.tag)?.label}`
+                            : '感谢你的推荐！')
+                        : '选个理由让朋友更了解这里'}
+                    </span>
+                  </div>
+                  {myRec && (
+                    <button className="rec-cancel-btn"
+                      onClick={() => handleRecommend(spot.id, myRec.tag)}>
+                      取消
+                    </button>
+                  )}
+                </div>
+
+                {!myRec && (
+                  <>
+                    <div className="rec-tag-grid">
+                      {REC_TAGS.map(t => (
+                        <button key={t.id} className="rec-tag-btn"
+                          onClick={() => handleRecommend(spot.id, t.id)}>
+                          {t.emoji} {t.label}
+                        </button>
+                      ))}
+                    </div>
+                    <button className="rec-tag-skip"
+                      onClick={() => handleRecommend(spot.id, null)}>
+                      直接推荐 →
+                    </button>
+                  </>
+                )}
+
+                {community.recommendCount > 0 && (
+                  <div className="rec-community-row">
+                    <div className="rec-chips">
+                      {community.recommenders.slice(0, 5).map((r, i) => (
+                        <div key={i} className="rec-chip">
+                          <span className="rec-chip-avatar">{r.avatar}</span>
+                          {r.tag && <span className="rec-chip-tag">
+                            {REC_TAGS.find(t => t.id === r.tag)?.emoji}
+                          </span>}
+                        </div>
+                      ))}
+                      {community.recommendCount > 5 && (
+                        <span className="rec-chip-more">+{community.recommendCount - 5}</span>
+                      )}
+                    </div>
+                    <span className="rec-community-label">
+                      {community.recommendCount} 位旅行者推荐
+                      {community.topTag && ` · ${REC_TAGS.find(t => t.id === community.topTag)?.label}`}
+                    </span>
+                  </div>
+                )}
+              </div>
+            )}
 
             {/* 去过按钮 */}
             <button
@@ -364,6 +466,16 @@ export default function SpotsPage() {
                   </span>
                   <span className="spot-xp">+{spot.xp} XP</span>
                 </div>
+                {communityData[String(spot.id)]?.recommendCount > 0 && (
+                  <div className="card-rec-badge">
+                    👍 {communityData[String(spot.id)].recommendCount}
+                    {communityData[String(spot.id)].topTag && (
+                      <span className="card-rec-tag">
+                        {REC_TAGS.find(t => t.id === communityData[String(spot.id)].topTag)?.emoji}
+                      </span>
+                    )}
+                  </div>
+                )}
               </div>
               <SpotStateBtn id={spot.id} />
             </div>

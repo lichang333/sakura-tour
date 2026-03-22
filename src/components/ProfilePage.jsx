@@ -1,15 +1,25 @@
 import { useUser } from '../context/UserContext'
 import { CITIES } from '../data/cities'
+import { REC_TAGS } from './SpotsPage'
 import './ProfilePage.css'
 
 // Gather all spots across all cities
 const allSpots = CITIES.flatMap(c => c.spots)
 
-export default function ProfilePage() {
+export default function ProfilePage({ goToSpot }) {
   const { user, logout } = useUser()
 
   const checkedSpots = allSpots.filter(s => user.checkedSpots?.includes(s.id))
   const visitedSpots = allSpots.filter(s => user.visitedSpots?.includes(s.id))
+
+  const rawRecs = user?.recommendedSpots || []
+  const recommendedList = rawRecs
+    .map(r => {
+      const recObj = typeof r === 'object' ? r : { id: r, tag: null }
+      const spot = allSpots.find(s => s.id === recObj.id || String(s.id) === String(recObj.id))
+      return { spot, rec: recObj }
+    })
+    .filter(({ spot }) => spot)
 
   const totalXP   = user.xp || 0
   const level     = Math.floor(totalXP / 200) + 1
@@ -105,7 +115,7 @@ export default function ProfilePage() {
               const reviewObj = (user.spotReviews || {})[String(spot.id)]
               const review    = typeof reviewObj === 'string' ? reviewObj : (reviewObj?.text || '')
               return (
-                <div key={spot.id} className="checked-spot-row visited-row" style={{ borderLeftColor: spot.color }}>
+                <div key={spot.id} className="checked-spot-row visited-row clickable-row" style={{ borderLeftColor: spot.color }} onClick={() => goToSpot?.(spot.id)}>
                   <span className="cs-emoji">{spot.emoji}</span>
                   <div className="cs-info">
                     <div className="cs-name">{spot.name}</div>
@@ -126,6 +136,40 @@ export default function ProfilePage() {
         )}
       </div>
 
+      {/* 我的推荐 */}
+      <div className="profile-section">
+        <h3 className="section-title">
+          我的推荐 👍
+          {recommendedList.length > 0 && <span className="ps-count">{recommendedList.length}</span>}
+        </h3>
+        {recommendedList.length === 0 ? (
+          <div className="empty-spots rec-empty">
+            <span className="empty-icon">👍</span>
+            <span>还没有推荐过景点<br />觉得好玩的地方，推荐给朋友吧！</span>
+          </div>
+        ) : (
+          <div className="checked-spots">
+            {recommendedList.map(({ spot, rec }) => spot && (
+              <div key={spot.id} className="checked-spot-row rec-row clickable-row" onClick={() => goToSpot?.(spot.id)}>
+                <span className="cs-emoji">{spot.emoji}</span>
+                <div className="cs-info">
+                  <div className="cs-name">{spot.name}</div>
+                  {rec.tag ? (
+                    <div className="cs-rec-tag">
+                      {REC_TAGS.find(t => t.id === rec.tag)?.emoji}
+                      {' '}{REC_TAGS.find(t => t.id === rec.tag)?.label}
+                    </div>
+                  ) : (
+                    <div className="cs-district">已推荐</div>
+                  )}
+                </div>
+                <span className="cs-visited-badge rec-badge">👍</span>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+
       {/* Want-to-go Spots — 想去 */}
       <div className="profile-section">
         <h3 className="section-title">我的心愿清单 ♡</h3>
@@ -139,7 +183,7 @@ export default function ProfilePage() {
             {checkedSpots.filter(s => !user.visitedSpots?.includes(s.id)).map(spot => {
               const city = CITIES.find(c => c.spots.some(s => s.id === spot.id))
               return (
-                <div key={spot.id} className="checked-spot-row" style={{ borderLeftColor: spot.color }}>
+                <div key={spot.id} className="checked-spot-row clickable-row" style={{ borderLeftColor: spot.color }} onClick={() => goToSpot?.(spot.id)}>
                   <span className="cs-emoji">{spot.emoji}</span>
                   <div className="cs-info">
                     <div className="cs-name">{spot.name}</div>

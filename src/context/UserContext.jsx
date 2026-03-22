@@ -126,6 +126,16 @@ export function UserProvider({ children }) {
     syncUser({ spotReviews: reviews })
   }
 
+  const toggleRecommend = (spotId, tag) => {
+    if (!user) return
+    const list = user.recommendedSpots || []
+    const exists = list.find(r => (typeof r === 'object' ? r.id : r) === spotId)
+    const next = exists
+      ? list.filter(r => (typeof r === 'object' ? r.id : r) !== spotId)
+      : [...list, { id: spotId, tag, at: new Date().toISOString() }]
+    syncUser({ recommendedSpots: next })
+  }
+
   const toggleVisited = (spotId, xpAmount = 0) => {
     if (!user) return
     const visited = user.visitedSpots || []
@@ -146,7 +156,7 @@ export function UserProvider({ children }) {
   }
 
   return (
-    <UserContext.Provider value={{ user, loading, signup, login, logout, addXP, toggleSpot, toggleActivity, toggleVisited, rateSpot, reviewSpot, removeActivity, restoreActivities }}>
+    <UserContext.Provider value={{ user, loading, signup, login, logout, addXP, toggleSpot, toggleActivity, toggleVisited, rateSpot, reviewSpot, removeActivity, restoreActivities, toggleRecommend }}>
       {children}
     </UserContext.Provider>
   )
