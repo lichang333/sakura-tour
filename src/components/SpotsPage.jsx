@@ -323,12 +323,26 @@ export default function SpotsPage({ pendingSpot, clearPendingSpot }) {
             )}
 
             {/* 去过按钮 */}
-            <button
-              className={`visited-btn ${isVisited ? 'active' : ''}`}
-              onClick={() => handleVisitedBtn(spot.id)}
-            >
-              {isVisited ? '✅ 已标记为去过 · 点击取消' : '✈️ 我去过这里'}
-            </button>
+            {isVisited ? (
+              <div className="visited-done">
+                <div className="visited-done-main">
+                  <span className="visited-done-check">✅</span>
+                  <span className="visited-done-text">已打卡！</span>
+                </div>
+                <button className="visited-cancel-btn" onClick={() => handleVisitedBtn(spot.id)}>
+                  取消打卡
+                </button>
+              </div>
+            ) : (
+              <button
+                className="visited-btn"
+                style={{ boxShadow: '0 4px 0 #b8325a' }}
+                onClick={() => handleVisitedBtn(spot.id)}
+              >
+                <span className="visited-btn-icon">✈️</span>
+                <span>我去过这里</span>
+              </button>
+            )}
 
             {/* 社区评价列表 */}
             {community.reviews.length > 0 && (
