@@ -250,8 +250,8 @@ export default function SpotsPage({ pendingSpot, clearPendingSpot }) {
             <button
               className="checkin-btn"
               style={{
-                background: isChecked ? (isVisited ? '#58CC02' : '#1CB0F6') : spot.color,
-                boxShadow: `0 4px 0 ${isChecked ? (isVisited ? '#46A302' : '#0E86BB') : spot.color}AA`
+                background: isVisited ? '#58CC02' : '#1CB0F6',
+                boxShadow: `0 4px 0 ${isVisited ? '#46A302' : '#0E86BB'}`
               }}
               onClick={() => { if (!isChecked) { toggleSpot(spot.id) } }}
             >

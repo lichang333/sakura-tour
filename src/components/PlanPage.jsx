@@ -54,8 +54,9 @@ export default function PlanPage({ setActiveTab }) {
   const citySpots     = currentCity.spots
 
   /* 我的清单 */
-  const checkedIds = user?.checkedSpots || []
-  const mySpots    = citySpots.filter(s => checkedIds.includes(s.id))
+  const checkedIds  = user?.checkedSpots  || []
+  const visitedIds  = new Set(user?.visitedSpots || [])
+  const mySpots     = citySpots.filter(s => checkedIds.includes(s.id))
 
   /* 推荐行程 — 完成 */
   const completedSet = new Set(user?.completedActivities || [])
@@ -133,8 +134,13 @@ export default function PlanPage({ setActiveTab }) {
   const completedAll = itineraryDays.reduce((a, d) => a + d.activities.filter((_, i) => !removedActs.has(makeKey(d.day, i)) && completedSet.has(makeKey(d.day, i))).length, 0)
   const hasRemoved   = removedActs.size > 0
 
-  /* 当前天可加景点（未加过） */
-  const addableSpots = mySpots.filter(s => !dayCustom(activeDay).some(a => a.spotId === s.id))
+  /* 当前天可加景点（未加过任意一天 + 未去过） */
+  const allCustomSpotIds = new Set(
+    Object.values(customActs).flat().map(a => a.spotId).filter(id => id != null)
+  )
+  const addableSpots = mySpots.filter(s =>
+    !allCustomSpotIds.has(s.id) && !visitedIds.has(s.id)
+  )
 
   return (
     <div className="plan-page">
@@ -204,7 +210,10 @@ export default function PlanPage({ setActiveTab }) {
                         </div>
                         <div className="msc-footer">
                           <span className="msc-xp" style={{ color: spot.color }}>+{spot.xp} XP</span>
-                          {spot.isHot && <span className="msc-hot-badge">🔥 今日花期</span>}
+                          {visitedIds.has(spot.id)
+                            ? <span className="msc-visited-badge">✓ 已去过</span>
+                            : spot.isHot && <span className="msc-hot-badge">🔥 今日花期</span>
+                          }
                           <div className="msc-tags">
                             {spot.tags.slice(0, 2).map((t, i) => <span key={i} className="msc-tag">{t}</span>)}
                           </div>
