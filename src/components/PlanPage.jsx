@@ -109,10 +109,6 @@ export default function PlanPage({ setActiveTab }) {
     const dk   = String(activeDay)
     const next = { ...customActs, [dk]: (customActs[dk] || []).filter(a => a.id !== act.id) }
     setCustomActs(next); saveObj(cityCustomKey, next)
-    // 同步从"我的清单"移除
-    if (act.spotId != null && checkedIds.includes(act.spotId)) {
-      toggleSpot(act.spotId)
-    }
   }
 
   const handleCustomToggle = (act) => {
