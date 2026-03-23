@@ -134,9 +134,12 @@ export default function PlanPage({ setActiveTab }) {
   const completedAll = itineraryDays.reduce((a, d) => a + d.activities.filter((_, i) => !removedActs.has(makeKey(d.day, i)) && completedSet.has(makeKey(d.day, i))).length, 0)
   const hasRemoved   = removedActs.size > 0
 
-  /* 当前天可加景点（未加过） */
+  /* 当前天可加景点（未加过任意一天 + 未去过） */
+  const allCustomSpotIds = new Set(
+    Object.values(customActs).flat().map(a => a.spotId).filter(id => id != null)
+  )
   const addableSpots = mySpots.filter(s =>
-    !dayCustom(activeDay).some(a => a.spotId === s.id) && !visitedIds.has(s.id)
+    !allCustomSpotIds.has(s.id) && !visitedIds.has(s.id)
   )
 
   return (
