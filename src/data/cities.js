@@ -798,6 +798,220 @@ const wuhanBloom = {
   late:  { label: "晚樱", date: "4月初 — 4月中旬" },
 }
 
+/* ════════════════ 东京 ════════════════ */
+const tokyoSpots = [
+  {
+    id: 't1',
+    name: "上野公园",
+    nameEn: "Ueno Park",
+    emoji: "🏮",
+    district: "台东区 / Ueno Kōen",
+    peakTime: "3月25日 - 3月29日",
+    peakDays: "3月19日 - 4月5日",
+    difficulty: "easy",
+    rating: 4.8,
+    reviews: 12480,
+    tags: ["东京最人气", "千株樱花", "夜樱纸灯笼"],
+    isHot: true,
+    ticket: "免费（博物馆另收费）",
+    description: "东京最著名的赏花圣地！约1,000株樱花沿主干道至不忍池（Shinobazu no Ike）绵延，夜间800盏纸灯笼点亮，将花海渲染得如梦似幻。可赏夜樱，全天开放，是每年东京花见的核心舞台。",
+    tips: "花期人流极大，建议平日傍晚前往体验夜樱。上午光线较好拍照，不忍池倒影效果绝美。周边有东京国立博物馆可顺游。",
+    transport: "JR山手线（Yamanote-sen）→上野站（Ueno-eki），步行约3分钟",
+    color: "#FF6B9D",
+    xp: 160,
+  },
+  {
+    id: 't2',
+    name: "千鸟之渊",
+    nameEn: "Chidorigafuchi",
+    emoji: "🚣",
+    district: "千代田区 / Hanzōmon",
+    peakTime: "3月25日 - 3月29日",
+    peakDays: "3月20日 - 4月5日",
+    difficulty: "easy",
+    rating: 4.9,
+    reviews: 8930,
+    tags: ["最浪漫", "皇居护城河", "划船赏樱吹雪"],
+    isHot: true,
+    ticket: "免费（游船约500日圆/30分钟）",
+    description: "与上野、新宿御苑并称「东京三大赏樱名所」！沿皇居（Kōkyo）护城河绵延约700米，可租借小船从水面仰望「樱吹雪（Sakura Fubuki）」，花瓣如雪纷纷飘落水面，是东京最浪漫的赏樱体验。夜间有灯光照明。",
+    tips: "游船排队较长，建议平日傍晚前往。花瓣飘落时在小船上仰望的「樱吹雪」体验极其震撼，是东京赏樱必体验。",
+    transport: "东京Metro半藏门线（Hanzōmon-sen）→半藏门站（Hanzōmon-eki），步行约5分钟",
+    color: "#CE82FF",
+    xp: 150,
+  },
+  {
+    id: 't3',
+    name: "新宿御苑",
+    nameEn: "Shinjuku Gyoen",
+    emoji: "🌿",
+    district: "新宿区 / Shinjuku",
+    peakTime: "3月中旬 - 4月中旬",
+    peakDays: "3月15日 - 4月15日（花期最长）",
+    difficulty: "easy",
+    rating: 4.8,
+    reviews: 9750,
+    tags: ["70品种900株", "花期最长", "禁酒静赏"],
+    ticket: "成人500日圆 / 中小学生250日圆",
+    description: "约70个品种、900株樱花，花期从2月下旬延续至4月中旬，是东京赏花时间最长的地点。从早樱（寒樱）到晚樱（一叶、关山）接力盛开，园内禁止饮酒（禁酒），氛围宁静优雅，适合静心赏花。",
+    tips: "周末旺季建议提前在官网购买「入园指定券」。面积大，建议带地图规划路线，靠近温室的区域晚樱品种最丰富。",
+    transport: "Metro丸之内线（Marunouchi-sen）→新宿御苑前站（Shinjuku Gyoenmae-eki），步行约5分钟",
+    color: "#58CC02",
+    xp: 140,
+  },
+  {
+    id: 't4',
+    name: "目黑川（中目黑）",
+    nameEn: "Meguro River / Naka-Meguro",
+    emoji: "📸",
+    district: "目黑区 / Naka-Meguro",
+    peakTime: "3月25日 - 3月29日",
+    peakDays: "3月20日 - 4月5日",
+    difficulty: "easy",
+    rating: 4.8,
+    reviews: 11200,
+    tags: ["最出片", "网红必去", "4公里樱花步道"],
+    ticket: "免费",
+    description: "沿目黑川约4公里的樱花步道，满开时花枝低垂水面，倒影如画。夜间有彩灯装饰，是东京最具网红气质的赏樱地点。两岸咖啡馆、餐厅林立，边走边喝咖啡边赏花，体验绝佳。",
+    tips: "夜樱更美，建议傍晚17:00后前往体验灯光。中目黑站附近最为密集，向上游走越走越安静。平日人流相对较少，拍照更从容。",
+    transport: "东急东横线（Tōkyū Tōyoko-sen）→中目黑站（Naka-Meguro-eki），即到",
+    color: "#FF9600",
+    xp: 130,
+  },
+  {
+    id: 't5',
+    name: "隅田公园（隅田川）",
+    nameEn: "Sumida Park",
+    emoji: "🗼",
+    district: "台东区/墨田区 / Asakusa",
+    peakTime: "3月25日 - 3月29日",
+    peakDays: "3月20日 - 4月5日",
+    difficulty: "easy",
+    rating: 4.7,
+    reviews: 7320,
+    tags: ["晴空塔同框", "屋形船赏花", "浅草周边"],
+    ticket: "免费",
+    description: "沿吾妻桥（Azuma-bashi）至樱桥（Sakura-bashi）约1公里樱花大道，可同框东京晴空塔（Tokyo Skytree）构成标志性画面。可搭乘屋形船（Yakatabune）在水面赏花，旁边即是浅草寺和雷门，文化体验与赏花完美结合。",
+    tips: "吾妻桥两端都是晴空塔+樱花同框的最佳机位，来回走一遍不过20分钟。结合浅草寺、雷门一起游览效率最高。",
+    transport: "东武线（Tōbu-sen）→浅草站（Asakusa-eki），步行约5分钟",
+    color: "#1CB0F6",
+    xp: 120,
+  },
+  {
+    id: 't6',
+    name: "井之头恩赐公园",
+    nameEn: "Inokashira Park",
+    emoji: "🦢",
+    district: "武藏野市 / Kichijoji",
+    peakTime: "3月25日 - 3月29日",
+    peakDays: "3月20日 - 4月5日",
+    difficulty: "easy",
+    rating: 4.7,
+    reviews: 6540,
+    tags: ["花见野餐", "水面如地毯", "吉祥寺周边"],
+    ticket: "免费",
+    description: "围绕井之头池（Inokashira-ike）的整片樱花，花瓣飘落水面如粉红地毯，气氛宁静，是东京最受本地人喜爱的「花见（Hanami）」野餐地。公园旁边是吉祥寺（Kichijoji）商业街，赏花购物两不误。",
+    tips: "带上野餐垫，自备便当或在吉祥寺买好再来，席地而坐花见是最authentic的东京春日体验。可租小船在池中赏花。",
+    transport: "京王井之头线（Keiō Inokashira-sen）→井の头公园站（Inokashira-Kōen-eki），步行约3分钟",
+    color: "#D94F7C",
+    xp: 110,
+  },
+  {
+    id: 't7',
+    name: "昭和纪念公园",
+    nameEn: "Shōwa Kinen Kōen",
+    emoji: "🚲",
+    district: "立川市 / Tachikawa",
+    peakTime: "3月末 - 4月中旬",
+    peakDays: "3月25日 - 4月15日（晚樱丰富）",
+    difficulty: "easy",
+    rating: 4.6,
+    reviews: 4210,
+    tags: ["郊外宏大", "骑行花海", "多品种晚樱"],
+    ticket: "成人450日圆 / 小学生以下免票",
+    description: "位于东京郊外立川，规模宏大，可骑行穿越花海，品种多元，人流比市中心少得多。早樱、染井吉野、晚樱接力盛开，花期长达近一个月。园内还有郁金香花田、草坪区，适合亲子家庭。",
+    tips: "园内可租自行车，骑行欣赏宏大的花海是这里独有的体验。人流比市区少，适合想悠闲赏花的朋友。",
+    transport: "JR中央线（Chūō-sen）→立川站（Tachikawa-eki），步行约15分钟",
+    color: "#FF9600",
+    xp: 120,
+  },
+]
+
+const tokyoNearby = [
+  { name: "六义园（枝垂樱）", desc: "300年老树垂枝樱，夜间灯光照明极美", emoji: "🌸", transport: "JR山手线→驹込站" },
+  { name: "小石川后乐园", desc: "江户时代庭园，樱花+枯山水绝配", emoji: "🏯", transport: "都营大江戸线→饭田桥站" },
+  { name: "多摩川河岸（二子玉川）", desc: "延绵数公里的河岸樱花，本地人气高", emoji: "🌊", transport: "东急大井町线→二子玉川站" },
+]
+
+const tokyoItinerary = [
+  {
+    day: 1, title: "抵达·浅草初探", date: "Day 1",
+    activities: [
+      { time: "下午", icon: "✈️", text: "抵达成田/羽田机场，电车进市区" },
+      { time: "傍晚", icon: "⛩️", text: "浅草寺·雷门参拜，感受江户下町风情" },
+      { time: "晚上", icon: "🗼", text: "隅田公园夜樱+晴空塔灯光同框打卡" },
+    ]
+  },
+  {
+    day: 2, title: "赏樱·最浪漫路线", date: "Day 2",
+    activities: [
+      { time: "早上9点", icon: "🚣", text: "千鸟之渊租船，仰望「樱吹雪」（提前到排队租船）" },
+      { time: "下午", icon: "🏮", text: "上野公园漫步，不忍池倒影赏花" },
+      { time: "晚上", icon: "🍜", text: "上野阿美横丁吃串烧·喝生啤" },
+    ]
+  },
+  {
+    day: 3, title: "网红·品味之旅", date: "Day 3",
+    activities: [
+      { time: "上午", icon: "🌿", text: "新宿御苑开园即入（避开人流），静心赏70品种" },
+      { time: "下午", icon: "🛍️", text: "原宿·表参道散步，体验东京时尚" },
+      { time: "晚上", icon: "📸", text: "中目黑夜间彩灯樱花步道打卡" },
+    ]
+  },
+  {
+    day: 4, title: "治愈·慢游收尾", date: "Day 4",
+    activities: [
+      { time: "上午", icon: "🦢", text: "井之头公园花见野餐（吉祥寺买便当带去）" },
+      { time: "下午", icon: "🎮", text: "吉祥寺商业街自由探索，寻宝二手店" },
+      { time: "晚上", icon: "🍣", text: "新宿居酒屋告别晚餐，品尝天妇罗·刺身" },
+    ]
+  },
+]
+
+const tokyoTips = [
+  { icon: "📅", title: "最佳时间", content: "2026年东京樱花3月19日开放，峰值预计3月25-29日。花期约两周，窗口较短，行程需紧凑。" },
+  { icon: "🌤️", title: "天气提示", content: "东京3月末气温12-18°C，偶有小雨。带薄外套和折叠伞，雨后花瓣带水珠效果更美。" },
+  { icon: "📸", title: "拍照秘籍", content: "千鸟之渊游船仰拍角度独一无二；中目黑夜间彩灯倒影最出片；新宿御苑多品种对比拍摄别处难见。" },
+  { icon: "🎫", title: "预约须知", content: "新宿御苑旺季建议官网提前购买「入园指定券」；千鸟之渊游船现场排队，建议平日早到。" },
+  { icon: "🚇", title: "交通攻略", content: "购买IC卡（Suica/Pasmo）可乘坐所有地铁、JR和私铁。机场可办理7天JR Pass，新干线出行更划算。" },
+  { icon: "💰", title: "预算参考", content: "东京消费中等偏高，人均每天约¥8000-15000日圆（住宿¥5000-8000，餐饮¥2000-4000，门票¥500-1500）。" },
+]
+
+const tokyoFoods = [
+  { name: "寿司", emoji: "🍣", desc: "筑地/豊洲市场周边，新鲜程度无与伦比" },
+  { name: "拉面", emoji: "🍜", desc: "东京醬油拉面，浓郁鸡汤，排队也值得" },
+  { name: "天妇罗", emoji: "🦐", desc: "炸得酥脆，蘸高汤萝卜泥，简单极致" },
+  { name: "和牛", emoji: "🥩", desc: "新宿老铺烧肉，入口即化的A5黑毛和牛" },
+  { name: "抹茶甜点", emoji: "🍵", desc: "浅草·新宿随处可见，必尝抹茶soft cream" },
+  { name: "樱花限定", emoji: "🌸", desc: "春季限定：樱花味拿铁、樱饼、和果子" },
+]
+
+const tokyoPackList = [
+  { icon: "☂️", text: "折叠伞（春雨随时来）" },
+  { icon: "🧥", text: "薄外套（早晚12°C左右）" },
+  { icon: "👟", text: "舒适步行鞋（每天走1-2万步）" },
+  { icon: "🔋", text: "充电宝（拍照耗电快）" },
+  { icon: "💳", text: "Suica/Pasmo IC卡（交通必备）" },
+  { icon: "📱", text: "下载Google Maps + Yahoo!乗換案内" },
+]
+
+const tokyoBloom = {
+  year: "2026",
+  early: { label: "开花", date: "3月19日 — 3月24日" },
+  peak:  { label: "🔥 盛放峰值", date: "3月25日 — 3月29日", badge: "正当时！" },
+  late:  { label: "晚樱·飘落", date: "4月初 — 4月中旬" },
+}
+
 /* ════════════════ CITIES 汇总 ════════════════ */
 export const CITIES = [
   {
@@ -877,6 +1091,32 @@ export const CITIES = [
     foods: vancouverFoods,
     packList: vancouverPackList,
     bloomInfo: vancouverBloom,
+  },
+  {
+    id: 'tokyo',
+    name: '东京',
+    nameEn: 'Tokyo',
+    emoji: '🗼',
+    country: '日本',
+    tagline: '花见の季節、東京へようこそ',
+    heroBadge: '东京 · 2026春',
+    heroTitle: '樱花正盛放',
+    heroHighlight: '去东京赏花吧！',
+    heroDesc: '3月25日 — 3月29日，全城粉色花海',
+    heroGradient: 'linear-gradient(160deg, #b5338a 0%, #E8409C 50%, #FF9EC4 100%)',
+    quickTips: [
+      { icon: '📅', text: '峰值3月25-29日，窗口短' },
+      { icon: '🚣', text: '千鸟之渊划船赏樱吹雪' },
+      { icon: '🌙', text: '中目黑夜樱彩灯超出片' },
+      { icon: '💳', text: '备好Suica IC卡出行' },
+    ],
+    spots: tokyoSpots,
+    nearbySpots: tokyoNearby,
+    itineraryDays: tokyoItinerary,
+    tips: tokyoTips,
+    foods: tokyoFoods,
+    packList: tokyoPackList,
+    bloomInfo: tokyoBloom,
   },
   {
     id: 'wuhan',
