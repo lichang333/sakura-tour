@@ -332,13 +332,28 @@
 
 .nearby-card {
   background: var(--bg-card);
-  border: 2px solid var(--border);
+  border: 1px solid var(--border);
   border-radius: 16px;
   padding: 12px 14px;
   display: flex;
   align-items: center;
   gap: 12px;
   transition: background 0.25s;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+.nearby-card:active {
+  background: var(--bg-card2);
+}
+
+.nearby-go {
+  font-size: 11.5px;
+  font-weight: 700;
+  color: var(--indigo);
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .nearby-emoji {

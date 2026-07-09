@@ -40,7 +40,7 @@ function loadObj(key)    { try { return JSON.parse(localStorage.getItem(key) || 
 function saveObj(key, o) { localStorage.setItem(key, JSON.stringify(o)) }
 
 export default function PlanPage({ setActiveTab }) {
-  const [mode,      setMode]      = useState('myplan')
+  const [mode,      setMode]      = useState('template')
   const [activeDay, setActiveDay] = useState(1)
   const [showAdd,   setShowAdd]   = useState(false)
 
@@ -145,13 +145,13 @@ export default function PlanPage({ setActiveTab }) {
         <h2 className="page-title">我的行程</h2>
         <p className="page-sub">{currentCity.emoji} {currentCity.name} · 打卡景点 · 规划路线</p>
         <div className="plan-mode-tabs">
-          <button className={`pmt-btn ${mode === 'myplan' ? 'active' : ''}`} onClick={() => setMode('myplan')}>
-            我的清单
-            {mySpots.length > 0 && <span className="pmt-count">{mySpots.length}</span>}
-          </button>
           <button className={`pmt-btn ${mode === 'template' ? 'active' : ''}`} onClick={() => setMode('template')}>
             推荐行程
             {completedAll > 0 && <span className="pmt-count pmt-green">{completedAll}/{totalAll}</span>}
+          </button>
+          <button className={`pmt-btn ${mode === 'myplan' ? 'active' : ''}`} onClick={() => setMode('myplan')}>
+            想去清单
+            {mySpots.length > 0 && <span className="pmt-count">{mySpots.length}</span>}
           </button>
         </div>
       </div>

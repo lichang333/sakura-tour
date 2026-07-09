@@ -1,10 +1,28 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useCity } from '../context/CityContext'
 import './TipsPage.css'
+
+function loadPacked(cityId) {
+  try { return JSON.parse(localStorage.getItem(`sakura_pack_${cityId}`) || '[]') } catch { return [] }
+}
 
 export default function TipsPage() {
   const [expanded, setExpanded] = useState(null)
   const { currentCity } = useCity()
+  const [packed, setPacked] = useState(() => new Set(loadPacked(currentCity.id)))
+
+  useEffect(() => {
+    setPacked(new Set(loadPacked(currentCity.id)))
+  }, [currentCity.id])
+
+  const togglePacked = (i) => {
+    setPacked(prev => {
+      const next = new Set(prev)
+      next.has(i) ? next.delete(i) : next.add(i)
+      localStorage.setItem(`sakura_pack_${currentCity.id}`, JSON.stringify([...next]))
+      return next
+    })
+  }
 
   const { tips, foods, packList, seasonInfo } = currentCity
 
@@ -72,17 +90,23 @@ export default function TipsPage() {
         </div>
       </div>
 
-      {/* Packing List */}
+      {/* Packing List — checkable, persisted per city */}
       <div className="section">
-        <h3 className="section-title">行李清单</h3>
+        <div className="pack-head">
+          <h3 className="section-title">行李清单</h3>
+          <span className="pack-progress">{packed.size} / {packList.length} 已备</span>
+        </div>
         <div className="pack-list">
-          {packList.map((item, i) => (
-            <div key={i} className="pack-item">
-              <span className="pack-icon">{item.icon}</span>
-              <span className="pack-text">{item.text}</span>
-              <span className="pack-check">○</span>
-            </div>
-          ))}
+          {packList.map((item, i) => {
+            const done = packed.has(i)
+            return (
+              <button key={i} className={`pack-item ${done ? 'done' : ''}`} onClick={() => togglePacked(i)}>
+                <span className="pack-icon">{item.icon}</span>
+                <span className="pack-text">{item.text}</span>
+                <span className={`pack-check ${done ? 'on' : ''}`}>{done ? '✓' : ''}</span>
+              </button>
+            )
+          })}
         </div>
       </div>
     </div>

@@ -517,8 +517,6 @@ export default function SpotsPage({ pendingSpot, clearPendingSpot }) {
                   <span className="spot-name">{spot.name}</span>
                   <span className="spot-district">{spot.district}</span>
                 </div>
-                <div className="spot-peak">🗓️ {spot.peakTime}</div>
-                <div className="spot-ticket">🎫 {spot.ticket}</div>
                 <div className="spot-tags">
                   {spot.tags.slice(0, 2).map(t => (
                     <span key={t} className="spot-tag" style={{ background: `${spot.color}18`, color: spot.color }}>{t}</span>
@@ -552,21 +550,28 @@ export default function SpotsPage({ pendingSpot, clearPendingSpot }) {
         })}
       </div>
 
-      {/* Nearby Spots */}
+      {/* Nearby Spots — 点按在高德地图搜索 */}
       {nearby && nearby.length > 0 && (
         <div className="nearby-section">
           <h3 className="nearby-title">周边小众景点</h3>
-          <p className="nearby-sub">适合有额外时间的朋友顺道一游</p>
+          <p className="nearby-sub">顺道一游 · 点按在高德地图查看位置</p>
           <div className="nearby-list">
             {nearby.map((s, i) => (
-              <div key={i} className="nearby-card">
+              <a
+                key={i}
+                className="nearby-card"
+                href={`https://uri.amap.com/search?keyword=${encodeURIComponent(s.name)}&city=${encodeURIComponent(currentCity.name)}`}
+                target="_blank"
+                rel="noreferrer"
+              >
                 <span className="nearby-emoji">{s.emoji}</span>
                 <div className="nearby-info">
                   <div className="nearby-name">{s.name}</div>
                   <div className="nearby-desc">{s.desc}</div>
-                  <div className="nearby-transport">🚇 {s.transport}</div>
+                  <div className="nearby-transport">{s.transport}</div>
                 </div>
-              </div>
+                <span className="nearby-go">地图 ↗</span>
+              </a>
             ))}
           </div>
         </div>
