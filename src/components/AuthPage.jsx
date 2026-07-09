@@ -62,19 +62,19 @@ export default function AuthPage() {
                 left: `${10 + i * 11}%`,
                 animationDelay: `${i * 0.6}s`,
                 animationDuration: `${5 + (i % 3)}s`,
-              }}>🌸</span>
+              }}>❄</span>
             ))}
           </div>
           <div className="auth-mascot-wrap">
-            <span className="auth-mascot-main">🌸</span>
-            <span className="auth-mascot-side left">🌿</span>
-            <span className="auth-mascot-side right">🌿</span>
+            <span className="auth-mascot-main">桜</span>
+            <span className="auth-mascot-side left">⛰️</span>
+            <span className="auth-mascot-side right">⛰️</span>
           </div>
           <h1 className="auth-title">Sakura Tour</h1>
         </div>
 
         <div className="auth-bottom">
-          <p className="auth-tagline">免费、好玩又实用的<br/>赏樱旅行规划助手</p>
+          <p className="auth-tagline">免费、好玩又实用的<br/>云贵川小城漫游手册</p>
           <div className="auth-features">
             <div className="auth-feature"><span className="af-icon">🗺️</span><span className="af-label">记录足迹</span></div>
             <div className="auth-feature"><span className="af-icon">⭐</span><span className="af-label">积累 XP</span></div>
@@ -82,7 +82,7 @@ export default function AuthPage() {
           </div>
           <div className="auth-actions">
             <button className="auth-btn-primary" onClick={() => setMode('signup')}>
-              开始我的赏樱之旅 🌸
+              开始我的旅程 🎒
             </button>
             <button className="auth-btn-secondary" onClick={() => setMode('login')}>
               已有账号，去登录
@@ -174,7 +174,7 @@ export default function AuthPage() {
           </div>
           {error && <div className="auth-error">⚠️ {error}</div>}
           <button type="submit" className="auth-btn-primary" disabled={loading}>
-            {loading ? '注册中...' : '注册并开始 🌸'}
+            {loading ? '注册中...' : '注册并开始 🎒'}
           </button>
         </form>
         <p className="auth-switch">

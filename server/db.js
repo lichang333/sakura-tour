@@ -31,5 +31,6 @@ try { db.exec(`ALTER TABLE users ADD COLUMN spot_ratings        TEXT NOT NULL DE
 try { db.exec(`ALTER TABLE users ADD COLUMN spot_reviews        TEXT NOT NULL DEFAULT '{}'`) } catch {}
 try { db.exec(`ALTER TABLE users ADD COLUMN removed_activities  TEXT NOT NULL DEFAULT '[]'`) } catch {}
 try { db.exec(`ALTER TABLE users ADD COLUMN recommended_spots TEXT NOT NULL DEFAULT '[]'`) } catch {}
+try { db.exec(`ALTER TABLE users ADD COLUMN spot_photos         TEXT NOT NULL DEFAULT '{}'`) } catch {}
 
 export default db

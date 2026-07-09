@@ -12,7 +12,7 @@ export default function Header() {
     <header className="header">
       <div className="header-top">
         <div className="logo">
-          <span className="logo-icon">🌸</span>
+          <span className="logo-seal">桜</span>
           <span className="logo-text">Sakura Tour</span>
         </div>
         <div className="header-right">

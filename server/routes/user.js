@@ -1,9 +1,19 @@
 import { Router } from 'express'
 import jwt from 'jsonwebtoken'
+import { join, dirname } from 'path'
+import { fileURLToPath } from 'url'
+import { mkdirSync, existsSync, unlink } from 'fs'
+import sharp from 'sharp'
 import db from '../db.js'
 
 const router = Router()
 const JWT_SECRET = process.env.JWT_SECRET || 'sakura_tour_secret_change_in_prod'
+
+const __dirname = dirname(fileURLToPath(import.meta.url))
+export const UPLOADS_DIR = join(__dirname, '..', 'uploads')
+if (!existsSync(UPLOADS_DIR)) mkdirSync(UPLOADS_DIR, { recursive: true })
+
+const MAX_PHOTOS_PER_SPOT = 9
 
 // Auth middleware
 const auth = (req, res, next) => {
@@ -35,6 +45,7 @@ const toPublic = (user) => ({
   spotReviews:        JSON.parse(user.spot_reviews        || '{}'),
   removedActivities:  JSON.parse(user.removed_activities  || '[]'),
   recommendedSpots:   JSON.parse(user.recommended_spots   || '[]'),
+  spotPhotos:         JSON.parse(user.spot_photos         || '{}'),
   joinedAt: user.created_at,
 })
 
@@ -68,6 +79,77 @@ router.patch('/me', auth, (req, res) => {
         removed_activities = ?, recommended_spots = ?
     WHERE id = ?
   `).run(newXp, newSpots, newActivities, newVisited, newRatings, newReviews, newRemovedActs, newRecommended, req.userId)
+
+  const updated = db.prepare('SELECT * FROM users WHERE id = ?').get(req.userId)
+  res.json(toPublic(updated))
+})
+
+// POST /api/user/photos — upload one photo for a visited spot
+// body: { spotId, image }  where image is a base64 data URL
+router.post('/photos', auth, async (req, res) => {
+  const { spotId, image } = req.body
+  if (spotId === undefined || spotId === null || !image) {
+    return res.status(400).json({ error: '缺少 spotId 或图片' })
+  }
+
+  const user = db.prepare('SELECT * FROM users WHERE id = ?').get(req.userId)
+  if (!user) return res.status(404).json({ error: '用户不存在' })
+
+  const photos = JSON.parse(user.spot_photos || '{}')
+  const key = String(spotId)
+  const list = photos[key] || []
+  if (list.length >= MAX_PHOTOS_PER_SPOT) {
+    return res.status(400).json({ error: `每个景点最多 ${MAX_PHOTOS_PER_SPOT} 张照片` })
+  }
+
+  // Decode data URL → buffer
+  const m = /^data:image\/[a-zA-Z+]+;base64,(.+)$/.exec(image)
+  if (!m) return res.status(400).json({ error: '图片格式不支持' })
+  const buffer = Buffer.from(m[1], 'base64')
+
+  // Normalize + compress with sharp → webp, cap longest edge at 1280px
+  const safeSpot = key.replace(/[^a-zA-Z0-9_-]/g, '')
+  const filename = `${req.userId}-${safeSpot}-${Date.now()}.webp`
+  try {
+    await sharp(buffer)
+      .rotate()                              // respect EXIF orientation
+      .resize(1280, 1280, { fit: 'inside', withoutEnlargement: true })
+      .webp({ quality: 80 })
+      .toFile(join(UPLOADS_DIR, filename))
+  } catch {
+    return res.status(400).json({ error: '图片处理失败' })
+  }
+
+  const url = `/uploads/${filename}`
+  photos[key] = [...list, url]
+  db.prepare('UPDATE users SET spot_photos = ? WHERE id = ?').run(JSON.stringify(photos), req.userId)
+
+  const updated = db.prepare('SELECT * FROM users WHERE id = ?').get(req.userId)
+  res.json(toPublic(updated))
+})
+
+// DELETE /api/user/photos — remove one photo
+// body: { spotId, url }
+router.delete('/photos', auth, (req, res) => {
+  const { spotId, url } = req.body
+  if (spotId === undefined || spotId === null || !url) {
+    return res.status(400).json({ error: '缺少 spotId 或 url' })
+  }
+
+  const user = db.prepare('SELECT * FROM users WHERE id = ?').get(req.userId)
+  if (!user) return res.status(404).json({ error: '用户不存在' })
+
+  const photos = JSON.parse(user.spot_photos || '{}')
+  const key = String(spotId)
+  photos[key] = (photos[key] || []).filter(u => u !== url)
+  if (photos[key].length === 0) delete photos[key]
+  db.prepare('UPDATE users SET spot_photos = ? WHERE id = ?').run(JSON.stringify(photos), req.userId)
+
+  // Best-effort file cleanup (only files inside our uploads dir)
+  const base = url.split('/').pop()
+  if (base && /^[a-zA-Z0-9_.-]+$/.test(base)) {
+    unlink(join(UPLOADS_DIR, base), () => {})
+  }
 
   const updated = db.prepare('SELECT * FROM users WHERE id = ?').get(req.userId)
   res.json(toPublic(updated))

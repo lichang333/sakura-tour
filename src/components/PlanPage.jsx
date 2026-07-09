@@ -163,9 +163,9 @@ export default function PlanPage({ setActiveTab }) {
             <div className="myplan-empty">
               <div className="mpe-icon">🗺️</div>
               <div className="mpe-title">还没有加入景点</div>
-              <div className="mpe-sub">去「赏樱地」页面点击「加入我的行程」<br />景点就会出现在这里</div>
+              <div className="mpe-sub">去「景点」页面点击「加入我的行程」<br />景点就会出现在这里</div>
               <button className="mpe-goto-btn" onClick={() => setActiveTab?.('spots')}>
-                去选景点 🌸
+                去选景点 📍
               </button>
             </div>
           ) : (
@@ -208,7 +208,7 @@ export default function PlanPage({ setActiveTab }) {
                           <span className="msc-xp" style={{ color: spot.color }}>+{spot.xp} XP</span>
                           {visitedIds.has(spot.id)
                             ? <span className="msc-visited-badge">✓ 已去过</span>
-                            : spot.isHot && <span className="msc-hot-badge">🔥 今日花期</span>
+                            : spot.isHot && <span className="msc-hot-badge">🔥 必去</span>
                           }
                           <div className="msc-tags">
                             {spot.tags.slice(0, 2).map((t, i) => <span key={i} className="msc-tag">{t}</span>)}

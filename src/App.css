@@ -29,9 +29,40 @@
     box-shadow: 0 0 40px rgba(0,0,0,0.1);
   }
   body {
-    background: #F0F0F0;
+    background: #EDE7DA;
   }
   [data-theme="dark"] body {
-    background: #0A0A14;
+    background: #0A0C10;
+  }
+}
+
+/* ── Tablet: roomier column ── */
+@media (min-width: 760px) {
+  .app {
+    max-width: 720px;
+  }
+}
+
+/* ── Laptop / desktop: bottom nav → left sidebar ── */
+@media (min-width: 1040px) {
+  /* Only the logged-in shell (which has the nav) becomes a two-column app.
+     The auth screen keeps its centered layout. */
+  .app:has(.bottom-nav) {
+    max-width: 1160px;
+    display: grid;
+    grid-template-columns: 240px minmax(0, 1fr);
+    grid-template-rows: auto 1fr;
+    align-items: start;
+  }
+  .app:has(.bottom-nav) .header { grid-column: 2; grid-row: 1; }
+  .app:has(.bottom-nav) .main   {
+    grid-column: 2;
+    grid-row: 2;
+    padding: 8px 32px 56px;
+  }
+  /* Centre and cap the page content inside the wide column */
+  .app:has(.bottom-nav) .main > * {
+    max-width: 780px;
+    margin-inline: auto;
   }
 }

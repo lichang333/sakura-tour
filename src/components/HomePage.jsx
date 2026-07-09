@@ -11,10 +11,12 @@ export default function HomePage({ setActiveTab }) {
   const tipCount  = currentCity.tips.length
 
   const stats = [
-    { label: '赏樱地点', value: String(spotCount), icon: '🌸' },
+    { label: '景点',    value: String(spotCount), icon: '📍' },
     { label: '行程天数', value: String(dayCount),  icon: '📅' },
     { label: '旅行攻略', value: String(tipCount),  icon: '💡' },
   ]
+
+  const peakSeason = currentCity.seasonInfo?.rows?.find(r => r.dot === 'peak')
 
   // ── User progress for current city ──
   const checkedIds  = user?.checkedSpots  || []
@@ -40,8 +42,8 @@ export default function HomePage({ setActiveTab }) {
   const dailyTasks = [
     {
       id: 'explore',
-      icon: '🌸', iconBg: 'rgba(255,182,193,0.3)',
-      title: `探索${currentCity.name}赏樱地`,
+      icon: '📍', iconBg: 'var(--nav-active-bg)',
+      title: `探索${currentCity.name}景点`,
       desc: cityChecked === 0
         ? `共 ${spotCount} 个景点，加入心愿清单吧`
         : `已加入 ${cityChecked}/${spotCount} 个景点`,
@@ -53,7 +55,7 @@ export default function HomePage({ setActiveTab }) {
     },
     {
       id: 'plan',
-      icon: '📅', iconBg: 'rgba(255,217,0,0.2)',
+      icon: '📅', iconBg: 'var(--bg-yellow-tint)',
       title: '规划行程打卡',
       desc: completedActs.length === 0
         ? `${totalActs} 项行程等你完成`
@@ -66,10 +68,10 @@ export default function HomePage({ setActiveTab }) {
     },
     {
       id: 'visit',
-      icon: '✈️', iconBg: 'rgba(28,176,246,0.15)',
-      title: '实地赏樱打卡',
+      icon: '✈️', iconBg: 'var(--bg-green-tint)',
+      title: '实地打卡纪念',
       desc: cityVisited === 0
-        ? `去过景点后在"赏樱地"标记`
+        ? `去过景点后在"景点"页标记`
         : `已打卡 ${cityVisited}/${cityChecked || spotCount} 个景点`,
       progress: (cityChecked || spotCount) > 0 ? cityVisited / (cityChecked || spotCount) : 0,
       xp: cityVisited * 150,
@@ -79,7 +81,7 @@ export default function HomePage({ setActiveTab }) {
     },
     cityVisited > 0 && {
       id: 'review',
-      icon: '✍️', iconBg: 'rgba(88,204,2,0.15)',
+      icon: '✍️', iconBg: 'var(--bg-red-tint)',
       title: '分享旅行感受',
       desc: reviewedCount === 0
         ? `去过 ${cityVisited} 个景点，写下你的感受`
@@ -94,48 +96,46 @@ export default function HomePage({ setActiveTab }) {
 
   return (
     <div className="home-page">
-      {/* Hero Section */}
-      <div className="hero" style={{ background: currentCity.heroGradient }}>
-        <div className="petals-bg">
-          {[...Array(12)].map((_, i) => (
-            <span key={i} className="petal" style={{
-              left: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 5}s`,
-              animationDuration: `${4 + Math.random() * 4}s`,
-              fontSize: `${12 + Math.random() * 16}px`,
-            }}>🌸</span>
-          ))}
+      {/* Hero — 平涂版画山水卡片 */}
+      <div className="hero">
+        <div className="scene" aria-hidden="true">
+          <div className="scene-sky" />
+          <div className="scene-sun" />
+          <div className="scene-m m1" />
+          <div className="scene-m m2" />
+          <div className="scene-m m3" />
+          <div className="scene-snow" />
+          <div className="scene-lake" />
         </div>
-        <div className="hero-content">
+        <div className="hero-copy">
           <div className="hero-badge">{currentCity.heroBadge}</div>
           <h1 className="hero-title">
             {currentCity.heroTitle}<br />
             <span className="hero-highlight">{currentCity.heroHighlight}</span>
           </h1>
-          <p className="hero-desc">{currentCity.heroDesc}</p>
-
-          <div className="progress-section">
-            <div className="progress-label">
-              <span>行程规划进度</span>
-              <span className="progress-pct">{progressPct}%</span>
-            </div>
-            <div className="progress-bar">
-              <div className="progress-fill" style={{ width: `${progressPct}%` }} />
-            </div>
-            <div className="xp-text">已获得 {user?.xp ?? 0} XP 🌟</div>
-          </div>
-
-          <button className="cta-btn" onClick={() => setActiveTab('spots')}>
-            开始规划旅程 →
-          </button>
+          {peakSeason && (
+            <div className="season-chip"><span className="sc-dot" />最佳季节 · {peakSeason.date}</div>
+          )}
         </div>
       </div>
+
+      {/* 足迹钤印条 */}
+      <button className="footstrip" onClick={() => setActiveTab('spots')}>
+        <div className="fs-left">
+          <div className="fs-label">你的足迹</div>
+          <div className="fs-count"><b>{cityVisited}</b> / {spotCount} 已抵达</div>
+        </div>
+        <div className="stamps">
+          {Array.from({ length: Math.min(spotCount, 6) }).map((_, i) => (
+            <span key={i} className={`stamp ${i < cityVisited ? 'on' : ''}`}>{i < cityVisited ? '印' : '·'}</span>
+          ))}
+        </div>
+      </button>
 
       {/* Stats Row */}
       <div className="stats-row">
         {stats.map(s => (
           <div key={s.label} className="stat-card">
-            <span className="stat-icon">{s.icon}</span>
             <span className="stat-value">{s.value}</span>
             <span className="stat-label">{s.label}</span>
           </div>

@@ -158,8 +158,28 @@ export function UserProvider({ children }) {
     syncUser({ visitedSpots: nextVisited, checkedSpots: nextChecked, xp: nextXp })
   }
 
+  // Upload a travel photo (dataUrl) for a spot. Server stores the file and
+  // returns the updated user with the new photo URL merged in.
+  const addSpotPhoto = async (spotId, dataUrl) => {
+    if (!user) return
+    const updated = await apiFetch('/api/user/photos', {
+      method: 'POST',
+      body: JSON.stringify({ spotId, image: dataUrl }),
+    })
+    setUser(updated)
+  }
+
+  const removeSpotPhoto = async (spotId, url) => {
+    if (!user) return
+    const updated = await apiFetch('/api/user/photos', {
+      method: 'DELETE',
+      body: JSON.stringify({ spotId, url }),
+    })
+    setUser(updated)
+  }
+
   return (
-    <UserContext.Provider value={{ user, loading, signup, login, logout, addXP, toggleSpot, toggleActivity, toggleVisited, rateSpot, reviewSpot, removeActivity, restoreActivities, toggleRecommend }}>
+    <UserContext.Provider value={{ user, loading, signup, login, logout, addXP, toggleSpot, toggleActivity, toggleVisited, rateSpot, reviewSpot, removeActivity, restoreActivities, toggleRecommend, addSpotPhoto, removeSpotPhoto }}>
       {children}
     </UserContext.Provider>
   )

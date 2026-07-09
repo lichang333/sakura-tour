@@ -1,10 +1,10 @@
 .header {
   background: var(--header-bg);
-  border-bottom: 2px solid var(--border);
+  border-bottom: 1px solid var(--border);
   position: sticky;
   top: 0;
   z-index: 100;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  backdrop-filter: saturate(1.1) blur(6px);
   transition: background 0.25s ease, border-color 0.25s ease;
 }
 
@@ -21,24 +21,26 @@
   gap: 8px;
 }
 
-.logo-icon {
-  font-size: 28px;
-  animation: bloom 3s ease-in-out infinite;
-}
-
-@keyframes bloom {
-  0%, 100% { transform: scale(1) rotate(0deg); }
-  50% { transform: scale(1.15) rotate(5deg); }
+.logo-seal {
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  background: var(--indigo);
+  color: #F3EEE3;
+  font-family: var(--font-serif);
+  font-size: 17px;
+  font-weight: 600;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
 }
 
 .logo-text {
-  font-size: 22px;
-  font-weight: 900;
-  background: linear-gradient(135deg, var(--sakura-pink), #FF9EC4);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  letter-spacing: -0.5px;
+  font-family: var(--font-serif);
+  font-size: 21px;
+  font-weight: 600;
+  color: var(--text-dark);
+  letter-spacing: 0.04em;
 }
 
 .header-right {
@@ -52,20 +54,16 @@
   align-items: center;
   gap: 4px;
   background: var(--badge-xp-bg);
-  border: 2px solid var(--duo-yellow);
+  border: 1px solid var(--copper);
   border-radius: 20px;
   padding: 4px 10px;
   font-size: 12px;
-  font-weight: 800;
+  font-weight: 700;
   transition: background 0.25s ease;
 }
 
 .xp-count {
-  color: #B8860B;
-}
-
-[data-theme="dark"] .xp-count {
-  color: var(--duo-yellow);
+  color: var(--copper);
 }
 
 .streak-badge {
@@ -73,16 +71,16 @@
   align-items: center;
   gap: 4px;
   background: var(--badge-streak-bg);
-  border: 2px solid var(--sakura-light);
+  border: 1px solid var(--copper-soft);
   border-radius: 20px;
   padding: 4px 10px;
   font-size: 12px;
-  font-weight: 800;
+  font-weight: 700;
   transition: background 0.25s ease;
 }
 
 .streak-count {
-  color: var(--sakura-pink);
+  color: var(--copper);
 }
 
 /* ── Theme Toggle ── */
@@ -139,20 +137,24 @@
   gap: 5px;
   padding: 5px 14px;
   border-radius: 20px;
-  border: 2px solid var(--border);
-  background: var(--bg-card2);
+  border: 1px solid var(--border);
+  background: transparent;
   color: var(--text-mid);
   font-size: 13px;
-  font-weight: 700;
+  font-weight: 600;
   white-space: nowrap;
   transition: all 0.18s ease;
   flex-shrink: 0;
 }
 
 .city-pill.active {
-  background: var(--sakura-pale);
-  border-color: var(--sakura-pink);
-  color: var(--sakura-pink);
+  background: var(--indigo);
+  border-color: var(--indigo);
+  color: #F3EEE3;
+}
+
+[data-theme="dark"] .city-pill.active {
+  color: #101319;
 }
 
 .city-pill-emoji {
@@ -161,5 +163,11 @@
 
 .city-pill-name {
   font-size: 13px;
+}
+
+/* Desktop: the sidebar carries the brand, so drop the header logo */
+@media (min-width: 1040px) {
+  .header .logo { display: none; }
+  .header-top { justify-content: flex-end; }
 }
 
