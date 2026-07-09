@@ -165,14 +165,26 @@
 .spot-emoji-wrap {
   width: 54px;
   height: 54px;
-  border-radius: 16px;
+  border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+.spot-emoji-wrap::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 32%;
+  background: rgba(15,22,32,0.22);
 }
 
 .spot-emoji {
-  font-size: 28px;
+  font-size: 24px;
+  position: relative;
+  z-index: 1;
+  filter: drop-shadow(0 2px 3px rgba(0,0,0,0.28));
 }
 
 .spot-info {
@@ -205,26 +217,31 @@
 
 .hot-ribbon {
   position: absolute;
-  top: -1px;
+  top: 12px;
   right: 52px;
-  background: var(--sakura-pink);
-  color: white;
-  font-size: 11px;
-  font-weight: 800;
-  padding: 3px 10px;
-  border-radius: 0 0 10px 10px;
+  background: transparent;
+  color: var(--copper);
+  border: 1px solid var(--copper);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  padding: 2px 7px;
+  border-radius: 5px;
 }
 
 .visited-ribbon {
   position: absolute;
-  top: -1px;
+  top: 12px;
   right: 52px;
-  background: var(--jade);
-  color: white;
-  font-size: 11px;
-  font-weight: 800;
-  padding: 3px 10px;
-  border-radius: 0 0 10px 10px;
+  background: transparent;
+  color: var(--jade);
+  border: 1px solid var(--jade);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  padding: 2px 7px;
+  border-radius: 5px;
+  transform: rotate(-4deg);
 }
 
 .check-btn.visited {
@@ -364,52 +381,69 @@
   display: block;
 }
 
-.detail-hot-banner {
-  background: rgba(255,255,255,0.22);
-  border: 1.5px solid rgba(255,255,255,0.45);
+/* Detail hero — A-style caption overlay on a flat colour scene */
+.detail-hero {
+  position: relative;
+  margin: 0 16px;
+  height: 200px;
   border-radius: 20px;
-  display: inline-block;
-  padding: 4px 14px;
-  font-size: 13px;
-  font-weight: 800;
-  color: white;
-  margin-bottom: 12px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-card);
 }
 
-.detail-hero {
-  padding: 24px 20px 28px;
-  text-align: center;
+.detail-chips {
+  position: absolute;
+  top: 14px;
+  left: 16px;
+  display: flex;
+  gap: 8px;
+  z-index: 2;
 }
+
+.detail-chip {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  padding: 3px 10px;
+  border-radius: 6px;
+  background: rgba(243,238,227,0.92);
+}
+.detail-chip.must    { color: var(--copper); border: 1px solid var(--copper); }
+.detail-chip.arrived { color: var(--jade);   border: 1px solid var(--jade); transform: rotate(-4deg); }
 
 .detail-emoji {
-  font-size: 64px;
-  margin-bottom: 12px;
-  filter: drop-shadow(0 4px 12px rgba(0,0,0,0.15));
+  position: absolute;
+  top: 18px;
+  right: 20px;
+  font-size: 52px;
+  opacity: 0.9;
+  filter: drop-shadow(0 4px 12px rgba(0,0,0,0.25));
+}
+
+.detail-cap {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  padding: 16px 18px;
+  background: linear-gradient(to top, rgba(16,26,38,0.82) 0%, rgba(16,26,38,0.35) 60%, transparent 100%);
+}
+
+.detail-eyebrow {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #EDE6D6;
+  opacity: 0.92;
+  margin-bottom: 5px;
 }
 
 .detail-name {
-  font-size: 28px;
-  font-weight: 900;
-  color: white;
-  margin-bottom: 4px;
-  letter-spacing: -0.5px;
-}
-
-.detail-name-en {
-  color: rgba(255,255,255,0.8);
-  font-size: 14px;
+  font-size: 26px;
   font-weight: 600;
-  margin-bottom: 8px;
-}
-
-.detail-district {
-  display: inline-block;
-  background: rgba(255,255,255,0.22);
-  color: white;
-  border-radius: 20px;
-  padding: 3px 12px;
-  font-size: 12px;
-  font-weight: 800;
+  color: #F5F1E7;
+  letter-spacing: 0.03em;
+  line-height: 1.15;
 }
 
 .detail-body {
@@ -615,21 +649,53 @@
   padding-left: 28px;
 }
 
-/* ── 评分 + 评价 ── */
+/* ── 打卡纪念 ── */
 .rating-section {
   margin-top: 12px;
   background: var(--bg-card2);
-  border: 2px solid var(--border);
+  border: 1px solid var(--border);
   border-radius: 18px;
   padding: 16px;
   transition: background 0.25s;
 }
 
+.mem-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.mem-seal {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: 2px solid var(--copper);
+  color: var(--copper);
+  font-family: var(--font-serif);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.1;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  transform: rotate(-9deg);
+  flex-shrink: 0;
+  letter-spacing: 0.04em;
+}
+
+.mem-head-info { flex: 1; min-width: 0; }
+
 .rating-title {
   font-size: 14px;
-  font-weight: 800;
+  font-weight: 700;
   color: var(--text-dark);
-  margin-bottom: 12px;
+}
+
+.mem-date {
+  font-size: 11.5px;
+  color: var(--text-mid);
+  margin-top: 2px;
 }
 
 .star-rating-row {
@@ -677,22 +743,24 @@
 .review-input {
   width: 100%;
   background: var(--bg-input);
-  border: 2px solid var(--border);
-  border-radius: 12px;
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--copper);
+  border-radius: 4px 12px 12px 4px;
   padding: 10px 12px;
-  font-size: 14px;
-  font-weight: 600;
+  font-size: 13.5px;
+  font-weight: 500;
   color: var(--text-dark);
   resize: none;
-  font-family: inherit;
-  line-height: 1.5;
+  font-family: var(--font-serif);
+  line-height: 1.9;
   transition: border-color 0.2s;
   box-sizing: border-box;
 }
 
 .review-input:focus {
   outline: none;
-  border-color: var(--sakura-pink);
+  border-color: var(--copper);
+  border-left-color: var(--copper);
 }
 
 .review-footer {
@@ -714,7 +782,7 @@
   padding: 6px 18px;
   font-size: 13px;
   font-weight: 800;
-  box-shadow: 0 3px 0 #C44E78;
+  box-shadow: 0 2px 0 var(--indigo-deep);
   transition: all 0.12s;
 }
 
@@ -725,7 +793,7 @@
 
 .review-save-btn:active {
   transform: translateY(2px);
-  box-shadow: 0 1px 0 #C44E78;
+  box-shadow: 0 1px 0 var(--indigo-deep);
 }
 
 /* 去过按钮 */
@@ -760,9 +828,9 @@
 .visited-done {
   margin-top: 10px;
   background: var(--bg-green-tint);
-  border: 2px solid var(--border-green);
-  border-radius: 18px;
-  padding: 12px 16px;
+  border: 1px solid var(--border-green);
+  border-radius: 16px;
+  padding: 11px 16px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -771,16 +839,27 @@
 .visited-done-main {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
 }
 
-.visited-done-check {
-  font-size: 20px;
+.visited-done-seal {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 1.5px solid var(--jade);
+  color: var(--jade);
+  font-family: var(--font-serif);
+  font-size: 12px;
+  font-weight: 600;
+  display: grid;
+  place-items: center;
+  transform: rotate(-8deg);
+  flex-shrink: 0;
 }
 
 .visited-done-text {
-  font-size: 15px;
-  font-weight: 800;
+  font-size: 14px;
+  font-weight: 700;
   color: var(--jade);
 }
 
@@ -797,19 +876,6 @@
 
 .visited-cancel-btn:active {
   opacity: 0.6;
-}
-
-/* 去过 banner in detail */
-.detail-visited-banner {
-  background: rgba(88,204,2,0.25);
-  border: 1.5px solid rgba(88,204,2,0.5);
-  border-radius: 20px;
-  display: inline-block;
-  padding: 4px 14px;
-  font-size: 13px;
-  font-weight: 800;
-  color: white;
-  margin-bottom: 8px;
 }
 
 /* ── Recommend Card (unified) ── */

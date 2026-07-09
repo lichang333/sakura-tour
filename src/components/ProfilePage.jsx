@@ -30,15 +30,15 @@ export default function ProfilePage({ goToSpot }) {
   const checkedCount = checkedSpots.length
 
   const badges = [
-    { id: 'first',    icon: '🌸', name: '初来乍到',  desc: '完成注册',         unlocked: true },
-    { id: 'spot1',    icon: '📍', name: '第一站',    desc: '加入第1个地点',     unlocked: checkedCount >= 1 },
-    { id: 'spot3',    icon: '🗺️', name: '探索者',    desc: '加入3个地点',       unlocked: checkedCount >= 3 },
-    { id: 'visited1', icon: '✈️', name: '首次出发',  desc: '标记第1个去过',     unlocked: visitedCount >= 1 },
-    { id: 'visited3', icon: '🏅', name: '旅行达人',  desc: '去过3个地点',       unlocked: visitedCount >= 3 },
-    { id: 'visited5', icon: '🏆', name: '资深旅人',  desc: '去过5个地点',       unlocked: visitedCount >= 5 },
-    { id: 'xp200',    icon: '⭐', name: '积分新星',  desc: '累计200 XP',        unlocked: totalXP >= 200 },
-    { id: 'streak3',  icon: '🔥', name: '坚持打卡',  desc: '连续3天登录',       unlocked: (user.streak || 0) >= 3 },
-    { id: 'city2',    icon: '🌍', name: '多城旅人',  desc: '去过2个城市的景点', unlocked: new Set(CITIES.filter(c => c.spots.some(s => user.visitedSpots?.includes(s.id))).map(c => c.id)).size >= 2 },
+    { id: 'first',    seal: '初行', name: '初来乍到',  desc: '完成注册',         unlocked: true },
+    { id: 'spot1',    seal: '一站', name: '第一站',    desc: '加入第1个地点',     unlocked: checkedCount >= 1 },
+    { id: 'spot3',    seal: '探索', name: '探索者',    desc: '加入3个地点',       unlocked: checkedCount >= 3 },
+    { id: 'visited1', seal: '出发', name: '首次出发',  desc: '第1个已抵达',       unlocked: visitedCount >= 1 },
+    { id: 'visited3', seal: '达人', name: '旅行达人',  desc: '抵达3个地点',       unlocked: visitedCount >= 3 },
+    { id: 'visited5', seal: '资深', name: '资深旅人',  desc: '抵达5个地点',       unlocked: visitedCount >= 5 },
+    { id: 'xp200',    seal: '新星', name: '积分新星',  desc: '累计200 XP',        unlocked: totalXP >= 200 },
+    { id: 'streak3',  seal: '连日', name: '坚持打卡',  desc: '连续3天登录',       unlocked: (user.streak || 0) >= 3 },
+    { id: 'city2',    seal: '多城', name: '多城旅人',  desc: '抵达2个城市',       unlocked: new Set(CITIES.filter(c => c.spots.some(s => user.visitedSpots?.includes(s.id))).map(c => c.id)).size >= 2 },
   ]
 
   return (
@@ -58,17 +58,17 @@ export default function ProfilePage({ goToSpot }) {
           <div className="ps-divider" />
           <div className="ps-item">
             <span className="ps-val">{visitedCount}</span>
-            <span className="ps-label">✈️ 去过</span>
+            <span className="ps-label">已抵达</span>
           </div>
           <div className="ps-divider" />
           <div className="ps-item">
             <span className="ps-val">{checkedCount}</span>
-            <span className="ps-label">♡ 想去</span>
+            <span className="ps-label">想去</span>
           </div>
           <div className="ps-divider" />
           <div className="ps-item">
             <span className="ps-val">{user.streak || 0}</span>
-            <span className="ps-label">🔥 连续天</span>
+            <span className="ps-label">连续天</span>
           </div>
         </div>
       </div>
@@ -85,15 +85,14 @@ export default function ProfilePage({ goToSpot }) {
         <div className="level-next">再获得 {200 - xpInLevel} XP 升至 Lv.{level + 1}</div>
       </div>
 
-      {/* Badges */}
+      {/* Badges — 圆形钤印 */}
       <div className="profile-section">
-        <h3 className="section-title">成就徽章 🏅</h3>
-        <div className="badges-grid">
+        <h3 className="section-title">成就印章</h3>
+        <div className="seals-grid">
           {badges.map(b => (
-            <div key={b.id} className={`badge-card ${b.unlocked ? 'unlocked' : 'locked'}`}>
-              <span className="badge-icon">{b.unlocked ? b.icon : '🔒'}</span>
-              <span className="badge-name">{b.name}</span>
-              <span className="badge-desc">{b.desc}</span>
+            <div key={b.id} className={`seal-badge ${b.unlocked ? 'unlocked' : 'locked'}`} title={b.desc}>
+              <span className="seal-badge-mark">{b.seal.slice(0, 1)}<br />{b.seal.slice(1)}</span>
+              <span className="seal-badge-name">{b.name}</span>
             </div>
           ))}
         </div>
@@ -101,7 +100,7 @@ export default function ProfilePage({ goToSpot }) {
 
       {/* Visited Spots — 足迹 */}
       <div className="profile-section">
-        <h3 className="section-title">我的足迹 ✈️</h3>
+        <h3 className="section-title">我的足迹</h3>
         {visitedSpots.length === 0 ? (
           <div className="empty-spots">
             <span className="empty-icon">🗺️</span>
@@ -137,7 +136,7 @@ export default function ProfilePage({ goToSpot }) {
                       </div>
                     )}
                   </div>
-                  <span className="cs-visited-badge">✈️ 去过</span>
+                  <span className="cs-stamp">{city?.nameEn?.toUpperCase() || '已抵达'}</span>
                 </div>
               )
             })}
@@ -148,7 +147,7 @@ export default function ProfilePage({ goToSpot }) {
       {/* 我的推荐 */}
       <div className="profile-section">
         <h3 className="section-title">
-          我的推荐 👍
+          我的推荐
           {recommendedList.length > 0 && <span className="ps-count">{recommendedList.length}</span>}
         </h3>
         {recommendedList.length === 0 ? (
@@ -181,7 +180,7 @@ export default function ProfilePage({ goToSpot }) {
 
       {/* Want-to-go Spots — 想去 */}
       <div className="profile-section">
-        <h3 className="section-title">我的心愿清单 ♡</h3>
+        <h3 className="section-title">我的心愿清单</h3>
         {checkedSpots.filter(s => !user.visitedSpots?.includes(s.id)).length === 0 ? (
           <div className="empty-spots">
             <span className="empty-icon">💭</span>

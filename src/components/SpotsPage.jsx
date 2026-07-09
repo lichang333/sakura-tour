@@ -197,13 +197,16 @@ export default function SpotsPage({ pendingSpot, clearPendingSpot }) {
       <div className="spots-page">
         <div className="spot-detail">
           <button className="back-btn" onClick={() => { setSelected(null); setReviewDraft(''); setReviewSaved(false) }}>← 返回</button>
-          <div className="detail-hero" style={{ background: `linear-gradient(135deg, ${spot.color}CC, ${spot.color}88)` }}>
-            {spot.isHot && <div className="detail-hot-banner">🔥 必去景点</div>}
-            {isVisited && <div className="detail-visited-banner">✈️ 你已去过这里</div>}
-            <div className="detail-emoji">{spot.emoji}</div>
-            <h1 className="detail-name">{spot.name}</h1>
-            <p className="detail-name-en">{spot.nameEn}</p>
-            <div className="detail-district">{spot.district}</div>
+          <div className="detail-hero" style={{ background: `linear-gradient(155deg, ${spot.color} -20%, #16283A 120%)` }}>
+            <div className="detail-chips">
+              {spot.isHot && <span className="detail-chip must">必去</span>}
+              {isVisited && <span className="detail-chip arrived">已抵达</span>}
+            </div>
+            <div className="detail-emoji" aria-hidden="true">{spot.emoji}</div>
+            <div className="detail-cap">
+              <div className="detail-eyebrow">{spot.district} · {spot.nameEn}</div>
+              <h1 className="detail-name">{spot.name}</h1>
+            </div>
           </div>
 
           <div className="detail-body">
@@ -243,7 +246,7 @@ export default function SpotsPage({ pendingSpot, clearPendingSpot }) {
             </div>
 
             <div className="detail-section tip-box">
-              <h3>💡 小贴士</h3>
+              <h3>小贴士</h3>
               <p>{spot.tips}</p>
             </div>
 
@@ -346,8 +349,8 @@ export default function SpotsPage({ pendingSpot, clearPendingSpot }) {
             {isVisited ? (
               <div className="visited-done">
                 <div className="visited-done-main">
-                  <span className="visited-done-check">✅</span>
-                  <span className="visited-done-text">已打卡！</span>
+                  <span className="visited-done-seal">印</span>
+                  <span className="visited-done-text">已抵达</span>
                 </div>
                 <button className="visited-cancel-btn" onClick={() => handleVisitedBtn(spot.id)}>
                   取消打卡
@@ -389,7 +392,15 @@ export default function SpotsPage({ pendingSpot, clearPendingSpot }) {
             {/* 打卡纪念 — 仅去过后显示 */}
             {isVisited && (
               <div className="rating-section">
-                <div className="rating-title">我的旅行记忆 ✍️</div>
+                <div className="mem-head">
+                  <div className="mem-seal" aria-hidden="true">已<br />抵达</div>
+                  <div className="mem-head-info">
+                    <div className="rating-title">我的旅行记忆</div>
+                    {(typeof reviewObj === 'object' && reviewObj?.at) && (
+                      <div className="mem-date">{formatReviewDate(reviewObj.at)} 记</div>
+                    )}
+                  </div>
+                </div>
 
                 {/* 星级 */}
                 <StarRating
@@ -400,7 +411,7 @@ export default function SpotsPage({ pendingSpot, clearPendingSpot }) {
 
                 {/* 照片纪念 */}
                 <div className="photo-memory">
-                  <div className="pm-label">📸 旅行照片 {myPhotos.length > 0 && <span className="pm-count">{myPhotos.length}/9</span>}</div>
+                  <div className="pm-label">旅行照片 {myPhotos.length > 0 && <span className="pm-count">{myPhotos.length}/9</span>}</div>
                   <div className="photo-grid">
                     {myPhotos.map(url => (
                       <div key={url} className="photo-thumb">
@@ -454,7 +465,7 @@ export default function SpotsPage({ pendingSpot, clearPendingSpot }) {
   return (
     <div className="spots-page">
       <div className="spots-header">
-        <h2 className="page-title">{currentCity.name}景点地图 📍</h2>
+        <h2 className="page-title">{currentCity.name}景点</h2>
         <p className="page-sub">{spots.length}个精选景点，总有一款适合你</p>
         <div className="progress-mini">
           <div className="pm-row">
@@ -494,10 +505,10 @@ export default function SpotsPage({ pendingSpot, clearPendingSpot }) {
               onClick={() => setSelected(spot.id)}
               style={{ '--spot-color': spot.color }}
             >
-              {spot.isHot && !visited && <div className="hot-ribbon">🔥 必去</div>}
-              {visited && <div className="visited-ribbon">✈️ 去过</div>}
+              {spot.isHot && !visited && <div className="hot-ribbon">必去</div>}
+              {visited && <div className="visited-ribbon">已抵达</div>}
               <div className="spot-left">
-                <div className="spot-emoji-wrap" style={{ background: `${spot.color}22` }}>
+                <div className="spot-emoji-wrap" style={{ background: `linear-gradient(150deg, ${spot.color}, ${spot.color}99), linear-gradient(#16283A, #16283A)` }}>
                   <span className="spot-emoji">{spot.emoji}</span>
                 </div>
               </div>
@@ -544,7 +555,7 @@ export default function SpotsPage({ pendingSpot, clearPendingSpot }) {
       {/* Nearby Spots */}
       {nearby && nearby.length > 0 && (
         <div className="nearby-section">
-          <h3 className="nearby-title">📍 周边小众景点</h3>
+          <h3 className="nearby-title">周边小众景点</h3>
           <p className="nearby-sub">适合有额外时间的朋友顺道一游</p>
           <div className="nearby-list">
             {nearby.map((s, i) => (

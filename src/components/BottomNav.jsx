@@ -1,4 +1,3 @@
-import { useUser } from '../context/UserContext'
 import './BottomNav.css'
 
 const Icon = ({ paths }) => (
@@ -14,6 +13,7 @@ const ICONS = {
   map:   <Icon paths={<><path d="M9 4L3 6v14l6-2 6 2 6-2V4l-6 2-6-2z" /><path d="M9 4v14M15 6v14" /></>} />,
   plan:  <Icon paths={<><rect x="4" y="5" width="16" height="16" rx="2" /><path d="M4 9h16M8 3v4M16 3v4" /></>} />,
   tips:  <Icon paths={<><path d="M5 4h10a2 2 0 012 2v14H7a2 2 0 01-2-2z" /><path d="M17 4h2v16" /></>} />,
+  profile: <Icon paths={<><circle cx="12" cy="8" r="3.4" /><path d="M5 20c1.2-3.6 4-5 7-5s5.8 1.4 7 5" /></>} />,
 }
 
 const TABS = [
@@ -26,8 +26,6 @@ const TABS = [
 ]
 
 export default function BottomNav({ activeTab, setActiveTab }) {
-  const { user } = useUser()
-
   return (
     <nav className="bottom-nav">
       <div className="bn-brand">
@@ -40,11 +38,7 @@ export default function BottomNav({ activeTab, setActiveTab }) {
           className={`bn-btn ${activeTab === tab.id ? 'active' : ''}`}
           onClick={() => setActiveTab(tab.id)}
         >
-          <span className="bn-icon">
-            {tab.id === 'profile'
-              ? <span className="bn-avatar">{user?.avatar || '👤'}</span>
-              : ICONS[tab.id]}
-          </span>
+          <span className="bn-icon">{ICONS[tab.id]}</span>
           <span className="bn-label">{tab.label}</span>
         </button>
       ))}

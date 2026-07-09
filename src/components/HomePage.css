@@ -91,6 +91,7 @@
 .fs-label { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-mid); font-weight: 700; }
 .fs-count { font-size: 14px; color: var(--text-mid); margin-top: 3px; }
 .fs-count b { color: var(--text-dark); font-size: 19px; font-family: var(--font-serif); }
+.fs-meta { font-size: 11px; color: var(--copper); font-weight: 600; margin-top: 4px; letter-spacing: 0.02em; }
 .stamps { display: flex; gap: 6px; }
 .stamp {
   width: 26px; height: 26px; border-radius: 50%;
@@ -138,28 +139,131 @@
 
 /* Sections */
 .section {
-  padding: 20px 16px 0;
+  padding: 22px 16px 0;
 }
 
 .section-title {
   font-size: 18px;
-  font-weight: 900;
+  font-weight: 600;
   color: var(--text-dark);
   margin-bottom: 12px;
 }
 
+.block-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 12px;
+}
+.block-head .section-title { margin-bottom: 0; }
+
+.block-link {
+  background: transparent;
+  border: none;
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--copper);
+  padding: 0;
+}
+
+/* ── 本地精选 — A-style spot rows ── */
+.curated-list {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 4px 14px;
+  box-shadow: var(--shadow-card);
+}
+
+.spot-row {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  width: 100%;
+  padding: 11px 0;
+  background: transparent;
+  border: none;
+  border-top: 1px solid var(--border);
+  text-align: left;
+}
+.spot-row:first-child { border-top: none; }
+
+.srow-thumb {
+  width: 54px;
+  height: 54px;
+  border-radius: 12px;
+  flex: 0 0 auto;
+  position: relative;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+}
+.srow-thumb-emoji {
+  font-size: 22px;
+  position: relative;
+  z-index: 1;
+  filter: drop-shadow(0 2px 3px rgba(0,0,0,0.25));
+}
+.srow-thumb-band {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 32%;
+  background: rgba(15,22,32,0.22);
+}
+
+.srow-meta { flex: 1; min-width: 0; }
+
+.srow-name {
+  font-size: 14.5px;
+  font-weight: 700;
+  color: var(--text-dark);
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.tag-must {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--copper);
+  border: 1px solid var(--copper);
+  border-radius: 5px;
+  padding: 1px 5px;
+  letter-spacing: 0.05em;
+  flex-shrink: 0;
+}
+
+.srow-sub {
+  font-size: 12px;
+  color: var(--text-mid);
+  margin-top: 3px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.srow-state {
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--text-mid);
+  white-space: nowrap;
+  opacity: 0.65;
+}
+.srow-state.visited { color: var(--jade); opacity: 1; }
+.srow-state.want    { color: var(--indigo); opacity: 1; }
+
 /* ── Dynamic Task Cards ── */
 .task-card {
   background: var(--bg-card);
-  border: 2px solid var(--border);
-  border-radius: 18px;
+  border: 1px solid var(--border);
+  border-radius: 16px;
   padding: 14px 16px 12px;
   margin-bottom: 10px;
   box-shadow: var(--shadow-card);
   transition: border-color 0.2s;
 }
-.task-card.active { border-color: var(--sakura-pink); }
-.task-card.done   { border-color: #58CC02; opacity: 0.75; }
+.task-card.active { border-color: var(--indigo); }
+.task-card.done   { border-color: var(--border-green); opacity: 0.75; }
 
 .task-top {
   display: flex;
@@ -168,22 +272,28 @@
   margin-bottom: 10px;
 }
 
-.task-icon {
-  font-size: 22px;
-  width: 44px;
-  height: 44px;
-  border-radius: 13px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+/* Serif glyph in a hairline seal circle */
+.task-glyph {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 1.5px solid var(--border);
+  color: var(--text-mid);
+  font-family: var(--font-serif);
+  font-size: 18px;
+  font-weight: 600;
+  display: grid;
+  place-items: center;
   flex-shrink: 0;
 }
+.task-glyph.active { border-color: var(--indigo); color: var(--indigo); }
+.task-glyph.done   { border-color: var(--jade); color: var(--jade); transform: rotate(-8deg); }
 
 .task-info { flex: 1; min-width: 0; }
 
 .task-title {
   font-size: 14px;
-  font-weight: 800;
+  font-weight: 700;
   color: var(--text-dark);
   margin-bottom: 2px;
 }
@@ -191,41 +301,37 @@
 .task-desc {
   font-size: 12px;
   color: var(--text-mid);
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .task-btn {
-  background: var(--bg-card2);
+  background: transparent;
   color: var(--text-mid);
-  border: 2px solid var(--border);
+  border: 1px solid var(--border);
   border-radius: 12px;
   padding: 7px 13px;
   font-size: 12px;
-  font-weight: 800;
+  font-weight: 700;
   flex-shrink: 0;
   cursor: pointer;
 }
 .task-btn.active {
-  background: var(--sakura-pink);
-  color: white;
-  border-color: var(--sakura-pink);
-  box-shadow: 0 3px 0 #C44E78;
+  background: var(--indigo);
+  color: #F3EEE3;
+  border-color: var(--indigo);
 }
-.task-btn.active:active {
-  transform: translateY(2px);
-  box-shadow: 0 1px 0 #C44E78;
-}
+[data-theme="dark"] .task-btn.active { color: #101319; }
 
 .task-badge {
   border-radius: 12px;
   padding: 6px 12px;
   font-size: 12px;
-  font-weight: 800;
+  font-weight: 700;
   flex-shrink: 0;
 }
 .task-badge.done {
-  background: #58CC02;
-  color: white;
+  background: var(--bg-green-tint);
+  color: var(--jade);
 }
 
 .task-bar-row {
@@ -236,8 +342,9 @@
 
 .task-bar {
   flex: 1;
-  height: 7px;
-  background: var(--border);
+  height: 6px;
+  background: var(--bg-card2);
+  border: 1px solid var(--border);
   border-radius: 10px;
   overflow: hidden;
 }
@@ -251,8 +358,8 @@
 
 .task-xp {
   font-size: 11px;
-  font-weight: 800;
-  color: var(--text-mid);
+  font-weight: 700;
+  color: var(--copper);
   white-space: nowrap;
 }
 
@@ -265,20 +372,20 @@
 
 .quick-tip {
   background: var(--bg-card);
-  border: 2px solid var(--border);
-  border-radius: 16px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
   padding: 13px 14px;
   display: flex;
   align-items: center;
   gap: 9px;
   font-size: 13px;
-  font-weight: 700;
+  font-weight: 600;
   color: var(--text-dark);
   box-shadow: var(--shadow-card);
   transition: background 0.25s, border-color 0.25s;
 }
 
 .qt-icon {
-  font-size: 20px;
+  font-size: 18px;
   flex-shrink: 0;
 }

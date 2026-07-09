@@ -11,7 +11,7 @@ export default function TipsPage() {
   return (
     <div className="tips-page">
       <div className="tips-header">
-        <h2 className="page-title">{currentCity.name}旅行攻略 💡</h2>
+        <h2 className="page-title">{currentCity.name}旅行攻略</h2>
         <p className="page-sub">知己知彼，玩得更爽</p>
       </div>
 
@@ -60,7 +60,7 @@ export default function TipsPage() {
 
       {/* Food Section */}
       <div className="section">
-        <h3 className="section-title">必吃美食 🍽️</h3>
+        <h3 className="section-title">必吃美食</h3>
         <div className="food-grid">
           {foods.map((food, i) => (
             <div key={i} className="food-card">
@@ -74,7 +74,7 @@ export default function TipsPage() {
 
       {/* Packing List */}
       <div className="section">
-        <h3 className="section-title">行李清单 🎒</h3>
+        <h3 className="section-title">行李清单</h3>
         <div className="pack-list">
           {packList.map((item, i) => (
             <div key={i} className="pack-item">

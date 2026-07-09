@@ -37,7 +37,7 @@ function AppInner() {
   const goToSpot = (spotId) => { setPendingSpot(spotId); setActiveTab('spots') }
 
   const pages = {
-    home:    <HomePage setActiveTab={setActiveTab} />,
+    home:    <HomePage setActiveTab={setActiveTab} goToSpot={goToSpot} />,
     spots:   <SpotsPage pendingSpot={pendingSpot} clearPendingSpot={() => setPendingSpot(null)} />,
     plan:    <PlanPage setActiveTab={setActiveTab} />,
     tips:    <TipsPage />,

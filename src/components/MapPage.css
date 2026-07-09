@@ -6,6 +6,15 @@
   padding: 20px 16px 0;
 }
 
+.map-eyebrow {
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--copper);
+  margin-bottom: 5px;
+}
+
 /* Filter chips */
 .map-filters {
   display: flex;
@@ -92,8 +101,21 @@
   height: 10px;
   border-radius: 50%;
 }
-.ml-dot.visited { background: var(--jade); }
-.ml-dot.want    { background: var(--indigo); }
+.ml-dot.want { background: var(--indigo); }
+
+.ml-seal {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 1.5px solid var(--copper);
+  color: var(--copper);
+  font-family: var(--font-serif);
+  font-size: 9px;
+  font-weight: 600;
+  display: grid;
+  place-items: center;
+  transform: rotate(-8deg);
+}
 
 /* List section reuses .checked-spots / .checked-spot-row / .empty-spots
    from ProfilePage.css (already loaded globally). */
@@ -108,25 +130,49 @@
 
 /* ── AMap custom marker pin (raw DOM injected outside React) ── */
 .map-pin {
-  width: 30px;
-  height: 30px;
-  border-radius: 50% 50% 50% 0;
-  transform: rotate(-45deg);
-  border: 2px solid var(--bg-card, #F3EEE3);
-  box-shadow: 0 3px 8px rgba(0,0,0,0.35);
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
 }
-.map-pin.visited { background: var(--jade); }
-.map-pin.want    { background: var(--indigo); }
+
+/* 想去 — indigo teardrop */
+.map-pin.want {
+  width: 30px;
+  height: 30px;
+  border-radius: 50% 50% 50% 0;
+  transform: rotate(-45deg);
+  background: var(--indigo);
+  border: 2px solid #F3EEE3;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.35);
+}
 .map-pin-dot {
   width: 8px;
   height: 8px;
   border-radius: 50%;
   background: #F3EEE3;
   transform: rotate(45deg);
+}
+
+/* 已抵达 — 铜印钤章 */
+.map-pin.visited {
+  width: 32px;
+  height: 32px;
+}
+.map-seal {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(243,238,227,0.94);
+  border: 2px solid var(--copper);
+  color: var(--copper);
+  font-family: 'Songti SC', 'STSong', 'Noto Serif SC', serif;
+  font-size: 14px;
+  font-weight: 600;
+  display: grid;
+  place-items: center;
+  transform: rotate(-8deg);
+  box-shadow: 0 3px 8px rgba(0,0,0,0.3);
 }
 
 /* ── AMap InfoWindow popup content (raw DOM) ── */
