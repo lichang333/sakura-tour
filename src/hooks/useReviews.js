@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { buildApiUrl } from '../lib/api'
 
 // Returns { communityData, loading, refresh }
 // communityData shape: { [spotId]: { avgRating, ratingCount, reviews: [{name,avatar,rating,text}] } }
@@ -8,7 +9,7 @@ export function useReviews() {
 
   const fetch_ = () => {
     setLoading(true)
-    fetch('/api/reviews')
+    fetch(buildApiUrl('/api/reviews'))
       .then(r => r.json())
       .then(data => setCommunityData(data))
       .catch(() => {})

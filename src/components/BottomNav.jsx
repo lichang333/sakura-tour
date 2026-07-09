@@ -2,11 +2,11 @@ import { useUser } from '../context/UserContext'
 import './BottomNav.css'
 
 const TABS = [
-  { id: 'home',    label: '首页',  icon: '🏠' },
-  { id: 'spots',   label: '赏樱地', icon: '🌸' },
-  { id: 'plan',    label: '行程',  icon: '📅' },
-  { id: 'tips',    label: '攻略',  icon: '💡' },
-  { id: 'profile', label: '我的',  icon: null  },
+  { id: 'home', label: '总览', icon: '✦' },
+  { id: 'spots', label: '花线', icon: '✿' },
+  { id: 'plan', label: '路线', icon: '🗺️' },
+  { id: 'tips', label: '手册', icon: '☰' },
+  { id: 'profile', label: '旅档', icon: null },
 ]
 
 export default function BottomNav({ activeTab, setActiveTab }) {

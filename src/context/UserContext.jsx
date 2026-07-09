@@ -1,4 +1,5 @@
 import { createContext, useContext, useState, useEffect } from 'react'
+import { buildApiUrl } from '../lib/api'
 
 const UserContext = createContext(null)
 
@@ -6,7 +7,7 @@ const TOKEN_KEY = 'sakura_token'
 
 async function apiFetch(path, options = {}) {
   const token = localStorage.getItem(TOKEN_KEY)
-  const res = await fetch(path, {
+  const res = await fetch(buildApiUrl(path), {
     ...options,
     headers: {
       'Content-Type': 'application/json',

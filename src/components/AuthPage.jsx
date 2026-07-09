@@ -70,22 +70,23 @@ export default function AuthPage() {
             <span className="auth-mascot-side left">🌿</span>
             <span className="auth-mascot-side right">🌿</span>
           </div>
-          <h1 className="auth-title">Sakura Tour</h1>
+          <h1 className="auth-title">Sakura Tour Chengdu</h1>
+          <p className="auth-subtitle">Second Edition City Dispatch</p>
         </div>
 
         <div className="auth-bottom">
-          <p className="auth-tagline">免费、好玩又实用的<br/>赏樱旅行规划助手</p>
+          <p className="auth-tagline">把花期、路线、茶馆和夜色<br />排成一张顺手的成都春游计划。</p>
           <div className="auth-features">
-            <div className="auth-feature"><span className="af-icon">🗺️</span><span className="af-label">记录足迹</span></div>
-            <div className="auth-feature"><span className="af-icon">⭐</span><span className="af-label">积累 XP</span></div>
-            <div className="auth-feature"><span className="af-icon">🌏</span><span className="af-label">多城探索</span></div>
+            <div className="auth-feature"><span className="af-icon">✿</span><span className="af-label">城市花线</span></div>
+            <div className="auth-feature"><span className="af-icon">🗺️</span><span className="af-label">四日路线</span></div>
+            <div className="auth-feature"><span className="af-icon">✦</span><span className="af-label">旅行档案</span></div>
           </div>
           <div className="auth-actions">
             <button className="auth-btn-primary" onClick={() => setMode('signup')}>
-              开始我的赏樱之旅 🌸
+              开启第二版旅程
             </button>
             <button className="auth-btn-secondary" onClick={() => setMode('login')}>
-              已有账号，去登录
+              已有通行证，去登录
             </button>
           </div>
         </div>
@@ -98,9 +99,9 @@ export default function AuthPage() {
       <div className="auth-page">
         <button className="auth-back" onClick={() => { setMode('welcome'); setError('') }}>← 返回</button>
         <div className="auth-form-area">
-          <div className="auth-form-icon">👋</div>
+          <div className="auth-form-icon">✦</div>
           <h2 className="auth-form-title">欢迎回来！</h2>
-          <p className="auth-form-sub">登录后数据跨设备同步</p>
+          <p className="auth-form-sub">继续你的春日路线，收藏和足迹会自动同步。</p>
           <form onSubmit={handleLogin} className={`auth-form ${shake ? 'shake' : ''}`}>
             <div className="form-group">
               <label>邮箱</label>
@@ -137,9 +138,9 @@ export default function AuthPage() {
     <div className="auth-page">
       <button className="auth-back" onClick={() => { setMode('welcome'); setError('') }}>← 返回</button>
       <div className="auth-form-area">
-        <div className="auth-form-icon">🎉</div>
-        <h2 className="auth-form-title">创建账号</h2>
-        <p className="auth-form-sub">数据存储在服务端，任何设备都能登录</p>
+        <div className="auth-form-icon">✿</div>
+        <h2 className="auth-form-title">创建春日通行证</h2>
+        <p className="auth-form-sub">注册后就能保存路线、打卡记录和旅行笔记。</p>
         <form onSubmit={handleSignup} className={`auth-form ${shake ? 'shake' : ''}`}>
           <div className="form-group">
             <label>选择你的头像</label>
@@ -174,7 +175,7 @@ export default function AuthPage() {
           </div>
           {error && <div className="auth-error">⚠️ {error}</div>}
           <button type="submit" className="auth-btn-primary" disabled={loading}>
-            {loading ? '注册中...' : '注册并开始 🌸'}
+            {loading ? '注册中...' : '注册并进入'}
           </button>
         </form>
         <p className="auth-switch">
