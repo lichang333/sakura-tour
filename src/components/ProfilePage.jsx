@@ -30,15 +30,15 @@ export default function ProfilePage({ goToSpot }) {
   const checkedCount = checkedSpots.length
 
   const badges = [
-    { id: 'first',    icon: '🌸', name: '樱花初探',  desc: '完成注册',         unlocked: true },
+    { id: 'first',    icon: '🌸', name: '初来乍到',  desc: '完成注册',         unlocked: true },
     { id: 'spot1',    icon: '📍', name: '第一站',    desc: '加入第1个地点',     unlocked: checkedCount >= 1 },
     { id: 'spot3',    icon: '🗺️', name: '探索者',    desc: '加入3个地点',       unlocked: checkedCount >= 3 },
     { id: 'visited1', icon: '✈️', name: '首次出发',  desc: '标记第1个去过',     unlocked: visitedCount >= 1 },
     { id: 'visited3', icon: '🏅', name: '旅行达人',  desc: '去过3个地点',       unlocked: visitedCount >= 3 },
-    { id: 'visited5', icon: '🏆', name: '赏樱大师',  desc: '去过5个地点',       unlocked: visitedCount >= 5 },
+    { id: 'visited5', icon: '🏆', name: '资深旅人',  desc: '去过5个地点',       unlocked: visitedCount >= 5 },
     { id: 'xp200',    icon: '⭐', name: '积分新星',  desc: '累计200 XP',        unlocked: totalXP >= 200 },
     { id: 'streak3',  icon: '🔥', name: '坚持打卡',  desc: '连续3天登录',       unlocked: (user.streak || 0) >= 3 },
-    { id: 'city2',    icon: '🌍', name: '环球赏樱',  desc: '去过2个城市的景点', unlocked: new Set(CITIES.filter(c => c.spots.some(s => user.visitedSpots?.includes(s.id))).map(c => c.id)).size >= 2 },
+    { id: 'city2',    icon: '🌍', name: '多城旅人',  desc: '去过2个城市的景点', unlocked: new Set(CITIES.filter(c => c.spots.some(s => user.visitedSpots?.includes(s.id))).map(c => c.id)).size >= 2 },
   ]
 
   return (
@@ -76,7 +76,7 @@ export default function ProfilePage({ goToSpot }) {
       {/* Level Progress */}
       <div className="level-section">
         <div className="level-row">
-          <span className="level-label">Lv.{level} 赏樱旅人</span>
+          <span className="level-label">Lv.{level} 旅行家</span>
           <span className="level-xp">{xpInLevel} / 200 XP</span>
         </div>
         <div className="level-bar">
@@ -105,7 +105,7 @@ export default function ProfilePage({ goToSpot }) {
         {visitedSpots.length === 0 ? (
           <div className="empty-spots">
             <span className="empty-icon">🗺️</span>
-            <span>还没有「去过」的景点<br />在赏樱地页面点击「我去过这里」记录足迹吧！</span>
+            <span>还没有「去过」的景点<br />在景点页面点击「我去过这里」记录足迹吧！</span>
           </div>
         ) : (
           <div className="checked-spots">
@@ -114,6 +114,7 @@ export default function ProfilePage({ goToSpot }) {
               const rating  = (user.spotRatings  || {})[String(spot.id)] || 0
               const reviewObj = (user.spotReviews || {})[String(spot.id)]
               const review    = typeof reviewObj === 'string' ? reviewObj : (reviewObj?.text || '')
+              const photos    = (user.spotPhotos || {})[String(spot.id)] || []
               return (
                 <div key={spot.id} className="checked-spot-row visited-row clickable-row" style={{ borderLeftColor: spot.color }} onClick={() => goToSpot?.(spot.id)}>
                   <span className="cs-emoji">{spot.emoji}</span>
@@ -127,6 +128,14 @@ export default function ProfilePage({ goToSpot }) {
                       </div>
                     )}
                     {review && <div className="cs-review">「{review}」</div>}
+                    {photos.length > 0 && (
+                      <div className="cs-photos">
+                        {photos.slice(0, 4).map((url, i) => (
+                          <img key={url} className="cs-photo" src={url} alt="旅行照片" loading="lazy" />
+                        ))}
+                        {photos.length > 4 && <span className="cs-photo-more">+{photos.length - 4}</span>}
+                      </div>
+                    )}
                   </div>
                   <span className="cs-visited-badge">✈️ 去过</span>
                 </div>
@@ -176,7 +185,7 @@ export default function ProfilePage({ goToSpot }) {
         {checkedSpots.filter(s => !user.visitedSpots?.includes(s.id)).length === 0 ? (
           <div className="empty-spots">
             <span className="empty-icon">💭</span>
-            <span>还没有「想去」的景点<br />在赏樱地页面加入行程吧！</span>
+            <span>还没有「想去」的景点<br />在景点页面加入行程吧！</span>
           </div>
         ) : (
           <div className="checked-spots">

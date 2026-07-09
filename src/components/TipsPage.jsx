@@ -6,48 +6,36 @@ export default function TipsPage() {
   const [expanded, setExpanded] = useState(null)
   const { currentCity } = useCity()
 
-  const { tips, foods, packList, bloomInfo } = currentCity
+  const { tips, foods, packList, seasonInfo } = currentCity
 
   return (
     <div className="tips-page">
       <div className="tips-header">
-        <h2 className="page-title">{currentCity.name}赏樱攻略 💡</h2>
+        <h2 className="page-title">{currentCity.name}旅行攻略 💡</h2>
         <p className="page-sub">知己知彼，玩得更爽</p>
       </div>
 
-      {/* Bloom Forecast */}
+      {/* Best Season */}
       <div className="bloom-card">
         <div className="bloom-header">
-          <span className="bloom-icon">🌸</span>
+          <span className="bloom-icon">🗓️</span>
           <div>
-            <div className="bloom-title">{bloomInfo.year} 花期预报</div>
-            <div className="bloom-sub">基于历年数据预测</div>
+            <div className="bloom-title">{seasonInfo.title}</div>
+            <div className="bloom-sub">{seasonInfo.sub}</div>
           </div>
-          <span className="live-badge">LIVE</span>
+          <span className="live-badge">TIPS</span>
         </div>
         <div className="bloom-timeline">
-          <div className="bt-item">
-            <div className="bt-dot early" />
-            <div className="bt-info">
-              <div className="bt-label">{bloomInfo.early.label}</div>
-              <div className="bt-date">{bloomInfo.early.date}</div>
+          {seasonInfo.rows.map((row, i) => (
+            <div key={i} className={`bt-item ${row.dot === 'peak' ? 'peak' : ''}`}>
+              <div className={`bt-dot ${row.dot}`} />
+              <div className="bt-info">
+                <div className="bt-label">{row.label}</div>
+                <div className="bt-date">{row.date}</div>
+              </div>
+              {row.badge && <div className="peak-badge">{row.badge}</div>}
             </div>
-          </div>
-          <div className="bt-item peak">
-            <div className="bt-dot peak" />
-            <div className="bt-info">
-              <div className="bt-label">{bloomInfo.peak.label}</div>
-              <div className="bt-date">{bloomInfo.peak.date}</div>
-            </div>
-            <div className="peak-badge">{bloomInfo.peak.badge}</div>
-          </div>
-          <div className="bt-item">
-            <div className="bt-dot late" />
-            <div className="bt-info">
-              <div className="bt-label">{bloomInfo.late.label}</div>
-              <div className="bt-date">{bloomInfo.late.date}</div>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
 

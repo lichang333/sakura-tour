@@ -76,9 +76,9 @@
   flex-shrink: 0;
 }
 
-.bt-dot.early { background: #FFB3CC; }
-.bt-dot.peak  { background: var(--sakura-pink); box-shadow: 0 0 10px rgba(255,107,157,0.5); }
-.bt-dot.late  { background: #CC88DD; }
+.bt-dot.early { background: var(--jade); }
+.bt-dot.peak  { background: var(--copper); box-shadow: 0 0 0 4px var(--bg-yellow-tint); }
+.bt-dot.late  { background: var(--text-mid); }
 
 .bt-info {
   flex: 1;
@@ -188,6 +188,12 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 10px;
+}
+
+@media (min-width: 760px) {
+  .food-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 .food-card {

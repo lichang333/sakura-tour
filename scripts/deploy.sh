@@ -1,20 +1,32 @@
 #!/bin/bash
-set -euo pipefail
+# deploy.sh — build and deploy Sakura Tour to VPS
+set -e
 
-VPS="${VPS:-root@38.59.225.79}"
-SSH_PORT="${SSH_PORT:-8765}"
-REMOTE="${REMOTE:-/var/www/sakura-tour}"
+VPS="root@38.244.60.72"
+SSH_PORT="8765"
+REMOTE="/var/www/sakura-tour"
 
-echo "🌸 Building frontend bundle..."
-./scripts/build_frontend.sh
+echo "🌸 Building frontend..."
+npm run build
 
-echo "📦 Uploading frontend bundle..."
-ssh -p "$SSH_PORT" -o StrictHostKeyChecking=accept-new "$VPS" "mkdir -p '$REMOTE'"
+echo "📦 Deploying frontend (preserving node_modules & server)..."
 rsync -avz --delete \
-  -e "ssh -p $SSH_PORT -o StrictHostKeyChecking=accept-new" \
-  dist/ "$VPS:$REMOTE/"
+  --exclude=node_modules \
+  --exclude=package.json \
+  --exclude=package-lock.json \
+  --exclude=server \
+  -e "ssh -p $SSH_PORT" \
+  dist/ $VPS:$REMOTE/
 
-echo "🔧 Deploying backend API..."
-BACKEND_VPS="$VPS" SSH_PORT="$SSH_PORT" REMOTE_DIR="$REMOTE" ./scripts/deploy_backend.sh
+echo "🔧 Deploying server files..."
+rsync -avz \
+  --exclude=sakura.db \
+  --exclude=sakura.db-shm \
+  --exclude=sakura.db-wal \
+  -e "ssh -p $SSH_PORT" \
+  server/ $VPS:$REMOTE/server/
 
-echo "✅ Deployment finished."
+echo "🔄 Restarting backend..."
+ssh -p $SSH_PORT $VPS "pm2 restart sakura-api"
+
+echo "✅ Deployed successfully!"

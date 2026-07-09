@@ -1,11 +1,11 @@
 {
-  "name": "Sakura Tour Chengdu",
-  "short_name": "ST Chengdu",
-  "description": "成都春日赏樱与城市旅行规划手册",
+  "name": "Sakura Tour 成都赏樱",
+  "short_name": "Sakura Tour",
+  "description": "成都樱花赏花旅行规划 - 花期预报、地点推荐、行程规划",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#F3E8D8",
-  "theme_color": "#C65A44",
+  "background_color": "#FF6B9D",
+  "theme_color": "#FF6B9D",
   "orientation": "portrait",
   "icons": [
     {

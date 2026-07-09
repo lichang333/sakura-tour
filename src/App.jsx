@@ -9,6 +9,7 @@ import HomePage from './components/HomePage'
 import SpotsPage from './components/SpotsPage'
 import PlanPage from './components/PlanPage'
 import TipsPage from './components/TipsPage'
+import MapPage from './components/MapPage'
 import ProfilePage from './components/ProfilePage'
 import './App.css'
 
@@ -40,6 +41,7 @@ function AppInner() {
     spots:   <SpotsPage pendingSpot={pendingSpot} clearPendingSpot={() => setPendingSpot(null)} />,
     plan:    <PlanPage setActiveTab={setActiveTab} />,
     tips:    <TipsPage />,
+    map:     <MapPage goToSpot={goToSpot} />,
     profile: <ProfilePage goToSpot={goToSpot} />,
   }
 

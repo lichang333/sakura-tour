@@ -9,4 +9,5 @@ server/sakura.db
 server/*.db
 server/*.db-shm
 server/*.db-wal
+server/uploads/
 .claude/

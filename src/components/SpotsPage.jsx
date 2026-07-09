@@ -2,10 +2,11 @@ import { useState, useEffect } from 'react'
 import { useUser } from '../context/UserContext'
 import { useCity } from '../context/CityContext'
 import { useReviews } from '../hooks/useReviews'
+import { compressImage } from '../utils/image'
 import './SpotsPage.css'
 
 export const REC_TAGS = [
-  { id: 'bloom',   label: '花开正好', emoji: '🌸' },
+  { id: 'scenery', label: '风景绝美', emoji: '🏔️' },
   { id: 'photo',   label: '拍照绝佳', emoji: '📸' },
   { id: 'quiet',   label: '人少清净', emoji: '😌' },
   { id: 'transit', label: '交通方便', emoji: '🚇' },
@@ -14,7 +15,7 @@ export const REC_TAGS = [
 ]
 
 const difficultyLabel = { easy: '轻松', medium: '一般', hard: '需体力' }
-const difficultyColor = { easy: '#58CC02', medium: '#FFD900', hard: '#FF4B4B' }
+const difficultyColor = { easy: 'var(--jade)', medium: 'var(--copper)', hard: '#B4472F' }
 
 const STAR_LABELS = ['', '很一般', '还不错', '值得去', '非常棒', '必须去！']
 
@@ -62,7 +63,9 @@ export default function SpotsPage({ pendingSpot, clearPendingSpot }) {
   const [selected,      setSelected]      = useState(null)
   const [reviewDraft,   setReviewDraft]   = useState('')
   const [reviewSaved,   setReviewSaved]   = useState(false)
-  const { user, toggleSpot, toggleVisited, rateSpot, reviewSpot, addXP, toggleRecommend } = useUser()
+  const [uploadingPhoto, setUploadingPhoto] = useState(false)
+  const [photoErr,       setPhotoErr]       = useState('')
+  const { user, toggleSpot, toggleVisited, rateSpot, reviewSpot, addXP, toggleRecommend, addSpotPhoto, removeSpotPhoto } = useUser()
   const { currentCity } = useCity()
   const { communityData, refresh: refreshReviews } = useReviews()
 
@@ -136,7 +139,7 @@ export default function SpotsPage({ pendingSpot, clearPendingSpot }) {
     if (checked) return (
       <button
         className="check-btn done"
-        style={{ background: 'transparent', borderColor: '#1CB0F6', color: '#1CB0F6', ...style }}
+        style={{ background: 'transparent', borderColor: 'var(--indigo)', color: 'var(--indigo)', ...style }}
         onClick={(e) => handleCheckBtn(id, e)}
         title="点击标记去过"
       >♡</button>
@@ -159,6 +162,7 @@ export default function SpotsPage({ pendingSpot, clearPendingSpot }) {
     const myRating       = (user?.spotRatings  || {})[String(spot.id)] || 0
     const reviewObj      = (user?.spotReviews  || {})[String(spot.id)]
     const savedReview    = typeof reviewObj === 'string' ? reviewObj : (reviewObj?.text || '')
+    const myPhotos       = (user?.spotPhotos   || {})[String(spot.id)] || []
 
     // Community data for this spot
     const community   = communityData[String(spot.id)] || { avgRating: 0, ratingCount: 0, reviews: [], recommendCount: 0, recommenders: [], topTag: null }
@@ -173,12 +177,28 @@ export default function SpotsPage({ pendingSpot, clearPendingSpot }) {
       setTimeout(() => { setReviewSaved(false); refreshReviews() }, 1500)
     }
 
+    const handleAddPhoto = async (e) => {
+      const file = e.target.files?.[0]
+      e.target.value = ''            // allow re-selecting the same file
+      if (!file) return
+      setPhotoErr('')
+      setUploadingPhoto(true)
+      try {
+        const dataUrl = await compressImage(file)
+        await addSpotPhoto(spot.id, dataUrl)
+      } catch (err) {
+        setPhotoErr(err.message || '上传失败')
+      } finally {
+        setUploadingPhoto(false)
+      }
+    }
+
     return (
       <div className="spots-page">
         <div className="spot-detail">
           <button className="back-btn" onClick={() => { setSelected(null); setReviewDraft(''); setReviewSaved(false) }}>← 返回</button>
           <div className="detail-hero" style={{ background: `linear-gradient(135deg, ${spot.color}CC, ${spot.color}88)` }}>
-            {spot.isHot && <div className="detail-hot-banner">🔥 今日正值花期！</div>}
+            {spot.isHot && <div className="detail-hot-banner">🔥 必去景点</div>}
             {isVisited && <div className="detail-visited-banner">✈️ 你已去过这里</div>}
             <div className="detail-emoji">{spot.emoji}</div>
             <h1 className="detail-name">{spot.name}</h1>
@@ -202,7 +222,7 @@ export default function SpotsPage({ pendingSpot, clearPendingSpot }) {
               <div className="detail-stat">
                 <span className="ds-icon">📅</span>
                 <span className="ds-val" style={{ fontSize: 12 }}>{spot.peakDays}</span>
-                <span className="ds-sub">最佳花期</span>
+                <span className="ds-sub">最佳季节</span>
               </div>
               <div className="detail-stat">
                 <span className="ds-icon">🎫</span>
@@ -250,8 +270,8 @@ export default function SpotsPage({ pendingSpot, clearPendingSpot }) {
             <button
               className="checkin-btn"
               style={{
-                background: isVisited ? '#58CC02' : '#1CB0F6',
-                boxShadow: `0 4px 0 ${isVisited ? '#46A302' : '#0E86BB'}`
+                background: isVisited ? 'var(--jade)' : 'var(--indigo)',
+                boxShadow: `0 3px 0 ${isVisited ? '#3C6350' : 'var(--indigo-deep)'}`
               }}
               onClick={() => { if (!isChecked) { toggleSpot(spot.id) } }}
             >
@@ -336,7 +356,7 @@ export default function SpotsPage({ pendingSpot, clearPendingSpot }) {
             ) : (
               <button
                 className="visited-btn"
-                style={{ boxShadow: '0 4px 0 #b8325a' }}
+                style={{ boxShadow: '0 3px 0 var(--indigo-deep)' }}
                 onClick={() => handleVisitedBtn(spot.id)}
               >
                 <span className="visited-btn-icon">✈️</span>
@@ -366,10 +386,10 @@ export default function SpotsPage({ pendingSpot, clearPendingSpot }) {
               </div>
             )}
 
-            {/* 评分 + 评价 — 仅去过后显示 */}
+            {/* 打卡纪念 — 仅去过后显示 */}
             {isVisited && (
               <div className="rating-section">
-                <div className="rating-title">你的评价 ✍️</div>
+                <div className="rating-title">我的旅行记忆 ✍️</div>
 
                 {/* 星级 */}
                 <StarRating
@@ -378,11 +398,35 @@ export default function SpotsPage({ pendingSpot, clearPendingSpot }) {
                   onRate={(r) => rateSpot(spot.id, r)}
                 />
 
-                {/* 文字评价 */}
+                {/* 照片纪念 */}
+                <div className="photo-memory">
+                  <div className="pm-label">📸 旅行照片 {myPhotos.length > 0 && <span className="pm-count">{myPhotos.length}/9</span>}</div>
+                  <div className="photo-grid">
+                    {myPhotos.map(url => (
+                      <div key={url} className="photo-thumb">
+                        <img src={url} alt="旅行照片" loading="lazy" />
+                        <button
+                          className="photo-del"
+                          onClick={() => removeSpotPhoto(spot.id, url)}
+                          aria-label="删除照片"
+                        >×</button>
+                      </div>
+                    ))}
+                    {myPhotos.length < 9 && (
+                      <label className={`photo-add ${uploadingPhoto ? 'uploading' : ''}`}>
+                        {uploadingPhoto ? <span className="photo-spinner">⏳</span> : <span className="photo-add-plus">＋</span>}
+                        <input type="file" accept="image/*" hidden disabled={uploadingPhoto} onChange={handleAddPhoto} />
+                      </label>
+                    )}
+                  </div>
+                  {photoErr && <div className="photo-err">⚠️ {photoErr}</div>}
+                </div>
+
+                {/* 文字游记 */}
                 <div className="review-box">
                   <textarea
                     className="review-input"
-                    placeholder="写下你的感受…（可选）"
+                    placeholder="写下这次旅行的记忆…（可选）"
                     maxLength={200}
                     defaultValue={savedReview}
                     onChange={e => { setReviewDraft(e.target.value); setReviewSaved(false) }}
@@ -410,8 +454,8 @@ export default function SpotsPage({ pendingSpot, clearPendingSpot }) {
   return (
     <div className="spots-page">
       <div className="spots-header">
-        <h2 className="page-title">{currentCity.name}赏樱地图 🌸</h2>
-        <p className="page-sub">{spots.length}个精选赏樱点位，总有一款适合你</p>
+        <h2 className="page-title">{currentCity.name}景点地图 📍</h2>
+        <p className="page-sub">{spots.length}个精选景点，总有一款适合你</p>
         <div className="progress-mini">
           <div className="pm-row">
             <span>想去 {[...checkedIds].filter(id => spots.some(s => s.id === id)).length}</span>
@@ -435,7 +479,7 @@ export default function SpotsPage({ pendingSpot, clearPendingSpot }) {
       {spots.some(s => s.isHot) && (
         <div className="today-banner">
           <span className="tb-dot" />
-          <span>{spots.find(s => s.isHot)?.name} 现正值花期 — 近期前往正是时候！</span>
+          <span>{spots.find(s => s.isHot)?.name} 编辑力荐 — 到{currentCity.name}别错过！</span>
         </div>
       )}
 
@@ -450,7 +494,7 @@ export default function SpotsPage({ pendingSpot, clearPendingSpot }) {
               onClick={() => setSelected(spot.id)}
               style={{ '--spot-color': spot.color }}
             >
-              {spot.isHot && !visited && <div className="hot-ribbon">🔥 今日花开</div>}
+              {spot.isHot && !visited && <div className="hot-ribbon">🔥 必去</div>}
               {visited && <div className="visited-ribbon">✈️ 去过</div>}
               <div className="spot-left">
                 <div className="spot-emoji-wrap" style={{ background: `${spot.color}22` }}>
@@ -462,7 +506,7 @@ export default function SpotsPage({ pendingSpot, clearPendingSpot }) {
                   <span className="spot-name">{spot.name}</span>
                   <span className="spot-district">{spot.district}</span>
                 </div>
-                <div className="spot-peak">🌸 {spot.peakTime}</div>
+                <div className="spot-peak">🗓️ {spot.peakTime}</div>
                 <div className="spot-ticket">🎫 {spot.ticket}</div>
                 <div className="spot-tags">
                   {spot.tags.slice(0, 2).map(t => (

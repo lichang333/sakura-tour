@@ -55,12 +55,12 @@
 }
 
 .pm-fill.visited-fill {
-  background: #58CC02;
+  background: var(--jade);
   z-index: 2;
 }
 
 .pm-fill.want-fill {
-  background: #1CB0F6;
+  background: var(--indigo);
   z-index: 1;
 }
 
@@ -81,8 +81,8 @@
   margin-right: 3px;
 }
 
-.pm-dot.green { background: #58CC02; }
-.pm-dot.blue  { background: #1CB0F6; }
+.pm-dot.green { background: var(--jade); }
+.pm-dot.blue  { background: var(--indigo); }
 
 /* Today Banner */
 .today-banner {
@@ -119,6 +119,15 @@
   display: flex;
   flex-direction: column;
   gap: 12px;
+}
+
+@media (min-width: 760px) {
+  .spots-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    align-items: start;
+  }
 }
 
 .spot-card {
@@ -210,7 +219,7 @@
   position: absolute;
   top: -1px;
   right: 52px;
-  background: #58CC02;
+  background: var(--jade);
   color: white;
   font-size: 11px;
   font-weight: 800;
@@ -503,13 +512,13 @@
 }
 
 .xp-reward.earned {
-  border: 2px solid #58CC02;
+  border: 2px solid var(--jade);
   background: rgba(88, 204, 2, 0.08);
-  color: #46A302;
+  color: var(--jade);
 }
 
 .xp-amount.earned-amount {
-  color: #46A302;
+  color: var(--jade);
 }
 
 .xp-amount {
@@ -585,7 +594,7 @@
 
 .cr-stars {
   font-size: 13px;
-  color: #FFD900;
+  color: var(--copper);
   letter-spacing: 1px;
   flex-shrink: 0;
 }
@@ -645,7 +654,7 @@
 }
 
 .star-btn.lit {
-  color: #FFD900;
+  color: var(--copper);
 }
 
 .star-btn:active {
@@ -710,8 +719,8 @@
 }
 
 .review-save-btn.saved {
-  background: #58CC02;
-  box-shadow: 0 3px 0 #46A302;
+  background: var(--jade);
+  box-shadow: 0 3px 0 var(--jade);
 }
 
 .review-save-btn:active {
@@ -740,7 +749,7 @@
 
 .visited-btn:active {
   transform: translateY(3px);
-  box-shadow: 0 1px 0 #b8325a !important;
+  box-shadow: 0 1px 0 var(--indigo-deep) !important;
 }
 
 .visited-btn-icon {
@@ -772,7 +781,7 @@
 .visited-done-text {
   font-size: 15px;
   font-weight: 800;
-  color: #46A302;
+  color: var(--jade);
 }
 
 .visited-cancel-btn {
@@ -840,14 +849,14 @@
   font-weight: 900;
   color: var(--text-dark);
 }
-.rec-card.active .rec-card-title { color: #46A302; }
+.rec-card.active .rec-card-title { color: var(--jade); }
 .rec-card-sub {
   font-size: 12px;
   font-weight: 600;
   color: var(--text-mid);
 }
 .rec-card.active .rec-card-sub {
-  color: #58CC02;
+  color: var(--jade);
   font-weight: 700;
 }
 .rec-cancel-btn {
@@ -970,4 +979,100 @@
 }
 .card-rec-tag {
   font-size: 13px;
+}
+
+/* ── 照片纪念 ── */
+.photo-memory {
+  margin-bottom: 14px;
+}
+.pm-label {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-mid);
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.pm-count {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-dim);
+}
+.photo-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+@media (max-width: 360px) {
+  .photo-grid { grid-template-columns: repeat(3, 1fr); }
+}
+.photo-thumb {
+  position: relative;
+  aspect-ratio: 1;
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--bg-input);
+  border: 1px solid var(--border);
+}
+.photo-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.photo-del {
+  position: absolute;
+  top: 3px;
+  right: 3px;
+  width: 20px;
+  height: 20px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.55);
+  color: #fff;
+  font-size: 15px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+.photo-add {
+  aspect-ratio: 1;
+  border-radius: 12px;
+  border: 2px dashed var(--border);
+  background: var(--bg-input);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--sakura-pink);
+  transition: border-color 0.2s, background 0.2s;
+}
+.photo-add:hover {
+  border-color: var(--sakura-pink);
+  background: var(--sakura-pale);
+}
+.photo-add.uploading {
+  cursor: wait;
+  opacity: 0.7;
+}
+.photo-add-plus {
+  font-size: 26px;
+  font-weight: 300;
+  line-height: 1;
+}
+.photo-spinner {
+  font-size: 18px;
+  animation: photo-spin 1s linear infinite;
+}
+@keyframes photo-spin {
+  to { transform: rotate(360deg); }
+}
+.photo-err {
+  margin-top: 8px;
+  font-size: 12px;
+  color: var(--duo-orange, #e67e22);
 }
