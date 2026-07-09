@@ -1,7 +1,7 @@
 {
   "name": "sakura-tour",
   "version": "1.0.0",
-  "description": "Cherry blossom travel planner for Chengdu",
+  "description": "云贵川小城旅行规划助手 — 季节攻略、行程规划、打卡纪念",
   "type": "module",
   "scripts": {
     "dev": "vite",
