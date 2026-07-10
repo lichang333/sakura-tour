@@ -89,12 +89,24 @@
   box-shadow: var(--shadow-card);
 }
 
-.rm-brush.active.lv5 { border-color: #B4472F; background: rgba(180,71,47,0.12); }
-.rm-brush.active.lv4 { border-color: var(--copper); background: rgba(169,112,47,0.12); }
-.rm-brush.active.lv3 { border-color: #D4A73C; background: rgba(212,167,60,0.14); }
-.rm-brush.active.lv2 { border-color: #4E7A5E; background: rgba(78,122,94,0.12); }
-.rm-brush.active.lv1 { border-color: #7CA6CB; background: rgba(124,166,203,0.14); }
-.rm-brush.active.lv0 { border-color: var(--text-mid); background: var(--bg-card2); }
+.rm-brush.active {
+  border-color: var(--text-dark);
+  background: var(--bg-card2);
+}
+
+/* 图例色块：刷子上直接展示该等级的印色 */
+.rm-swatch {
+  width: 16px;
+  height: 16px;
+  border-radius: 5px;
+  flex-shrink: 0;
+}
+.rm-swatch.lv0 { border: 1.5px dashed var(--border); background: transparent; }
+.rm-swatch.lv1 { background: var(--rm-l1); }
+.rm-swatch.lv2 { background: var(--rm-l2); }
+.rm-swatch.lv3 { background: var(--rm-l3); }
+.rm-swatch.lv4 { background: var(--rm-l4); }
+.rm-swatch.lv5 { background: var(--rm-l5); }
 
 /* ── 方格拼图 ── */
 .rm-grid {
@@ -123,17 +135,51 @@
   transform: scale(0.9);
 }
 
+.rm-cell {
+  border: none;
+}
+
 .rm-cell.lv0 {
   border: 1.5px dashed var(--border);
   background: transparent;
   color: var(--text-mid);
 }
 
-.rm-cell.lv1 { background: #7CA6CB; border: 1.5px solid #7CA6CB; color: #101319; }
-.rm-cell.lv2 { background: #4E7A5E; border: 1.5px solid #4E7A5E; color: #F3EEE3; }
-.rm-cell.lv3 { background: #D4A73C; border: 1.5px solid #D4A73C; color: #2A2213; }
-.rm-cell.lv4 { background: var(--copper); border: 1.5px solid var(--copper); color: #FFF8EC; }
-.rm-cell.lv5 { background: #B4472F; border: 1.5px solid #B4472F; color: #FFF3EC; }
+/* 铜色单色阶（ordinal，浅→深 = 走得越深印色越浓）
+   已用 dataviz validate_palette.js --ordinal 对两种主题表面色校验通过：
+   亮度单调、相邻 ΔL≥0.06、浅端对比 ≥2:1、单一色相 */
+.rm-cell.lv1 { background: var(--rm-l1); color: var(--rm-t1); }
+.rm-cell.lv2 { background: var(--rm-l2); color: var(--rm-t2); }
+.rm-cell.lv3 { background: var(--rm-l3); color: var(--rm-t3); text-shadow: 0 1px 2px rgba(0,0,0,0.35); }
+.rm-cell.lv4 { background: var(--rm-l4); color: var(--rm-t4); }
+.rm-cell.lv5 { background: var(--rm-l5); color: var(--rm-t5); }
+
+/* 色阶变量：浅色主题（表面 #F4EFE4） */
+.region-map-section {
+  --rm-l1: #C89F63; --rm-t1: #2A1D0C;
+  --rm-l2: #B88749; --rm-t2: #2A1D0C;
+  --rm-l3: #A16829; --rm-t3: #FFF6E8;
+  --rm-l4: #834F1D; --rm-t4: #FFF6E8;
+  --rm-l5: #613813; --rm-t5: #FFF6E8;
+}
+
+/* 深色主题（表面 #1A1F27）：独立选定的色阶，非亮度翻转 */
+[data-theme="dark"] .region-map-section {
+  --rm-l1: #6E4E1F; --rm-t1: #FFF6E8;
+  --rm-l2: #8A6329; --rm-t2: #FFF6E8;
+  --rm-l3: #A87C36; --rm-t3: #FFF6E8;
+  --rm-l4: #C69746; --rm-t4: #2A1D0C;
+  --rm-l5: #E2B25C; --rm-t5: #2A1D0C;
+}
+[data-theme="dark"] .rm-cell.lv3 { text-shadow: 0 1px 2px rgba(0,0,0,0.45); }
+
+/* 桌面 hover 反馈（tooltip 由 title 提供） */
+@media (hover: hover) {
+  .rm-cell:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  }
+}
 
 .rm-foot {
   display: flex;
