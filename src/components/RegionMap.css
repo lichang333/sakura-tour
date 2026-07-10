@@ -1,0 +1,149 @@
+/* ── 制县等级 · 云贵川 ── */
+.region-map-section {
+  margin: 22px 16px 0;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 16px 14px 12px;
+  box-shadow: var(--shadow-card);
+}
+
+.rm-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.rm-title {
+  font-family: var(--font-serif);
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 3px;
+}
+
+.rm-sub {
+  font-size: 11.5px;
+  color: var(--text-mid);
+  font-weight: 600;
+}
+
+.rm-score {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.rm-score-num {
+  font-family: var(--font-serif);
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--copper);
+  line-height: 1;
+}
+
+.rm-score-label {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-mid);
+}
+
+/* ── 等级刷子 ── */
+.rm-brushes {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.rm-brush {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1px;
+  padding: 6px 2px;
+  border-radius: 10px;
+  border: 1.5px solid var(--border);
+  background: transparent;
+  transition: all 0.15s ease;
+}
+
+.rm-brush-label {
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--text-dark);
+}
+
+.rm-brush-v {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--text-mid);
+}
+
+.rm-brush.active {
+  border-width: 2px;
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-card);
+}
+
+.rm-brush.active.lv5 { border-color: #B4472F; background: rgba(180,71,47,0.12); }
+.rm-brush.active.lv4 { border-color: var(--copper); background: rgba(169,112,47,0.12); }
+.rm-brush.active.lv3 { border-color: #D4A73C; background: rgba(212,167,60,0.14); }
+.rm-brush.active.lv2 { border-color: #4E7A5E; background: rgba(78,122,94,0.12); }
+.rm-brush.active.lv1 { border-color: #7CA6CB; background: rgba(124,166,203,0.14); }
+.rm-brush.active.lv0 { border-color: var(--text-mid); background: var(--bg-card2); }
+
+/* ── 方格拼图 ── */
+.rm-grid {
+  display: grid;
+  gap: 3px;
+  margin-bottom: 10px;
+}
+
+.rm-cell {
+  aspect-ratio: 1;
+  min-width: 0;
+  border-radius: 7px;
+  font-size: 10.5px;
+  font-weight: 800;
+  letter-spacing: 0;
+  line-height: 1.1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1px;
+  transition: transform 0.12s ease, background 0.2s, border-color 0.2s;
+  overflow: hidden;
+}
+
+.rm-cell:active {
+  transform: scale(0.9);
+}
+
+.rm-cell.lv0 {
+  border: 1.5px dashed var(--border);
+  background: transparent;
+  color: var(--text-mid);
+}
+
+.rm-cell.lv1 { background: #7CA6CB; border: 1.5px solid #7CA6CB; color: #101319; }
+.rm-cell.lv2 { background: #4E7A5E; border: 1.5px solid #4E7A5E; color: #F3EEE3; }
+.rm-cell.lv3 { background: #D4A73C; border: 1.5px solid #D4A73C; color: #2A2213; }
+.rm-cell.lv4 { background: var(--copper); border: 1.5px solid var(--copper); color: #FFF8EC; }
+.rm-cell.lv5 { background: #B4472F; border: 1.5px solid #B4472F; color: #FFF3EC; }
+
+.rm-foot {
+  display: flex;
+  justify-content: space-between;
+  font-size: 10.5px;
+  font-weight: 600;
+  color: var(--text-mid);
+}
+
+@media (min-width: 760px) {
+  .rm-cell { font-size: 12px; border-radius: 9px; }
+  .rm-grid { gap: 4px; }
+}

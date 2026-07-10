@@ -3,6 +3,7 @@ import { useUser } from '../context/UserContext'
 import { useCity } from '../context/CityContext'
 import { useTheme } from '../context/ThemeContext'
 import { loadAMap } from '../lib/amap'
+import RegionMap from './RegionMap'
 import './MapPage.css'
 
 const DEFAULT_CENTER = [100.1800, 25.7200] // 大理，找不到任何标记点时的默认中心
@@ -188,6 +189,8 @@ export default function MapPage({ goToSpot }) {
           <span className="ml-item"><span className="ml-dot want" />想去</span>
         </div>
       </div>
+
+      <RegionMap />
 
       <div className="map-list-section">
         {visible.length === 0 ? (

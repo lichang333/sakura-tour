@@ -30,6 +30,7 @@ const toPublic = (user) => ({
   removedActivities:  JSON.parse(user.removed_activities  || '[]'),
   recommendedSpots:   JSON.parse(user.recommended_spots   || '[]'),
   spotPhotos:         JSON.parse(user.spot_photos         || '{}'),
+  regionLevels:       JSON.parse(user.region_levels       || '{}'),
   joinedAt: user.created_at,
 })
 
@@ -45,7 +46,7 @@ router.patch('/me', auth, (req, res) => {
   const user = db.prepare('SELECT * FROM users WHERE id = ?').get(req.userId)
   if (!user) return res.status(404).json({ error: '用户不存在' })
 
-  const { xp, checkedSpots, completedActivities, visitedSpots, spotRatings, spotReviews, removedActivities, recommendedSpots } = req.body
+  const { xp, checkedSpots, completedActivities, visitedSpots, spotRatings, spotReviews, removedActivities, recommendedSpots, regionLevels } = req.body
 
   const newXp               = xp                 !== undefined ? xp                                   : user.xp
   const newSpots            = checkedSpots        !== undefined ? JSON.stringify(checkedSpots)          : user.checked_spots
@@ -55,14 +56,15 @@ router.patch('/me', auth, (req, res) => {
   const newReviews          = spotReviews         !== undefined ? JSON.stringify(spotReviews)           : user.spot_reviews
   const newRemovedActs      = removedActivities   !== undefined ? JSON.stringify(removedActivities)     : user.removed_activities
   const newRecommended      = recommendedSpots    !== undefined ? JSON.stringify(recommendedSpots)      : user.recommended_spots
+  const newRegionLevels     = regionLevels        !== undefined ? JSON.stringify(regionLevels)          : user.region_levels
 
   db.prepare(`
     UPDATE users
     SET xp = ?, checked_spots = ?, completed_activities = ?,
         visited_spots = ?, spot_ratings = ?, spot_reviews = ?,
-        removed_activities = ?, recommended_spots = ?
+        removed_activities = ?, recommended_spots = ?, region_levels = ?
     WHERE id = ?
-  `).run(newXp, newSpots, newActivities, newVisited, newRatings, newReviews, newRemovedActs, newRecommended, req.userId)
+  `).run(newXp, newSpots, newActivities, newVisited, newRatings, newReviews, newRemovedActs, newRecommended, newRegionLevels, req.userId)
 
   const updated = db.prepare('SELECT * FROM users WHERE id = ?').get(req.userId)
   res.json(toPublic(updated))

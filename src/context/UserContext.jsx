@@ -197,6 +197,16 @@ export function UserProvider({ children }) {
     return syncUser({ visitedSpots: nextVisited, checkedSpots: nextChecked, xp: nextXp })
   }
 
+  /* 制县等级：设置某地州市的到访等级（0 = 清除） */
+  const setRegionLevel = (code, level) => {
+    const u = userRef.current
+    if (!u || code == null) return
+    const levels = { ...(u.regionLevels || {}) }
+    if (!level) delete levels[code]
+    else levels[code] = level
+    return syncUser({ regionLevels: levels })
+  }
+
   // 「去过 → 清除」：取消去过 + 移出想去 + 扣减 XP，合并为一次 PATCH，
   // 避免两次 syncUser 的 payload 在服务端乱序互相覆盖
   const clearSpot = (spotId, xpAmount = 0) => {
@@ -229,7 +239,7 @@ export function UserProvider({ children }) {
   }
 
   return (
-    <UserContext.Provider value={{ user, loading, signup, login, logout, addXP, toggleSpot, toggleActivity, toggleVisited, clearSpot, rateSpot, reviewSpot, removeActivity, restoreActivities, toggleRecommend, addSpotPhoto, removeSpotPhoto }}>
+    <UserContext.Provider value={{ user, loading, signup, login, logout, addXP, toggleSpot, toggleActivity, toggleVisited, clearSpot, setRegionLevel, rateSpot, reviewSpot, removeActivity, restoreActivities, toggleRecommend, addSpotPhoto, removeSpotPhoto }}>
       {children}
     </UserContext.Provider>
   )
