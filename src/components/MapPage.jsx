@@ -61,7 +61,7 @@ export default function MapPage({ goToSpot }) {
   const visitedIds = new Set(user?.visitedSpots || [])
 
   const allSpots = CITIES.flatMap(c =>
-    c.spots
+    [...c.spots, ...(c.nearbySpots || [])]
       .filter(s => typeof s.lat === 'number' && typeof s.lng === 'number')
       .map(s => ({ ...s, cityId: c.id, cityName: c.name, cityEmoji: c.emoji }))
   )

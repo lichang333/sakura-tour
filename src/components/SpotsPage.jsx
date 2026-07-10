@@ -88,7 +88,9 @@ export default function SpotsPage({ pendingSpot, clearPendingSpot }) {
   }, [selected])
 
   const spots = currentCity.spots
-  const nearby = currentCity.nearbySpots
+  const nearby = currentCity.nearbySpots || []
+  // 周边顺游也可想去/打卡：查找与操作都走合并列表
+  const allCitySpots = [...spots, ...nearby]
 
   const checkedIds  = new Set(user?.checkedSpots  || [])
   const visitedIds  = new Set(user?.visitedSpots  || [])
@@ -108,7 +110,7 @@ export default function SpotsPage({ pendingSpot, clearPendingSpot }) {
     e.stopPropagation()
     const wasChecked  = checkedIds.has(id)
     const wasVisited  = visitedIds.has(id)
-    const spot = spots.find(s => s.id === id)
+    const spot = allCitySpots.find(s => s.id === id)
 
     if (wasVisited) {
       // 去过 → 清除（取消去过 + 移出想去 + 扣减 XP，单次 PATCH）
@@ -127,7 +129,7 @@ export default function SpotsPage({ pendingSpot, clearPendingSpot }) {
   const handleVisitedBtn = (id, e) => {
     e?.stopPropagation()
     const wasVisited = visitedIds.has(id)
-    const spot = spots.find(s => s.id === id)
+    const spot = allCitySpots.find(s => s.id === id)
     // 合并 XP 进同一个 syncUser，避免两次 PATCH 竞态覆盖 visited_spots
     toggleVisited(id, spot?.xp || 0)
   }
@@ -162,7 +164,7 @@ export default function SpotsPage({ pendingSpot, clearPendingSpot }) {
   }
 
   if (selected !== null) {
-    const spot = spots.find(s => s.id === selected)
+    const spot = allCitySpots.find(s => s.id === selected)
     if (!spot) { setSelected(null); return null }
     const isVisited      = visitedIds.has(spot.id)
     const isChecked      = checkedIds.has(spot.id)
@@ -560,15 +562,13 @@ export default function SpotsPage({ pendingSpot, clearPendingSpot }) {
       {nearby && nearby.length > 0 && (
         <div className="nearby-section">
           <h3 className="nearby-title">周边小众景点</h3>
-          <p className="nearby-sub">顺道一游 · 点按在高德地图查看位置</p>
+          <p className="nearby-sub">顺道一游 · 可加入想去清单，点卡片看详情</p>
           <div className="nearby-list">
-            {nearby.map((s, i) => (
-              <a
-                key={i}
+            {nearby.map((s) => (
+              <div
+                key={s.id}
                 className="nearby-card"
-                href={`https://uri.amap.com/search?keyword=${encodeURIComponent(s.name)}&city=${encodeURIComponent(currentCity.name)}`}
-                target="_blank"
-                rel="noreferrer"
+                onClick={() => setSelected(s.id)}
               >
                 <span className="nearby-emoji">{s.emoji}</span>
                 <div className="nearby-info">
@@ -576,8 +576,17 @@ export default function SpotsPage({ pendingSpot, clearPendingSpot }) {
                   <div className="nearby-desc">{s.desc}</div>
                   <div className="nearby-transport">{s.transport}</div>
                 </div>
-                <span className="nearby-go">地图 ↗</span>
-              </a>
+                <div className="nearby-actions">
+                  <SpotStateBtn id={s.id} />
+                  <a
+                    className="nearby-go"
+                    href={`https://uri.amap.com/search?keyword=${encodeURIComponent(s.name)}&city=${encodeURIComponent(currentCity.name)}`}
+                    target="_blank"
+                    rel="noreferrer"
+                    onClick={(e) => e.stopPropagation()}
+                  >地图 ↗</a>
+                </div>
+              </div>
             ))}
           </div>
         </div>

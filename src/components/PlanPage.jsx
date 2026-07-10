@@ -43,6 +43,7 @@ export default function PlanPage({ setActiveTab }) {
   const [mode,      setMode]      = useState('template')
   const [activeDay, setActiveDay] = useState(1)
   const [showAdd,   setShowAdd]   = useState(false)
+  const [customText, setCustomText] = useState('')
 
   const { user, toggleActivity, toggleSpot, toggleVisited, addXP, removeActivity, restoreActivities } = useUser()
   const { currentCity } = useCity()
@@ -51,7 +52,8 @@ export default function PlanPage({ setActiveTab }) {
   const CUSTOM_KEY  = `sakura_custom_acts_${currentCity.id}`
 
   const itineraryDays = currentCity.itineraryDays
-  const citySpots     = currentCity.spots
+  // 想去清单包含主景点 + 周边顺游
+  const citySpots     = [...currentCity.spots, ...(currentCity.nearbySpots || [])]
 
   /* 我的清单 */
   const checkedIds  = user?.checkedSpots  || []
@@ -103,6 +105,16 @@ export default function PlanPage({ setActiveTab }) {
     const next = { ...customActs, [dk]: [...exist, { id, icon: spot.emoji, text: `${spot.name}（${spot.district}）`, time: '自定义', spotId: spot.id }] }
     setCustomActs(next); saveObj(cityCustomKey, next)
     setShowAdd(false)
+  }
+
+  const addTextToDay = () => {
+    const text = customText.trim()
+    if (!text) return
+    const dk    = String(activeDay)
+    const exist = customActs[dk] || []
+    const next = { ...customActs, [dk]: [...exist, { id: `custom-txt-${Date.now()}`, icon: '✏️', text, time: '自定义', spotId: null }] }
+    setCustomActs(next); saveObj(cityCustomKey, next)
+    setCustomText('')
   }
 
   const removeCustomAct = (act, e) => {
@@ -215,6 +227,13 @@ export default function PlanPage({ setActiveTab }) {
                           <div className="msc-tags">
                             {spot.tags.filter(t => t !== '必去').slice(0, 2).map((t, i) => <span key={i} className="msc-tag">{t}</span>)}
                           </div>
+                          {!visitedIds.has(spot.id) && (
+                            <button
+                              className="msc-plan-btn"
+                              onClick={() => { setMode('template'); setShowAdd(true) }}
+                              title="切到推荐行程，把它排进某一天"
+                            >📅 排进行程</button>
+                          )}
                         </div>
                       </div>
                     </div>
@@ -354,37 +373,49 @@ export default function PlanPage({ setActiveTab }) {
                 {/* XP 条 */}
                 <div className="day-xp-bar">🌟 完成今日行程获得 +250 XP</div>
 
-                {/* 从清单加入 */}
-                {mySpots.length > 0 && (
-                  <div className="spots-add-section">
-                    <button
-                      className="sas-toggle"
-                      onClick={() => setShowAdd(v => !v)}
-                    >
-                      <span>➕ 从我的清单加入今日</span>
-                      <span className="sas-arrow">{showAdd ? '▲' : '▼'}</span>
-                    </button>
-                    {showAdd && (
-                      <div className="sas-list">
-                        {addableSpots.length === 0 ? (
-                          <div className="sas-empty">当前清单景点已全部加入今天 ✓</div>
-                        ) : (
-                          addableSpots.map(spot => (
-                            <button
-                              key={spot.id}
-                              className="sas-spot-btn"
-                              onClick={() => addSpotToDay(spot)}
-                            >
-                              <span className="sas-emoji">{spot.emoji}</span>
-                              <span className="sas-name">{spot.name}</span>
-                              <span className="sas-add">+ 加入</span>
-                            </button>
-                          ))
-                        )}
+                {/* 编辑今日行程：从想去清单加入 / 手写自定义活动 */}
+                <div className="spots-add-section">
+                  <button
+                    className="sas-toggle"
+                    onClick={() => setShowAdd(v => !v)}
+                  >
+                    <span>✏️ 编辑今日行程</span>
+                    <span className="sas-arrow">{showAdd ? '▲' : '▼'}</span>
+                  </button>
+                  {showAdd && (
+                    <div className="sas-list">
+                      {addableSpots.length > 0 && addableSpots.map(spot => (
+                        <button
+                          key={spot.id}
+                          className="sas-spot-btn"
+                          onClick={() => addSpotToDay(spot)}
+                        >
+                          <span className="sas-emoji">{spot.emoji}</span>
+                          <span className="sas-name">{spot.name}</span>
+                          <span className="sas-add">+ 加入</span>
+                        </button>
+                      ))}
+                      {mySpots.length > 0 && addableSpots.length === 0 && (
+                        <div className="sas-empty">想去清单的景点已全部安排 ✓</div>
+                      )}
+                      <div className="sas-custom-row">
+                        <input
+                          className="sas-input"
+                          value={customText}
+                          onChange={e => setCustomText(e.target.value)}
+                          onKeyDown={e => { if (e.key === 'Enter') addTextToDay() }}
+                          placeholder="自定义活动，如：才村看日落"
+                          maxLength={40}
+                        />
+                        <button
+                          className="sas-custom-add"
+                          disabled={!customText.trim()}
+                          onClick={addTextToDay}
+                        >加入</button>
                       </div>
-                    )}
-                  </div>
-                )}
+                    </div>
+                  )}
+                </div>
               </div>
             )
           })}

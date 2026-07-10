@@ -4,8 +4,8 @@ import { CITIES } from '../data/cities'
 import { REC_TAGS } from './SpotsPage'
 import './ProfilePage.css'
 
-// Gather all spots across all cities
-const allSpots = CITIES.flatMap(c => c.spots)
+// Gather all spots across all cities (周边顺游也可想去/打卡)
+const allSpots = CITIES.flatMap(c => [...c.spots, ...(c.nearbySpots || [])])
 
 export default function ProfilePage({ goToSpot }) {
   const { user, logout } = useUser()

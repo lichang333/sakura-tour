@@ -110,7 +110,7 @@ export function UserProvider({ children }) {
 
   const toggleSpot = (spotId) => {
     const u = userRef.current
-    if (!u) return
+    if (!u || spotId == null) return
     const checked = u.checkedSpots || []
     const next = checked.includes(spotId)
       ? checked.filter(id => id !== spotId)
@@ -177,7 +177,7 @@ export function UserProvider({ children }) {
 
   const toggleVisited = (spotId, xpAmount = 0) => {
     const u = userRef.current
-    if (!u) return
+    if (!u || spotId == null) return
     const visited = u.visitedSpots || []
     const isVisited = visited.includes(spotId)
     const nextVisited = isVisited
@@ -201,7 +201,7 @@ export function UserProvider({ children }) {
   // 避免两次 syncUser 的 payload 在服务端乱序互相覆盖
   const clearSpot = (spotId, xpAmount = 0) => {
     const u = userRef.current
-    if (!u) return
+    if (!u || spotId == null) return
     const nextVisited = (u.visitedSpots || []).filter(id => id !== spotId)
     const nextChecked = (u.checkedSpots || []).filter(id => id !== spotId)
     const nextXp = Math.max(0, (u.xp || 0) - xpAmount)

@@ -1218,3 +1218,12 @@
     align-items: stretch;
   }
 }
+
+/* 周边卡片右侧：想去按钮 + 地图外链 */
+.nearby-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+  flex-shrink: 0;
+}

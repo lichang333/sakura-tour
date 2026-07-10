@@ -43,10 +43,11 @@ export default function TipsPage({ goToSpot }) {
 
   const { tips, foods, packList, seasonInfo } = currentCity
 
-  /* ── 集章：景点章（已抵达自动盖）+ 美食章（手动盖「尝」） ── */
+  /* ── 集章：景点章（含周边顺游，已抵达自动盖）+ 美食章（手动盖「尝」） ── */
   const visitedIds = new Set(user?.visitedSpots || [])
-  const spotStampCount = currentCity.spots.filter(s => visitedIds.has(s.id)).length
-  const stampTotal     = currentCity.spots.length + foods.length
+  const stampSpots = [...currentCity.spots, ...(currentCity.nearbySpots || [])]
+  const spotStampCount = stampSpots.filter(s => visitedIds.has(s.id)).length
+  const stampTotal     = stampSpots.length + foods.length
   const stampCollected = spotStampCount + tasted.size
 
   return (
@@ -88,7 +89,7 @@ export default function TipsPage({ goToSpot }) {
         </div>
         <p className="stamp-sub">抵达景点自动盖章 · 美食尝过后点击盖章</p>
         <div className="stamp-grid">
-          {currentCity.spots.map(s => {
+          {stampSpots.map(s => {
             const got = visitedIds.has(s.id)
             return (
               <button

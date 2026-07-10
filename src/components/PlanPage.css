@@ -952,3 +952,70 @@
     align-items: start;
   }
 }
+
+/* 自定义活动输入行 */
+.sas-custom-row {
+  display: flex;
+  gap: 8px;
+  padding: 10px 12px;
+  border-top: 1px dashed var(--border);
+}
+
+.sas-input {
+  flex: 1;
+  min-width: 0;
+  padding: 9px 12px;
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  background: var(--bg-card);
+  color: var(--text-dark);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.sas-input:focus {
+  outline: none;
+  border-color: var(--indigo);
+}
+
+.sas-input::placeholder {
+  color: var(--text-mid);
+  opacity: 0.7;
+}
+
+.sas-custom-add {
+  flex-shrink: 0;
+  padding: 9px 16px;
+  border-radius: 10px;
+  background: var(--indigo);
+  color: #F3EEE3;
+  font-size: 13px;
+  font-weight: 700;
+  transition: opacity 0.2s;
+}
+
+.sas-custom-add:disabled {
+  opacity: 0.4;
+}
+
+[data-theme="dark"] .sas-custom-add {
+  color: #101319;
+}
+
+/* 想去清单 → 推荐行程 桥接按钮 */
+.msc-plan-btn {
+  margin-left: auto;
+  padding: 5px 10px;
+  border-radius: 8px;
+  border: 1.5px solid var(--indigo);
+  background: transparent;
+  color: var(--indigo);
+  font-size: 11px;
+  font-weight: 700;
+  white-space: nowrap;
+  transition: all 0.2s;
+}
+
+.msc-plan-btn:active {
+  transform: scale(0.95);
+}
