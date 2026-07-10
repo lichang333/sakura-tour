@@ -234,24 +234,24 @@ const daliItinerary = [
     day: 1, title: "抵达·古城慢生活", date: "Day 1",
     activities: [
       { time: "下午", icon: "✈️", text: "抵达大理，入住古城或环海客栈" },
-      { time: "傍晚", icon: "🏯", text: "大理古城人民路散步，登南城门看夕阳" },
+      { time: "傍晚", icon: "🏯", text: "大理古城人民路散步，登南城门看夕阳", spotId: 'd1' },
       { time: "晚上", icon: "🎸", text: "洋人街喝一杯 / 听一场民谣，尝白族菜" },
     ]
   },
   {
     day: 2, title: "环洱海一日", date: "Day 2",
     activities: [
-      { time: "清晨", icon: "🌅", text: "才村码头看洱海日出" },
-      { time: "上午", icon: "🛵", text: "租电瓶车/包车走西线：生态廊道—喜洲" },
-      { time: "中午", icon: "🌾", text: "喜洲古镇稻田大树打卡，吃喜洲粑粑" },
-      { time: "傍晚", icon: "⛵", text: "双廊看苍洱全景与日落" },
+      { time: "清晨", icon: "🌅", text: "才村码头看洱海日出", spotId: 'd7' },
+      { time: "上午", icon: "🛵", text: "租电瓶车/包车走西线：生态廊道—喜洲", spotId: 'd2' },
+      { time: "中午", icon: "🌾", text: "喜洲古镇稻田大树打卡，吃喜洲粑粑", spotId: 'd5' },
+      { time: "傍晚", icon: "⛵", text: "双廊看苍洱全景与日落", spotId: 'd6' },
     ]
   },
   {
     day: 3, title: "苍山与古塔", date: "Day 3",
     activities: [
-      { time: "上午", icon: "⛰️", text: "感通索道上苍山玉带路，平视洱海" },
-      { time: "下午", icon: "🛕", text: "崇圣寺三塔，聚影池拍倒影" },
+      { time: "上午", icon: "⛰️", text: "感通索道上苍山玉带路，平视洱海", spotId: 'd3' },
+      { time: "下午", icon: "🛕", text: "崇圣寺三塔，聚影池拍倒影", spotId: 'd4' },
       { time: "晚上", icon: "🍲", text: "古城吃酸辣鱼 / 汽锅鸡暖身" },
     ]
   },

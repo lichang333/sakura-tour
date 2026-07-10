@@ -39,7 +39,7 @@ function AppInner() {
   const pages = {
     home:    <HomePage setActiveTab={setActiveTab} goToSpot={goToSpot} />,
     spots:   <SpotsPage pendingSpot={pendingSpot} clearPendingSpot={() => setPendingSpot(null)} />,
-    plan:    <PlanPage setActiveTab={setActiveTab} />,
+    plan:    <PlanPage setActiveTab={setActiveTab} goToSpot={goToSpot} />,
     tips:    <TipsPage goToSpot={goToSpot} />,
     map:     <MapPage goToSpot={goToSpot} />,
     profile: <ProfilePage goToSpot={goToSpot} />,

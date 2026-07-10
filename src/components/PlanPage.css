@@ -1019,3 +1019,23 @@
 .msc-plan-btn:active {
   transform: scale(0.95);
 }
+
+/* 活动关联景点跳转角标 */
+.act-spot-jump {
+  flex-shrink: 0;
+  width: 26px;
+  height: 26px;
+  border-radius: 8px;
+  background: var(--bg-card2);
+  border: 1px solid var(--border);
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.2s;
+}
+
+.act-spot-jump:active {
+  border-color: var(--indigo);
+  transform: scale(0.92);
+}

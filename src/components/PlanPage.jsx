@@ -39,7 +39,7 @@ function ProgressRing({ pct, size = 48, stroke = 4 }) {
 function loadObj(key)    { try { return JSON.parse(localStorage.getItem(key) || '{}') } catch { return {} } }
 function saveObj(key, o) { localStorage.setItem(key, JSON.stringify(o)) }
 
-export default function PlanPage({ setActiveTab }) {
+export default function PlanPage({ setActiveTab, goToSpot }) {
   const [mode,      setMode]      = useState('template')
   const [activeDay, setActiveDay] = useState(1)
   const [showAdd,   setShowAdd]   = useState(false)
@@ -77,12 +77,24 @@ export default function PlanPage({ setActiveTab }) {
   /* ── 推荐行程操作 ── */
   const makeKey = (day, i) => `${currentCity.id}:${day}-${i}`
 
-  const handleToggle = (key) => {
+  /* 勾选活动：若关联景点且未抵达，顺带盖章（visited+20XP 合并一次 PATCH）；
+     取消勾选只扣 XP，不撤销打卡——「取消安排」不等于「没去过」，
+     撤销打卡请去景点页操作 */
+  const completeAct = (act, wasDone) => {
+    const sid = act?.spotId
+    if (!wasDone) {
+      if (sid != null && !visitedIds.has(sid)) toggleVisited(sid, 20)
+      else addXP(20)
+    } else {
+      addXP(-20)
+    }
+  }
+
+  const handleToggle = (key, act) => {
     if (removedActs.has(key)) return
     const wasDone = completedSet.has(key)
     toggleActivity(key)
-    // 勾选 +20 / 取消 -20：不对称的话反复勾选可以无限刷 XP
-    addXP(wasDone ? -20 : 20)
+    completeAct(act, wasDone)
   }
 
   const removeAct = (key, e) => {
@@ -127,16 +139,7 @@ export default function PlanPage({ setActiveTab }) {
   const handleCustomToggle = (act) => {
     const wasDone = completedSet.has(act.id)
     toggleActivity(act.id)
-    if (!wasDone) {
-      // 打✅ 时：标记去过 + XP 合并进一次 syncUser，避免竞态
-      if (act.spotId != null) toggleVisited(act.spotId, 20)
-      else addXP(20)
-    } else {
-      // 取消✅ 时对称扣回 20 XP；若当前是去过状态则一并撤销
-      const visitedList = user?.visitedSpots || []
-      if (act.spotId != null && visitedList.includes(act.spotId)) toggleVisited(act.spotId, 20)
-      else addXP(-20)
-    }
+    completeAct(act, wasDone)
   }
 
   /* ── 统计（推荐行程） ── */
@@ -316,7 +319,7 @@ export default function PlanPage({ setActiveTab }) {
                     const gone = removedActs.has(key)
                     if (gone) return null
                     return (
-                      <div key={i} className={`activity-card ${done ? 'done' : ''}`} onClick={() => handleToggle(key)}>
+                      <div key={i} className={`activity-card ${done ? 'done' : ''}`} onClick={() => handleToggle(key, act)}>
                         <div className="act-timeline">
                           <div className={`act-dot ${done ? 'done' : ''}`} style={done ? {} : { borderColor: theme.color + '66' }} />
                           {(i < day.activities.length - 1 || dayCustom(day.day).length > 0) && <div className="act-line" />}
@@ -326,6 +329,13 @@ export default function PlanPage({ setActiveTab }) {
                           <div className="act-card-inner">
                             <span className="act-icon">{act.icon}</span>
                             <span className="act-text">{act.text}</span>
+                            {act.spotId != null && (
+                              <button
+                                className="act-spot-jump"
+                                onClick={(e) => { e.stopPropagation(); goToSpot?.(act.spotId) }}
+                                title="查看对应景点"
+                              >📍</button>
+                            )}
                             <button
                               className="act-remove-btn"
                               onClick={(e) => removeAct(key, e)}
