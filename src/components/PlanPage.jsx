@@ -202,18 +202,18 @@ export default function PlanPage({ setActiveTab }) {
                           <button className="msc-remove" onClick={() => toggleSpot(spot.id)} title="从清单移除">✕</button>
                         </div>
                         <div className="msc-details">
-                          <div className="msc-row"><span className="msc-icon">🌸</span><span>{spot.peakTime}</span></div>
+                          <div className="msc-row"><span className="msc-icon">🗓️</span><span>{spot.peakTime}</span></div>
                           <div className="msc-row"><span className="msc-icon">🎫</span><span>{spot.ticket}</span></div>
                           <div className="msc-row"><span className="msc-icon">🚇</span><span>{spot.transport}</span></div>
                         </div>
                         <div className="msc-footer">
                           <span className="msc-xp" style={{ color: spot.color }}>+{spot.xp} XP</span>
                           {visitedIds.has(spot.id)
-                            ? <span className="msc-visited-badge">✓ 已去过</span>
+                            ? <span className="msc-visited-badge">✓ 已抵达</span>
                             : spot.isHot && <span className="msc-hot-badge">🔥 必去</span>
                           }
                           <div className="msc-tags">
-                            {spot.tags.slice(0, 2).map((t, i) => <span key={i} className="msc-tag">{t}</span>)}
+                            {spot.tags.filter(t => t !== '必去').slice(0, 2).map((t, i) => <span key={i} className="msc-tag">{t}</span>)}
                           </div>
                         </div>
                       </div>

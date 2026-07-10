@@ -133,33 +133,31 @@ export default function SpotsPage({ pendingSpot, clearPendingSpot }) {
   }
 
   /* ── 三态按钮渲染 ── */
-  const SpotStateBtn = ({ id, style = {} }) => {
+  /* 盖章式三态：未加入（描边「想去」）→ 想去（实心靛蓝）→ 已抵达（铜色圆印） */
+  const SpotStateBtn = ({ id }) => {
     const visited = visitedIds.has(id)
     const checked = checkedIds.has(id)
 
     if (visited) return (
       <button
         className="check-btn visited"
-        style={{ background: '#58CC02', borderColor: '#58CC02', ...style }}
         onClick={(e) => handleCheckBtn(id, e)}
-        title="点击取消"
-      >✈️</button>
+        title="已抵达 · 点击清除"
+      >抵</button>
     )
     if (checked) return (
       <button
         className="check-btn done"
-        style={{ background: 'transparent', borderColor: 'var(--indigo)', color: 'var(--indigo)', ...style }}
         onClick={(e) => handleCheckBtn(id, e)}
-        title="点击标记去过"
-      >♡</button>
+        title="想去 · 点击标记已抵达"
+      >♡ 想去</button>
     )
     return (
       <button
         className="check-btn"
-        style={{ background: 'transparent', borderColor: '#DDD', ...style }}
         onClick={(e) => handleCheckBtn(id, e)}
-        title="加入行程"
-      >+</button>
+        title="加入想去清单"
+      >＋ 想去</button>
     )
   }
 

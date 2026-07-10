@@ -244,9 +244,6 @@
   transform: rotate(-4deg);
 }
 
-.check-btn.visited {
-  font-size: 14px;
-}
 
 .spot-peak {
   font-size: 12px;
@@ -293,16 +290,50 @@
   margin-left: auto;
 }
 
+/* 盖章式三态按钮 —— 与手账印章视觉一体 */
 .check-btn {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  border: 2px solid;
-  font-size: 16px;
-  font-weight: 900;
   flex-shrink: 0;
-  color: white;
+  padding: 7px 12px;
+  border-radius: 10px;
+  border: 1.5px solid var(--indigo);
+  background: transparent;
+  color: var(--indigo);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
   transition: all 0.2s ease;
+}
+
+.check-btn:active {
+  transform: scale(0.94);
+}
+
+/* 想去 —— 实心靛蓝 */
+.check-btn.done {
+  background: var(--indigo);
+  border-color: var(--indigo);
+  color: #F3EEE3;
+}
+
+[data-theme="dark"] .check-btn.done {
+  color: #101319;
+}
+
+/* 已抵达 —— 铜色圆印（呼应地图印章） */
+.check-btn.visited {
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border-radius: 50%;
+  border: 2px solid var(--copper);
+  background: var(--copper-soft, var(--copper));
+  color: #FFF8EC;
+  font-family: var(--font-serif);
+  font-size: 17px;
+  font-weight: 600;
+  transform: rotate(-6deg);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.18);
 }
 
 /* Nearby Section */

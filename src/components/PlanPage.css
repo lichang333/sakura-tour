@@ -33,9 +33,10 @@
   transition: all 0.2s ease;
 }
 
+/* 实心靛蓝激活态：原先激活底色与容器底色几乎同色，浅色模式下分不清当前 tab */
 .pmt-btn.active {
-  background: var(--bg-card);
-  color: var(--sakura-pink);
+  background: var(--indigo);
+  color: #F3EEE3;
   box-shadow: var(--shadow-card);
 }
 
@@ -48,6 +49,20 @@
   border-radius: 10px;
   min-width: 20px;
   text-align: center;
+}
+
+.pmt-btn.active .pmt-count {
+  background: rgba(255, 255, 255, 0.22);
+  color: #F3EEE3;
+}
+
+/* 深色模式下 --indigo 是浅蓝，需配深字（与 map-filter-chip 惯例一致） */
+[data-theme="dark"] .pmt-btn.active {
+  color: #101319;
+}
+[data-theme="dark"] .pmt-btn.active .pmt-count {
+  background: rgba(0, 0, 0, 0.28);
+  color: #E8EDF2;
 }
 
 .pmt-green {
