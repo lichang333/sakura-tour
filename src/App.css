@@ -48,7 +48,10 @@
   /* Only the logged-in shell (which has the nav) becomes a two-column app.
      The auth screen keeps its centered layout. */
   .app:has(.bottom-nav) {
-    max-width: 1160px;
+    /* 铺满视口：侧边栏贴左缘，内容区背景连续 —— 盒式居中会在
+       两侧露出 body 背景，看起来像「空隙」 */
+    max-width: none;
+    box-shadow: none;
     display: grid;
     grid-template-columns: 240px minmax(0, 1fr);
     grid-template-rows: auto 1fr;
@@ -60,22 +63,27 @@
     grid-row: 2;
     padding: 8px 32px 56px;
   }
-  /* Centre and cap the page content inside the wide column */
+  /* Centre and cap the page content inside the wide column —
+     readable line length, breathing room stays the same colour */
   .app:has(.bottom-nav) .main > * {
-    max-width: 780px;
+    max-width: 820px;
     margin-inline: auto;
   }
 }
 
-/* ── Large desktop: use the extra width instead of growing margins ── */
+/* ── Large desktop: wider content column ── */
 @media (min-width: 1280px) {
-  .app:has(.bottom-nav) {
-    max-width: 1400px;
-  }
   .app:has(.bottom-nav) .main {
     padding: 12px 48px 64px;
   }
   .app:has(.bottom-nav) .main > * {
     max-width: 1020px;
+  }
+}
+
+/* ── XL desktop (≥1600px): let content breathe a bit wider ── */
+@media (min-width: 1600px) {
+  .app:has(.bottom-nav) .main > * {
+    max-width: 1120px;
   }
 }
