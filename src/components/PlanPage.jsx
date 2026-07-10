@@ -60,10 +60,10 @@ export default function PlanPage({ setActiveTab, goToSpot }) {
   const visitedIds  = new Set(user?.visitedSpots || [])
   const mySpots     = citySpots.filter(s => checkedIds.includes(s.id))
 
-  /* 推荐行程 — 完成 */
+  /* 每日行程 — 完成 */
   const completedSet = new Set(user?.completedActivities || [])
 
-  /* 推荐行程 — 移除 (DB via user state) */
+  /* 每日行程 — 移除 (DB via user state) */
   const removedActs = new Set(user?.removedActivities || [])
   const [customActs, setCustomActs] = useState(() => loadObj(CUSTOM_KEY))
 
@@ -74,7 +74,7 @@ export default function PlanPage({ setActiveTab, goToSpot }) {
 
   const cityCustomKey = CUSTOM_KEY
 
-  /* ── 推荐行程操作 ── */
+  /* ── 每日行程操作 ── */
   const makeKey = (day, i) => `${currentCity.id}:${day}-${i}`
 
   /* 勾选活动：若关联景点且未抵达，顺带盖章（visited+20XP 合并一次 PATCH）；
@@ -142,7 +142,7 @@ export default function PlanPage({ setActiveTab, goToSpot }) {
     completeAct(act, wasDone)
   }
 
-  /* ── 统计（推荐行程） ── */
+  /* ── 统计（每日行程） ── */
   const totalAll     = itineraryDays.reduce((a, d) => a + d.activities.filter((_, i) => !removedActs.has(makeKey(d.day, i))).length, 0)
   const completedAll = itineraryDays.reduce((a, d) => a + d.activities.filter((_, i) => !removedActs.has(makeKey(d.day, i)) && completedSet.has(makeKey(d.day, i))).length, 0)
   const hasRemoved   = removedActs.size > 0
@@ -163,7 +163,7 @@ export default function PlanPage({ setActiveTab, goToSpot }) {
         <p className="page-sub">{currentCity.emoji} {currentCity.name} · 打卡景点 · 规划路线</p>
         <div className="plan-mode-tabs">
           <button className={`pmt-btn ${mode === 'template' ? 'active' : ''}`} onClick={() => setMode('template')}>
-            推荐行程
+            每日行程
             {completedAll > 0 && <span className="pmt-count pmt-green">{completedAll}/{totalAll}</span>}
           </button>
           <button className={`pmt-btn ${mode === 'myplan' ? 'active' : ''}`} onClick={() => setMode('myplan')}>
@@ -234,7 +234,7 @@ export default function PlanPage({ setActiveTab, goToSpot }) {
                             <button
                               className="msc-plan-btn"
                               onClick={() => { setMode('template'); setShowAdd(true) }}
-                              title="切到推荐行程，把它排进某一天"
+                              title="切到每日行程，把它排进某一天"
                             >📅 排进行程</button>
                           )}
                         </div>
@@ -249,7 +249,7 @@ export default function PlanPage({ setActiveTab, goToSpot }) {
         </div>
       )}
 
-      {/* ════════════ 推荐行程 ════════════ */}
+      {/* ════════════ 每日行程 ════════════ */}
       {mode === 'template' && (
         <>
           {/* Day Tabs — 含进度环 */}
