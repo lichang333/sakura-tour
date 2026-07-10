@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>制县等级 · 云贵川 — 地图原型</title>
+<title>制县等级 · 云贵川 — 积木地图原型</title>
 <style>
   :root {
     --paper: #E7E0D0;
@@ -11,131 +11,56 @@
     --ink: #1B2430;
     --text-mid: #586572;
     --copper: #A9702F;
-    /* 已校验铜墨色阶（浅色表面） */
-    --l1: #C89F63; --t1: #2A1D0C;
-    --l2: #B88749; --t2: #2A1D0C;
-    --l3: #A16829; --t3: #FFF6E8;
-    --l4: #834F1D; --t4: #FFF6E8;
-    --l5: #613813; --t5: #FFF6E8;
+    --l1: #C89F63; --l2: #B88749; --l3: #A16829; --l4: #834F1D; --l5: #613813;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
     background: var(--paper);
     font-family: -apple-system, 'PingFang SC', 'Noto Sans SC', sans-serif;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-height: 100vh;
-    padding: 24px 12px 48px;
+    display: flex; flex-direction: column; align-items: center;
+    min-height: 100vh; padding: 24px 12px 48px;
   }
-  .head {
-    display: flex;
-    align-items: baseline;
-    gap: 14px;
-    margin-bottom: 4px;
-  }
-  h1 {
-    font-family: 'Songti SC', 'Noto Serif SC', serif;
-    font-size: 26px;
-    color: var(--ink);
-    letter-spacing: 0.04em;
-  }
-  .score {
-    font-family: 'Songti SC', serif;
-    font-size: 30px;
-    font-weight: 700;
-    color: var(--copper);
-  }
+  .head { display: flex; align-items: baseline; gap: 14px; margin-bottom: 4px; }
+  h1 { font-family: 'Songti SC','Noto Serif SC',serif; font-size: 26px; color: var(--ink); letter-spacing: 0.04em; }
+  .score { font-family: 'Songti SC',serif; font-size: 30px; font-weight: 700; color: var(--copper); }
   .score small { font-size: 13px; color: var(--text-mid); font-weight: 600; }
   .sub { font-size: 13px; color: var(--text-mid); font-weight: 600; margin-bottom: 14px; }
 
-  .stage { position: relative; max-width: 860px; width: 100%; }
-  svg { width: 100%; height: auto; display: block; }
-
-  .cellpoly {
-    fill: var(--land);
-    stroke: var(--ink);
-    stroke-width: 2;
-    stroke-linejoin: round;
-    cursor: pointer;
-    transition: filter 0.12s ease;
-  }
-  .cellpoly:hover { filter: brightness(0.94); }
-  .cellpoly.lv1 { fill: var(--l1); }
-  .cellpoly.lv2 { fill: var(--l2); }
-  .cellpoly.lv3 { fill: var(--l3); }
-  .cellpoly.lv4 { fill: var(--l4); }
-  .cellpoly.lv5 { fill: var(--l5); }
-
-  .rlabel {
-    font-size: 15px;
-    font-weight: 700;
-    fill: var(--ink);
-    text-anchor: middle;
-    dominant-baseline: central;
-    pointer-events: none;
-  }
-  .rlabel.lv3, .rlabel.lv4, .rlabel.lv5 { fill: #FFF6E8; }
-
-  /* 图例：横排在地图上方，不遮挡地图 */
-  .legend {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 6px 16px;
-    margin-bottom: 12px;
-    max-width: 860px;
-  }
+  .legend { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 16px; margin-bottom: 12px; max-width: 760px; }
   .lg-row { display: flex; align-items: center; gap: 6px; font-size: 12.5px; font-weight: 700; color: var(--ink); }
   .lg-sw { width: 20px; height: 14px; border: 1.5px solid var(--ink); border-radius: 3px; flex-shrink: 0; }
   .lg-sw.lv0 { background: var(--land); }
-  .lg-sw.lv1 { background: var(--l1); }
-  .lg-sw.lv2 { background: var(--l2); }
-  .lg-sw.lv3 { background: var(--l3); }
-  .lg-sw.lv4 { background: var(--l4); }
-  .lg-sw.lv5 { background: var(--l5); }
+  .lg-sw.lv1 { background: var(--l1); } .lg-sw.lv2 { background: var(--l2); }
+  .lg-sw.lv3 { background: var(--l3); } .lg-sw.lv4 { background: var(--l4); } .lg-sw.lv5 { background: var(--l5); }
   .lg-lv { color: var(--text-mid); font-weight: 600; }
 
-  /* 点击弹出等级菜单 */
+  .stage { position: relative; max-width: 720px; width: 100%; }
+  svg { width: 100%; height: auto; display: block; overflow: visible; }
+
+  .cellpoly {
+    fill: var(--land); stroke: var(--ink); stroke-width: 1.4;
+    stroke-linejoin: round; cursor: pointer; transition: filter 0.12s ease;
+  }
+  .cellpoly:hover { filter: brightness(0.93); }
+  .cellpoly.lv1 { fill: var(--l1); } .cellpoly.lv2 { fill: var(--l2); }
+  .cellpoly.lv3 { fill: var(--l3); } .cellpoly.lv4 { fill: var(--l4); } .cellpoly.lv5 { fill: var(--l5); }
+
+  .rlabel { font-weight: 700; fill: var(--ink); text-anchor: middle; dominant-baseline: central; pointer-events: none; }
+  .rlabel.lv3, .rlabel.lv4, .rlabel.lv5 { fill: #FFF6E8; }
+
   .popup {
-    position: absolute;
-    background: #FFFDF8;
-    border: 2px solid var(--ink);
-    border-radius: 10px;
-    box-shadow: 0 4px 14px rgba(0,0,0,0.22);
-    z-index: 10;
-    min-width: 148px;
-    overflow: hidden;
-    display: none;
+    position: absolute; background: #FFFDF8; border: 2px solid var(--ink);
+    border-radius: 10px; box-shadow: 0 4px 14px rgba(0,0,0,0.22);
+    z-index: 10; min-width: 150px; overflow: hidden; display: none;
   }
   .popup.open { display: block; }
-  .pp-title {
-    font-size: 13px;
-    font-weight: 800;
-    color: var(--ink);
-    padding: 8px 12px;
-    background: var(--paper);
-    border-bottom: 1.5px solid var(--ink);
-  }
-  .pp-item {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    width: 100%;
-    padding: 7px 12px;
-    border: none;
-    background: transparent;
-    font-size: 13px;
-    font-weight: 700;
-    color: var(--ink);
-    cursor: pointer;
-    text-align: left;
-  }
+  .pp-title { font-size: 13px; font-weight: 800; color: var(--ink); padding: 8px 12px; background: var(--paper); border-bottom: 1.5px solid var(--ink); }
+  .pp-item { display: flex; align-items: center; gap: 8px; width: 100%; padding: 7px 12px; border: none; background: transparent; font-size: 13px; font-weight: 700; color: var(--ink); cursor: pointer; text-align: left; }
   .pp-item:hover { background: #EFE9DB; }
   .pp-item .lg-sw { width: 18px; height: 12px; }
   .pp-item.current { background: #E8E0CC; }
 
-  .foot { margin-top: 10px; font-size: 12px; color: var(--text-mid); font-weight: 600; }
+  .foot { margin-top: 12px; font-size: 12px; color: var(--text-mid); font-weight: 600; }
 </style>
 </head>
 <body>
@@ -143,7 +68,7 @@
     <h1>制县等级 · 云贵川</h1>
     <div class="score"><span id="score">0</span><small> 分 · <span id="touched">0</span>/46 地</small></div>
   </div>
-  <p class="sub">点击地州市，选择你的到访等级 —— 走得越深，印色越浓</p>
+  <p class="sub">点击地州市，选择你的到访等级 —— 积木拼出云贵川真实轮廓</p>
 
   <div class="legend" id="legend"></div>
 
@@ -151,145 +76,50 @@
     <svg id="map" xmlns="http://www.w3.org/2000/svg"></svg>
     <div class="popup" id="popup"></div>
   </div>
-  <p class="foot">川 21 · 黔 9 · 滇 16 ｜ 布局为近似地理的方格拼图 ｜ 数据存于本机</p>
+  <p class="foot">川 21 · 黔 9 · 滇 16 ｜ 由三省真实边界栅格化为积木网格 ｜ 数据存于本机</p>
 
+<script src="/tile-geo.js"></script>
 <script>
-/* ── 数据：每个地州市 = 一组网格格子（12 列 × 11 行，近似真实地理与相对面积）── */
-const REGIONS = [
-  /* 四川 21 */
-  { code:'sc-ganzi',     name:'甘孜',   cells:[[0,1],[1,1],[2,1],[0,2],[1,2],[2,2],[0,3],[1,3],[2,3]] },
-  { code:'sc-aba',       name:'阿坝',   cells:[[3,0],[4,0],[5,0],[3,1],[4,1],[5,1]] },
-  { code:'sc-mianyang',  name:'绵阳',   cells:[[6,0],[6,1],[7,1]] },
-  { code:'sc-guangyuan', name:'广元',   cells:[[7,0],[8,0]] },
-  { code:'sc-bazhong',   name:'巴中',   cells:[[9,0],[9,1]] },
-  { code:'sc-dazhou',    name:'达州',   cells:[[10,0],[10,1]] },
-  { code:'sc-nanchong',  name:'南充',   cells:[[8,1],[8,2]] },
-  { code:'sc-guangan',   name:'广安',   cells:[[9,2]] },
-  { code:'sc-deyang',    name:'德阳',   cells:[[7,2]] },
-  { code:'sc-chengdu',   name:'成都',   cells:[[5,2],[6,2]] },
-  { code:'sc-yaan',      name:'雅安',   cells:[[3,2],[4,2],[3,3]] },
-  { code:'sc-meishan',   name:'眉山',   cells:[[4,3],[5,3]] },
-  { code:'sc-ziyang',    name:'资阳',   cells:[[6,3],[7,3]] },
-  { code:'sc-suining',   name:'遂宁',   cells:[[8,3]] },
-  { code:'sc-leshan',    name:'乐山',   cells:[[4,4],[5,4]] },
-  { code:'sc-neijiang',  name:'内江',   cells:[[6,4]] },
-  { code:'sc-zigong',    name:'自贡',   cells:[[7,4]] },
-  { code:'sc-luzhou',    name:'泸州',   cells:[[8,4],[8,5]] },
-  { code:'sc-yibin',     name:'宜宾',   cells:[[5,5],[6,5],[7,5]] },
-  { code:'sc-liangshan', name:'凉山',   cells:[[2,4],[3,4],[2,5],[3,5],[4,5],[4,6]] },
-  { code:'sc-panzhihua', name:'攀枝花', cells:[[3,6]] },
-  /* 贵州 9 */
-  { code:'gz-zunyi',       name:'遵义',   cells:[[9,4],[10,4],[9,5],[10,5]] },
-  { code:'gz-tongren',     name:'铜仁',   cells:[[11,4],[11,5]] },
-  { code:'gz-bijie',       name:'毕节',   cells:[[7,6],[8,6]] },
-  { code:'gz-guiyang',     name:'贵阳',   cells:[[9,6]] },
-  { code:'gz-qiandongnan', name:'黔东南', cells:[[10,6],[11,6],[11,7]] },
-  { code:'gz-liupanshui',  name:'六盘水', cells:[[7,7]] },
-  { code:'gz-anshun',      name:'安顺',   cells:[[8,7]] },
-  { code:'gz-qiannan',     name:'黔南',   cells:[[9,7],[10,7],[9,8]] },
-  { code:'gz-qianxinan',   name:'黔西南', cells:[[7,8],[8,8]] },
-  /* 云南 16 */
-  { code:'yn-diqing',   name:'迪庆', cells:[[0,4],[1,4]] },
-  { code:'yn-nujiang',  name:'怒江', cells:[[0,5],[0,6]] },
-  { code:'yn-lijiang',  name:'丽江', cells:[[1,5],[1,6],[2,6]] },
-  { code:'yn-zhaotong', name:'昭通', cells:[[5,6],[6,6]] },
-  { code:'yn-baoshan',  name:'保山', cells:[[0,7],[1,7]] },
-  { code:'yn-dali',     name:'大理', cells:[[2,7],[3,7]] },
-  { code:'yn-chuxiong', name:'楚雄', cells:[[4,7],[4,8]] },
-  { code:'yn-kunming',  name:'昆明', cells:[[5,7],[5,8]] },
-  { code:'yn-qujing',   name:'曲靖', cells:[[6,7],[6,8]] },
-  { code:'yn-dehong',   name:'德宏', cells:[[0,8]] },
-  { code:'yn-lincang',  name:'临沧', cells:[[1,8],[2,8]] },
-  { code:'yn-puer',     name:'普洱', cells:[[3,8],[2,9],[3,9],[4,9]] },
-  { code:'yn-yuxi',     name:'玉溪', cells:[[5,9]] },
-  { code:'yn-honghe',   name:'红河', cells:[[6,9],[5,10],[6,10]] },
-  { code:'yn-wenshan',  name:'文山', cells:[[7,9],[7,10]] },
-  { code:'yn-xishuangbanna', name:'版纳', cells:[[3,10],[4,10]] },
-]
-
 const LEVELS = [
-  { v:5, label:'住过 · 居住过' },
-  { v:4, label:'住宿 · 过夜旅行' },
-  { v:3, label:'玩过 · 游玩到访' },
-  { v:2, label:'途经 · 路过没停留' },
-  { v:1, label:'落地 · 仅中转' },
-  { v:0, label:'未踏 · 还没去过' },
+  { v:5, label:'住过 · 居住过' }, { v:4, label:'住宿 · 过夜旅行' },
+  { v:3, label:'玩过 · 游玩到访' }, { v:2, label:'途经 · 路过没停留' },
+  { v:1, label:'落地 · 仅中转' }, { v:0, label:'未踏 · 还没去过' },
 ]
+const CELL = 26  // px/格
+const { cols, rows, bbox, regions } = TILE_GEO
+const [bx0, by0, bx1, by1] = bbox
+const W = (bx1 - bx0) * CELL, H = (by1 - by0) * CELL
 
-const CELL = 64, PAD = 8
-const COLS = 12, ROWS = 11
-const W = COLS * CELL + PAD * 2, H = ROWS * CELL + PAD * 2
-
-/* ── 边缘取消：同区域格子的共享边消失，剩余边连成外轮廓 ── */
-function outlinePath(cells) {
-  const edges = new Map()  // "x1,y1|x2,y2" (起点→终点，顺时针)
-  const put = (a, b) => {
-    const rev = `${b}|${a}`
-    if (edges.has(rev)) edges.delete(rev)   // 共享边：相邻格子方向相反，抵消
-    else edges.set(`${a}|${b}`, [a, b])
-  }
-  for (const [x, y] of cells) {
-    const p = (cx, cy) => `${cx},${cy}`
-    put(p(x, y),     p(x+1, y))     // 上边 →
-    put(p(x+1, y),   p(x+1, y+1))   // 右边 ↓
-    put(p(x+1, y+1), p(x, y+1))     // 下边 ←
-    put(p(x, y+1),   p(x, y))       // 左边 ↑
-  }
-  // 串边成环
-  const nextFrom = new Map()
-  for (const [, [a, b]] of edges) nextFrom.set(a, b)
-  const paths = []
-  const used = new Set()
-  for (const [start] of nextFrom) {
-    if (used.has(start)) continue
-    let cur = start, pts = []
-    do {
-      used.add(cur)
-      pts.push(cur)
-      cur = nextFrom.get(cur)
-    } while (cur && cur !== start)
-    paths.push(pts)
-  }
-  const toXY = s => s.split(',').map(Number)
-  return paths.map(pts =>
-    'M' + pts.map(s => {
-      const [gx, gy] = toXY(s)
-      return `${PAD + gx * CELL},${PAD + gy * CELL}`
-    }).join('L') + 'Z'
-  ).join(' ')
-}
-
-/* ── 状态 ── */
 const KEY = 'sakura_region_levels_proto'
 let levels = {}
 try { levels = JSON.parse(localStorage.getItem(KEY) || '{}') } catch {}
 const save = () => localStorage.setItem(KEY, JSON.stringify(levels))
 
-/* ── 渲染 ── */
 const svg = document.getElementById('map')
-svg.setAttribute('viewBox', `0 0 ${W} ${H}`)
-const SVGNS = 'http://www.w3.org/2000/svg'
+svg.setAttribute('viewBox', `${-2} ${-2} ${W + 4} ${H + 4}`)
+const NS = 'http://www.w3.org/2000/svg'
+
+// 路径坐标从「格」单位 → px，并平移裁剪原点
+function scalePath(d) {
+  return d.replace(/([\d.]+),([\d.]+)/g, (_, x, y) =>
+    `${((+x) - bx0) * CELL},${((+y) - by0) * CELL}`)
+}
 
 const shapes = {}, labels = {}
-for (const r of REGIONS) {
-  const path = document.createElementNS(SVGNS, 'path')
-  path.setAttribute('d', outlinePath(r.cells))
+for (const r of regions) {
+  const path = document.createElementNS(NS, 'path')
+  path.setAttribute('d', scalePath(r.d))
   path.setAttribute('class', 'cellpoly')
-  path.addEventListener('click', (e) => openPopup(e, r))
+  path.setAttribute('fill-rule', 'evenodd')
+  path.addEventListener('click', e => openPopup(e, r))
   svg.appendChild(path)
   shapes[r.code] = path
 
-  // 标签放在格子集的质心（取包含质心的格子中心，避免 L 形标到区域外）
-  const cx = r.cells.reduce((s, c) => s + c[0], 0) / r.cells.length
-  const cy = r.cells.reduce((s, c) => s + c[1], 0) / r.cells.length
-  let best = r.cells[0], bd = Infinity
-  for (const c of r.cells) {
-    const d = (c[0] - cx) ** 2 + (c[1] - cy) ** 2
-    if (d < bd) { bd = d; best = c }
-  }
-  const t = document.createElementNS(SVGNS, 'text')
-  t.setAttribute('x', PAD + (best[0] + 0.5) * CELL)
-  t.setAttribute('y', PAD + (best[1] + 0.5) * CELL)
+  const t = document.createElementNS(NS, 'text')
+  t.setAttribute('x', (r.lx - bx0) * CELL)
+  t.setAttribute('y', (r.ly - by0) * CELL)
+  // 单格州市字号小一点，避免溢出
+  t.setAttribute('font-size', r.n <= 2 ? 10 : r.name.length >= 3 ? 11 : 13)
   t.setAttribute('class', 'rlabel')
   t.textContent = r.name
   svg.appendChild(t)
@@ -298,62 +128,42 @@ for (const r of REGIONS) {
 
 function refresh() {
   let total = 0, touched = 0
-  for (const r of REGIONS) {
+  for (const r of regions) {
     const lv = levels[r.code] || 0
     shapes[r.code].setAttribute('class', `cellpoly lv${lv}`)
     labels[r.code].setAttribute('class', `rlabel lv${lv}`)
-    total += lv
-    if (lv > 0) touched++
+    total += lv; if (lv > 0) touched++
   }
   document.getElementById('score').textContent = total
   document.getElementById('touched').textContent = touched
 }
 
-/* ── 图例 ── */
 document.getElementById('legend').innerHTML = LEVELS.map(l =>
   `<div class="lg-row"><span class="lg-sw lv${l.v}"></span>${l.label.split(' · ')[0]}<span class="lg-lv">${l.v}</span></div>`
 ).join('')
 
-/* ── 点击弹出菜单 ── */
 const popup = document.getElementById('popup')
 let popupRegion = null
-
 function openPopup(e, r) {
   popupRegion = r
   const cur = levels[r.code] || 0
-  popup.innerHTML =
-    `<div class="pp-title">@ ${r.name}</div>` +
-    LEVELS.map(l =>
-      `<button class="pp-item ${l.v === cur ? 'current' : ''}" data-v="${l.v}">
-        <span class="lg-sw lv${l.v}"></span>${l.label}
-      </button>`
-    ).join('')
+  popup.innerHTML = `<div class="pp-title">@ ${r.name}</div>` +
+    LEVELS.map(l => `<button class="pp-item ${l.v===cur?'current':''}" data-v="${l.v}"><span class="lg-sw lv${l.v}"></span>${l.label}</button>`).join('')
   const stage = document.querySelector('.stage').getBoundingClientRect()
   popup.classList.add('open')
-  const pw = popup.offsetWidth, ph = popup.offsetHeight
-  let px = e.clientX - stage.left + 10
-  let py = e.clientY - stage.top - 10
-  px = Math.min(px, stage.width - pw - 4)
-  py = Math.max(4, Math.min(py, stage.height - ph - 4))
-  popup.style.left = px + 'px'
-  popup.style.top = py + 'px'
+  let px = e.clientX - stage.left + 10, py = e.clientY - stage.top - 10
+  px = Math.min(px, stage.width - popup.offsetWidth - 4)
+  py = Math.max(4, Math.min(py, stage.height - popup.offsetHeight - 4))
+  popup.style.left = px + 'px'; popup.style.top = py + 'px'
 }
-
-popup.addEventListener('click', (e) => {
-  const btn = e.target.closest('.pp-item')
-  if (!btn || !popupRegion) return
+popup.addEventListener('click', e => {
+  const btn = e.target.closest('.pp-item'); if (!btn || !popupRegion) return
   const v = +btn.dataset.v
-  if (v === 0) delete levels[popupRegion.code]
-  else levels[popupRegion.code] = v
-  save()
-  refresh()
-  popup.classList.remove('open')
+  if (v === 0) delete levels[popupRegion.code]; else levels[popupRegion.code] = v
+  save(); refresh(); popup.classList.remove('open')
 })
-
-document.addEventListener('click', (e) => {
-  if (!e.target.closest('.popup') && !e.target.closest('.cellpoly')) {
-    popup.classList.remove('open')
-  }
+document.addEventListener('click', e => {
+  if (!e.target.closest('.popup') && !e.target.closest('.cellpoly')) popup.classList.remove('open')
 })
 
 refresh()
