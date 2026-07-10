@@ -105,12 +105,12 @@
   border-radius: 16px;
   font-size: 15px;
   font-weight: 900;
-  box-shadow: 0 4px 0 #C44E78;
+  box-shadow: 0 2px 0 var(--indigo-deep);
   transition: all 0.12s ease;
 }
 
 .mpe-goto-btn:active {
-  box-shadow: 0 2px 0 #C44E78;
+  box-shadow: 0 1px 0 var(--indigo-deep);
   transform: translateY(2px);
 }
 
@@ -430,7 +430,7 @@
   background: var(--sakura-pink);
   border-color: var(--sakura-pink);
   color: white;
-  box-shadow: 0 3px 0 #C44E78;
+  box-shadow: 0 2px 0 var(--indigo-deep);
 }
 
 /* Day Content */

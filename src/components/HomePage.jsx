@@ -2,7 +2,15 @@ import { useUser } from '../context/UserContext'
 import { useCity } from '../context/CityContext'
 import './HomePage.css'
 
-export default function HomePage({ setActiveTab }) {
+// Darken a #RRGGBB color by `amt` (0-1) for the woodcut thumb gradient
+function shade(hex, amt = 0.28) {
+  const n = parseInt(hex.slice(1), 16)
+  const f = c => Math.max(0, Math.round(c * (1 - amt)))
+  const [r, g, b] = [n >> 16 & 255, n >> 8 & 255, n & 255].map(f)
+  return `rgb(${r},${g},${b})`
+}
+
+export default function HomePage({ setActiveTab, goToSpot }) {
   const { user } = useUser()
   const { currentCity } = useCity()
 
@@ -11,9 +19,9 @@ export default function HomePage({ setActiveTab }) {
   const tipCount  = currentCity.tips.length
 
   const stats = [
-    { label: '景点',    value: String(spotCount), icon: '📍' },
-    { label: '行程天数', value: String(dayCount),  icon: '📅' },
-    { label: '旅行攻略', value: String(tipCount),  icon: '💡' },
+    { label: '景点',    value: String(spotCount) },
+    { label: '行程天数', value: String(dayCount) },
+    { label: '旅行攻略', value: String(tipCount) },
   ]
 
   const peakSeason = currentCity.seasonInfo?.rows?.find(r => r.dot === 'peak')
@@ -24,7 +32,11 @@ export default function HomePage({ setActiveTab }) {
   const citySpots   = currentCity.spots
   const cityChecked = checkedIds.filter(id => citySpots.some(s => s.id === id)).length
   const cityVisited = visitedIds.filter(id => citySpots.some(s => s.id === id)).length
-  const progressPct = spotCount > 0 ? Math.round((cityChecked / spotCount) * 100) : 0
+
+  // 本地精选 — hot picks first, then by rating
+  const curated = [...citySpots]
+    .sort((a, b) => (b.isHot ? 1 : 0) - (a.isHot ? 1 : 0) || b.rating - a.rating)
+    .slice(0, 3)
 
   // Completed plan activities for this city
   const completedActs = (user?.completedActivities || [])
@@ -42,7 +54,7 @@ export default function HomePage({ setActiveTab }) {
   const dailyTasks = [
     {
       id: 'explore',
-      icon: '📍', iconBg: 'var(--nav-active-bg)',
+      glyph: '探',
       title: `探索${currentCity.name}景点`,
       desc: cityChecked === 0
         ? `共 ${spotCount} 个景点，加入心愿清单吧`
@@ -55,7 +67,7 @@ export default function HomePage({ setActiveTab }) {
     },
     {
       id: 'plan',
-      icon: '📅', iconBg: 'var(--bg-yellow-tint)',
+      glyph: '程',
       title: '规划行程打卡',
       desc: completedActs.length === 0
         ? `${totalActs} 项行程等你完成`
@@ -68,11 +80,11 @@ export default function HomePage({ setActiveTab }) {
     },
     {
       id: 'visit',
-      icon: '✈️', iconBg: 'var(--bg-green-tint)',
+      glyph: '印',
       title: '实地打卡纪念',
       desc: cityVisited === 0
-        ? `去过景点后在"景点"页标记`
-        : `已打卡 ${cityVisited}/${cityChecked || spotCount} 个景点`,
+        ? `去过景点后在「景点」页标记`
+        : `已抵达 ${cityVisited}/${cityChecked || spotCount} 个景点`,
       progress: (cityChecked || spotCount) > 0 ? cityVisited / (cityChecked || spotCount) : 0,
       xp: cityVisited * 150,
       status: status(cityVisited > 0 && cityVisited >= (cityChecked || spotCount), cityVisited > 0),
@@ -81,16 +93,16 @@ export default function HomePage({ setActiveTab }) {
     },
     cityVisited > 0 && {
       id: 'review',
-      icon: '✍️', iconBg: 'var(--bg-red-tint)',
-      title: '分享旅行感受',
+      glyph: '记',
+      title: '写下旅行记忆',
       desc: reviewedCount === 0
         ? `去过 ${cityVisited} 个景点，写下你的感受`
-        : `已评价 ${reviewedCount}/${cityVisited} 个景点`,
+        : `已记录 ${reviewedCount}/${cityVisited} 个景点`,
       progress: cityVisited > 0 ? reviewedCount / cityVisited : 0,
       xp: reviewedCount * 100,
       status: status(reviewedCount >= cityVisited, reviewedCount > 0),
       action: () => setActiveTab('spots'),
-      actionLabel: '去评价',
+      actionLabel: '去记录',
     },
   ].filter(Boolean)
 
@@ -120,10 +132,11 @@ export default function HomePage({ setActiveTab }) {
       </div>
 
       {/* 足迹钤印条 */}
-      <button className="footstrip" onClick={() => setActiveTab('spots')}>
+      <button className="footstrip" onClick={() => setActiveTab('map')}>
         <div className="fs-left">
           <div className="fs-label">你的足迹</div>
           <div className="fs-count"><b>{cityVisited}</b> / {spotCount} 已抵达</div>
+          <div className="fs-meta">{user?.xp ?? 0} XP · 连续 {user?.streak ?? 0} 天</div>
         </div>
         <div className="stamps">
           {Array.from({ length: Math.min(spotCount, 6) }).map((_, i) => (
@@ -142,13 +155,48 @@ export default function HomePage({ setActiveTab }) {
         ))}
       </div>
 
+      {/* 本地精选 */}
+      <div className="section">
+        <div className="block-head">
+          <h2 className="section-title">本地精选</h2>
+          <button className="block-link" onClick={() => setActiveTab('spots')}>全部 →</button>
+        </div>
+        <div className="curated-list">
+          {curated.map(spot => {
+            const visited = visitedIds.includes(spot.id)
+            const checked = checkedIds.includes(spot.id)
+            return (
+              <button key={spot.id} className="spot-row" onClick={() => goToSpot?.(spot.id)}>
+                <div
+                  className="srow-thumb"
+                  style={{ background: `linear-gradient(150deg, ${spot.color}, ${shade(spot.color)})` }}
+                >
+                  <span className="srow-thumb-emoji">{spot.emoji}</span>
+                  <span className="srow-thumb-band" />
+                </div>
+                <div className="srow-meta">
+                  <div className="srow-name">
+                    {spot.name}
+                    {spot.isHot && <span className="tag-must">必去</span>}
+                  </div>
+                  <div className="srow-sub">{spot.tags?.filter(t => t !== '必去').slice(0, 2).join(' · ')}</div>
+                </div>
+                <div className={`srow-state ${visited ? 'visited' : checked ? 'want' : ''}`}>
+                  {visited ? '已抵达' : checked ? '想去' : '待探索'}
+                </div>
+              </button>
+            )
+          })}
+        </div>
+      </div>
+
       {/* Daily Tasks — fully dynamic */}
       <div className="section">
-        <h2 className="section-title">今日任务 🎯</h2>
+        <h2 className="section-title">今日任务</h2>
         {dailyTasks.map(task => (
           <div key={task.id} className={`task-card ${task.status}`}>
             <div className="task-top">
-              <div className="task-icon" style={{ background: task.iconBg }}>{task.icon}</div>
+              <div className={`task-glyph ${task.status}`}>{task.glyph}</div>
               <div className="task-info">
                 <div className="task-title">{task.title}</div>
                 <div className="task-desc">{task.desc}</div>
@@ -164,7 +212,7 @@ export default function HomePage({ setActiveTab }) {
               <div className="task-bar">
                 <div className="task-bar-fill" style={{
                   width: `${Math.round(task.progress * 100)}%`,
-                  background: task.status === 'done' ? '#58CC02' : 'var(--sakura-pink)',
+                  background: task.status === 'done' ? 'var(--jade)' : 'var(--copper)',
                 }} />
               </div>
               <span className="task-xp">+{task.xp} XP</span>
@@ -175,7 +223,7 @@ export default function HomePage({ setActiveTab }) {
 
       {/* Quick Tips */}
       <div className="section">
-        <h2 className="section-title">快速提示 ⚡</h2>
+        <h2 className="section-title">快速提示</h2>
         <div className="quick-tips">
           {currentCity.quickTips.map((tip, i) => (
             <div key={i} className="quick-tip">

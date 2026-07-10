@@ -242,6 +242,7 @@ const daliSeason = {
 /* ════════════════ CITIES 汇总 ════════════════
    扩展新城市：复制上方一整套 daliXxx 常量，改名后
    在下面数组里追加一个对象即可。
+   province 字段用于城市选择抽屉的分省分组（云南/贵州/四川）。
 ──────────────────────────────────────────────── */
 export const CITIES = [
   {
@@ -250,6 +251,7 @@ export const CITIES = [
     nameEn: 'Dali',
     emoji: '🏯',
     country: '云南',
+    province: '云南',
     tagline: '风花雪月，苍洱之间',
     heroBadge: '大理 · 云南',
     heroTitle: '苍山洱海',

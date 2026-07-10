@@ -1,12 +1,27 @@
-import { useUser } from '../context/UserContext'
+import { useState } from 'react'
+import { createPortal } from 'react-dom'
 import { useTheme } from '../context/ThemeContext'
 import { useCity } from '../context/CityContext'
 import './Header.css'
 
+const PROVINCE_ORDER = ['云南', '贵州', '四川']
+
 export default function Header() {
-  const { user } = useUser()
   const { theme, toggle } = useTheme()
   const { currentCity, selectCity, CITIES } = useCity()
+  const [sheetOpen, setSheetOpen] = useState(false)
+
+  // Group cities by province, keeping a stable 云→贵→川 order
+  const groups = PROVINCE_ORDER
+    .map(p => ({ province: p, cities: CITIES.filter(c => (c.province || c.country) === p) }))
+    .filter(g => g.cities.length > 0)
+  const ungrouped = CITIES.filter(c => !PROVINCE_ORDER.includes(c.province || c.country))
+  if (ungrouped.length > 0) groups.push({ province: '其他', cities: ungrouped })
+
+  const pick = (cityId) => {
+    selectCity(cityId)
+    setSheetOpen(false)
+  }
 
   return (
     <header className="header">
@@ -15,40 +30,56 @@ export default function Header() {
           <span className="logo-seal">桜</span>
           <span className="logo-text">Sakura Tour</span>
         </div>
+
         <div className="header-right">
-          <div className="xp-badge">
-            <span>⭐</span>
-            <span className="xp-count">{user?.xp ?? 0} XP</span>
-          </div>
-          <div className="streak-badge">
-            <span>🔥</span>
-            <span className="streak-count">{user?.streak ?? 0}天</span>
-          </div>
+          <button className="city-current" onClick={() => setSheetOpen(true)}>
+            <span className="city-current-emoji">{currentCity.emoji}</span>
+            <span className="city-current-name">{currentCity.name}</span>
+            <svg viewBox="0 0 24 24" className="city-current-chevron" fill="none"
+                 stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M6 9l6 6 6-6" />
+            </svg>
+          </button>
           <button
             className={`theme-toggle ${theme}`}
             onClick={toggle}
             aria-label="切换深色/浅色模式"
           >
-            <span className="theme-toggle-thumb" />
-            <span className="theme-icon">{theme === 'dark' ? '🌙' : '☀️'}</span>
+            <span className="theme-icon">{theme === 'dark' ? '☾' : '☀'}</span>
           </button>
         </div>
       </div>
 
-      {/* City Selector */}
-      <div className="city-selector">
-        {CITIES.map(city => (
-          <button
-            key={city.id}
-            className={`city-pill ${currentCity.id === city.id ? 'active' : ''}`}
-            onClick={() => selectCity(city.id)}
-          >
-            <span className="city-pill-emoji">{city.emoji}</span>
-            <span className="city-pill-name">{city.name}</span>
-          </button>
-        ))}
-      </div>
-
+      {/* 城市选择抽屉 — 分省分组，可扩展到几十座小城。
+          用 portal 挂到 body：header 的 backdrop-filter 会把
+          position:fixed 的子元素圈在自己的定位上下文里。 */}
+      {sheetOpen && createPortal(
+        <div className="city-sheet-overlay" onClick={() => setSheetOpen(false)}>
+          <div className="city-sheet" role="dialog" aria-label="选择城市" onClick={e => e.stopPropagation()}>
+            <div className="cs-handle" aria-hidden="true" />
+            <div className="cs-title">去哪座小城？</div>
+            {groups.map(g => (
+              <div key={g.province} className="cs-group">
+                <div className="cs-province">{g.province}</div>
+                <div className="cs-cities">
+                  {g.cities.map(city => (
+                    <button
+                      key={city.id}
+                      className={`cs-city ${currentCity.id === city.id ? 'active' : ''}`}
+                      onClick={() => pick(city.id)}
+                    >
+                      <span className="cs-city-emoji">{city.emoji}</span>
+                      <span className="cs-city-name">{city.name}</span>
+                      <span className="cs-city-tag">{city.tagline}</span>
+                    </button>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>,
+        document.body
+      )}
     </header>
   )
 }

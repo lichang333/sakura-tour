@@ -5,10 +5,10 @@ import './PlanPage.css'
 
 /* ── 每天主题色 ── */
 const DAY_THEMES = [
-  { icon: '✈️', gradient: 'linear-gradient(135deg,#D94F7C,#FF9EC4)', color: '#D94F7C' },
-  { icon: '🌸', gradient: 'linear-gradient(135deg,#FF6B9D,#FFB3CC)', color: '#FF6B9D' },
-  { icon: '🐼', gradient: 'linear-gradient(135deg,#1CB0F6,#80D8FF)', color: '#1CB0F6' },
-  { icon: '🎭', gradient: 'linear-gradient(135deg,#FF9600,#FFD180)', color: '#FF9600' },
+  { icon: '✈️', gradient: 'linear-gradient(150deg,#294B6B,#1B3346)', color: '#294B6B' },
+  { icon: '🌊', gradient: 'linear-gradient(150deg,#3B6E86,#28495A)', color: '#3B6E86' },
+  { icon: '⛰️', gradient: 'linear-gradient(150deg,#4E7A5E,#3A5B46)', color: '#4E7A5E' },
+  { icon: '🏮', gradient: 'linear-gradient(150deg,#A9702F,#7E5222)', color: '#A9702F' },
 ]
 
 /* ── SVG 进度环 ── */
@@ -40,7 +40,7 @@ function loadObj(key)    { try { return JSON.parse(localStorage.getItem(key) || 
 function saveObj(key, o) { localStorage.setItem(key, JSON.stringify(o)) }
 
 export default function PlanPage({ setActiveTab }) {
-  const [mode,      setMode]      = useState('myplan')
+  const [mode,      setMode]      = useState('template')
   const [activeDay, setActiveDay] = useState(1)
   const [showAdd,   setShowAdd]   = useState(false)
 
@@ -142,16 +142,16 @@ export default function PlanPage({ setActiveTab }) {
     <div className="plan-page">
       {/* ── 顶部 Header ── */}
       <div className="plan-header">
-        <h2 className="page-title">我的行程 📅</h2>
+        <h2 className="page-title">我的行程</h2>
         <p className="page-sub">{currentCity.emoji} {currentCity.name} · 打卡景点 · 规划路线</p>
         <div className="plan-mode-tabs">
-          <button className={`pmt-btn ${mode === 'myplan' ? 'active' : ''}`} onClick={() => setMode('myplan')}>
-            🗺️ 我的清单
-            {mySpots.length > 0 && <span className="pmt-count">{mySpots.length}</span>}
-          </button>
           <button className={`pmt-btn ${mode === 'template' ? 'active' : ''}`} onClick={() => setMode('template')}>
-            📋 推荐行程
+            推荐行程
             {completedAll > 0 && <span className="pmt-count pmt-green">{completedAll}/{totalAll}</span>}
+          </button>
+          <button className={`pmt-btn ${mode === 'myplan' ? 'active' : ''}`} onClick={() => setMode('myplan')}>
+            想去清单
+            {mySpots.length > 0 && <span className="pmt-count">{mySpots.length}</span>}
           </button>
         </div>
       </div>
@@ -165,7 +165,7 @@ export default function PlanPage({ setActiveTab }) {
               <div className="mpe-title">还没有加入景点</div>
               <div className="mpe-sub">去「景点」页面点击「加入我的行程」<br />景点就会出现在这里</div>
               <button className="mpe-goto-btn" onClick={() => setActiveTab?.('spots')}>
-                去选景点 📍
+                去选景点 →
               </button>
             </div>
           ) : (
@@ -173,7 +173,7 @@ export default function PlanPage({ setActiveTab }) {
               <div className="myplan-progress">
                 <div className="mpp-text">
                   <span>已加入 {mySpots.length} 个景点</span>
-                  <span className="mpp-xp">🌟 共 {mySpots.reduce((a, s) => a + s.xp, 0)} XP</span>
+                  <span className="mpp-xp">共 {mySpots.reduce((a, s) => a + s.xp, 0)} XP</span>
                 </div>
                 <div className="mpp-dots">
                   {mySpots.map(s => <div key={s.id} className="mpp-dot" style={{ background: s.color }} />)}
