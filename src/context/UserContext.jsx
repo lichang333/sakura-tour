@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useEffect } from 'react'
+import { createContext, useContext, useState, useEffect, useRef, useCallback } from 'react'
 
 const UserContext = createContext(null)
 
@@ -14,24 +14,46 @@ async function apiFetch(path, options = {}) {
       ...options.headers,
     },
   })
-  const data = await res.json()
-  if (!res.ok) throw new Error(data.error || '请求失败')
+  // 错误响应可能不是 JSON（如代理 502 的 HTML 页），安全解析
+  let data = null
+  try { data = await res.json() } catch { /* non-JSON body */ }
+  if (!res.ok) {
+    const err = new Error(data?.error || `请求失败（${res.status}）`)
+    err.status = res.status
+    throw err
+  }
   return data
 }
 
 export function UserProvider({ children }) {
   const [user, setUser] = useState(null)
   const [loading, setLoading] = useState(true)
+  // 同步持有最新 user：mutator 连续调用时（同一 tick 内两次 toggle）
+  // 从 ref 读取，避免各自基于过期的渲染快照互相覆盖
+  const userRef = useRef(null)
+  // 递增序号：只应用最后一次请求的响应，防止乱序响应回滚本地状态
+  const seqRef = useRef(0)
+
+  const applyUser = useCallback((u) => {
+    userRef.current = u
+    setUser(u)
+  }, [])
 
   // On mount: restore session from token
   useEffect(() => {
     const token = localStorage.getItem(TOKEN_KEY)
     if (!token) { setLoading(false); return }
     apiFetch('/api/user/me')
-      .then(setUser)
-      .catch(() => localStorage.removeItem(TOKEN_KEY))
+      .then(applyUser)
+      .catch((err) => {
+        // 只有 token 真的无效才清除；网络故障/服务器 5xx 时保留，
+        // 否则离线打开一次 App 就会把有效的 30 天登录态删掉
+        if (err.status === 401 || err.status === 403) {
+          localStorage.removeItem(TOKEN_KEY)
+        }
+      })
       .finally(() => setLoading(false))
-  }, [])
+  }, [applyUser])
 
   const signup = async ({ name, email, password, avatar }) => {
     const data = await apiFetch('/api/auth/register', {
@@ -39,7 +61,7 @@ export function UserProvider({ children }) {
       body: JSON.stringify({ name, email, password, avatar }),
     })
     localStorage.setItem(TOKEN_KEY, data.token)
-    setUser(data.user)
+    applyUser(data.user)
   }
 
   const login = async (email, password) => {
@@ -48,138 +70,166 @@ export function UserProvider({ children }) {
       body: JSON.stringify({ email, password }),
     })
     localStorage.setItem(TOKEN_KEY, data.token)
-    setUser(data.user)
+    applyUser(data.user)
   }
 
-  const logout = () => {
+  const logout = useCallback(() => {
     localStorage.removeItem(TOKEN_KEY)
-    setUser(null)
-  }
+    applyUser(null)
+  }, [applyUser])
 
   // Optimistically update local state then sync to server
   const syncUser = async (updates) => {
-    const optimistic = { ...user, ...updates }
-    setUser(optimistic)
+    const base = userRef.current
+    if (!base) return
+    applyUser({ ...base, ...updates })
+    const seq = ++seqRef.current
     try {
       const updated = await apiFetch('/api/user/me', {
         method: 'PATCH',
         body: JSON.stringify(updates),
       })
-      setUser(updated)
-    } catch {
-      setUser(user) // revert on failure
+      if (seq === seqRef.current) applyUser(updated)
+    } catch (err) {
+      if (err.status === 401) { logout(); return }
+      // 回滚：以服务器状态为准（本地快照可能已包含其他成功的更新）
+      if (seq === seqRef.current) {
+        try {
+          const fresh = await apiFetch('/api/user/me')
+          if (seq === seqRef.current) applyUser(fresh)
+        } catch { /* 网络仍然不可用，保留乐观状态 */ }
+      }
     }
   }
 
   const addXP = (amount) => {
-    if (!user) return
-    syncUser({ xp: (user.xp || 0) + amount })
+    const u = userRef.current
+    if (!u) return
+    return syncUser({ xp: Math.max(0, (u.xp || 0) + amount) })
   }
 
   const toggleSpot = (spotId) => {
-    if (!user) return
-    const checked = user.checkedSpots || []
+    const u = userRef.current
+    if (!u) return
+    const checked = u.checkedSpots || []
     const next = checked.includes(spotId)
       ? checked.filter(id => id !== spotId)
       : [...checked, spotId]
-    syncUser({ checkedSpots: next })
+    return syncUser({ checkedSpots: next })
   }
 
   const toggleActivity = (key) => {
-    if (!user) return
-    const completed = user.completedActivities || []
+    const u = userRef.current
+    if (!u) return
+    const completed = u.completedActivities || []
     const next = completed.includes(key)
       ? completed.filter(k => k !== key)
       : [...completed, key]
-    syncUser({ completedActivities: next })
+    return syncUser({ completedActivities: next })
   }
 
   const rateSpot = (spotId, rating) => {
-    if (!user) return
-    const ratings = { ...(user.spotRatings || {}) }
+    const u = userRef.current
+    if (!u) return
+    const ratings = { ...(u.spotRatings || {}) }
     if (rating === 0) { delete ratings[String(spotId)] }
     else              { ratings[String(spotId)] = rating }
-    syncUser({ spotRatings: ratings })
+    return syncUser({ spotRatings: ratings })
   }
 
   const removeActivity = (key) => {
-    if (!user) return
-    const list = user.removedActivities || []
+    const u = userRef.current
+    if (!u) return
+    const list = u.removedActivities || []
     if (list.includes(key)) return
-    syncUser({ removedActivities: [...list, key] })
+    return syncUser({ removedActivities: [...list, key] })
   }
 
   const restoreActivities = (cityId) => {
-    if (!user) return
-    const list = user.removedActivities || []
+    const u = userRef.current
+    if (!u) return
+    const list = u.removedActivities || []
     const next = list.filter(k => !k.startsWith(`${cityId}:`))
-    syncUser({ removedActivities: next })
+    return syncUser({ removedActivities: next })
   }
 
   const reviewSpot = (spotId, text) => {
-    if (!user) return
-    const reviews = { ...(user.spotReviews || {}) }
+    const u = userRef.current
+    if (!u) return
+    const reviews = { ...(u.spotReviews || {}) }
     if (!text?.trim()) { delete reviews[String(spotId)] }
     else {
       reviews[String(spotId)] = { text: text.trim(), at: new Date().toISOString() }
     }
-    syncUser({ spotReviews: reviews })
+    return syncUser({ spotReviews: reviews })
   }
 
   const toggleRecommend = (spotId, tag) => {
-    if (!user) return
-    const list = user.recommendedSpots || []
+    const u = userRef.current
+    if (!u) return
+    const list = u.recommendedSpots || []
     const exists = list.find(r => (typeof r === 'object' ? r.id : r) === spotId)
     const next = exists
       ? list.filter(r => (typeof r === 'object' ? r.id : r) !== spotId)
       : [...list, { id: spotId, tag, at: new Date().toISOString() }]
-    syncUser({ recommendedSpots: next })
+    return syncUser({ recommendedSpots: next })
   }
 
   const toggleVisited = (spotId, xpAmount = 0) => {
-    if (!user) return
-    const visited = user.visitedSpots || []
+    const u = userRef.current
+    if (!u) return
+    const visited = u.visitedSpots || []
     const isVisited = visited.includes(spotId)
     const nextVisited = isVisited
       ? visited.filter(id => id !== spotId)
       : [...visited, spotId]
     // Also add to checkedSpots (想去) when marking visited
-    const checked = user.checkedSpots || []
+    const checked = u.checkedSpots || []
     const nextChecked = (!isVisited && !checked.includes(spotId))
       ? [...checked, spotId]
       : checked
-    // Merge XP into same syncUser call to avoid race condition
-    const currentXp = user.xp || 0
+    const currentXp = u.xp || 0
     const nextXp = xpAmount > 0
       ? isVisited
         ? Math.max(0, currentXp - xpAmount)   // 取消打卡：扣减 XP
         : currentXp + xpAmount                 // 打卡：增加 XP
       : currentXp
-    syncUser({ visitedSpots: nextVisited, checkedSpots: nextChecked, xp: nextXp })
+    return syncUser({ visitedSpots: nextVisited, checkedSpots: nextChecked, xp: nextXp })
+  }
+
+  // 「去过 → 清除」：取消去过 + 移出想去 + 扣减 XP，合并为一次 PATCH，
+  // 避免两次 syncUser 的 payload 在服务端乱序互相覆盖
+  const clearSpot = (spotId, xpAmount = 0) => {
+    const u = userRef.current
+    if (!u) return
+    const nextVisited = (u.visitedSpots || []).filter(id => id !== spotId)
+    const nextChecked = (u.checkedSpots || []).filter(id => id !== spotId)
+    const nextXp = Math.max(0, (u.xp || 0) - xpAmount)
+    return syncUser({ visitedSpots: nextVisited, checkedSpots: nextChecked, xp: nextXp })
   }
 
   // Upload a travel photo (dataUrl) for a spot. Server stores the file and
   // returns the updated user with the new photo URL merged in.
   const addSpotPhoto = async (spotId, dataUrl) => {
-    if (!user) return
+    if (!userRef.current) return
     const updated = await apiFetch('/api/user/photos', {
       method: 'POST',
       body: JSON.stringify({ spotId, image: dataUrl }),
     })
-    setUser(updated)
+    applyUser(updated)
   }
 
   const removeSpotPhoto = async (spotId, url) => {
-    if (!user) return
+    if (!userRef.current) return
     const updated = await apiFetch('/api/user/photos', {
       method: 'DELETE',
       body: JSON.stringify({ spotId, url }),
     })
-    setUser(updated)
+    applyUser(updated)
   }
 
   return (
-    <UserContext.Provider value={{ user, loading, signup, login, logout, addXP, toggleSpot, toggleActivity, toggleVisited, rateSpot, reviewSpot, removeActivity, restoreActivities, toggleRecommend, addSpotPhoto, removeSpotPhoto }}>
+    <UserContext.Provider value={{ user, loading, signup, login, logout, addXP, toggleSpot, toggleActivity, toggleVisited, clearSpot, rateSpot, reviewSpot, removeActivity, restoreActivities, toggleRecommend, addSpotPhoto, removeSpotPhoto }}>
       {children}
     </UserContext.Provider>
   )

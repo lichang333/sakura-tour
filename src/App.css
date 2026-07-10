@@ -66,3 +66,16 @@
     margin-inline: auto;
   }
 }
+
+/* ── Large desktop: use the extra width instead of growing margins ── */
+@media (min-width: 1280px) {
+  .app:has(.bottom-nav) {
+    max-width: 1400px;
+  }
+  .app:has(.bottom-nav) .main {
+    padding: 12px 48px 64px;
+  }
+  .app:has(.bottom-nav) .main > * {
+    max-width: 1020px;
+  }
+}

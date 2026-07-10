@@ -1,13 +1,14 @@
 import { Router } from 'express'
 import db from '../db.js'
+import { auth } from '../config.js'
 
 const router = Router()
 
-// GET /api/reviews — public, no auth
+// GET /api/reviews — 登录后可见（评论含用户昵称/头像，不对匿名开放）
 // Returns aggregated ratings & reviews for every spot across all users
-router.get('/', (req, res) => {
+router.get('/', auth, (req, res) => {
   const users = db.prepare(
-    'SELECT name, avatar, visited_spots, spot_ratings, spot_reviews, recommended_spots FROM users'
+    'SELECT id, name, avatar, visited_spots, spot_ratings, spot_reviews, recommended_spots FROM users'
   ).all()
 
   // spotId (string) → { ratings: number[], reviews: [{name, avatar, rating, text}] }
@@ -31,7 +32,7 @@ router.get('/', (req, res) => {
         const text = typeof t === 'string' ? t : t.text
         const at   = typeof t === 'object' ? t.at : null
         bySpot[key].reviews.push({
-          name: u.name, avatar: u.avatar, rating: r || 0, text, at,
+          userId: u.id, name: u.name, avatar: u.avatar, rating: r || 0, text, at,
         })
       }
     }

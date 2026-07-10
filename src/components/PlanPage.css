@@ -927,3 +927,13 @@
   color: var(--sakura-pink);
   flex-shrink: 0;
 }
+
+/* ── Desktop: two-column wishlist cards ── */
+@media (min-width: 1040px) {
+  .myplan-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 22px;
+    align-items: start;
+  }
+}

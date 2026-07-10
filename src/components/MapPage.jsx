@@ -49,6 +49,10 @@ export default function MapPage({ goToSpot }) {
   const mapElRef = useRef(null)
   const mapRef = useRef(null)
   const markersRef = useRef([])
+  // AMap 脚本加载是异步的：加载期间用户可能切主题，
+  // 建图时从 ref 读最新值，而不是 init effect 闭包里的旧值
+  const themeRef = useRef(theme)
+  themeRef.current = theme
   const [filter, setFilter] = useState('all')
   const [mapError, setMapError] = useState('')
   const [ready, setReady] = useState(false)
@@ -90,7 +94,7 @@ export default function MapPage({ goToSpot }) {
         // narrows the view, so we start loose and let fitView zoom in.
         center: DEFAULT_CENTER,
         zoom: 9,
-        mapStyle: theme === 'dark' ? 'amap://styles/dark' : 'amap://styles/whitesmoke',
+        mapStyle: themeRef.current === 'dark' ? 'amap://styles/dark' : 'amap://styles/whitesmoke',
       })
       mapRef.current.resize()
       setReady(true)

@@ -2,9 +2,9 @@ import { Router } from 'express'
 import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
 import db from '../db.js'
+import { JWT_SECRET, rateLimit } from '../config.js'
 
 const router = Router()
-const JWT_SECRET = process.env.JWT_SECRET || 'sakura_tour_secret_change_in_prod'
 
 const toPublic = (user) => ({
   id: user.id,
@@ -19,8 +19,8 @@ const toPublic = (user) => ({
   joinedAt: user.created_at,
 })
 
-// POST /api/auth/register
-router.post('/register', async (req, res) => {
+// POST /api/auth/register — 20 次/小时/IP
+router.post('/register', rateLimit(20, 60 * 60 * 1000), async (req, res) => {
   const { name, email, password, avatar } = req.body
   if (!name || !email || !password) {
     return res.status(400).json({ error: '请填写所有必填字段' })
@@ -48,8 +48,8 @@ router.post('/register', async (req, res) => {
   res.json({ token, user: toPublic(user) })
 })
 
-// POST /api/auth/login
-router.post('/login', async (req, res) => {
+// POST /api/auth/login — 10 次/10分钟/IP，防在线暴力破解
+router.post('/login', rateLimit(10, 10 * 60 * 1000), async (req, res) => {
   const { email, password } = req.body
   if (!email || !password) {
     return res.status(400).json({ error: '请填写邮箱和密码' })

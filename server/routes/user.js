@@ -1,34 +1,18 @@
 import { Router } from 'express'
-import jwt from 'jsonwebtoken'
 import { join, dirname } from 'path'
 import { fileURLToPath } from 'url'
-import { mkdirSync, existsSync, unlink } from 'fs'
+import { mkdirSync, existsSync, unlink, writeFileSync } from 'fs'
 import sharp from 'sharp'
 import db from '../db.js'
+import { auth } from '../config.js'
 
 const router = Router()
-const JWT_SECRET = process.env.JWT_SECRET || 'sakura_tour_secret_change_in_prod'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 export const UPLOADS_DIR = join(__dirname, '..', 'uploads')
 if (!existsSync(UPLOADS_DIR)) mkdirSync(UPLOADS_DIR, { recursive: true })
 
 const MAX_PHOTOS_PER_SPOT = 9
-
-// Auth middleware
-const auth = (req, res, next) => {
-  const header = req.headers.authorization
-  if (!header?.startsWith('Bearer ')) {
-    return res.status(401).json({ error: '未登录' })
-  }
-  try {
-    const payload = jwt.verify(header.slice(7), JWT_SECRET)
-    req.userId = payload.userId
-    next()
-  } catch {
-    res.status(401).json({ error: 'Token 已过期，请重新登录' })
-  }
-}
 
 const toPublic = (user) => ({
   id: user.id,
@@ -92,33 +76,40 @@ router.post('/photos', auth, async (req, res) => {
     return res.status(400).json({ error: '缺少 spotId 或图片' })
   }
 
-  const user = db.prepare('SELECT * FROM users WHERE id = ?').get(req.userId)
-  if (!user) return res.status(404).json({ error: '用户不存在' })
-
-  const photos = JSON.parse(user.spot_photos || '{}')
-  const key = String(spotId)
-  const list = photos[key] || []
-  if (list.length >= MAX_PHOTOS_PER_SPOT) {
-    return res.status(400).json({ error: `每个景点最多 ${MAX_PHOTOS_PER_SPOT} 张照片` })
-  }
-
   // Decode data URL → buffer
   const m = /^data:image\/[a-zA-Z+]+;base64,(.+)$/.exec(image)
   if (!m) return res.status(400).json({ error: '图片格式不支持' })
   const buffer = Buffer.from(m[1], 'base64')
 
-  // Normalize + compress with sharp → webp, cap longest edge at 1280px
+  // Normalize + compress with sharp → webp, cap longest edge at 1280px.
+  // Process to an in-memory buffer BEFORE touching the user row: the await
+  // must not sit between the row read and the row write, or concurrent
+  // uploads read the same spot_photos and the last write silently wins.
+  const key = String(spotId)
   const safeSpot = key.replace(/[^a-zA-Z0-9_-]/g, '')
   const filename = `${req.userId}-${safeSpot}-${Date.now()}.webp`
+  let webp
   try {
-    await sharp(buffer)
+    webp = await sharp(buffer)
       .rotate()                              // respect EXIF orientation
       .resize(1280, 1280, { fit: 'inside', withoutEnlargement: true })
       .webp({ quality: 80 })
-      .toFile(join(UPLOADS_DIR, filename))
+      .toBuffer()
   } catch {
     return res.status(400).json({ error: '图片处理失败' })
   }
+
+  // Read-check-write with no await in between (better-sqlite3 + writeFileSync
+  // are synchronous, so this whole block is atomic per process tick)
+  const user = db.prepare('SELECT * FROM users WHERE id = ?').get(req.userId)
+  if (!user) return res.status(404).json({ error: '用户不存在' })
+
+  const photos = JSON.parse(user.spot_photos || '{}')
+  const list = photos[key] || []
+  if (list.length >= MAX_PHOTOS_PER_SPOT) {
+    return res.status(400).json({ error: `每个景点最多 ${MAX_PHOTOS_PER_SPOT} 张照片` })
+  }
+  writeFileSync(join(UPLOADS_DIR, filename), webp)
 
   const url = `/uploads/${filename}`
   photos[key] = [...list, url]

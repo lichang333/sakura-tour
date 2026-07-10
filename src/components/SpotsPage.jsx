@@ -65,7 +65,7 @@ export default function SpotsPage({ pendingSpot, clearPendingSpot }) {
   const [reviewSaved,   setReviewSaved]   = useState(false)
   const [uploadingPhoto, setUploadingPhoto] = useState(false)
   const [photoErr,       setPhotoErr]       = useState('')
-  const { user, toggleSpot, toggleVisited, rateSpot, reviewSpot, addXP, toggleRecommend, addSpotPhoto, removeSpotPhoto } = useUser()
+  const { user, toggleSpot, toggleVisited, clearSpot, rateSpot, reviewSpot, addXP, toggleRecommend, addSpotPhoto, removeSpotPhoto } = useUser()
   const { currentCity } = useCity()
   const { communityData, refresh: refreshReviews } = useReviews()
 
@@ -76,6 +76,16 @@ export default function SpotsPage({ pendingSpot, clearPendingSpot }) {
       clearPendingSpot?.()
     }
   }, [pendingSpot])
+
+  // 打开景点详情时，把已保存的游记填进草稿（受控输入，
+  // 否则直接点保存会把旧游记以空字符串覆盖删除）
+  useEffect(() => {
+    if (selected == null) return
+    const obj = (user?.spotReviews || {})[String(selected)]
+    setReviewDraft(typeof obj === 'string' ? obj : (obj?.text || ''))
+    setReviewSaved(false)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selected])
 
   const spots = currentCity.spots
   const nearby = currentCity.nearbySpots
@@ -90,8 +100,8 @@ export default function SpotsPage({ pendingSpot, clearPendingSpot }) {
   )
 
   const handleRecommend = (spotId, tag) => {
-    toggleRecommend(spotId, tag)
-    refreshReviews()
+    // 等 PATCH 落库后再刷新社区数据，否则拉到的还是旧计数
+    Promise.resolve(toggleRecommend(spotId, tag)).then(() => refreshReviews())
   }
 
   const handleCheckBtn = (id, e) => {
@@ -101,9 +111,8 @@ export default function SpotsPage({ pendingSpot, clearPendingSpot }) {
     const spot = spots.find(s => s.id === id)
 
     if (wasVisited) {
-      // 去过 → 清除（取消去过 + 取消想去，扣减 XP）
-      toggleVisited(id, spot?.xp || 0)
-      toggleSpot(id)   // remove from checkedSpots too
+      // 去过 → 清除（取消去过 + 移出想去 + 扣减 XP，单次 PATCH）
+      clearSpot(id, spot?.xp || 0)
     } else if (wasChecked) {
       // 想去 → 去过（合并 XP，避免两次 syncUser 竞态）
       if (!wasVisited) {
@@ -167,7 +176,7 @@ export default function SpotsPage({ pendingSpot, clearPendingSpot }) {
     // Community data for this spot
     const community   = communityData[String(spot.id)] || { avgRating: 0, ratingCount: 0, reviews: [], recommendCount: 0, recommenders: [], topTag: null }
     // Filter out own review from community list to avoid duplicate
-    const otherReviews = community.reviews.filter(r => r.name !== user?.name)
+    const otherReviews = community.reviews.filter(r => r.userId !== user?.id)
     // Recommend state
     const myRec = recommendedIds.get(spot.id)
 
@@ -372,10 +381,10 @@ export default function SpotsPage({ pendingSpot, clearPendingSpot }) {
               <div className="community-reviews">
                 <h3 className="cr-title">旅行者评价 ({community.reviews.length})</h3>
                 {community.reviews.map((r, i) => (
-                  <div key={i} className={`cr-item ${r.name === user?.name ? 'cr-mine' : ''}`}>
+                  <div key={i} className={`cr-item ${r.userId === user?.id ? 'cr-mine' : ''}`}>
                     <div className="cr-header">
                       <span className="cr-avatar">{r.avatar}</span>
-                      <span className="cr-name">{r.name === user?.name ? '我' : r.name}</span>
+                      <span className="cr-name">{r.userId === user?.id ? '我' : r.name}</span>
                       {r.rating > 0 && (
                         <span className="cr-stars">
                           {'★'.repeat(r.rating)}{'☆'.repeat(5 - r.rating)}
@@ -439,13 +448,12 @@ export default function SpotsPage({ pendingSpot, clearPendingSpot }) {
                     className="review-input"
                     placeholder="写下这次旅行的记忆…（可选）"
                     maxLength={200}
-                    defaultValue={savedReview}
+                    value={reviewDraft}
                     onChange={e => { setReviewDraft(e.target.value); setReviewSaved(false) }}
-                    onFocus={e => { if (!reviewDraft) setReviewDraft(savedReview) }}
                     rows={3}
                   />
                   <div className="review-footer">
-                    <span className="review-hint">{(reviewDraft || savedReview).length}/200</span>
+                    <span className="review-hint">{reviewDraft.length}/200</span>
                     <button
                       className={`review-save-btn ${reviewSaved ? 'saved' : ''}`}
                       onClick={handleSaveReview}

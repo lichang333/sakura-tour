@@ -1157,3 +1157,17 @@
   font-size: 12px;
   color: var(--duo-orange, #e67e22);
 }
+
+/* ── Desktop: readable detail column + 3-col nearby ── */
+@media (min-width: 1040px) {
+  .spot-detail {
+    max-width: 860px;
+    margin-inline: auto;
+  }
+  .nearby-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    align-items: stretch;
+  }
+}

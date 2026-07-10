@@ -1,4 +1,5 @@
 import { useUser } from '../context/UserContext'
+import { useCity } from '../context/CityContext'
 import { CITIES } from '../data/cities'
 import { REC_TAGS } from './SpotsPage'
 import './ProfilePage.css'
@@ -8,6 +9,15 @@ const allSpots = CITIES.flatMap(c => c.spots)
 
 export default function ProfilePage({ goToSpot }) {
   const { user, logout } = useUser()
+  const { selectCity } = useCity()
+
+  // 足迹/心愿可能属于其他城市：跳转前先切到该城市，
+  // 否则 SpotsPage 在当前城市里找不到该景点会静默回落到列表
+  const openSpot = (spot) => {
+    const city = CITIES.find(c => c.spots.some(s => s.id === spot.id))
+    if (city) selectCity(city.id)
+    goToSpot?.(spot.id)
+  }
 
   const checkedSpots = allSpots.filter(s => user.checkedSpots?.includes(s.id))
   const visitedSpots = allSpots.filter(s => user.visitedSpots?.includes(s.id))
@@ -115,7 +125,7 @@ export default function ProfilePage({ goToSpot }) {
               const review    = typeof reviewObj === 'string' ? reviewObj : (reviewObj?.text || '')
               const photos    = (user.spotPhotos || {})[String(spot.id)] || []
               return (
-                <div key={spot.id} className="checked-spot-row visited-row clickable-row" style={{ borderLeftColor: spot.color }} onClick={() => goToSpot?.(spot.id)}>
+                <div key={spot.id} className="checked-spot-row visited-row clickable-row" style={{ borderLeftColor: spot.color }} onClick={() => openSpot(spot)}>
                   <span className="cs-emoji">{spot.emoji}</span>
                   <div className="cs-info">
                     <div className="cs-name">{spot.name}</div>
@@ -158,7 +168,7 @@ export default function ProfilePage({ goToSpot }) {
         ) : (
           <div className="checked-spots">
             {recommendedList.map(({ spot, rec }) => spot && (
-              <div key={spot.id} className="checked-spot-row rec-row clickable-row" onClick={() => goToSpot?.(spot.id)}>
+              <div key={spot.id} className="checked-spot-row rec-row clickable-row" onClick={() => openSpot(spot)}>
                 <span className="cs-emoji">{spot.emoji}</span>
                 <div className="cs-info">
                   <div className="cs-name">{spot.name}</div>
@@ -191,7 +201,7 @@ export default function ProfilePage({ goToSpot }) {
             {checkedSpots.filter(s => !user.visitedSpots?.includes(s.id)).map(spot => {
               const city = CITIES.find(c => c.spots.some(s => s.id === spot.id))
               return (
-                <div key={spot.id} className="checked-spot-row clickable-row" style={{ borderLeftColor: spot.color }} onClick={() => goToSpot?.(spot.id)}>
+                <div key={spot.id} className="checked-spot-row clickable-row" style={{ borderLeftColor: spot.color }} onClick={() => openSpot(spot)}>
                   <span className="cs-emoji">{spot.emoji}</span>
                   <div className="cs-info">
                     <div className="cs-name">{spot.name}</div>

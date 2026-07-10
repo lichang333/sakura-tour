@@ -79,7 +79,8 @@ export default function PlanPage({ setActiveTab }) {
     if (removedActs.has(key)) return
     const wasDone = completedSet.has(key)
     toggleActivity(key)
-    if (!wasDone) addXP(20)
+    // 勾选 +20 / 取消 -20：不对称的话反复勾选可以无限刷 XP
+    addXP(wasDone ? -20 : 20)
   }
 
   const removeAct = (key, e) => {
@@ -119,9 +120,10 @@ export default function PlanPage({ setActiveTab }) {
       if (act.spotId != null) toggleVisited(act.spotId, 20)
       else addXP(20)
     } else {
-      // 取消✅ 时撤销"去过"（如果当前是去过状态）
+      // 取消✅ 时对称扣回 20 XP；若当前是去过状态则一并撤销
       const visitedList = user?.visitedSpots || []
-      if (act.spotId != null && visitedList.includes(act.spotId)) toggleVisited(act.spotId)
+      if (act.spotId != null && visitedList.includes(act.spotId)) toggleVisited(act.spotId, 20)
+      else addXP(-20)
     }
   }
 

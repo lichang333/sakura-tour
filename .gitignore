@@ -11,3 +11,4 @@ server/*.db-shm
 server/*.db-wal
 server/uploads/
 .claude/
+server/.jwt_secret

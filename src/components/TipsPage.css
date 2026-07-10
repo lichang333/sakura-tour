@@ -307,3 +307,15 @@
   color: var(--copper);
   transform: rotate(-8deg);
 }
+
+/* ── Desktop: two-column packing list ── */
+@media (min-width: 1040px) {
+  .pack-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  .pack-item { border-bottom: 1px solid var(--border); }
+  .pack-item:last-child,
+  .pack-item:nth-last-child(2):nth-child(odd) { border-bottom: none; }
+  .pack-item:nth-child(odd) { border-right: 1px solid var(--border); }
+}
