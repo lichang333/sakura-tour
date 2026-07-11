@@ -2,7 +2,7 @@
 # deploy.sh — build and deploy Sakura Tour to VPS
 set -e
 
-VPS="root@38.244.60.72"
+VPS="root@45.77.190.96"
 SSH_PORT="8765"
 REMOTE="/var/www/sakura-tour"
 
