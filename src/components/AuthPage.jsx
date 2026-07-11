@@ -21,7 +21,7 @@ export default function AuthPage() {
   const handleLogin = async (e) => {
     e.preventDefault()
     setError('')
-    if (!form.email.trim() || !form.password) { setError('请填写邮箱和密码'); triggerShake(); return }
+    if (!form.email.trim() || !form.password) { setError('请填写邮箱或用户名和密码'); triggerShake(); return }
     setLoading(true)
     try {
       await login(form.email.trim(), form.password)
@@ -103,9 +103,9 @@ export default function AuthPage() {
           <p className="auth-form-sub">登录后数据跨设备同步</p>
           <form onSubmit={handleLogin} className={`auth-form ${shake ? 'shake' : ''}`}>
             <div className="form-group">
-              <label>邮箱</label>
-              <input type="email" placeholder="your@email.com" value={form.email}
-                onChange={e => set('email', e.target.value)} autoComplete="email" />
+              <label>邮箱 / 用户名</label>
+              <input type="text" placeholder="邮箱或用户名" value={form.email}
+                onChange={e => set('email', e.target.value)} autoComplete="username" />
             </div>
             <div className="form-group">
               <label>密码</label>
