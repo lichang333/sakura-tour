@@ -225,3 +225,56 @@
    strip it so only our card shows. */
 .amap-info-content { padding: 0 !important; background: transparent !important; box-shadow: none !important; }
 .amap-info-sharp { display: none !important; }
+
+/* ── 踏印入口卡 ── */
+.tayin-card {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  margin: 22px 16px 0;
+  padding: 15px 16px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  box-shadow: var(--shadow-card);
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.2s, transform 0.15s;
+}
+
+.tayin-card:active { transform: scale(0.98); }
+
+@media (hover: hover) {
+  .tayin-card:hover { border-color: var(--copper); }
+  .tayin-card:hover .tc-go { transform: translateX(3px); }
+}
+
+.tc-seal {
+  width: 42px;
+  height: 42px;
+  border-radius: 11px;
+  border: 2px solid var(--copper);
+  background: var(--copper-soft, var(--copper));
+  color: #FFF6E8;
+  font-family: var(--font-serif);
+  font-size: 21px;
+  font-weight: 600;
+  display: grid;
+  place-items: center;
+  transform: rotate(-5deg);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.18);
+  flex-shrink: 0;
+}
+
+.tc-info { display: flex; flex-direction: column; gap: 3px; flex: 1; min-width: 0; }
+.tc-title { font-family: var(--font-serif); font-size: 15.5px; font-weight: 700; color: var(--text-dark); }
+.tc-sub { font-size: 12px; font-weight: 600; color: var(--text-mid); }
+
+.tc-go {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--copper);
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: transform 0.15s ease;
+}

@@ -5,6 +5,7 @@ import { mkdirSync, existsSync, unlink, writeFileSync } from 'fs'
 import sharp from 'sharp'
 import db from '../db.js'
 import { auth } from '../config.js'
+import { applyVisitDerivation } from '../spot-regions.js'
 
 const router = Router()
 
@@ -56,7 +57,16 @@ router.patch('/me', auth, (req, res) => {
   const newReviews          = spotReviews         !== undefined ? JSON.stringify(spotReviews)           : user.spot_reviews
   const newRemovedActs      = removedActivities   !== undefined ? JSON.stringify(removedActivities)     : user.removed_activities
   const newRecommended      = recommendedSpots    !== undefined ? JSON.stringify(recommendedSpots)      : user.recommended_spots
-  const newRegionLevels     = regionLevels        !== undefined ? JSON.stringify(regionLevels)          : user.region_levels
+
+  // 打卡派生（服务端单一事实源）：已抵达景点所在州市的印记至少「玩过 3」，
+  // 只升不降 —— Sakura 打卡会点亮踏印地图，踏印也无法把已打卡州市擦到 3 以下
+  let newRegionLevels = user.region_levels
+  if (regionLevels !== undefined || visitedSpots !== undefined) {
+    const merged  = regionLevels !== undefined ? { ...regionLevels } : JSON.parse(user.region_levels || '{}')
+    const visited = visitedSpots !== undefined ? visitedSpots : JSON.parse(user.visited_spots || '[]')
+    applyVisitDerivation(merged, visited)
+    newRegionLevels = JSON.stringify(merged)
+  }
 
   db.prepare(`
     UPDATE users

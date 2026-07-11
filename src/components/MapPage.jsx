@@ -3,7 +3,6 @@ import { useUser } from '../context/UserContext'
 import { useCity } from '../context/CityContext'
 import { useTheme } from '../context/ThemeContext'
 import { loadAMap } from '../lib/amap'
-import RegionMap from './RegionMap'
 import './MapPage.css'
 
 const DEFAULT_CENTER = [100.1800, 25.7200] // 大理，找不到任何标记点时的默认中心
@@ -41,6 +40,26 @@ function buildPopup(spot, status, onView) {
   `
   el.querySelector('.mp-btn').addEventListener('click', () => onView(spot))
   return el
+}
+
+/* 踏印入口卡 —— 全国制县等级由独立站「踏印」承载（同一账号、同一份印记），
+   App 内不再维护重复的方格地图，这里只展示进度并导流 */
+function TayinCard({ user }) {
+  const levels = user?.regionLevels || {}
+  const score = Object.values(levels).reduce((a, b) => a + b, 0)
+  const touched = Object.values(levels).filter(v => v > 0).length
+  return (
+    <a className="tayin-card" href="https://tayin.digitalvio.shop/" target="_blank" rel="noreferrer">
+      <span className="tc-seal">印</span>
+      <span className="tc-info">
+        <span className="tc-title">踏印 · 中国打卡地图</span>
+        <span className="tc-sub">
+          {touched > 0 ? `已踏 ${touched} 地 · ${score} 分 —— 打卡会自动盖章` : '一地一印，点亮你的全国版图'}
+        </span>
+      </span>
+      <span className="tc-go">去盖章 →</span>
+    </a>
+  )
 }
 
 export default function MapPage({ goToSpot }) {
@@ -190,7 +209,7 @@ export default function MapPage({ goToSpot }) {
         </div>
       </div>
 
-      <RegionMap />
+      <TayinCard user={user} />
 
       <div className="map-list-section">
         {visible.length === 0 ? (
