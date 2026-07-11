@@ -44,12 +44,25 @@ function buildPopup(spot, status, onView) {
 
 /* 踏印入口卡 —— 全国制县等级由独立站「踏印」承载（同一账号、同一份印记），
    App 内不再维护重复的方格地图，这里只展示进度并导流 */
-function TayinCard({ user }) {
+function TayinCard({ user, mintSsoCode }) {
   const levels = user?.regionLevels || {}
   const score = Object.values(levels).reduce((a, b) => a + b, 0)
   const touched = Object.values(levels).filter(v => v > 0).length
+
+  // 已登录：带一次性 SSO 码跳转，踏印侧自动登录同一账号
+  const openWithSso = async (e) => {
+    if (!user) return
+    e.preventDefault()
+    let url = 'https://tayin.digitalvio.shop/'
+    try {
+      const code = await mintSsoCode?.()
+      if (code) url += `#sso=${code}`
+    } catch { /* 铸码失败就裸跳 */ }
+    window.open(url, '_blank', 'noreferrer')
+  }
+
   return (
-    <a className="tayin-card" href="https://tayin.digitalvio.shop/" target="_blank" rel="noreferrer">
+    <a className="tayin-card" href="https://tayin.digitalvio.shop/" target="_blank" rel="noreferrer" onClick={openWithSso}>
       <span className="tc-seal">印</span>
       <span className="tc-info">
         <span className="tc-title">踏印 · 中国打卡地图</span>
@@ -63,7 +76,7 @@ function TayinCard({ user }) {
 }
 
 export default function MapPage({ goToSpot }) {
-  const { user } = useUser()
+  const { user, mintSsoCode } = useUser()
   const { CITIES, selectCity } = useCity()
   const { theme } = useTheme()
   const mapElRef = useRef(null)
@@ -209,7 +222,7 @@ export default function MapPage({ goToSpot }) {
         </div>
       </div>
 
-      <TayinCard user={user} />
+      <TayinCard user={user} mintSsoCode={mintSsoCode} />
 
       <div className="map-list-section">
         {visible.length === 0 ? (

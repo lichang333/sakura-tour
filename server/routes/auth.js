@@ -3,7 +3,7 @@ import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
 import crypto from 'crypto'
 import db from '../db.js'
-import { JWT_SECRET, rateLimit } from '../config.js'
+import { JWT_SECRET, rateLimit, auth } from '../config.js'
 
 const router = Router()
 
@@ -102,6 +102,32 @@ router.post('/login', rateLimit(10, 10 * 60 * 1000), async (req, res) => {
   const token = jwt.sign({ userId: user.id }, JWT_SECRET, { expiresIn: '30d' })
 
   res.json({ token, user: toPublic(updated) })
+})
+
+/* ── SSO 互跳：Sakura ↔ 踏印 ──
+   两个域名共用本后端。已登录侧铸一次性跳转码（60 秒、单次），
+   目标侧用码换新 JWT —— token 不进 URL 历史，码泄露也只有一分钟窗口。 */
+const ssoCodes = new Map()   // code → { userId, expires }
+
+router.post('/sso-code', auth, (req, res) => {
+  const now = Date.now()
+  for (const [c, v] of ssoCodes) if (v.expires < now) ssoCodes.delete(c)
+  const code = crypto.randomBytes(24).toString('hex')
+  ssoCodes.set(code, { userId: req.userId, expires: now + 60_000 })
+  res.json({ code })
+})
+
+router.post('/sso-redeem', rateLimit(20, 10 * 60 * 1000), (req, res) => {
+  const { code } = req.body
+  const rec = typeof code === 'string' && ssoCodes.get(code)
+  if (!rec || rec.expires < Date.now()) {
+    return res.status(401).json({ error: '跳转码无效或已过期' })
+  }
+  ssoCodes.delete(code)   // 单次使用
+  const user = db.prepare('SELECT * FROM users WHERE id = ?').get(rec.userId)
+  if (!user) return res.status(401).json({ error: '用户不存在' })
+  const token = jwt.sign({ userId: user.id }, JWT_SECRET, { expiresIn: '30d' })
+  res.json({ token, user: toPublic(user) })
 })
 
 export default router

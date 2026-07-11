@@ -39,8 +39,21 @@ export function UserProvider({ children }) {
     setUser(u)
   }, [])
 
-  // On mount: restore session from token
+  // On mount: SSO 跳转码优先（从踏印带 #sso=code 跳来自动登录），
+  // 否则用本地 token 恢复会话
   useEffect(() => {
+    const sso = window.location.hash.match(/^#sso=([a-f0-9]{48})$/)
+    if (sso) {
+      history.replaceState(null, '', window.location.pathname + window.location.search)
+      apiFetch('/api/auth/sso-redeem', { method: 'POST', body: JSON.stringify({ code: sso[1] }) })
+        .then((data) => {
+          localStorage.setItem(TOKEN_KEY, data.token)
+          applyUser(data.user)
+        })
+        .catch(() => { /* 码过期/已用：静默落回未登录 */ })
+        .finally(() => setLoading(false))
+      return
+    }
     const token = localStorage.getItem(TOKEN_KEY)
     if (!token) { setLoading(false); return }
     apiFetch('/api/user/me')
@@ -218,6 +231,13 @@ export function UserProvider({ children }) {
     return syncUser({ visitedSpots: nextVisited, checkedSpots: nextChecked, xp: nextXp })
   }
 
+  /* SSO：铸一次性跳转码（60 秒单次），跳踏印时带上实现免登 */
+  const mintSsoCode = async () => {
+    if (!userRef.current) return null
+    const { code } = await apiFetch('/api/auth/sso-code', { method: 'POST' })
+    return code
+  }
+
   // Upload a travel photo (dataUrl) for a spot. Server stores the file and
   // returns the updated user with the new photo URL merged in.
   const addSpotPhoto = async (spotId, dataUrl) => {
@@ -239,7 +259,7 @@ export function UserProvider({ children }) {
   }
 
   return (
-    <UserContext.Provider value={{ user, loading, signup, login, logout, addXP, toggleSpot, toggleActivity, toggleVisited, clearSpot, setRegionLevel, rateSpot, reviewSpot, removeActivity, restoreActivities, toggleRecommend, addSpotPhoto, removeSpotPhoto }}>
+    <UserContext.Provider value={{ user, loading, signup, login, logout, addXP, toggleSpot, toggleActivity, toggleVisited, clearSpot, setRegionLevel, rateSpot, reviewSpot, removeActivity, restoreActivities, toggleRecommend, addSpotPhoto, removeSpotPhoto, mintSsoCode }}>
       {children}
     </UserContext.Provider>
   )
