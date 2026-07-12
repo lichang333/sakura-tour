@@ -3003,6 +3003,197 @@ const chuxiongSeason = {
   ],
 }
 
+
+/* ════════════════ 玉溪 ════════════════ */
+const yuxiSpots = [
+  {
+    id: 'yx1', name: "抚仙湖", nameEn: "Fuxian Lake", emoji: "🏊",
+    district: "澄江市", lat: 24.5500, lng: 102.9000,
+    peakTime: "6-9月戏水", peakDays: "夏季亲水避暑最佳", difficulty: "easy",
+    rating: 4.7, reviews: 12800, tags: ["必去", "最深高原湖", "透明水质"],
+    isHot: true, ticket: "环湖免费（部分泳场/景点收费）",
+    description: "中国蓄水量最大的深水高原湖泊之一，最深处百余米，湖水清澈见底、蓝得晃眼。禄充、樱花谷、广龙小镇沿岸而列，夏天可游泳、划船、环湖骑行，尝一锅铜锅煮的抗浪鱼。是滇中最治愈的一片蓝。",
+    tips: "夏季（6-9月）戏水最佳；水深湾陡，务必在正规泳场、注意安全；环湖公路骑行、自驾都很美。",
+    transport: "玉溪市区驾车约50分钟至澄江抚仙湖",
+    color: "#2E93A6", xp: 130,
+  },
+  {
+    id: 'yx2', name: "澄江化石地·帽天山", nameEn: "Chengjiang Fossil Site", emoji: "🦐",
+    district: "澄江市", lat: 24.6700, lng: 102.9800,
+    peakTime: "全年", peakDays: "全年 · 寒武纪现场", difficulty: "easy",
+    rating: 4.5, reviews: 3600, tags: ["必去", "世界自然遗产", "寒武纪大爆发"],
+    isHot: true, ticket: "化石博物馆免费（需预约）",
+    description: "2012 年列入世界自然遗产的澄江化石地，帽天山埋藏着距今 5.3 亿年的寒武纪生命大爆发化石群——那是地球动物门类几乎一夜间集体登场的关键时刻。澄江化石地自然博物馆用海量标本把远古海洋搬到眼前，震撼又长知识。",
+    tips: "博物馆免费但需提前预约；展陈极丰富、适合亲子科普，可预留半天；与抚仙湖同在澄江可连游。",
+    transport: "澄江市区驾车约20分钟至帽天山",
+    color: "#4E7A5E", xp: 100,
+  },
+  {
+    id: 'yx3', name: "哀牢山", nameEn: "Ailao Mountain", emoji: "🌲",
+    district: "新平县", lat: 24.1000, lng: 101.6000,
+    peakTime: "秋冬云海 / 春杜鹃", peakDays: "晴后云海、春看杜鹃", difficulty: "hard",
+    rating: 4.5, reviews: 4100, tags: ["原始森林", "石门峡", "云海"],
+    description: "横亘滇中的巨大山系，保存着大片原始常绿阔叶林，云雾常年缭绕、神秘幽深。石门峡飞瀑深潭、茶马古道遗迹藏在林间，秋冬云海翻涌、春天杜鹃满山。近年因其原始与野性走红，但也因此更要敬畏自然。",
+    tips: "原始林区易起雾迷路、气温骤变，务必走成熟路线、结伴或请向导、勿擅自深入；备保暖防水衣物与充足补给。",
+    transport: "玉溪市区驾车约2.5小时至新平哀牢山",
+    color: "#2E6E4A", xp: 120,
+  },
+  {
+    id: 'yx4', name: "聂耳故居·聂耳公园", nameEn: "Nie Er's Former Residence", emoji: "🎼",
+    district: "红塔区", lat: 24.3500, lng: 102.5400,
+    peakTime: "全年", peakDays: "全年 · 国歌之乡", difficulty: "easy",
+    rating: 4.3, reviews: 2200, tags: ["国歌作曲者", "聂耳故乡", "城市公园"],
+    ticket: "免费",
+    description: "《义勇军进行曲》（国歌）的作曲者聂耳祖籍玉溪，城中的聂耳故居、聂耳公园、聂耳文化广场纪念着这位人民音乐家。玉溪因此被称为「国歌之乡」。公园临水、市民休闲，是了解这座城人文底色的地方。",
+    tips: "免费、在市区，散步顺游即可；聂耳故居可了解其生平；与玉溪老城、米线店连成半日。",
+    transport: "玉溪红塔区市区内",
+    color: "#B4472F", xp: 70,
+  },
+  {
+    id: 'yx5', name: "通海秀山古城", nameEn: "Tonghai Xiushan", emoji: "🏯",
+    district: "通海县", lat: 24.1100, lng: 102.7600,
+    peakTime: "全年", peakDays: "全年 · 匾联之山", difficulty: "easy",
+    rating: 4.4, reviews: 2600, tags: ["江南园林", "古建群", "匾联"],
+    ticket: "秀山门票约50元 / 古城免费",
+    description: "通海秀山是滇中名山，山上古建楼阁层叠、古木参天，遍布历代名家匾额楹联，被誉为「匾山联海」，文气极重。山下的通海古城格局完整、街巷古朴、生活气浓，是一座被低估的滇中江南小城。",
+    tips: "秀山登山赏古建匾联约半日；古城慢逛、尝豆末糖甜白酒；离通海杞麓湖也近。",
+    transport: "玉溪市区驾车约50分钟至通海",
+    color: "#5E9B7E", xp: 90,
+  },
+  {
+    id: 'yx6', name: "新平戛洒·花腰傣", nameEn: "Gasa Huayao Dai", emoji: "🌺",
+    district: "新平县", lat: 24.0700, lng: 101.8500,
+    peakTime: "全年（花街节最盛）", peakDays: "花街节彩衣如潮", difficulty: "easy",
+    rating: 4.2, reviews: 1300, tags: ["花腰傣", "秧箩饭", "哀牢河谷"],
+    ticket: "免费（村寨/体验另计）",
+    description: "哀牢山下红河谷里的戛洒，是「花腰傣」的聚居地。花腰傣服饰绚烂如彩蝶、腰间层层束花而得名，至今保留着秧箩饭、花街节等古朴习俗。热坝气候暖热、瓜果丰饶，是一处色彩浓烈的傣家秘境。",
+    tips: "花街节（约农历正月）彩衣如潮最好看；尝花腰傣秧箩饭、鳝鱼汤锅；尊重村寨习俗、拍照先问。",
+    transport: "玉溪市区驾车约2小时至新平戛洒",
+    color: "#C85C8E", xp: 90,
+  },
+  {
+    id: 'yx7', name: "界鱼石·星云湖", nameEn: "Jieyu Rock & Xingyun Lake", emoji: "🐟",
+    district: "江川区", lat: 24.3000, lng: 102.7500,
+    peakTime: "全年", peakDays: "全年 · 两湖一石", difficulty: "easy",
+    rating: 4.1, reviews: 1200, tags: ["两湖相连", "鱼不往来", "古滇文化"],
+    ticket: "低价",
+    description: "抚仙湖与星云湖之间由一条河相连，交界处一块「界鱼石」立于水中。奇的是两湖各产的鱼游到此石便掉头折返、互不越界，「两湖相交，鱼不往来」成了千古奇观。江川还是古滇青铜文化（李家山）的重要发源地。",
+    tips: "看界鱼石奇观、了解古滇青铜（李家山出土牛虎铜案）；与抚仙湖一并顺游；适合半日。",
+    transport: "玉溪市区驾车约40分钟至江川",
+    color: "#3B8A9E", xp: 80,
+  },
+]
+
+/* 周边顺游 —— 均在玉溪辖区（元江/华宁/峨山），派生同归玉溪 */
+const yuxiNearby = [
+  {
+    id: 'yxn1', name: "元江那诺梯田", nameEn: "Yuanjiang Nanuo Terraces", emoji: "🌾",
+    district: "元江县", lat: 23.6000, lng: 101.9900,
+    peakTime: "11月-次年3月 / 云海", peakDays: "冬春灌水云海最美", difficulty: "medium",
+    rating: 4.3, reviews: 800, tags: ["哈尼梯田", "云海日出", "太阳城"],
+    desc: "太阳城里的哈尼梯田，云海日出小众版",
+    description: "元江是云南著名的「太阳城」，全年高温、瓜果飘香。那诺乡的哈尼梯田层层叠叠、云海翻涌，晨光中不输元阳，却少有人知。热坝与高山梯田在这里奇妙并存，是喜欢清静的追光者之选。",
+    tips: "冬春灌水期看云海日出；山路较远自驾为宜；元江河谷酷热、山上凉，备两季衣物。",
+    transport: "玉溪市区驾车约2.5小时至元江那诺",
+    color: "#C08A45", xp: 90, isNearby: true,
+  },
+  {
+    id: 'yxn2', name: "华宁象鼻温泉", nameEn: "Huaning Hot Spring", emoji: "♨️",
+    district: "华宁县", lat: 24.1900, lng: 102.9300,
+    peakTime: "秋冬泡汤 / 全年", peakDays: "秋冬泡汤最惬意", difficulty: "easy",
+    rating: 4.2, reviews: 900, tags: ["天然温泉", "泉乡", "柑橘"],
+    desc: "滇中泉乡，泡汤加吃华宁柑橘",
+    description: "华宁被称作「泉乡」，象鼻温泉一带水质温润、露天汤池掩在绿意里，是滇中泡汤度假的去处。华宁柑橘（尤其是冬季的华宁桔）皮薄多汁、闻名云南，泡完温泉抱一箱柑橘回家最惬意。",
+    tips: "秋冬泡汤最舒服、顺买华宁柑橘；带泳衣；离抚仙湖不远可与澄江连游。",
+    transport: "玉溪市区驾车约1小时至华宁",
+    color: "#3B8A9E", xp: 70, isNearby: true,
+  },
+  {
+    id: 'yxn3', name: "峨山嶍峨古镇", nameEn: "Eshan Ancient Town", emoji: "🪘",
+    district: "峨山县", lat: 24.1700, lng: 102.4000,
+    peakTime: "全年（火把节）", peakDays: "彝族火把节最盛", difficulty: "easy",
+    rating: 4.1, reviews: 700, tags: ["第一个彝族自治县", "花鼓舞", "彝族"],
+    desc: "全国第一个彝族自治县，花鼓舞之乡",
+    description: "峨山是全国第一个彝族自治县，嶍峨古镇里彝族风情浓郁，花鼓舞、火把节热闹非凡。古镇仿古却也有市井烟火，是了解滇中彝族文化、离玉溪最近的一站，可与玉溪城区顺路串游。",
+    tips: "火把节（约农历六月廿四）最热闹；看彝族花鼓舞、尝彝味；离玉溪近可半日顺游。",
+    transport: "玉溪市区驾车约30分钟至峨山",
+    color: "#C7452F", xp: 70, isNearby: true,
+  },
+]
+
+const yuxiItinerary = [
+  {
+    day: 1, title: "抵达·抚仙湖蓝", date: "Day 1",
+    activities: [
+      { time: "下午", icon: "🏊", text: "抵达澄江，抚仙湖畔戏水/环湖骑行", spotId: 'yx1' },
+      { time: "傍晚", icon: "🌅", text: "禄充、樱花谷看湖上日落" },
+      { time: "晚上", icon: "🐟", text: "尝抚仙湖铜锅煮鱼 + 玉溪凉米线" },
+    ]
+  },
+  {
+    day: 2, title: "寒武纪与国歌", date: "Day 2",
+    activities: [
+      { time: "上午", icon: "🦐", text: "澄江化石地博物馆，看寒武纪大爆发", spotId: 'yx2' },
+      { time: "下午", icon: "🐟", text: "界鱼石看两湖一石奇观", spotId: 'yx7' },
+      { time: "傍晚", icon: "🎼", text: "回玉溪城逛聂耳公园、老城", spotId: 'yx4' },
+    ]
+  },
+  {
+    day: 3, title: "秀山与古城", date: "Day 3",
+    activities: [
+      { time: "上午", icon: "🏯", text: "通海秀山赏匾山联海古建", spotId: 'yx5' },
+      { time: "下午", icon: "🏘️", text: "通海古城慢逛，尝豆末糖甜白酒" },
+      { time: "傍晚", icon: "♨️", text: "华宁象鼻温泉泡汤（顺路）" },
+    ]
+  },
+  {
+    day: 4, title: "哀牢山或花腰傣", date: "Day 4",
+    activities: [
+      { time: "全天", icon: "🌲", text: "哀牢山原始森林云海 或 新平戛洒花腰傣" },
+      { time: "下午", icon: "🎁", text: "选购华宁柑橘、通海豆末糖、云烟伴手礼" },
+      { time: "傍晚", icon: "✈️", text: "返程 / 前往下一站（昆明、建水）" },
+    ]
+  },
+]
+
+const yuxiTips = [
+  { icon: "📅", title: "最佳季节", content: "玉溪气候温和、四季如春，全年可玩。夏季（6-9月）是抚仙湖戏水避暑的旺季；秋冬哀牢山云海最盛；花腰傣花街节、彝族火把节各有时令。海拔适中、无高反。" },
+  { icon: "🏊", title: "抚仙湖安全", content: "抚仙湖是深水湖，近岸也可能骤然变深、暗流较多。务必在正规泳场、救生范围内游泳，勿逞能深入；带娃看护到位；不熟水性者环湖骑行、乘船同样很美。" },
+  { icon: "🌲", title: "哀牢山敬畏", content: "哀牢山是原始林区，易起浓雾、气温骤降、手机常无信号，深入有迷路失温风险。务必走成熟景区路线、结伴或请向导，勿擅自穿越；备保暖防水衣物、充足补给与充电宝。" },
+  { icon: "🦐", title: "化石地预约", content: "澄江化石地自然博物馆免费但需提前网上预约、带证件入馆。展陈极丰富，适合带孩子做寒武纪生命科普，建议预留半天慢看。" },
+  { icon: "🚄", title: "区位便利", content: "玉溪紧邻昆明（约1小时车程/高铁直达），抚仙湖、化石地是昆明周边周末游的热门，也可作滇南、滇中环线的一站，交通方便。" },
+  { icon: "🐟", title: "湖鲜与米线", content: "抚仙湖铜锅煮鱼（抗浪鱼名贵、多为养殖品）、玉溪凉米线、澄江藕粉、通海豆末糖都是特色。湖边农家乐现煮湖鱼最鲜，认准正规店。" },
+  { icon: "🌺", title: "民族节庆", content: "花腰傣的花街节、彝族的火把节是玉溪最绚烂的时刻。若能赶上，戛洒、峨山一带的彩衣歌舞非常值得一看；尊重村寨习俗、拍照先征得同意。" },
+]
+
+const yuxiFoods = [
+  { name: "抚仙湖铜锅鱼", emoji: "🐟", desc: "铜锅清煮湖鱼，鲜到掉眉毛" },
+  { name: "玉溪凉米线", emoji: "🍜", desc: "酸辣爽口，滇中夏日经典" },
+  { name: "澄江藕粉", emoji: "🥣", desc: "澄江莲藕磨粉冲糊，滑润清甜" },
+  { name: "通海豆末糖", emoji: "🍬", desc: "豆面白糖层层压制，酥香化口" },
+  { name: "花腰傣秧箩饭", emoji: "🍱", desc: "秧箩盛饭配傣味，田间美味" },
+  { name: "元江芒果", emoji: "🥭", desc: "太阳城热坝所产，甜糯多汁" },
+]
+
+const yuxiPackList = [
+  { icon: "🩱", text: "泳衣（抚仙湖戏水，正规泳场）" },
+  { icon: "🧥", text: "保暖防水衣（哀牢山雾冷多变）" },
+  { icon: "🧴", text: "防晒 + 驱蚊（湖畔河谷）" },
+  { icon: "🔋", text: "充电宝（哀牢山信号弱）" },
+  { icon: "🎫", text: "证件（化石地博物馆需预约）" },
+  { icon: "💳", text: "身份证（高铁/景区实名）" },
+]
+
+const yuxiSeason = {
+  title: "最佳旅行季节",
+  sub: "抚仙湖蓝，四季如春",
+  rows: [
+    { dot: "peak",  label: "🏊 夏（6—9月）", date: "抚仙湖戏水避暑旺季", badge: "推荐" },
+    { dot: "early", label: "🌲 秋冬", date: "哀牢山云海最盛" },
+    { dot: "late",  label: "🌺 春（2—3月）", date: "花腰傣花街节、哀牢杜鹃" },
+  ],
+}
+
 /* ════════════════ CITIES 汇总 ════════════════
    扩展新城市：复制上方一整套 daliXxx 常量，改名后
    在下面数组里追加一个对象即可。
@@ -3373,6 +3564,32 @@ export const CITIES = [
     foods: chuxiongFoods,
     packList: chuxiongPackList,
     seasonInfo: chuxiongSeason,
+  },
+  {
+    id: 'yuxi',
+    name: '玉溪',
+    nameEn: 'Yuxi',
+    emoji: '🏊',
+    country: '云南',
+    tagline: '抚仙湖蓝，四季如春',
+    heroBadge: '玉溪 · 云南',
+    heroTitle: '抚仙玉溪',
+    heroHighlight: '慢慢泡吧！',
+    heroDesc: '最深高原湖、寒武纪化石与哀牢云海',
+    heroGradient: 'linear-gradient(160deg, #0E4E60 0%, #2E93A6 55%, #C6E8EA 100%)',
+    quickTips: [
+      { icon: '🏊', text: '夏季抚仙湖戏水最佳' },
+      { icon: '🦐', text: '澄江化石地世遗，需预约' },
+      { icon: '🌲', text: '哀牢山原始林，勿擅入' },
+      { icon: '🚄', text: '紧邻昆明，周末可达' },
+    ],
+    spots: yuxiSpots,
+    nearbySpots: yuxiNearby,
+    itineraryDays: yuxiItinerary,
+    tips: yuxiTips,
+    foods: yuxiFoods,
+    packList: yuxiPackList,
+    seasonInfo: yuxiSeason,
   },
 ]
 
