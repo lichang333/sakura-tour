@@ -21,7 +21,9 @@ function AppInner() {
   if (loading) {
     return (
       <div className="app loading-screen">
-        <div className="loading-icon">🌸</div>
+        <div className="loading-seal">桜</div>
+        <div className="loading-brand">Sakura Tour</div>
+        <div className="loading-sub">中国小城漫游</div>
       </div>
     )
   }
