@@ -3386,6 +3386,198 @@ const lincangSeason = {
   ],
 }
 
+
+/* ════════════════ 文山 ════════════════ */
+const wenshanSpots = [
+  {
+    id: 'ws1', name: "普者黑", nameEn: "Puzhehei", emoji: "🪷",
+    district: "丘北县", lat: 24.1700, lng: 104.0500,
+    peakTime: "6-9月荷花", peakDays: "盛夏万亩荷花最美", difficulty: "easy",
+    rating: 4.7, reviews: 9200, tags: ["必去", "喀斯特水乡", "万亩荷花"],
+    isHot: true, ticket: "门票约100元 + 船费",
+    description: "三百多座喀斯特孤峰散落在湖泊、田园与荷塘之间，坐一叶小船穿行其中，青峰倒影、荷叶接天。夏天万亩荷花盛开，泼水与打水仗的欢闹响彻湖面。《三生三世十里桃花》让它红遍全国，是滇东南最灵动的一片山水。",
+    tips: "荷花季（6-9月）最美；坐船游湖会「打水仗」，带好防水袋、可弄湿的衣物；仙人洞彝寨就在湖边可住。",
+    transport: "文山市区驾车约2小时至丘北普者黑",
+    color: "#3E9A86", xp: 130,
+  },
+  {
+    id: 'ws2', name: "坝美", nameEn: "Bamei Village", emoji: "🚣",
+    district: "广南县", lat: 24.2000, lng: 105.3000,
+    peakTime: "全年", peakDays: "全年 · 世外桃源", difficulty: "medium",
+    rating: 4.5, reviews: 3600, tags: ["必去", "世外桃源", "水洞进村"],
+    isHot: true, ticket: "门票约90元（含船）",
+    description: "现实版的「桃花源」——三面环山的壮族村寨，进出只能乘小船穿过幽暗的水洞。船一出洞，豁然开朗：田畴、水牛、壮家竹楼、鸡犬相闻，仿佛与世隔绝的另一个时空。陶渊明笔下的意境，在这里活生生地存在着。",
+    tips: "坐船穿水洞是核心体验；村里可慢住一晚感受宁静；尊重村民真实生活、勿喧闹。",
+    transport: "文山市区驾车约2.5小时至广南坝美",
+    color: "#4E7A5E", xp: 120,
+  },
+  {
+    id: 'ws3', name: "广南八宝", nameEn: "Bao Ba Fields", emoji: "🌾",
+    district: "广南县", lat: 24.0500, lng: 105.3000,
+    peakTime: "全年（秋收金黄）", peakDays: "稻熟时田园最美", difficulty: "easy",
+    rating: 4.3, reviews: 1400, tags: ["贡米之乡", "田园山水", "三腊瀑布"],
+    ticket: "低价/免费",
+    description: "「八宝贡米」的产地，一片被喀斯特峰丛环抱的坝子，稻田、河流、小桥、壮寨如一幅缩小版的桂林山水田园画。三腊瀑布飞泻、河上竹排悠悠，秋收时金黄稻浪铺满坝子，宁静得让人忘了时间。",
+    tips: "与坝美同在广南可连游；秋收季稻田最美；尝一碗八宝贡米饭。",
+    transport: "文山市区驾车约2.5小时至广南八宝",
+    color: "#C69A4C", xp: 90,
+  },
+  {
+    id: 'ws4', name: "文山三七之乡", nameEn: "Sanqi Town", emoji: "🌿",
+    district: "文山市", lat: 23.3700, lng: 104.2400,
+    peakTime: "全年", peakDays: "全年 · 道地药材", difficulty: "easy",
+    rating: 4.1, reviews: 1100, tags: ["三七之乡", "田七文化", "药膳"],
+    ticket: "三七园低价",
+    description: "文山是「三七之乡」，这里出产的三七（田七）是驰名中外的道地名贵药材。三七园、三七博物馆、三七交易市场里，能了解从种植到入药的门道，尝一锅三七汽锅鸡药膳，把云南人「药食同源」的养生智慧吃进肚子里。",
+    tips: "在文山市区，适合了解三七文化、选购道地三七（认准正规市场与检测）；三七药膳滋补，适量食用。",
+    transport: "文山市区内",
+    color: "#5E9B7E", xp: 70,
+  },
+  {
+    id: 'ws5', name: "仙人洞彝寨", nameEn: "Xianrendong Yi Village", emoji: "🏘️",
+    district: "丘北县", lat: 24.1700, lng: 104.0600,
+    peakTime: "6-9月 / 花脸节", peakDays: "荷花季与花脸节最热闹", difficulty: "easy",
+    rating: 4.2, reviews: 1500, tags: ["撒尼彝寨", "普者黑畔", "花脸节"],
+    ticket: "含于普者黑",
+    description: "普者黑湖畔的撒尼（彝族支系）村寨，青瓦土墙的民居临水而建，是游普者黑最好的住宿与生活体验地。每年的「花脸节」上，人们互相往脸上抹锅烟墨以求吉祥，与水上狂欢一起，是这片水乡最欢腾的节庆。",
+    tips: "住仙人洞彝寨客栈、清晨划船看晨雾荷塘最惬意；花脸节（约农历二三月）最有意思；尊重彝族习俗。",
+    transport: "普者黑景区内湖畔",
+    color: "#B4472F", xp: 80,
+  },
+  {
+    id: 'ws6', name: "麻栗坡老山", nameEn: "Laoshan Battlefield", emoji: "🎖️",
+    district: "麻栗坡县", lat: 22.9800, lng: 104.7000,
+    peakTime: "全年", peakDays: "全年 · 边境纪念", difficulty: "medium",
+    rating: 4.5, reviews: 900, tags: ["老山战役", "烈士陵园", "中越边境"],
+    ticket: "免费",
+    description: "中越边境上的老山，是上世纪边境作战的主战场之一。麻栗坡烈士陵园里长眠着近千名烈士，老山主峰的战壕、猫耳洞遗迹与纪念馆无声诉说着那段历史。庄严肃穆，是一堂沉重而深刻的爱国主义课。",
+    tips: "陵园与遗址请庄重肃穆瞻仰、勿喧闹嬉戏；近边境带身份证；山路较险，注意安全。",
+    transport: "文山市区驾车约2小时至麻栗坡老山",
+    color: "#6B4E3D", xp: 100,
+  },
+  {
+    id: 'ws7', name: "西畴石漠公园", nameEn: "Xichou Karst Park", emoji: "🪨",
+    district: "西畴县", lat: 23.4500, lng: 104.6800,
+    peakTime: "全年", peakDays: "全年 · 石漠奇观", difficulty: "easy",
+    rating: 4.0, reviews: 500, tags: ["喀斯特石漠", "石漠化治理", "香坪山"],
+    ticket: "低价",
+    description: "西畴曾是石漠化最严重的地区之一，当地人「搬石造地、绿化荒山」创造了著名的「西畴精神」。国家石漠公园里，嶙峋的喀斯特石林与后来种出的绿意并存，香坪山林场郁郁葱葱，是一处兼具地质奇观与人文精神的地方。",
+    tips: "了解「西畴精神」与石漠化治理很有意义；香坪山可徒步透气；小众、适合顺游。",
+    transport: "文山市区驾车约1.5小时至西畴",
+    color: "#8A7A66", xp: 70,
+  },
+]
+
+/* 周边顺游 —— 均在文山州内（富宁/砚山/马关），派生同归文山 */
+const wenshanNearby = [
+  {
+    id: 'wsn1', name: "富宁驮娘江·坡芽", nameEn: "Funing Tuoniang River", emoji: "🎶",
+    district: "富宁县", lat: 23.6200, lng: 105.6300,
+    peakTime: "全年", peakDays: "全年 · 壮乡情歌", difficulty: "easy",
+    rating: 4.2, reviews: 400, tags: ["壮族坡芽歌书", "驮娘江", "田园"],
+    desc: "壮族坡芽歌书之乡，碧绿驮娘江漂流",
+    description: "富宁是壮族「坡芽歌书」的故乡——用图画符号记录情歌的古老文字，被称为「活着的图画文字」。碧绿的驮娘江穿峡而过，可漂流可乘船，两岸青山壮寨、田园如画，是滇桂交界处一处清静的壮乡秘境。",
+    tips: "了解坡芽歌书这一独特文化遗产；驮娘江漂流看两岸风光；富宁在滇桂交界、可与广西方向衔接。",
+    transport: "文山市区驾车约3小时至富宁",
+    color: "#3B8A9E", xp: 80, isNearby: true,
+  },
+  {
+    id: 'wsn2', name: "砚山听湖", nameEn: "Yanshan Ting Lake", emoji: "🌊",
+    district: "砚山县", lat: 23.6000, lng: 104.3300,
+    peakTime: "全年", peakDays: "全年 · 城郊湖景", difficulty: "easy",
+    rating: 4.0, reviews: 500, tags: ["高原湖", "湿地", "休闲"],
+    desc: "砚山城郊的宁静湖泊与湿地",
+    description: "砚山县城边的一处高原湖泊与湿地，水面开阔、水鸟栖息，环湖绿道适合骑行慢跑。砚山是文山的交通与农业重镇（三七、辣椒集散），听湖是当地人休闲的后花园，路过文山北部时可歇脚透气。",
+    tips: "适合作为途经砚山时的休憩点；环湖散步骑行；砚山也是三七、丘北辣椒的集散地。",
+    transport: "文山市区驾车约40分钟至砚山",
+    color: "#3B8AA6", xp: 60, isNearby: true,
+  },
+  {
+    id: 'wsn3', name: "马关古林箐", nameEn: "Malin Gulinqing Reserve", emoji: "🌿",
+    district: "马关县", lat: 22.9000, lng: 104.1000,
+    peakTime: "全年", peakDays: "全年 · 雨林保护区", difficulty: "medium",
+    rating: 4.1, reviews: 300, tags: ["季雨林", "自然保护区", "中越边境"],
+    desc: "滇东南的季雨林秘境，生物多样",
+    description: "马关古林箐省级自然保护区，滇东南少有的季风常绿阔叶林与热带季雨林，藏着桫椤、蜂猴等珍稀动植物，溪流瀑布幽深清凉。马关地处中越边境，边地风情与原始雨林交织，是自然与探秘爱好者的小众之选。",
+    tips: "属自然保护区，徒步需向导、勿破坏植被；近边境带身份证；雨林潮湿备防蚊防滑。",
+    transport: "文山市区驾车约1.5小时至马关古林箐",
+    color: "#2E8B57", xp: 70, isNearby: true,
+  },
+]
+
+const wenshanItinerary = [
+  {
+    day: 1, title: "抵达·三七之乡", date: "Day 1",
+    activities: [
+      { time: "下午", icon: "✈️", text: "抵达文山，了解三七之乡" , spotId: 'ws4' },
+      { time: "傍晚", icon: "🌿", text: "三七园、三七市场，选道地田七" },
+      { time: "晚上", icon: "🍲", text: "尝三七汽锅鸡药膳 + 壮乡酸汤" },
+    ]
+  },
+  {
+    day: 2, title: "普者黑荷花水乡", date: "Day 2",
+    activities: [
+      { time: "上午", icon: "🚗", text: "北上丘北普者黑（约2小时）" },
+      { time: "下午", icon: "🪷", text: "泛舟普者黑，穿孤峰荷塘、打水仗", spotId: 'ws1' },
+      { time: "晚上", icon: "🏘️", text: "住仙人洞彝寨，看湖畔晚霞", spotId: 'ws5' },
+    ]
+  },
+  {
+    day: 3, title: "世外桃源坝美", date: "Day 3",
+    activities: [
+      { time: "上午", icon: "🚣", text: "广南坝美，坐船穿水洞进桃源", spotId: 'ws2' },
+      { time: "下午", icon: "🌾", text: "广南八宝田园山水，尝贡米", spotId: 'ws3' },
+      { time: "晚上", icon: "🌙", text: "广南或坝美住宿，享壮乡宁静" },
+    ]
+  },
+  {
+    day: 4, title: "边关或石漠", date: "Day 4",
+    activities: [
+      { time: "全天", icon: "🎖️", text: "麻栗坡老山缅怀 或 西畴石漠公园" },
+      { time: "下午", icon: "🎁", text: "选购文山三七、丘北辣椒、壮锦伴手礼" },
+      { time: "傍晚", icon: "✈️", text: "返程 / 前往下一站（昆明、广西）" },
+    ]
+  },
+]
+
+const wenshanTips = [
+  { icon: "📅", title: "最佳季节", content: "亚热带气候、四季温和。普者黑荷花在盛夏（6-9月）最盛、也是水上狂欢最欢腾的时节；坝美、八宝田园全年皆宜，秋收时稻田金黄；彝族花脸节在农历二三月。海拔适中、无高反。" },
+  { icon: "🪷", title: "普者黑玩水", content: "普者黑坐船游湖会有「打水仗」的欢闹传统，务必带防水袋收好手机相机、穿可弄湿的衣物、备换洗。荷花季人多，早出游船、避开正午暴晒。" },
+  { icon: "🌿", title: "三七选购", content: "文山三七是道地名贵药材，市场繁荣但等级、真假差别大。非行家请在正规市场、认准检测与产地，别贪便宜买到劣质或掺假；三七药膳滋补，孕妇等特殊人群食用前咨询医嘱。" },
+  { icon: "🛂", title: "边境肃穆", content: "麻栗坡、马关地处中越边境，需带身份证、勿越境。老山、烈士陵园是庄严的纪念地，请肃穆瞻仰、勿喧闹嬉戏拍照。" },
+  { icon: "🚗", title: "景点分散", content: "文山景点散在丘北（普者黑）、广南（坝美/八宝）、麻栗坡等县，彼此距离较远（常2-3小时）。建议按片区分天、自驾或包车，普者黑与坝美通常分开两片安排。" },
+  { icon: "🙏", title: "壮苗彝风情", content: "文山是壮族、苗族、彝族聚居地，坡芽歌书、花脸节、壮锦等民族文化独特。尊重村寨真实生活，拍照先征得同意；节庆时的歌舞与习俗是分享而非表演。" },
+  { icon: "🌶️", title: "壮乡味道", content: "三七汽锅鸡、八宝贡米、壮家五色花糯米饭、荷叶包饭、丘北辣椒都是特色，色彩丰富、够味养生。壮苗人家的酸汤、糯食别有风味。" },
+]
+
+const wenshanFoods = [
+  { name: "三七汽锅鸡", emoji: "🍲", desc: "田七入汽锅炖鸡，滋补清鲜" },
+  { name: "八宝贡米", emoji: "🍚", desc: "广南贡米，粒长饭香，曾为贡品" },
+  { name: "五色花糯米饭", emoji: "🌈", desc: "植物染色的壮家糯米，喜庆好看" },
+  { name: "丘北辣椒", emoji: "🌶️", desc: "云南名椒，香辣醇厚，做菜提味" },
+  { name: "荷叶包饭", emoji: "🪷", desc: "普者黑荷叶裹饭蒸香，清新" },
+  { name: "壮乡酸汤", emoji: "🥣", desc: "壮苗酸汤煮鱼煮菜，开胃解腻" },
+]
+
+const wenshanPackList = [
+  { icon: "🎒", text: "防水袋（普者黑打水仗必备）" },
+  { icon: "👕", text: "可弄湿衣物 + 换洗（游船戏水）" },
+  { icon: "🧴", text: "防晒 + 驱蚊（荷塘湖畔）" },
+  { icon: "👟", text: "舒适步行鞋（田园古寨多走）" },
+  { icon: "🌂", text: "雨具（夏季多阵雨）" },
+  { icon: "💳", text: "身份证（边境边检查验）" },
+]
+
+const wenshanSeason = {
+  title: "最佳旅行季节",
+  sub: "三七之乡，桃源水寨",
+  rows: [
+    { dot: "peak",  label: "🪷 夏（6—9月）", date: "普者黑万亩荷花盛开", badge: "推荐" },
+    { dot: "early", label: "🚣 全年", date: "坝美世外桃源、八宝田园" },
+    { dot: "late",  label: "🎭 花脸节（农历二三月）", date: "彝族抹黑水上狂欢" },
+  ],
+}
+
 /* ════════════════ CITIES 汇总 ════════════════
    扩展新城市：复制上方一整套 daliXxx 常量，改名后
    在下面数组里追加一个对象即可。
@@ -3808,6 +4000,32 @@ export const CITIES = [
     foods: lincangFoods,
     packList: lincangPackList,
     seasonInfo: lincangSeason,
+  },
+  {
+    id: 'wenshan',
+    name: '文山',
+    nameEn: 'Wenshan',
+    emoji: '🪷',
+    country: '云南',
+    tagline: '三七之乡，桃源水寨',
+    heroBadge: '文山 · 云南',
+    heroTitle: '壮苗文山',
+    heroHighlight: '慢慢划吧！',
+    heroDesc: '普者黑荷花、坝美桃源与三七药乡',
+    heroGradient: 'linear-gradient(160deg, #1C544E 0%, #3E9A84 55%, #CCE8DA 100%)',
+    quickTips: [
+      { icon: '🪷', text: '普者黑荷花夏季最盛' },
+      { icon: '🎒', text: '游船打水仗，带防水袋' },
+      { icon: '🌿', text: '三七道地，正规渠道选购' },
+      { icon: '🛂', text: '麻栗坡马关边境带身份证' },
+    ],
+    spots: wenshanSpots,
+    nearbySpots: wenshanNearby,
+    itineraryDays: wenshanItinerary,
+    tips: wenshanTips,
+    foods: wenshanFoods,
+    packList: wenshanPackList,
+    seasonInfo: wenshanSeason,
   },
 ]
 

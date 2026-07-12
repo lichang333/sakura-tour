@@ -27,6 +27,7 @@ const SPOT_REGION_RULES = [
   { test: /^cxn?\d+$/, region: 'yn-chuxiong' },  // 楚雄：cx1.. / cxn1..（含元谋/禄丰/武定/大姚/姚安/南华，均属楚雄州）
   { test: /^yxn?\d+$/, region: 'yn-yuxi' },  // 玉溪：yx1.. / yxn1..（含澄江/新平/通海/江川/元江/华宁/峨山，均属玉溪）
   { test: /^lcn?\d+$/, region: 'yn-lincang' },  // 临沧：lc1.. / lcn1..（含沧源/凤庆/双江/永德/耿马，均属临沧）
+  { test: /^wsn?\d+$/, region: 'yn-wenshan' },  // 文山：ws1.. / wsn1..（含丘北/广南/麻栗坡/西畴/富宁/砚山/马关，均属文山州）
 ]
 
 export function regionOfSpot(spotId) {
