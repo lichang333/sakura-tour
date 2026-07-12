@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { UserProvider, useUser } from './context/UserContext'
 import { ThemeProvider } from './context/ThemeContext'
 import { CityProvider } from './context/CityContext'
@@ -18,15 +18,18 @@ function AppInner() {
   const [activeTab, setActiveTab] = useState('home')
   const [pendingSpot, setPendingSpot] = useState(null)
 
-  if (loading) {
-    return (
-      <div className="app loading-screen">
-        <div className="loading-seal">桜</div>
-        <div className="loading-brand">Sakura Tour</div>
-        <div className="loading-sub">中国小城漫游</div>
-      </div>
-    )
-  }
+  /* 加载期间由 index.html 内联开屏顶着（bundle 下载起即可见），
+     登录态确认后淡出移除，避免开屏和 React 两套加载 UI 叠放 */
+  useEffect(() => {
+    if (loading) return
+    const splash = document.getElementById('splash')
+    if (!splash) return
+    splash.classList.add('done')
+    const t = setTimeout(() => splash.remove(), 320)
+    return () => clearTimeout(t)
+  }, [loading])
+
+  if (loading) return null
 
   if (!user) {
     return (

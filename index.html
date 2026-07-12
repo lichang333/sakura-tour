@@ -30,6 +30,74 @@
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
   </head>
   <body>
+    <!-- 提前应用主题：消灭深色用户开屏白闪 -->
+    <script>
+      try {
+        var t = localStorage.getItem('sakura_theme')
+        if (t) document.documentElement.setAttribute('data-theme', t)
+      } catch (e) {}
+    </script>
+
+    <!-- 内联开屏：bundle 下载期间即刻可见，React 就绪后淡出移除 -->
+    <style>
+      #splash {
+        position: fixed; inset: 0; z-index: 999;
+        display: flex; flex-direction: column;
+        align-items: center; justify-content: center; gap: 14px;
+        background: #E7E0D0;
+        transition: opacity 0.28s ease;
+      }
+      html[data-theme="dark"] #splash { background: #101319; }
+      #splash.done { opacity: 0; pointer-events: none; }
+
+      .sp-seal {
+        width: 64px; height: 64px; border-radius: 16px;
+        background: #294B6B; color: #F3EEE3;
+        font-family: 'Songti SC', 'STSong', 'Noto Serif SC', serif;
+        font-size: 36px; font-weight: 600;
+        display: grid; place-items: center;
+        box-shadow: 0 6px 18px rgba(41, 75, 107, 0.28);
+        animation: sp-drop 0.55s cubic-bezier(0.2, 0.8, 0.3, 1.1) both,
+                   sp-breathe 1.8s ease-in-out 1s infinite;
+      }
+      .sp-brand {
+        font-family: 'Songti SC', 'STSong', 'Noto Serif SC', serif;
+        font-size: 19px; font-weight: 700; letter-spacing: 0.04em;
+        color: #1B2430;
+        animation: sp-fade 0.4s ease 0.3s both;
+      }
+      .sp-sub {
+        font-size: 12px; font-weight: 600;
+        letter-spacing: 0.3em; padding-left: 0.3em; margin-top: -8px;
+        color: #586572;
+        font-family: -apple-system, 'PingFang SC', sans-serif;
+        animation: sp-fade 0.4s ease 0.42s both;
+      }
+      html[data-theme="dark"] .sp-brand { color: #F3EEE3; }
+      html[data-theme="dark"] .sp-sub { color: #8B97A3; }
+
+      /* 落章：半空斜落 → 顿 → 微弹回正（保留一点章的斜劲） */
+      @keyframes sp-drop {
+        0%   { transform: scale(1.8) rotate(-12deg); opacity: 0; }
+        60%  { transform: scale(0.94) rotate(-3deg); opacity: 1; }
+        80%  { transform: scale(1.04) rotate(-3deg); }
+        100% { transform: scale(1) rotate(-3deg); }
+      }
+      @keyframes sp-breathe {
+        0%, 100% { transform: scale(1) rotate(-3deg); opacity: 1; }
+        50%      { transform: scale(0.96) rotate(-3deg); opacity: 0.85; }
+      }
+      @keyframes sp-fade {
+        from { opacity: 0; transform: translateY(6px); }
+        to   { opacity: 1; transform: none; }
+      }
+    </style>
+    <div id="splash" aria-hidden="true">
+      <div class="sp-seal">桜</div>
+      <div class="sp-brand">Sakura Tour</div>
+      <div class="sp-sub">中国小城漫游</div>
+    </div>
+
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
