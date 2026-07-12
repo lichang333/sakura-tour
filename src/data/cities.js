@@ -1660,6 +1660,201 @@ const shangriSeason = {
   ],
 }
 
+
+/* ════════════════ 昆明 ════════════════ */
+const kunmingSpots = [
+  {
+    id: 'km1', name: "石林", nameEn: "Stone Forest", emoji: "🪨",
+    district: "石林彝族自治县", lat: 24.7700, lng: 103.3300,
+    peakTime: "全年", peakDays: "春秋气候最舒适", difficulty: "easy",
+    rating: 4.6, reviews: 15600, tags: ["必去", "世界自然遗产", "喀斯特·阿诗玛"],
+    isHot: true, ticket: "门票约130元 + 电瓶车另计",
+    description: "世界自然遗产、地球上最壮观的喀斯特石林之一。两亿多年前的海底石灰岩被抬升、溶蚀成一片剑指苍穹的石头森林，「阿诗玛」的传说就藏在其中。撑天石、望峰亭、剑峰池，步步是奇观。",
+    tips: "园区极大，租电瓶车省力；避开正午暴晒；彝族「阿诗玛」文化与火把节值得了解。",
+    transport: "昆明市区驾车约1.5小时，或高铁至石林西站",
+    color: "#8A7A66", xp: 140,
+  },
+  {
+    id: 'km2', name: "滇池·海埂大坝", nameEn: "Dianchi Lake", emoji: "🕊️",
+    district: "西山区", lat: 24.9600, lng: 102.6500,
+    peakTime: "11-3月红嘴鸥", peakDays: "冬季万鸥齐飞", difficulty: "easy",
+    rating: 4.5, reviews: 11200, tags: ["必去", "高原明珠", "红嘴鸥"],
+    isHot: true, ticket: "免费",
+    description: "云南最大的高原湖泊，昆明的母亲湖。海埂大坝隔水正对西山「睡美人」，每年冬天数万只红嘴鸥从西伯利亚飞来越冬，人一喂食便漫天翻飞，是春城冬日最治愈的画面。",
+    tips: "红嘴鸥仅冬季（约11月-次年3月）在；备鸥粮别喂面包；日落时西山剪影最美。",
+    transport: "昆明市区驾车约30分钟",
+    color: "#3B8AA6", xp: 100,
+  },
+  {
+    id: 'km3', name: "西山龙门", nameEn: "Xishan Dragon Gate", emoji: "⛩️",
+    district: "西山区", lat: 24.9600, lng: 102.6300,
+    peakTime: "全年", peakDays: "晴日俯瞰滇池", difficulty: "medium",
+    rating: 4.5, reviews: 8400, tags: ["悬崖石窟", "俯瞰滇池", "睡美人山"],
+    ticket: "门票约40元 + 索道另计",
+    description: "「睡美人」西山临滇池的一段悬崖，古人在近乎垂直的崖壁上一凿一斧开出栈道与石窟，直抵龙门。凭栏俯瞰，整个滇池与昆明城尽收眼底，是俯看高原明珠的最佳阳台。",
+    tips: "可坐索道上、栈道下；龙门栈道窄且陡，错峰避人流；与滇池、民族村同一片可连游。",
+    transport: "昆明市区驾车约40分钟至西山脚",
+    color: "#4E7A5E", xp: 110,
+  },
+  {
+    id: 'km4', name: "翠湖公园", nameEn: "Green Lake Park", emoji: "🦆",
+    district: "五华区", lat: 25.0500, lng: 102.7000,
+    peakTime: "全年（冬季红嘴鸥）", peakDays: "冬日鸥满湖", difficulty: "easy",
+    rating: 4.4, reviews: 6900, tags: ["城中湖", "老昆明", "讲武堂"],
+    ticket: "免费",
+    description: "镶在昆明老城里的一泓碧水，垂柳画桥、荷塘水榭，是最有老昆明味道的地方。冬天红嘴鸥也来这里，市民遛弯、票友唱曲，慢生活气息十足。旁边就是云南陆军讲武堂旧址。",
+    tips: "清晨最静最出片；顺路可看讲武堂（黄色回廊建筑，多为免费）、云大老校区、文林街。",
+    transport: "昆明市区内，地铁/打车可达",
+    color: "#5E9B7E", xp: 80,
+  },
+  {
+    id: 'km5', name: "官渡古镇", nameEn: "Guandu Ancient Town", emoji: "🏯",
+    district: "官渡区", lat: 24.9700, lng: 102.7500,
+    peakTime: "全年", peakDays: "全年 · 小吃烟火", difficulty: "easy",
+    rating: 4.2, reviews: 5100, tags: ["千年古镇", "金刚塔", "官渡粑粑"],
+    ticket: "免费",
+    description: "滇池边一座上千年的古渡口小镇，妙湛寺前的金刚宝座塔是国宝级石塔。青石巷里满是官渡粑粑、饵块、米线的香气，古庙、戏台、螺蛳壳堆成的老墙都还在，市井味浓。",
+    tips: "以吃为主的古镇，尝官渡粑粑、烧饵块；金刚塔值得细看；离市区近，半日足够。",
+    transport: "昆明市区驾车约20分钟",
+    color: "#C7852B", xp: 80,
+  },
+  {
+    id: 'km6', name: "云南民族村", nameEn: "Yunnan Nationalities Village", emoji: "🪘",
+    district: "西山区", lat: 24.9600, lng: 102.6600,
+    peakTime: "全年（节庆最热闹）", peakDays: "泼水节/火把节最盛", difficulty: "easy",
+    rating: 4.1, reviews: 4300, tags: ["民族风情", "滇池畔", "歌舞"],
+    ticket: "门票约90元",
+    description: "滇池边把云南二十多个世居民族的村寨浓缩在一起：傣家竹楼、白族三坊一照壁、藏式碉房、彝族土掌房……歌舞表演与泼水、火把等节庆轮番上演。一天看遍云南的民族万花筒。",
+    tips: "适合初来云南、时间有限想快速了解民族文化者；与滇池、西山连成一片同游。",
+    transport: "昆明市区驾车约30分钟，滇池畔",
+    color: "#B4472F", xp: 80,
+  },
+  {
+    id: 'km7', name: "斗南花市", nameEn: "Dounan Flower Market", emoji: "💐",
+    district: "呈贡区", lat: 24.9000, lng: 102.7600,
+    peakTime: "全年（夜市最旺）", peakDays: "全年 · 每晚开市", difficulty: "easy",
+    rating: 4.5, reviews: 6200, tags: ["亚洲最大花市", "论斤卖花", "夜市"],
+    ticket: "免费",
+    description: "亚洲最大的鲜切花交易市场，中国每十枝鲜花就有七枝出自这里。夜幕下的交易大厅里，玫瑰、绣球、满天星按斤论把地卖，几块钱抱走一大束。爱花的人来这里会疯掉，是最「昆明」的浪漫。",
+    tips: "对手零售夜市傍晚后最热闹；论斤/论扎买极便宜；带张报纸或买包装护花带走。",
+    transport: "昆明市区驾车约30分钟至呈贡",
+    color: "#C85C8E", xp: 90,
+  },
+]
+
+/* 周边顺游 —— 均在昆明辖区（东川/宜良/禄劝），派生同归昆明 */
+const kunmingNearby = [
+  {
+    id: 'kmn1', name: "东川红土地", nameEn: "Dongchuan Red Land", emoji: "🎨",
+    district: "东川区", lat: 26.1000, lng: 103.1800,
+    peakTime: "5-6月 / 9-12月", peakDays: "春播秋收色彩最浓", difficulty: "easy",
+    rating: 4.6, reviews: 3400, tags: ["大地调色板", "摄影圣地", "红土梯田"],
+    ticket: "免费（各观景点自由停）",
+    desc: "红土、绿苗、油菜拼成的大地油画",
+    description: "地球上最像调色盘的土地之一。铁红色的土壤配上不同季节的青稞、油菜、荞麦，在山坡上铺成一块块浓烈的色带，云影掠过时明暗流动。落霞沟、七彩坡是摄影人心中的圣地。",
+    tips: "自驾串联各观景点最方便；晨昏光线最出片；距昆明约3小时，建议住一晚拍日出日落。",
+    transport: "昆明市区驾车约3小时至东川",
+    color: "#B4472F", xp: 100, isNearby: true,
+  },
+  {
+    id: 'kmn2', name: "九乡溶洞", nameEn: "Jiuxiang Caves", emoji: "🕳️",
+    district: "宜良县", lat: 24.9300, lng: 103.3600,
+    peakTime: "全年", peakDays: "全年 · 洞中恒温", difficulty: "easy",
+    rating: 4.4, reviews: 2600, tags: ["喀斯特溶洞", "地下峡谷", "荫翠峡"],
+    ticket: "门票约90元 + 索道",
+    desc: "地下的喀斯特奇观，与石林上下呼应",
+    description: "「上有石林、下有九乡」。九乡是规模宏大的喀斯特溶洞群，坐船穿过幽绿的荫翠峡进洞，里面是雄狮厅、神女宫、地下瀑布与钟乳石林，是石林之外的另一半地质奇观。",
+    tips: "与石林同方向可一并安排；洞内恒温凉爽、地面湿滑，穿防滑鞋带件外套。",
+    transport: "昆明市区驾车约2小时至宜良九乡",
+    color: "#3B6E86", xp: 90, isNearby: true,
+  },
+  {
+    id: 'kmn3', name: "轿子雪山", nameEn: "Jiaozi Snow Mountain", emoji: "❄️",
+    district: "禄劝县", lat: 26.0800, lng: 102.8500,
+    peakTime: "12-3月雪 / 4-5月杜鹃", peakDays: "冬雪春杜鹃", difficulty: "medium",
+    rating: 4.4, reviews: 2100, tags: ["昆明最高峰", "雾凇冰瀑", "高山杜鹃"],
+    ticket: "门票+索道约150元",
+    desc: "离昆明最近的雪山，冬雪春杜鹃",
+    description: "昆明第一高峰、离城市最近能看雪的地方。冬天云海雾凇、冰瀑高悬，四五月漫山高山杜鹃盛开。栈道与索道直上四千余米，一日之内从春城到雪原，落差惊人。",
+    tips: "冬季山上极冷防滑、备厚衣；高海拔慢行防高反；路程约3.5小时，宜早出发或住一晚。",
+    transport: "昆明市区驾车约3.5小时至禄劝",
+    color: "#5E86AC", xp: 100, isNearby: true,
+  },
+]
+
+const kunmingItinerary = [
+  {
+    day: 1, title: "抵达·老城慢逛", date: "Day 1",
+    activities: [
+      { time: "下午", icon: "✈️", text: "抵达昆明，入住市区" },
+      { time: "傍晚", icon: "🦆", text: "翠湖公园遛弯，讲武堂、文林街", spotId: 'km4' },
+      { time: "晚上", icon: "🍜", text: "尝正宗过桥米线 + 汽锅鸡" },
+    ]
+  },
+  {
+    day: 2, title: "滇池与西山", date: "Day 2",
+    activities: [
+      { time: "上午", icon: "⛩️", text: "西山龙门凿壁栈道，俯瞰滇池", spotId: 'km3' },
+      { time: "下午", icon: "🕊️", text: "海埂大坝喂红嘴鸥（冬），民族村", spotId: 'km2' },
+      { time: "晚上", icon: "💐", text: "斗南花市论斤抱花回", spotId: 'km7' },
+    ]
+  },
+  {
+    day: 3, title: "石林一日", date: "Day 3",
+    activities: [
+      { time: "上午", icon: "🪨", text: "石林喀斯特奇观，寻阿诗玛", spotId: 'km1' },
+      { time: "下午", icon: "🕳️", text: "顺游九乡溶洞（上石林下九乡）" },
+      { time: "傍晚", icon: "🏯", text: "返程官渡古镇吃粑粑、烧饵块", spotId: 'km5' },
+    ]
+  },
+  {
+    day: 4, title: "红土地或雪山", date: "Day 4",
+    activities: [
+      { time: "全天", icon: "🎨", text: "东川红土地大地油画 或 轿子雪山" },
+      { time: "下午", icon: "🎁", text: "选购鲜花饼、普洱茶、菌菇干货伴手礼" },
+      { time: "傍晚", icon: "✈️", text: "返程 / 前往下一站（大理、建水）" },
+    ]
+  },
+]
+
+const kunmingTips = [
+  { icon: "📅", title: "最佳季节", content: "「春城」四季如春、全年可玩。冬季（11-3月）红嘴鸥来滇池、翠湖越冬；春季（3-4月）圆通樱花、郊野杜鹃；夏秋是野生菌季。海拔约1900米，偶有轻微高原反应。" },
+  { icon: "🍄", title: "野生菌须知", content: "夏秋（6-9月）是野生菌季，见手青、鸡枞、干巴菌鲜美但部分有毒。务必去正规餐馆，菌子必须炒熟炒透、不混食、不喝酒，切勿自采自食。" },
+  { icon: "🕊️", title: "红嘴鸥", content: "红嘴鸥只在冬季（约11月-次年3月）到昆明越冬，滇池海埂、翠湖是最佳观赏点。请买专用鸥粮、勿喂面包等，勿惊扰抓捕。" },
+  { icon: "🌂", title: "紫外线与温差", content: "高原日照强、紫外线高，防晒墨镜必备；昼夜温差大，早晚加件外套。天气「一雨成冬」，随身带把伞。" },
+  { icon: "🚄", title: "交通枢纽", content: "昆明是云南的门户与交通枢纽，长水机场、高铁通达大理/丽江/西双版纳等地，适合作为云南之行的第一站或中转站。市内地铁较便利。" },
+  { icon: "🍲", title: "滇味必尝", content: "过桥米线是招牌（生片汆汤，注意烫）、汽锅鸡清鲜、小锅米线市井、鲜花饼当伴手礼。老店比景区地道，官渡粑粑值得一试。" },
+  { icon: "🌸", title: "花与季节", content: "昆明是「亚洲花都」，斗南花市全年鲜花论斤卖。若逢圆通樱潮（3月）、郊野杜鹃（4-5月）、坝美荷花等花期，行程可顺势安排。" },
+]
+
+const kunmingFoods = [
+  { name: "过桥米线", emoji: "🍜", desc: "滚汤汆生片，昆明头牌，注意烫" },
+  { name: "汽锅鸡", emoji: "🍲", desc: "汽锅蒸出原汁，清鲜滋补" },
+  { name: "小锅米线", emoji: "🥘", desc: "铜锅现煮，酸浆米线市井味" },
+  { name: "野生菌", emoji: "🍄", desc: "夏秋限定，见手青/鸡枞须炒透" },
+  { name: "鲜花饼", emoji: "🌹", desc: "玫瑰入酥皮，云南头号伴手礼" },
+  { name: "烧饵块", emoji: "🫓", desc: "炭烤糯米饵块裹酱，街头早餐" },
+]
+
+const kunmingPackList = [
+  { icon: "🧥", text: "外套（昼夜温差，早晚偏凉）" },
+  { icon: "🧴", text: "高倍防晒 + 墨镜（高原日照强）" },
+  { icon: "🌂", text: "折叠伞（一雨成冬）" },
+  { icon: "👟", text: "舒适步行鞋（石林/西山多走）" },
+  { icon: "🕊️", text: "冬季备鸥粮零钱（喂红嘴鸥）" },
+  { icon: "💳", text: "身份证（高铁/景区实名）" },
+]
+
+const kunmingSeason = {
+  title: "最佳旅行季节",
+  sub: "四季如春的春城",
+  rows: [
+    { dot: "peak",  label: "🌸 春（3—4月）", date: "樱花杜鹃，气候最宜人", badge: "推荐" },
+    { dot: "early", label: "🕊️ 冬（11—3月）", date: "红嘴鸥越冬，滇池翠湖" },
+    { dot: "late",  label: "🍄 夏秋（6—9月）", date: "野生菌季，需吃熟吃对" },
+  ],
+}
+
 /* ════════════════ CITIES 汇总 ════════════════
    扩展新城市：复制上方一整套 daliXxx 常量，改名后
    在下面数组里追加一个对象即可。
@@ -1848,6 +2043,32 @@ export const CITIES = [
     foods: shangriFoods,
     packList: shangriPackList,
     seasonInfo: shangriSeason,
+  },
+  {
+    id: 'kunming',
+    name: '昆明',
+    nameEn: 'Kunming',
+    emoji: '🌸',
+    country: '云南',
+    tagline: '四季如春的春城',
+    heroBadge: '昆明 · 云南',
+    heroTitle: '春城昆明',
+    heroHighlight: '慢慢逛吧！',
+    heroDesc: '石林滇池、红嘴鸥与满城鲜花',
+    heroGradient: 'linear-gradient(160deg, #1E5E70 0%, #3E93A6 55%, #CDE9E4 100%)',
+    quickTips: [
+      { icon: '📅', text: '四季如春，全年可玩' },
+      { icon: '🕊️', text: '冬季滇池翠湖看红嘴鸥' },
+      { icon: '🍄', text: '夏秋野生菌须吃熟吃对' },
+      { icon: '🚄', text: '云南门户，中转枢纽' },
+    ],
+    spots: kunmingSpots,
+    nearbySpots: kunmingNearby,
+    itineraryDays: kunmingItinerary,
+    tips: kunmingTips,
+    foods: kunmingFoods,
+    packList: kunmingPackList,
+    seasonInfo: kunmingSeason,
   },
 ]
 
