@@ -26,6 +26,7 @@ const SPOT_REGION_RULES = [
   { test: /^njn?\d+$/, region: 'yn-nujiang' },  // 怒江：nj1.. / njn1..（含泸水/福贡/贡山/兰坪，均属怒江州）
   { test: /^cxn?\d+$/, region: 'yn-chuxiong' },  // 楚雄：cx1.. / cxn1..（含元谋/禄丰/武定/大姚/姚安/南华，均属楚雄州）
   { test: /^yxn?\d+$/, region: 'yn-yuxi' },  // 玉溪：yx1.. / yxn1..（含澄江/新平/通海/江川/元江/华宁/峨山，均属玉溪）
+  { test: /^lcn?\d+$/, region: 'yn-lincang' },  // 临沧：lc1.. / lcn1..（含沧源/凤庆/双江/永德/耿马，均属临沧）
 ]
 
 export function regionOfSpot(spotId) {

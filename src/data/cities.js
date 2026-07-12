@@ -3194,6 +3194,198 @@ const yuxiSeason = {
   ],
 }
 
+
+/* ════════════════ 临沧 ════════════════ */
+const lincangSpots = [
+  {
+    id: 'lc1', name: "翁丁佤寨", nameEn: "Wengding Wa Village", emoji: "🛖",
+    district: "沧源县", lat: 23.2000, lng: 99.2000,
+    peakTime: "全年（云海秋冬多）", peakDays: "晨雾佤山云海", difficulty: "medium",
+    rating: 4.5, reviews: 2600, tags: ["必去", "佤族村寨", "佤山云海"],
+    isHot: true, ticket: "门票约40元",
+    description: "阿佤山深处的佤族村寨，曾被称为「中国最后一个原始部落」，茅草木楞房、寨门木鼓、人头桩透着古老气息。2021 年 2 月老寨大部毁于火灾，如今按原貌重建、佤族村民仍在此生活。晨雾中的佤山云海与木鼓声，依旧动人。",
+    tips: "老寨 2021 火灾后为重建village，心里有数；清晨看佤山云海最美；尊重佤族习俗、拍照先问、勿嬉闹祭祀区。",
+    transport: "临沧市区驾车约3.5小时至沧源翁丁",
+    color: "#6B4E3D", xp: 120,
+  },
+  {
+    id: 'lc2', name: "沧源崖画", nameEn: "Cangyuan Rock Paintings", emoji: "🖼️",
+    district: "沧源县", lat: 23.1500, lng: 99.2500,
+    peakTime: "全年", peakDays: "全年 · 三千年古画", difficulty: "easy",
+    rating: 4.3, reviews: 1400, tags: ["必去", "三千年崖画", "远古岩画"],
+    isHot: true, ticket: "门票约30元",
+    description: "距今约三千年、中国最古老的崖画之一。十余处红色岩画散落在沧源各处的崖壁上（多在海拔约1500米处），描绘着远古先民狩猎、放牧、舞蹈、祭祀的生活。据说画色还会随光线、天气变化，神秘古朴，是解读阿佤先民的活化石。",
+    tips: "崖画分散在几处、可选主要一两处看；结合翁丁、广允缅寺同游沧源；崖壁远观、勿触摸攀爬。",
+    transport: "沧源县城驾车约20分钟",
+    color: "#B4472F", xp: 100,
+  },
+  {
+    id: 'lc3', name: "凤庆·锦绣茶祖", nameEn: "Fengqing Ancient Tea King", emoji: "🍵",
+    district: "凤庆县", lat: 24.5800, lng: 99.9200,
+    peakTime: "春茶3-4月 / 全年", peakDays: "春采滇红最活", difficulty: "medium",
+    rating: 4.5, reviews: 1900, tags: ["必去", "滇红之乡", "3200年茶王"],
+    isHot: true, ticket: "香竹箐景区约低价",
+    description: "凤庆是「滇红」（云南红茶）的发源地，也是普洱茶的重要原料基地。香竹箐那株「锦绣茶祖」树龄约三千二百年，是世界上最古老的栽培型古茶树之一，一人难以合抱。走进凤庆的古茶园与红茶厂，能读懂云南茶的半部历史。",
+    tips: "春茶季（3-4月）茶山最热闹；参观锦绣茶祖、逛滇红茶厂、买一罐凤庆红茶；山路较远宜自驾。",
+    transport: "临沧市区驾车约2小时至凤庆香竹箐",
+    color: "#8A6A3B", xp: 110,
+  },
+  {
+    id: 'lc4', name: "广允缅寺", nameEn: "Guangyun Buddhist Temple", emoji: "🛕",
+    district: "沧源县", lat: 23.1500, lng: 99.2400,
+    peakTime: "全年", peakDays: "全年 · 国宝南传佛寺", difficulty: "easy",
+    rating: 4.2, reviews: 800, tags: ["国宝古寺", "南传佛教", "傣式壁画"],
+    ticket: "免费",
+    description: "沧源县城里一座清代南传上座部佛寺，全国重点文物保护单位。融合傣、汉建筑之美，大殿的木雕、金水漏印与彩色壁画精美绝伦，尤其壁画内容生动、笔法细腻，是滇西南南传佛教艺术的瑰宝，静立在闹市一隅。",
+    tips: "在沧源县城、免费，与崖画、翁丁同片区顺游；进殿脱鞋、尊重礼佛习俗；壁画值得细看。",
+    transport: "沧源县城内，步行可达",
+    color: "#C7852B", xp: 80,
+  },
+  {
+    id: 'lc5', name: "勐库大雪山古茶园", nameEn: "Mengku Ancient Tea Forest", emoji: "🌿",
+    district: "双江县", lat: 23.7500, lng: 99.8500,
+    peakTime: "春茶3-4月", peakDays: "春采冰岛茶最盛", difficulty: "hard",
+    rating: 4.5, reviews: 1200, tags: ["野生古茶群落", "冰岛茶", "普洱名山"],
+    ticket: "免费（茶山体验另计）",
+    description: "双江勐库大雪山上，生长着连片的万亩野生型古茶树群落，是普洱茶的重要基因宝库。山脚的冰岛、坝糯等寨子出产的普洱茶名震天下、一饼难求。云雾缭绕的古茶山间，藏着云南茶最顶级的味道与最原始的模样。",
+    tips: "冰岛茶名贵、水深，认准正规渠道、试喝再买；登野生古茶群落属硬核徒步、需向导；春茶季最热闹。",
+    transport: "临沧市区驾车约2小时至双江勐库",
+    color: "#4E7A5E", xp: 100,
+  },
+  {
+    id: 'lc6', name: "茶文化风情园·五老山", nameEn: "Tea Culture Garden", emoji: "🍃",
+    district: "临翔区", lat: 23.9000, lng: 100.0800,
+    peakTime: "全年", peakDays: "全年 · 采茶体验", difficulty: "easy",
+    rating: 4.1, reviews: 1000, tags: ["万亩茶园", "采茶制茶", "五老山"],
+    ticket: "低价/免费",
+    description: "临沧城郊的茶文化风情园坐落在万亩茶园与五老山森林间，是云南红茶产量最大的园区之一。可以亲手采茶、看制茶、听茶歌，系统了解滇红与普洱的门道。园区依山傍绿、空气清新，是离城最近的一片茶香绿意。",
+    tips: "适合想了解滇红茶的人，采制体验可预约；五老山森林公园可徒步；离市区近、半日足够。",
+    transport: "临沧市区驾车约30分钟",
+    color: "#5E9B7E", xp: 80,
+  },
+  {
+    id: 'lc7', name: "沧源葫芦小镇", nameEn: "Cangyuan Hulu Town", emoji: "🎃",
+    district: "沧源县", lat: 23.1500, lng: 99.2600,
+    peakTime: "全年（摸你黑狂欢5月）", peakDays: "摸你黑狂欢节最疯", difficulty: "easy",
+    rating: 4.2, reviews: 1100, tags: ["佤族文化", "司岗里", "摸你黑"],
+    ticket: "免费",
+    description: "沧源县城旁的佤族文化小镇，以佤族创世史诗「司岗里」（人从葫芦/山洞中走出）为主题，佤山风情浓郁。每年五月的「摸你黑」狂欢节，人们互相涂抹黑色的天然颜料以求祝福，全城陷入欢乐的黑色狂欢，是佤文化最热烈的表达。",
+    tips: "摸你黑狂欢节（约5月）最疯最有意思，参与需带可弄脏的衣物；平日可看佤族歌舞、木鼓；尊重佤族习俗。",
+    transport: "沧源县城旁，步行/打车可达",
+    color: "#3E5A3A", xp: 80,
+  },
+]
+
+/* 周边顺游 —— 均在临沧辖区（凤庆/永德/耿马），派生同归临沧 */
+const lincangNearby = [
+  {
+    id: 'lcn1', name: "凤庆鲁史古镇", nameEn: "Lushi Ancient Town", emoji: "🐴",
+    district: "凤庆县", lat: 24.8000, lng: 100.0200,
+    peakTime: "全年", peakDays: "全年 · 茶马古道古镇", difficulty: "easy",
+    rating: 4.3, reviews: 700, tags: ["茶马古道", "古驿重镇", "四合院"],
+    desc: "澜沧江畔的茶马古道古镇，滇红外运重镇",
+    description: "凤庆北部澜沧江畔的千年古镇，曾是茶马古道上滇红外运的咽喉。三街七巷、四合院、马店与被马蹄磨亮的石板路都还在，古镇格局完整、游人稀少，安静得能听见旧时光。老街上还能喝到地道的凤庆红茶。",
+    tips: "与凤庆茶山可一并安排；古镇慢逛、住老院子；山路较远自驾为宜。",
+    transport: "临沧市区驾车约3小时至凤庆鲁史",
+    color: "#8A6A3B", xp: 80, isNearby: true,
+  },
+  {
+    id: 'lcn2', name: "永德大雪山", nameEn: "Yongde Snow Mountain", emoji: "🏔️",
+    district: "永德县", lat: 24.0200, lng: 99.2500,
+    peakTime: "3-5月杜鹃 / 全年", peakDays: "春季高山杜鹃盛开", difficulty: "hard",
+    rating: 4.2, reviews: 500, tags: ["自然保护区", "高山杜鹃", "原始森林"],
+    desc: "国家级保护区，春季万亩高山杜鹃",
+    description: "永德大雪山国家级自然保护区，横断山余脉的一片原始秘境，森林垂直分布、生物多样。春天万亩高山杜鹃在山脊铺展，云海翻涌，人迹罕至。是徒步与自然爱好者的小众之选，也是重要的动植物基因库。",
+    tips: "属硬核徒步、需向导与体能，勿擅自深入；春季（3-5月）杜鹃最盛；备保暖防水衣物。",
+    transport: "临沧市区驾车约3小时至永德大雪山",
+    color: "#5E86AC", xp: 90, isNearby: true,
+  },
+  {
+    id: 'lcn3', name: "耿马孟定边境", nameEn: "Mengding Border", emoji: "🚩",
+    district: "耿马县", lat: 23.5500, lng: 99.1000,
+    peakTime: "全年", peakDays: "全年 · 中缅口岸", difficulty: "easy",
+    rating: 4.0, reviews: 400, tags: ["中缅边境", "孟定口岸", "傣族热坝"],
+    desc: "中缅边境傣族热坝，孟定口岸边贸",
+    description: "耿马孟定是临沧的中缅边境热坝，清水河口岸是通往缅甸的重要通道，边贸与傣族风情交织。热坝气候暖热、盛产芒果甘蔗，傣家竹楼、佛寺散落其间，是感受临沧边地口岸烟火的地方。",
+    tips: "近边境带身份证、勿越境；热坝湿热备防蚊防晒；傣族节庆时最热闹。",
+    transport: "临沧市区驾车约2.5小时至耿马孟定",
+    color: "#C79A3E", xp: 70, isNearby: true,
+  },
+]
+
+const lincangItinerary = [
+  {
+    day: 1, title: "抵达·茶城茶香", date: "Day 1",
+    activities: [
+      { time: "下午", icon: "✈️", text: "抵达临沧，入住市区" },
+      { time: "傍晚", icon: "🍃", text: "茶文化风情园采茶，五老山透气", spotId: 'lc6' },
+      { time: "晚上", icon: "🍚", text: "尝佤族鸡肉烂饭 + 一杯凤庆滇红" },
+    ]
+  },
+  {
+    day: 2, title: "阿佤山佤文化", date: "Day 2",
+    activities: [
+      { time: "上午", icon: "🚗", text: "南下沧源（约3.5小时），入住佤乡" },
+      { time: "下午", icon: "🖼️", text: "沧源崖画看三千年岩画", spotId: 'lc2' },
+      { time: "傍晚", icon: "🛕", text: "广允缅寺赏国宝壁画，葫芦小镇", spotId: 'lc4' },
+    ]
+  },
+  {
+    day: 3, title: "最后的原始部落", date: "Day 3",
+    activities: [
+      { time: "清晨", icon: "🛖", text: "翁丁佤寨守佤山云海、看木鼓", spotId: 'lc1' },
+      { time: "上午", icon: "🎃", text: "葫芦小镇感受司岗里佤文化", spotId: 'lc7' },
+      { time: "下午", icon: "🚗", text: "返临沧或转双江方向" },
+    ]
+  },
+  {
+    day: 4, title: "古茶山与滇红", date: "Day 4",
+    activities: [
+      { time: "全天", icon: "🍵", text: "双江勐库冰岛古茶山 或 凤庆锦绣茶祖" },
+      { time: "下午", icon: "🎁", text: "选购滇红茶、坚果、佤族筒帕伴手礼" },
+      { time: "傍晚", icon: "✈️", text: "返程 / 前往下一站（普洱、西双版纳）" },
+    ]
+  },
+]
+
+const lincangTips = [
+  { icon: "📅", title: "最佳季节", content: "北回归线穿城，亚热带气候、年均约17℃，四季温和、全年皆宜。春茶季（3-4月）茶山最活；佤族「摸你黑」狂欢节在5月最热烈；永德大雪山杜鹃3-5月盛开。海拔适中、无高反。" },
+  { icon: "🛖", title: "翁丁现状", content: "翁丁老寨在 2021 年 2 月遭遇火灾、大部分茅草房被毁，现已按原貌重建、佤族村民仍在生活。前往时心里有数、以平常心看待「重建的原始部落」，尊重村民真实生活，勿把村寨当纯布景。" },
+  { icon: "🍵", title: "茶乡与买茶", content: "临沧是滇红发源地、普洱名山（冰岛、昔归）所在，也是全国最大红茶产区。买茶认准正规渠道、试喝再买，冰岛/昔归等名山茶价高陷阱多，警惕低价「名山古树」。" },
+  { icon: "🛂", title: "边境证件", content: "沧源、耿马、镇康紧邻中缅边境，孟定等口岸需带身份证、按规定通行，勿越境、勿购来路不明商品。偏远地区备足现金与常用药。" },
+  { icon: "🚗", title: "路远景散", content: "临沧景点散在沧源、凤庆、双江、永德等偏远县，距市区常2-3.5小时山路，昆明到临沧更要约9小时。强烈建议飞临沧机场进、再包车按片区分天走，别贪多。" },
+  { icon: "🙏", title: "佤族礼俗", content: "临沧是佤族的主要聚居地（云南三分之二佤族在此）。尊重佤族的木鼓、祭祀等习俗，拍照先征得同意；「摸你黑」被涂黑是受祝福，别抗拒；进佛寺守南传佛教礼仪。" },
+  { icon: "🥭", title: "山货特产", content: "滇红茶、坚果（临沧种植面积全国第一）、蔗糖、芒果都是临沧特产。佤族的筒帕（挎包）手工织就、纹样古朴，是很有味道的伴手礼。" },
+]
+
+const lincangFoods = [
+  { name: "佤族鸡肉烂饭", emoji: "🍚", desc: "鸡肉与米同煮软糯，佤家名菜" },
+  { name: "凤庆滇红", emoji: "🍵", desc: "滇红发源地，汤色红艳香高" },
+  { name: "佤王宴", emoji: "🍖", desc: "佤家长桌宴，烤肉山珍摆满席" },
+  { name: "牛撒撇", emoji: "🥗", desc: "苦撒凉拌，酸苦生鲜的边地味" },
+  { name: "木瓜鸡", emoji: "🍲", desc: "酸木瓜炖鸡，开胃解腻" },
+  { name: "竹筒茶", emoji: "🎋", desc: "茶叶入竹筒烤制，带竹清香" },
+]
+
+const lincangPackList = [
+  { icon: "🧥", text: "薄外套（茶山早晚凉、大雪山冷）" },
+  { icon: "🦟", text: "驱蚊 + 防晒（热坝湿热）" },
+  { icon: "👟", text: "防滑徒步鞋（茶山/大雪山）" },
+  { icon: "👕", text: "可弄脏衣物（摸你黑狂欢节）" },
+  { icon: "💵", text: "足量现金（偏远山区支付不稳）" },
+  { icon: "💳", text: "身份证（边境边检查验）" },
+]
+
+const lincangSeason = {
+  title: "最佳旅行季节",
+  sub: "滇红茶乡，阿佤山寨",
+  rows: [
+    { dot: "peak",  label: "🍃 春（3—4月）", date: "春茶飘香，茶山最活", badge: "推荐" },
+    { dot: "early", label: "🎃 摸你黑（约5月）", date: "佤族狂欢，全城涂黑" },
+    { dot: "late",  label: "☁️ 秋冬", date: "佤山云海、气候温和" },
+  ],
+}
+
 /* ════════════════ CITIES 汇总 ════════════════
    扩展新城市：复制上方一整套 daliXxx 常量，改名后
    在下面数组里追加一个对象即可。
@@ -3590,6 +3782,32 @@ export const CITIES = [
     foods: yuxiFoods,
     packList: yuxiPackList,
     seasonInfo: yuxiSeason,
+  },
+  {
+    id: 'lincang',
+    name: '临沧',
+    nameEn: 'Lincang',
+    emoji: '🍵',
+    country: '云南',
+    tagline: '滇红茶乡，阿佤山寨',
+    heroBadge: '临沧 · 云南',
+    heroTitle: '茶乡临沧',
+    heroHighlight: '慢慢品吧！',
+    heroDesc: '滇红发源、佤族村寨与三千年崖画',
+    heroGradient: 'linear-gradient(160deg, #2A4A2A 0%, #5A7E44 55%, #D2E0BC 100%)',
+    quickTips: [
+      { icon: '🍵', text: '滇红发源，冰岛名山茶' },
+      { icon: '🛖', text: '翁丁老寨2021火灾后重建' },
+      { icon: '🛂', text: '沧源耿马边境需身份证' },
+      { icon: '🚗', text: '景散路远，建议飞机进+包车' },
+    ],
+    spots: lincangSpots,
+    nearbySpots: lincangNearby,
+    itineraryDays: lincangItinerary,
+    tips: lincangTips,
+    foods: lincangFoods,
+    packList: lincangPackList,
+    seasonInfo: lincangSeason,
   },
 ]
 
