@@ -14,7 +14,7 @@
   align-items: center;
   justify-content: space-between;
   gap: 10px;
-  padding: 12px 16px;
+  padding: 6px 16px 10px;  /* 上内边距收紧，头部内容更贴近状态栏 */
 }
 
 .logo {

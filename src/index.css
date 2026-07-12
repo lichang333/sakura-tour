@@ -97,8 +97,11 @@
 
 /* 根元素也铺底色：iOS 回弹/露底区域跟随主题，不再露出系统纯黑/纯白 */
 html {
-  background: var(--bg);
+  /* 根底色 = 头部/底栏色：iOS 下拉回弹时露出的是这块，
+     让它与吸顶头部、底部导航同色 —— 上下回弹都不再劈开色差带 */
+  background: var(--header-bg);
   transition: background 0.3s ease;
+  overscroll-behavior-y: none;  /* 支持的浏览器直接不回弹，双保险 */
 }
 
 :root { color-scheme: light; }
