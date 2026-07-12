@@ -102,8 +102,18 @@ export default function TipsPage({ goToSpot }) {
             <h2 className="page-title">{currentCity.name}旅行攻略</h2>
             <p className="page-sub">知己知彼，玩得更爽</p>
           </div>
-          <button className="share-card-btn" onClick={openShare} disabled={shareBusy}>
-            {shareBusy ? '生成中…' : '📤 分享攻略卡'}
+          <button className="share-card-btn" onClick={openShare} disabled={shareBusy}
+            aria-label="分享攻略卡" title="分享攻略卡">
+            {shareBusy ? (
+              <span className="scb-spin" aria-hidden="true" />
+            ) : (
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none"
+                stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="M12 13V4" />
+                <path d="M8.5 7.5 12 4l3.5 3.5" />
+                <path d="M7 12H5v8h14v-8h-2" />
+              </svg>
+            )}
           </button>
         </div>
       </div>

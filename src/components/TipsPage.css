@@ -445,15 +445,34 @@
 
 .share-card-btn {
   flex-shrink: 0;
-  margin-top: 4px;
-  padding: 9px 14px;
+  width: 40px;
+  height: 40px;
+  margin-top: 2px;
   border-radius: 12px;
   border: 1.5px solid var(--copper);
   background: transparent;
   color: var(--copper);
-  font-size: 13px;
-  font-weight: 700;
+  display: grid;
+  place-items: center;
   transition: all 0.15s;
+}
+
+.share-card-btn:active { transform: scale(0.92); }
+.share-card-btn:disabled { opacity: 0.55; }
+
+.scb-spin {
+  width: 16px;
+  height: 16px;
+  border: 2px solid var(--copper);
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: scb-rotate 0.8s linear infinite;
+}
+
+@keyframes scb-rotate { to { transform: rotate(360deg); } }
+
+@media (hover: hover) {
+  .share-card-btn:hover { background: rgba(169,112,47,0.08); }
 }
 
 .share-card-btn:active { transform: scale(0.96); }
