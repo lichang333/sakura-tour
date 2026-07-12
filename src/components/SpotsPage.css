@@ -408,6 +408,11 @@
   flex-shrink: 0;
 }
 
+.nearby-info {
+  flex: 1;
+  min-width: 0;
+}
+
 .nearby-name {
   font-size: 14px;
   font-weight: 800;
