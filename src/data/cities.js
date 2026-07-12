@@ -1468,6 +1468,198 @@ const tengchongSeason = {
   ],
 }
 
+
+/* ════════════════ 香格里拉 ════════════════ */
+const shangriSpots = [
+  {
+    id: 'sg1', name: "普达措国家公园", nameEn: "Pudacuo National Park", emoji: "🏞️",
+    district: "香格里拉市", lat: 27.9000, lng: 99.9800,
+    peakTime: "5-6月杜鹃 / 9-10月秋色", peakDays: "夏绿秋金最美", difficulty: "easy",
+    rating: 4.7, reviews: 9200, tags: ["必去", "高原湖泊", "属都湖·碧塔海"],
+    isHot: true, ticket: "门票约100元 + 观光车约120元",
+    description: "中国第一个国家公园，海拔三千多米的高原湿地。属都湖、碧塔海两泓碧水嵌在杜鹃林与草甸间，栈道绕湖而行，松萝挂树、牦牛低头吃草。夏天绿得发亮、秋天满山金红，是香格里拉最经典的一张明信片。",
+    tips: "海拔高、步行多，量力慢走防高反；园区大务必坐观光车，全程约半天。",
+    transport: "香格里拉城区驾车约30分钟",
+    color: "#3B8A9E", xp: 140,
+  },
+  {
+    id: 'sg2', name: "噶丹·松赞林寺", nameEn: "Ganden Sumtseling", emoji: "🛕",
+    district: "香格里拉市", lat: 27.8700, lng: 99.7050,
+    peakTime: "全年", peakDays: "清晨诵经最庄严", difficulty: "easy",
+    rating: 4.6, reviews: 8100, tags: ["必去", "小布达拉宫", "藏传佛教"],
+    isHot: true, ticket: "门票约90元",
+    description: "云南规模最大的藏传佛教寺院，有「小布达拉宫」之称。依山而建的金顶群在阳光下熠熠生辉，倒映在拉姆央措湖里。清晨酥油灯与诵经声中，能感受到藏地信仰最厚重的那一面。",
+    tips: "尊重僧人与礼仪、勿随意拍摄殿内；转经、绕寺按顺时针；清晨光线与氛围最佳。",
+    transport: "香格里拉城区驾车约15分钟",
+    color: "#B4472F", xp: 120,
+  },
+  {
+    id: 'sg3', name: "独克宗古城", nameEn: "Dukezong Old Town", emoji: "🏯",
+    district: "香格里拉市", lat: 27.8230, lng: 99.7080,
+    peakTime: "全年", peakDays: "傍晚转经筒转起", difficulty: "easy",
+    rating: 4.4, reviews: 6400, tags: ["月光古城", "世界最大转经筒", "藏式民居"],
+    ticket: "免费（龟山公园转经筒另计）",
+    description: "一座一千三百年的「月光之城」，茶马古道进藏的重镇。石板路、藏式土掌房层层叠叠，龟山公园顶那座世界最大的转经筒要数人合力才推得动。夜里灯火与远山剪影，安静又有力量。",
+    tips: "傍晚上龟山推转经筒、看古城全景；古城 2014 年曾遭火灾，现已修复；住藏式客栈体验最好。",
+    transport: "香格里拉城区内，步行可达",
+    color: "#C7852B", xp: 100,
+  },
+  {
+    id: 'sg4', name: "纳帕海·依拉草原", nameEn: "Napahai Lake", emoji: "🐎",
+    district: "香格里拉市", lat: 27.8800, lng: 99.6300,
+    peakTime: "夏绿 / 秋黄 / 冬候鸟", peakDays: "季节性湖泊，随季变脸", difficulty: "easy",
+    rating: 4.3, reviews: 4200, tags: ["高原草原", "黑颈鹤", "骑马"],
+    description: "香格里拉坝子里的季节性高原湖，夏天是水草丰美的依拉草原、牛马成群，秋天金黄，冬天水面归来成群黑颈鹤。可骑马环湖，是感受藏地草原辽阔最方便的一站。",
+    tips: "骑马项目务必先谈好价格与路线，避免临时加价；黑颈鹤冬季（11-3月）才来。",
+    transport: "香格里拉城区驾车约15分钟",
+    color: "#7A9B4E", xp: 90,
+  },
+  {
+    id: 'sg5', name: "石卡雪山", nameEn: "Shika Snow Mountain", emoji: "🏔️",
+    district: "香格里拉市", lat: 27.7500, lng: 99.6000,
+    peakTime: "全年（晴天看雪山群）", peakDays: "晴日远眺梅里", difficulty: "medium",
+    rating: 4.4, reviews: 3600, tags: ["索道", "高山草甸", "远眺梅里"],
+    ticket: "门票+索道约220元",
+    description: "香格里拉近郊的雪山，坐两段索道直上海拔四千多米的观景台。晴天极目远眺，能望见梅里、玉龙、哈巴等一众雪山群峰，脚下是杜鹃与高山草甸。上山快、视野大，性价比的观景之选。",
+    tips: "索道升得快，高反者放慢节奏、备氧；山顶风大极冷，务必带厚外套。",
+    transport: "香格里拉城区驾车约20分钟",
+    color: "#5E86AC", xp: 110,
+  },
+  {
+    id: 'sg6', name: "中虎跳峡", nameEn: "Tiger Leaping Gorge", emoji: "🌊",
+    district: "香格里拉市", lat: 27.1800, lng: 100.1300,
+    peakTime: "全年（雨季水最猛）", peakDays: "6-9月江水最壮", difficulty: "hard",
+    rating: 4.6, reviews: 5300, tags: ["世界峡谷", "金沙江", "徒步"],
+    description: "世界最深的峡谷之一，金沙江在玉龙与哈巴两座雪山之间夺路狂奔。香格里拉一侧的中虎跳能下到江心巨石「虎跳石」，浪声如雷、水气扑面。高线徒步（Hutiaoxia Trek）更是户外圈的经典。",
+    tips: "下中虎跳台阶陡峭、雨季易滑，量力而行；徒步高线需一到两天，请随向导或成熟攻略。",
+    transport: "香格里拉城区驾车约2小时至峡谷",
+    color: "#3B6E86", xp: 130,
+  },
+  {
+    id: 'sg7', name: "巴拉格宗", nameEn: "Balagezong", emoji: "⛰️",
+    district: "香格里拉市", lat: 28.1300, lng: 99.5500,
+    peakTime: "5-10月", peakDays: "夏秋峡谷最美", difficulty: "medium",
+    rating: 4.5, reviews: 2400, tags: ["香巴拉核心", "大峡谷", "玻璃栈道"],
+    ticket: "门票+车约200元",
+    description: "传说中「香巴拉」的核心，岗曲河切出的巨大峡谷里藏着雪山、原始森林与千年古村巴拉村。天然佛塔、高空玻璃栈道、通天峡，一路是未被过度开发的秘境风光，人少景野。",
+    tips: "距城区较远（约2小时），建议一整天；峡谷内温差大，备外套。",
+    transport: "香格里拉城区驾车约2小时至尼西",
+    color: "#4E7A5E", xp: 110,
+  },
+]
+
+/* 周边顺游 —— 深入德钦（属迪庆州），派生同归迪庆 */
+const shangriNearby = [
+  {
+    id: 'sgn1', name: "梅里雪山·飞来寺", nameEn: "Meili Snow Mountain", emoji: "🏔️",
+    district: "德钦县", lat: 28.4500, lng: 98.9000,
+    peakTime: "10月-次年5月（日照金山）", peakDays: "冬春晴天见金山", difficulty: "easy",
+    rating: 4.9, reviews: 6800, tags: ["日照金山", "卡瓦格博", "神山"],
+    ticket: "飞来寺观景台约60元",
+    desc: "藏区八大神山之首，晨光染金的卡瓦格博",
+    description: "藏区八大神山之首，主峰卡瓦格博至今无人登顶、是藏民心中的圣山。飞来寺观景台正对十三座连绵雪峰，运气好能在清晨看到「日照金山」——阳光把峰顶染成一片熔金，是一生难忘的画面。",
+    tips: "日照金山看天吃饭，冬春晴天概率高；清晨六七点就位；高海拔极冷，厚羽绒必备。",
+    transport: "香格里拉驾车约3.5小时至德钦飞来寺",
+    color: "#C08A45", xp: 130, isNearby: true,
+  },
+  {
+    id: 'sgn2', name: "雨崩村", nameEn: "Yubeng Village", emoji: "🥾",
+    district: "德钦县", lat: 28.3800, lng: 98.8300,
+    peakTime: "5-6月 / 9-10月", peakDays: "春秋徒步最佳", difficulty: "hard",
+    rating: 4.8, reviews: 3900, tags: ["徒步圣地", "神瀑冰湖", "秘境村落"],
+    ticket: "景区约55元",
+    desc: "梅里脚下的世外桃源，徒步者的朝圣地",
+    description: "藏在梅里雪山脚下、曾经只能徒步进出的世外村落。神瀑、冰湖、笑农大本营环绕四周，被户外圈奉为「此生必走一次」的朝圣路线。雪山下的青稞地与藏式木屋，美得不真实。",
+    tips: "徒步强度大、海拔高，需良好体能与几天时间；跟成熟队伍或向导，量力而行。",
+    transport: "香格里拉驾车约4小时至西当，再徒步进村",
+    color: "#5E86AC", xp: 130, isNearby: true,
+  },
+  {
+    id: 'sgn3', name: "金沙江月亮湾", nameEn: "First Bend of Yangtze", emoji: "🌙",
+    district: "德钦县奔子栏", lat: 28.1300, lng: 99.3500,
+    peakTime: "全年", peakDays: "晴日俯瞰大湾", difficulty: "easy",
+    rating: 4.4, reviews: 2100, tags: ["长江第一湾", "金沙江", "观景"],
+    desc: "金沙江急转出一个巨大的马蹄形大湾",
+    description: "去德钦路上的必停观景点。金沙江在奔子栏一带被山体逼得急转，绕出一个近乎闭合的马蹄形大湾，江水碧绿、山峦层叠，气势磅礴。是滇藏线上最出片的弯道之一。",
+    tips: "路边观景台停留即可；与梅里同一方向，顺路打卡；山路弯多注意安全。",
+    transport: "香格里拉驾车约2.5小时，德钦沿途",
+    color: "#3B6E86", xp: 80, isNearby: true,
+  },
+]
+
+const shangriItinerary = [
+  {
+    day: 1, title: "抵达·月光古城", date: "Day 1",
+    activities: [
+      { time: "下午", icon: "✈️", text: "抵达香格里拉，慢走适应海拔，入住古城" },
+      { time: "傍晚", icon: "🏯", text: "独克宗古城，龟山推世界最大转经筒", spotId: 'sg3' },
+      { time: "晚上", icon: "🍲", text: "尝牦牛肉火锅 + 酥油茶暖身" },
+    ]
+  },
+  {
+    day: 2, title: "神寺与草原", date: "Day 2",
+    activities: [
+      { time: "上午", icon: "🛕", text: "松赞林寺（小布达拉宫）朝圣", spotId: 'sg2' },
+      { time: "下午", icon: "🐎", text: "纳帕海依拉草原，骑马看牛羊", spotId: 'sg4' },
+      { time: "傍晚", icon: "🏔️", text: "石卡雪山索道远眺雪山群（或次日）", spotId: 'sg5' },
+    ]
+  },
+  {
+    day: 3, title: "普达措一日", date: "Day 3",
+    activities: [
+      { time: "上午", icon: "🏞️", text: "普达措国家公园，属都湖栈道", spotId: 'sg1' },
+      { time: "下午", icon: "🌲", text: "碧塔海草甸、松萝林，慢慢逛" },
+      { time: "晚上", icon: "🔥", text: "回城藏式锅庄篝火（或休整备高海拔）" },
+    ]
+  },
+  {
+    day: 4, title: "梅里日照金山", date: "Day 4",
+    activities: [
+      { time: "凌晨", icon: "🚗", text: "早出发赴德钦（约3.5小时山路）" },
+      { time: "清晨", icon: "🏔️", text: "飞来寺守候梅里「日照金山」", spotId: 'sgn1' },
+      { time: "全天", icon: "🥾", text: "深度可徒步雨崩，或月亮湾顺游返程" },
+    ]
+  },
+]
+
+const shangriTips = [
+  { icon: "⛰️", title: "高原反应", content: "香格里拉城区海拔约3300米，德钦、雨崩更高。抵达当天别剧烈运动、别洗澡、多休息；备红景天（提前吃）、葡萄糖与便携氧气；有严重心肺疾病者慎行。感觉不适及时下撤就医。" },
+  { icon: "📅", title: "最佳季节", content: "5-6月杜鹃与草甸新绿、9-10月秋色金黄最美。梅里「日照金山」冬春（10月-次年5月）晴天概率高。雨季6-8月草甸最绿但山路易塌方、日照金山难见。" },
+  { icon: "🧥", title: "保暖防晒", content: "高原昼夜温差极大，即便夏天也需厚外套，冬春去梅里要羽绒。紫外线极强，高倍防晒、墨镜、唇膏必备；空气干燥多补水。" },
+  { icon: "🙏", title: "藏地礼俗", content: "尊重藏传佛教习俗：转经、转寺顺时针；不摸佛像佛塔、不踩经幡门槛；殿内一般禁摄；给人物拍照先征得同意。神山圣湖是信仰所在，勿喧哗嬉戏。" },
+  { icon: "🚗", title: "路况与包车", content: "景点分散、多为盘山路（尤其去德钦），强烈建议包车或跟车，别自驾走夜路。雨季注意塌方与封路信息，行程留足弹性。" },
+  { icon: "🍲", title: "饮食适应", content: "藏餐口味厚重（牦牛肉、酥油、青稞），肠胃敏感者循序适应；高原水温低不易煮熟，慎食生冷。松茸等菌类为夏秋季节限定。" },
+  { icon: "🎫", title: "门票与时间", content: "普达措、石卡等大景区门票+车费较高且耗时，建议一景一天、别贪多。深度玩梅里、雨崩要单独安排 2-3 天，别塞进四日常规行程硬赶。" },
+]
+
+const shangriFoods = [
+  { name: "牦牛肉火锅", emoji: "🍲", desc: "高原牦牛肉久炖，鲜香暖身" },
+  { name: "酥油茶", emoji: "🍵", desc: "酥油打茶，咸香抗寒抗高反" },
+  { name: "青稞酒", emoji: "🍶", desc: "青稞酿造，藏家待客的暖酒" },
+  { name: "尼西土陶鸡", emoji: "🍗", desc: "尼西黑陶锅慢煨土鸡，原汁原味" },
+  { name: "藏式糌粑", emoji: "🥣", desc: "青稞炒面拌酥油茶，藏家主食" },
+  { name: "松茸", emoji: "🍄", desc: "夏秋限定，炭烤或炖鸡皆鲜" },
+]
+
+const shangriPackList = [
+  { icon: "💊", text: "红景天/葡萄糖 + 便携氧气（防高反）" },
+  { icon: "🧥", text: "厚外套/羽绒（昼夜温差极大）" },
+  { icon: "🧴", text: "高倍防晒 + 墨镜 + 唇膏" },
+  { icon: "👟", text: "防滑徒步鞋（虎跳峡/雨崩）" },
+  { icon: "🧢", text: "保暖帽手套（雪山观景台极冷）" },
+  { icon: "💳", text: "身份证（住宿/购票/边检）" },
+]
+
+const shangriSeason = {
+  title: "最佳旅行季节",
+  sub: "云之南，雪山之上",
+  rows: [
+    { dot: "peak",  label: "🌿 夏（5—6月）", date: "杜鹃盛开，草甸新绿", badge: "推荐" },
+    { dot: "early", label: "🍂 秋（9—10月）", date: "秋色金黄，天高云净" },
+    { dot: "late",  label: "🏔️ 冬春（10—次年5月）", date: "梅里日照金山概率最高" },
+  ],
+}
+
 /* ════════════════ CITIES 汇总 ════════════════
    扩展新城市：复制上方一整套 daliXxx 常量，改名后
    在下面数组里追加一个对象即可。
@@ -1630,6 +1822,32 @@ export const CITIES = [
     foods: tengchongFoods,
     packList: tengchongPackList,
     seasonInfo: tengchongSeason,
+  },
+  {
+    id: 'shangrila',
+    name: '香格里拉',
+    nameEn: 'Shangri-La',
+    emoji: '🏔️',
+    country: '云南',
+    tagline: '云之南，雪山之上',
+    heroBadge: '迪庆 · 云南',
+    heroTitle: '香格里拉',
+    heroHighlight: '慢慢升吧！',
+    heroDesc: '雪山草甸、藏传古寺、日照金山',
+    heroGradient: 'linear-gradient(160deg, #1C3F5A 0%, #3E7A99 55%, #CFE6EE 100%)',
+    quickTips: [
+      { icon: '⛰️', text: '海拔3300m+，防高反' },
+      { icon: '📅', text: '5-6月杜鹃 / 9-10月秋色' },
+      { icon: '🏔️', text: '梅里日照金山看冬春晴天' },
+      { icon: '🙏', text: '藏地圣寺，尊重礼俗' },
+    ],
+    spots: shangriSpots,
+    nearbySpots: shangriNearby,
+    itineraryDays: shangriItinerary,
+    tips: shangriTips,
+    foods: shangriFoods,
+    packList: shangriPackList,
+    seasonInfo: shangriSeason,
   },
 ]
 
