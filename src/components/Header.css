@@ -4,7 +4,8 @@
   position: sticky;
   top: 0;
   z-index: 100;
-  backdrop-filter: saturate(1.1) blur(6px);
+  /* 头部背景铺进顶部安全区（刘海/状态栏），与其融为一体、无分界带 */
+  padding-top: env(safe-area-inset-top, 0px);
   transition: background 0.25s ease, border-color 0.25s ease;
 }
 
