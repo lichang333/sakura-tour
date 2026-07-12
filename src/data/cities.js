@@ -3578,6 +3578,196 @@ const wenshanSeason = {
   ],
 }
 
+
+/* ════════════════ 曲靖 ════════════════ */
+const qujingSpots = [
+  {
+    id: 'qj1', name: "罗平金鸡峰丛", nameEn: "Jinji Canola Fields", emoji: "🌻",
+    district: "罗平县", lat: 24.8500, lng: 104.4000,
+    peakTime: "2-3月油菜花", peakDays: "早春花海最壮观", difficulty: "easy",
+    rating: 4.7, reviews: 6800, tags: ["必去", "油菜花海", "喀斯特峰丛"],
+    isHot: true, ticket: "观景台约低价",
+    description: "罗平是中国最大的油菜花海之一。金鸡峰丛绵延十余公里，无数锥形喀斯特小峰点缀在金黄花田中，二三月油菜花盛开时，登上峰后观景台，峰峦如岛、花海如浪，气势磅礴又梦幻，是全国最壮观的春日花海。",
+    tips: "花期约2-3月（罗平国际油菜花文化旅游节3-4月）；看日出花海要在6点前上观景台占位；花季人多路堵，早出发。",
+    transport: "曲靖市区驾车约2小时至罗平（昆明高铁约3小时）",
+    color: "#C2A82E", xp: 130,
+  },
+  {
+    id: 'qj2', name: "九龙瀑布", nameEn: "Nine Dragons Waterfalls", emoji: "💦",
+    district: "罗平县", lat: 24.9800, lng: 104.4200,
+    peakTime: "6-9月水最大 / 全年", peakDays: "雨季水量最壮", difficulty: "medium",
+    rating: 4.5, reviews: 3400, tags: ["中国最美瀑布", "十级瀑布", "布依歌节"],
+    isHot: true, ticket: "门票约95元 + 索道",
+    description: "被誉为「中国最美瀑布」之一。九龙河在数公里内一气跌落成十级形态各异的瀑布群，最大一级宽百余米、高五十余米，雨季轰鸣震耳、水气弥漫。可乘索道到高处观景台俯瞰整条瀑布链，气势非凡。农历二月二布依歌节更是热闹。",
+    tips: "雨季（6-9月）水量最壮；索道上观全景、栈道下近观；与罗平油菜花可同期游；路面湿滑穿防滑鞋。",
+    transport: "罗平县城驾车约30分钟",
+    color: "#3B6E86", xp: 110,
+  },
+  {
+    id: 'qj3', name: "多依河", nameEn: "Duoyi River", emoji: "🌾",
+    district: "罗平县", lat: 24.7000, lng: 104.5500,
+    peakTime: "全年（三月三泼水）", peakDays: "布依三月三最热闹", difficulty: "easy",
+    rating: 4.3, reviews: 2100, tags: ["布依水乡", "钙化滩", "水车"],
+    description: "滇黔桂交界处的一条布依风情河，十余公里河床上瀑布、钙化滩星罗棋布，两岸吊脚楼掩在竹林绿树间，巨大的水车群转动着布依人的农耕岁月。农历三月三泼水节时，布依人在河边赛竹筏、泼水、对歌，欢腾一片。",
+    tips: "三月三（农历）泼水节最热闹；与九龙瀑布、小三峡同片区顺游；河边清凉适合夏天。",
+    transport: "罗平县城驾车约50分钟",
+    color: "#4E7A5E", xp: 90,
+  },
+  {
+    id: 'qj4', name: "陆良彩色沙林", nameEn: "Colored Sand Forest", emoji: "🏜️",
+    district: "陆良县", lat: 25.0200, lng: 103.7200,
+    peakTime: "全年（晨昏光影）", peakDays: "晴日色彩最艳", difficulty: "easy",
+    rating: 4.3, reviews: 2600, tags: ["五彩沙林", "喀斯特", "影视取景"],
+    ticket: "门票约60元",
+    description: "大自然用亿万年雕出的沙雕奇观——红、黄、白、灰交织的沙柱沙峰连绵成林，随光线变幻出斑斓色彩，宛如置身外星。这里是《三国演义》《爱情呼叫转移》等众多影视的取景地，光怪陆离又气势磅礴。",
+    tips: "晨昏斜光下色彩最艳、正午发白；戴帽防晒备水；与曲靖城区、罗平方向可串游。",
+    transport: "曲靖市区驾车约1小时至陆良",
+    color: "#B85A3A", xp: 100,
+  },
+  {
+    id: 'qj5', name: "会泽大海草山", nameEn: "Dahai Grassland", emoji: "🐑",
+    district: "会泽县", lat: 26.3000, lng: 103.4000,
+    peakTime: "6-9月绿 / 秋金", peakDays: "夏绿秋金云海最美", difficulty: "medium",
+    rating: 4.5, reviews: 1900, tags: ["高山草甸", "云海", "牛羊成群"],
+    ticket: "门票约低价",
+    description: "海拔三千八百米的高山草甸，一望无际的草坡上牛羊散落、云海在脚下翻涌，风车缓缓转动。夏天绿草如茵、野花点点，秋天金黄一片，日出日落时云蒸霞蔚。是滇东北最辽阔壮美的一片天空牧场。",
+    tips: "海拔高、天气多变，备厚外套防风防雨、注意轻微高反；夏秋最美；可骑马、看日出云海。",
+    transport: "曲靖市区驾车约3小时至会泽大海乡",
+    color: "#5E9B7E", xp: 110,
+  },
+  {
+    id: 'qj6', name: "会泽念湖", nameEn: "Nian Lake", emoji: "🕊️",
+    district: "会泽县", lat: 26.5500, lng: 103.0500,
+    peakTime: "11-3月黑颈鹤", peakDays: "冬季黑颈鹤越冬", difficulty: "easy",
+    rating: 4.4, reviews: 1300, tags: ["黑颈鹤", "冬季摄影", "枯树晨雾"],
+    description: "毛家村水库因摄影而得名「念湖」。每年冬天，成群的黑颈鹤从青藏高原飞来越冬，晨雾中枯树、湖水、飞鹤构成一幅水墨般的画面，是国内顶级的冬季生态摄影地。宁静清冷，美得像一首诗。",
+    tips: "黑颈鹤冬季（约11月-次年3月）才在；清晨晨雾中最出片；远距离观鸟、勿惊扰；海拔高备保暖。",
+    transport: "曲靖市区驾车约3.5小时至会泽念湖",
+    color: "#3B8AA6", xp: 100,
+  },
+  {
+    id: 'qj7', name: "珠江源", nameEn: "Pearl River Source", emoji: "💧",
+    district: "沾益区", lat: 25.9000, lng: 103.7500,
+    peakTime: "全年", peakDays: "全年 · 珠江发源地", difficulty: "easy",
+    rating: 4.1, reviews: 900, tags: ["珠江源头", "马雄山", "森林公园"],
+    ticket: "门票约低价",
+    description: "沾益马雄山东麓，一泓清泉从溶洞中涌出，就是奔流数千里、滋养两广的珠江的正源。森林公园里古木参天、溪流潺潺，「一水滴三江」（长江、珠江、红河水系在此分野）的地理奇妙令人称叹，是探源与徒步的清幽去处。",
+    tips: "了解「珠江源头」的地理意义、森林徒步透气；与曲靖城区、陆良可串游；适合半日。",
+    transport: "曲靖市区驾车约1小时至沾益珠江源",
+    color: "#2E8B57", xp: 70,
+  },
+]
+
+/* 周边顺游 —— 均在曲靖辖区（罗平/师宗/宣威），派生同归曲靖 */
+const qujingNearby = [
+  {
+    id: 'qjn1', name: "罗平螺蛳田", nameEn: "Luosi Spiral Fields", emoji: "🐚",
+    district: "罗平县", lat: 24.8800, lng: 104.3500,
+    peakTime: "2-3月油菜花", peakDays: "早春螺旋花田最奇", difficulty: "easy",
+    rating: 4.4, reviews: 1600, tags: ["螺旋花田", "油菜花", "小众机位"],
+    desc: "螺旋状排布的油菜花田，精巧如螺纹",
+    description: "距罗平县城约十公里，一片依着圆形山丘层层螺旋而上的油菜花田，远看就像巨大的螺蛳壳纹路，精巧别致。相比金鸡峰丛的磅礴，螺蛳田小而精、构图独特，是摄影人心中另一处必拍的油菜花机位。",
+    tips: "与金鸡峰丛同在罗平、花期同为2-3月；螺旋构图俯拍最美、登观景高处；花季早出避人。",
+    transport: "罗平县城驾车约20分钟",
+    color: "#C2A82E", xp: 80, isNearby: true,
+  },
+  {
+    id: 'qjn2', name: "师宗凤凰谷", nameEn: "Shizong Phoenix Valley", emoji: "🕳️",
+    district: "师宗县", lat: 24.8500, lng: 103.9800,
+    peakTime: "全年", peakDays: "全年 · 溶洞秘境", difficulty: "easy",
+    rating: 4.2, reviews: 700, tags: ["喀斯特溶洞", "世外桃源", "菌子山"],
+    desc: "溶洞与峡谷藏着的世外桃源",
+    description: "师宗的凤凰谷是一处喀斯特溶洞与峡谷秘境，洞中钟乳石奇幻、地下河幽深，洞外峡谷藏着壮乡田园，被称作「世外桃源」。附近的菌子山春夏杜鹃满山。是曲靖南部一处清静的小众去处。",
+    tips: "溶洞恒温凉爽、地滑带外套；与罗平方向可顺路；菌子山杜鹃春夏最盛。",
+    transport: "曲靖市区驾车约1.5小时至师宗",
+    color: "#3B6E86", xp: 70, isNearby: true,
+  },
+  {
+    id: 'qjn3', name: "宣威可渡古驿", nameEn: "Xuanwei Kedu Post", emoji: "🍖",
+    district: "宣威市", lat: 26.5000, lng: 104.1000,
+    peakTime: "全年", peakDays: "全年 · 火腿之乡古驿", difficulty: "easy",
+    rating: 4.1, reviews: 500, tags: ["宣威火腿", "古驿道", "滇黔要冲"],
+    desc: "火腿之乡的千年古驿，滇黔咽喉",
+    description: "宣威是「中国火腿之乡」，宣威火腿与金华火腿齐名。可渡古驿在滇黔交界的咽喉要道上，石板古驿道、摩崖石刻、老街见证了茶马与商旅的往来。来宣威，看古驿、尝一片醇香的宣威火腿，是最实在的味觉记忆。",
+    tips: "宣威在曲靖北、近贵州；尝正宗宣威火腿、看可渡古驿摩崖；可与会泽方向衔接。",
+    transport: "曲靖市区驾车约1.5小时至宣威",
+    color: "#8A5A3B", xp: 70, isNearby: true,
+  },
+]
+
+const qujingItinerary = [
+  {
+    day: 1, title: "抵达·彩沙珠源", date: "Day 1",
+    activities: [
+      { time: "下午", icon: "🏜️", text: "陆良彩色沙林，看五彩沙峰", spotId: 'qj4' },
+      { time: "傍晚", icon: "💧", text: "沾益珠江源森林公园透气", spotId: 'qj7' },
+      { time: "晚上", icon: "🍜", text: "曲靖城尝蒸饵丝 + 沾益辣子鸡" },
+    ]
+  },
+  {
+    day: 2, title: "罗平油菜花海", date: "Day 2",
+    activities: [
+      { time: "清晨", icon: "🌻", text: "金鸡峰丛观景台守日出花海", spotId: 'qj1' },
+      { time: "上午", icon: "🐚", text: "螺蛳田拍螺旋油菜花" },
+      { time: "下午", icon: "💦", text: "九龙瀑布看十级瀑布群", spotId: 'qj2' },
+    ]
+  },
+  {
+    day: 3, title: "布依水乡", date: "Day 3",
+    activities: [
+      { time: "上午", icon: "🌾", text: "多依河布依水乡，水车吊脚楼", spotId: 'qj3' },
+      { time: "下午", icon: "🚣", text: "小三峡或多依河竹筏漂流" },
+      { time: "傍晚", icon: "🍚", text: "尝罗平五色饭 + 布依全锅汤" },
+    ]
+  },
+  {
+    day: 4, title: "会泽草山飞鹤", date: "Day 4",
+    activities: [
+      { time: "全天", icon: "🐑", text: "会泽大海草山云海（夏秋）或念湖黑颈鹤（冬）" },
+      { time: "下午", icon: "🎁", text: "选购宣威火腿、罗平蜂蜜、菜籽油伴手礼" },
+      { time: "傍晚", icon: "✈️", text: "返程 / 前往下一站（昆明、贵州）" },
+    ]
+  },
+]
+
+const qujingTips = [
+  { icon: "🌻", title: "油菜花季", content: "罗平油菜花约2-3月盛开，罗平国际油菜花文化旅游节在3-4月，是曲靖一年最旺的时节。看日出花海要6点前上金鸡峰丛观景台占位；花季人多路堵、食宿紧张，务必早订、早出发。" },
+  { icon: "📅", title: "最佳季节", content: "2-3月罗平油菜花海、九龙瀑布同期；冬季（11-3月）会泽念湖黑颈鹤越冬；夏秋（6-9月）大海草山绿意云海、九龙瀑布水量最壮。按想看的主题挑季节。" },
+  { icon: "🐑", title: "会泽高海拔", content: "大海草山海拔约3800米、念湖也在高原，天气多变、昼夜温差大。备厚外套防风防雨、注意轻微高反；草山看云海日出要起早、保暖到位。" },
+  { icon: "🕊️", title: "念湖观鹤", content: "黑颈鹤是国家一级保护动物，冬季在念湖越冬。请远距离观赏拍摄、勿惊扰驱赶、勿投喂；清晨晨雾中画面最美，海拔高注意保暖。" },
+  { icon: "🚄", title: "区位交通", content: "曲靖是滇东门户、滇黔要冲，高铁高速通达昆明（约1小时）与贵州。罗平昆明高铁约3小时、油菜花节有专列。景点散在罗平、陆良、会泽、宣威等地，建议自驾或包车按片区走。" },
+  { icon: "🍖", title: "曲靖味道", content: "宣威火腿（与金华齐名）、沾益辣子鸡、曲靖蒸饵丝、罗平五色饭、布依全锅汤都是特色，够味实在。宣威火腿是最有分量的伴手礼。" },
+  { icon: "🌊", title: "瀑布安全", content: "九龙瀑布雨季水势凶猛，栈道湿滑，请沿护栏行走、勿翻越戏水到危险水域；多依河、小三峡漂流听从安排、穿好救生衣。" },
+]
+
+const qujingFoods = [
+  { name: "宣威火腿", emoji: "🍖", desc: "与金华齐名，咸香醇厚的云腿" },
+  { name: "沾益辣子鸡", emoji: "🍗", desc: "干香麻辣，曲靖名菜下饭王" },
+  { name: "曲靖蒸饵丝", emoji: "🍜", desc: "饵丝蒸软配帽子，滇东早餐经典" },
+  { name: "罗平五色饭", emoji: "🌈", desc: "植物染色糯米，布依壮家喜食" },
+  { name: "布依全锅汤", emoji: "🍲", desc: "肉与杂碎同煮，布依独门配方" },
+  { name: "会泽稀豆粉", emoji: "🥣", desc: "豌豆熬糊配油条饵块，暖胃早点" },
+]
+
+const qujingPackList = [
+  { icon: "🧥", text: "厚外套（大海草山/念湖高海拔冷）" },
+  { icon: "📷", text: "相机（花海/瀑布/观鹤晨雾）" },
+  { icon: "🧴", text: "防晒墨镜（花田/沙林反光强）" },
+  { icon: "👟", text: "防滑鞋（瀑布栈道/草山）" },
+  { icon: "🌂", text: "雨具（草山多变、雨季瀑布）" },
+  { icon: "💳", text: "身份证（高铁/景区实名）" },
+]
+
+const qujingSeason = {
+  title: "最佳旅行季节",
+  sub: "油菜花海，滇东门户",
+  rows: [
+    { dot: "peak",  label: "🌻 早春（2—3月）", date: "罗平油菜花海最壮观", badge: "推荐" },
+    { dot: "early", label: "🕊️ 冬（11—3月）", date: "会泽念湖黑颈鹤越冬" },
+    { dot: "late",  label: "🐑 夏秋（6—9月）", date: "大海草山云海、瀑布水壮" },
+  ],
+}
+
 /* ════════════════ CITIES 汇总 ════════════════
    扩展新城市：复制上方一整套 daliXxx 常量，改名后
    在下面数组里追加一个对象即可。
@@ -4026,6 +4216,32 @@ export const CITIES = [
     foods: wenshanFoods,
     packList: wenshanPackList,
     seasonInfo: wenshanSeason,
+  },
+  {
+    id: 'qujing',
+    name: '曲靖',
+    nameEn: 'Qujing',
+    emoji: '🌻',
+    country: '云南',
+    tagline: '油菜花海，滇东门户',
+    heroBadge: '曲靖 · 云南',
+    heroTitle: '滇东曲靖',
+    heroHighlight: '慢慢赏吧！',
+    heroDesc: '罗平花海、九龙瀑布与会泽草山',
+    heroGradient: 'linear-gradient(160deg, #4E5A1E 0%, #C2A82E 55%, #EEE8B0 100%)',
+    quickTips: [
+      { icon: '🌻', text: '罗平油菜花2-3月最盛' },
+      { icon: '🕊️', text: '会泽念湖冬季看黑颈鹤' },
+      { icon: '🐑', text: '大海草山高海拔，备厚衣' },
+      { icon: '🍖', text: '宣威火腿与金华齐名' },
+    ],
+    spots: qujingSpots,
+    nearbySpots: qujingNearby,
+    itineraryDays: qujingItinerary,
+    tips: qujingTips,
+    foods: qujingFoods,
+    packList: qujingPackList,
+    seasonInfo: qujingSeason,
   },
 ]
 
