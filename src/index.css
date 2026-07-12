@@ -95,6 +95,15 @@
   --badge-streak-bg: rgba(205,155,92,0.12);
 }
 
+/* 根元素也铺底色：iOS 回弹/露底区域跟随主题，不再露出系统纯黑/纯白 */
+html {
+  background: var(--bg);
+  transition: background 0.3s ease;
+}
+
+:root { color-scheme: light; }
+[data-theme="dark"] { color-scheme: dark; }
+
 body {
   background: var(--bg);
   color: var(--text-dark);
