@@ -145,3 +145,33 @@ input, textarea {
   font-family: inherit;
   transition: border-color 0.2s ease, background 0.2s ease;
 }
+
+/* ── 列表 ⇄ 地图 视图切换钮（景点页/地图页头部共用） ── */
+.spots-head-row,
+.map-head-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.view-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border-radius: 12px;
+  border: 1.5px solid var(--copper, #A9702F);
+  background: transparent;
+  color: var(--copper, #A9702F);
+  font-size: 13px;
+  font-weight: 700;
+  flex-shrink: 0;
+  margin-top: 4px;
+  transition: background 0.18s ease, transform 0.12s ease;
+}
+
+.view-switch:active {
+  transform: scale(0.95);
+  background: var(--nav-active-bg);
+}

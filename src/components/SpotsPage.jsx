@@ -59,7 +59,7 @@ function StarRating({ spotId, current, onRate }) {
   )
 }
 
-export default function SpotsPage({ pendingSpot, clearPendingSpot }) {
+export default function SpotsPage({ pendingSpot, clearPendingSpot, openMap }) {
   const [selected,      setSelected]      = useState(null)
   const [reviewDraft,   setReviewDraft]   = useState('')
   const [reviewSaved,   setReviewSaved]   = useState(false)
@@ -473,8 +473,19 @@ export default function SpotsPage({ pendingSpot, clearPendingSpot }) {
   return (
     <div className="spots-page">
       <div className="spots-header">
-        <h2 className="page-title">{currentCity.name}景点</h2>
-        <p className="page-sub">{spots.length}个精选景点，总有一款适合你</p>
+        <div className="spots-head-row">
+          <div>
+            <h2 className="page-title">{currentCity.name}景点</h2>
+            <p className="page-sub">{spots.length}个精选景点，总有一款适合你</p>
+          </div>
+          <button className="view-switch" onClick={openMap} aria-label="切换到地图视图">
+            <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor"
+              strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <path d="M9 4L3 6v14l6-2 6 2 6-2V4l-6 2-6-2z" /><path d="M9 4v14M15 6v14" />
+            </svg>
+            <span>地图</span>
+          </button>
+        </div>
         <div className="progress-mini">
           <div className="pm-row">
             <span>想去 {[...checkedIds].filter(id => spots.some(s => s.id === id)).length}</span>

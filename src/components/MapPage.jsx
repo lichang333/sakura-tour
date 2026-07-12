@@ -75,7 +75,7 @@ function TayinCard({ user, mintSsoCode }) {
   )
 }
 
-export default function MapPage({ goToSpot }) {
+export default function MapPage({ goToSpot, openList }) {
   const { user, mintSsoCode } = useUser()
   const { CITIES, selectCity } = useCity()
   const { theme } = useTheme()
@@ -190,9 +190,20 @@ export default function MapPage({ goToSpot }) {
   return (
     <div className="map-page">
       <div className="map-header">
-        <div className="map-eyebrow">Footprints · 中国</div>
-        <h2 className="page-title">我的地图</h2>
-        <p className="page-sub">想去与已抵达的地方，一眼看清</p>
+        <div className="map-head-row">
+          <div>
+            <div className="map-eyebrow">Footprints · 中国</div>
+            <h2 className="page-title">我的地图</h2>
+            <p className="page-sub">想去与已抵达的地方，一眼看清</p>
+          </div>
+          <button className="view-switch" onClick={openList} aria-label="切换到景点列表">
+            <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor"
+              strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <path d="M8 6h13M8 12h13M8 18h13" /><circle cx="4" cy="6" r="0.8" /><circle cx="4" cy="12" r="0.8" /><circle cx="4" cy="18" r="0.8" />
+            </svg>
+            <span>列表</span>
+          </button>
+        </div>
       </div>
 
       <div className="map-filters">

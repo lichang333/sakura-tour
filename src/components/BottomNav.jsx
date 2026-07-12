@@ -19,13 +19,14 @@ const ICONS = {
 const TABS = [
   { id: 'home',    label: '首页' },
   { id: 'spots',   label: '景点' },
-  { id: 'map',     label: '地图' },
   { id: 'plan',    label: '行程' },
   { id: 'tips',    label: '攻略' },
   { id: 'profile', label: '我的' },
 ]
 
 export default function BottomNav({ activeTab, setActiveTab }) {
+  // 地图是景点的一种视图（页内切换），底栏归入「景点」高亮
+  const current = activeTab === 'map' ? 'spots' : activeTab
   return (
     <nav className="bottom-nav">
       <div className="bn-brand">
@@ -35,7 +36,7 @@ export default function BottomNav({ activeTab, setActiveTab }) {
       {TABS.map(tab => (
         <button
           key={tab.id}
-          className={`bn-btn ${activeTab === tab.id ? 'active' : ''}`}
+          className={`bn-btn ${current === tab.id ? 'active' : ''}`}
           onClick={() => setActiveTab(tab.id)}
         >
           <span className="bn-icon">{ICONS[tab.id]}</span>
