@@ -23,6 +23,7 @@ const SPOT_REGION_RULES = [
   { test: /^jsn?\d+$/, region: 'yn-honghe' },  // 建水：js1.. / jsn1..（含石屏/弥勒/泸西，均属红河州；与元阳共享红河格）
   { test: /^pen?\d+$/, region: 'yn-puer' },  // 普洱：pe1.. / pen1..（含澜沧/西盟/景东/江城/孟连/墨江，均属普洱）
   { test: /^dhn?\d+$/, region: 'yn-dehong' },  // 德宏：dh1.. / dhn1..（芒市/瑞丽/盈江/梁河/畹町，均属德宏州）
+  { test: /^njn?\d+$/, region: 'yn-nujiang' },  // 怒江：nj1.. / njn1..（含泸水/福贡/贡山/兰坪，均属怒江州）
 ]
 
 export function regionOfSpot(spotId) {

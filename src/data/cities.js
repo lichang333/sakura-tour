@@ -2623,6 +2623,194 @@ const dehongSeason = {
   ],
 }
 
+
+/* ════════════════ 怒江 ════════════════ */
+const nujiangSpots = [
+  {
+    id: 'nj1', name: "丙中洛", nameEn: "Bingzhongluo", emoji: "⛰️",
+    district: "贡山县", lat: 27.9500, lng: 98.6000,
+    peakTime: "11-4月 / 3月桃花", peakDays: "干季路好、春看桃花", difficulty: "medium",
+    rating: 4.8, reviews: 4600, tags: ["必去", "人神共居", "三江并流"],
+    isHot: true, ticket: "免费（各点自由停）",
+    description: "怒江大峡谷深处的一片开阔坝子，雪山环抱、田园宁静，被称为「人神共居之地」。怒族、藏族、傈僳族与多种宗教在此和睦相处，教堂、喇嘛寺、田园炊烟同框。三月桃花开时，整个坝子如世外桃源。",
+    tips: "路远（六库到此约5-6小时山路），建议住一两晚慢玩；干季（11-4月）路况最安全；沿途注意落石。",
+    transport: "六库驾车约5-6小时至贡山丙中洛",
+    color: "#3E7E76", xp: 140,
+  },
+  {
+    id: 'nj2', name: "怒江第一湾", nameEn: "First Bend of Nujiang", emoji: "🌀",
+    district: "贡山县", lat: 27.8800, lng: 98.6000,
+    peakTime: "全年", peakDays: "晴日俯瞰大湾", difficulty: "easy",
+    rating: 4.6, reviews: 3200, tags: ["怒江大拐弯", "桃花岛", "观景台"],
+    description: "怒江在丙中洛附近被王箐大悬崖逼得几乎绕成一个圆，江心一块半岛就是「桃花岛」（扎那桶），上面住着几户人家、种着桃树。观景台上俯瞰这道气势磅礴的大拐弯，是怒江最经典的一张明信片。",
+    tips: "在丙中洛去秋那桶路上，观景台停留即可；三月桃花岛桃花最美；护栏外勿逾越。",
+    transport: "丙中洛驾车约15分钟",
+    color: "#3B6E86", xp: 100,
+  },
+  {
+    id: 'nj3', name: "独龙江", nameEn: "Dulongjiang", emoji: "🏔️",
+    district: "贡山县独龙江乡", lat: 27.7500, lng: 98.3500,
+    peakTime: "5-10月（雨季易封路）", peakDays: "隧道通后可达，看天进", difficulty: "hard",
+    rating: 4.7, reviews: 1900, tags: ["独龙族秘境", "纹面女", "原始峡谷"],
+    ticket: "免费（需登记）",
+    description: "中国人口最少民族之一独龙族的聚居地，曾因大雪封山半年与世隔绝，2014 年隧道通车才结束「孤岛」历史。峡谷里原始森林、飞瀑、独龙族的纹面女（最后几位老人）与神秘文化，是探秘者心中的终极秘境。",
+    tips: "路极险、雨季（6-10月）常塌方封路，务必查路况、量力而行；尊重纹面老人、拍照先征得同意、勿打扰；需边境/进乡登记。",
+    transport: "贡山驾车约3-4小时经独龙江隧道",
+    color: "#5E86AC", xp: 130,
+  },
+  {
+    id: 'nj4', name: "老姆登·知子罗", nameEn: "Laomudeng & Zhizhiluo", emoji: "⛪",
+    district: "福贡县", lat: 26.9000, lng: 98.8500,
+    peakTime: "全年（云海秋冬多）", peakDays: "晨昏云海皇冠山", difficulty: "medium",
+    rating: 4.6, reviews: 2400, tags: ["怒族村", "记忆之城", "皇冠山"],
+    description: "半山上的怒族村老姆登，正对巍峨的皇冠山，云海翻涌时如临仙境，村里那座小小的基督教堂是怒江的名片之一。旁边的知子罗是废弃的老州府，时间在此凝固成一座「记忆之城」，苍凉而动人。",
+    tips: "住老姆登客栈守云海日出；知子罗老城可慢走怀旧；山路弯多，自驾小心。",
+    transport: "福贡驾车约1小时盘山上老姆登",
+    color: "#4E7A5E", xp: 110,
+  },
+  {
+    id: 'nj5', name: "石月亮", nameEn: "Stone Moon", emoji: "🌙",
+    district: "福贡县", lat: 26.9500, lng: 98.8700,
+    peakTime: "全年（晴日可见）", peakDays: "晴天远眺天生洞", difficulty: "easy",
+    rating: 4.3, reviews: 1600, tags: ["天生石洞", "高黎贡山", "傈僳圣物"],
+    description: "高黎贡山脊上一个天然贯通的巨大石洞，远看就像嵌在山峰上的一轮明月，傈僳语称「亚哈巴」。它是傈僳族心中的圣物与发源象征，也是怒江峡谷里最奇特的地质奇观，公路边即可远眺。",
+    tips: "公路观景点远眺即可，晴天能看清；作为怒江北上途中的一站顺路打卡；徒步近观强度较大。",
+    transport: "福贡县城以北，怒江公路沿途",
+    color: "#8A7A66", xp: 90,
+  },
+  {
+    id: 'nj6', name: "雾里村", nameEn: "Wuli Village", emoji: "🏚️",
+    district: "贡山县", lat: 27.9000, lng: 98.6200,
+    peakTime: "全年", peakDays: "晨雾中最仙", difficulty: "medium",
+    rating: 4.5, reviews: 1400, tags: ["隐世古村", "挂壁茶马古道", "怒族"],
+    description: "怒江对岸山坡上的怒族小村，没有公路，只能走一段凿在悬崖上的茶马古道挂壁路进出。田垄、木屋、炊烟散在山间，晨雾一起，宛如遗世独立的仙境。是丙中洛徒步线上最动人的一站。",
+    tips: "需徒步挂壁古道进村、注意脚下与落石；晨雾时最美；尊重村民生活、轻声慢行。",
+    transport: "丙中洛徒步或驾车至对岸再步行进村",
+    color: "#7A8B5A", xp: 100,
+  },
+  {
+    id: 'nj7', name: "登埂澡塘会", nameEn: "Lisu Spring Bathing Fair", emoji: "♨️",
+    district: "泸水市", lat: 25.8500, lng: 98.8600,
+    peakTime: "春节前后（澡塘会）", peakDays: "正月傈僳澡塘会", difficulty: "easy",
+    rating: 4.2, reviews: 1100, tags: ["傈僳族", "温泉澡塘会", "怒江大峡谷"],
+    ticket: "免费",
+    description: "怒江边的天然温泉，每年春节前后，傈僳族群众从峡谷各处赶来，露天泡温泉、对歌、上刀山下火海，成就热闹的「澡塘会」，是傈僳族最盛大的传统聚会之一。平日则是感受怒江大峡谷与傈僳风情的近城之地。",
+    tips: "澡塘会在正月（春节后），最热闹；平日可泡温泉、看峡谷；尊重当地泡汤习俗。",
+    transport: "六库（泸水）驾车约30分钟",
+    color: "#3B8A9E", xp: 80,
+  },
+]
+
+/* 周边顺游 —— 均在怒江州内（泸水/贡山/兰坪），派生同归怒江 */
+const nujiangNearby = [
+  {
+    id: 'njn1', name: "片马", nameEn: "Pianma Border", emoji: "🎖️",
+    district: "泸水市", lat: 25.9800, lng: 98.6300,
+    peakTime: "全年", peakDays: "全年 · 抗战边关", difficulty: "medium",
+    rating: 4.2, reviews: 800, tags: ["中缅边境", "驼峰航线", "抗英"],
+    desc: "高黎贡西坡的边境重镇，驼峰航线纪念地",
+    description: "翻过高黎贡山到西坡的中缅边境小镇，历史上「片马事件」抗英、二战「驼峰航线」坠机纪念都在这里。人民抗英胜利纪念馆、驼峰航线纪念馆记录着这段边地热血，风光与历史都厚重。",
+    tips: "翻越高黎贡的山路险要、多雾，注意安全；近边境带身份证；纪念馆庄重瞻仰。",
+    transport: "六库驾车约3小时翻高黎贡至片马",
+    color: "#6B4E3D", xp: 90, isNearby: true,
+  },
+  {
+    id: 'njn2', name: "秋那桶", nameEn: "Qiunatong Village", emoji: "🥾",
+    district: "贡山县", lat: 28.0500, lng: 98.5800,
+    peakTime: "11-4月 / 3月", peakDays: "干季徒步最佳", difficulty: "hard",
+    rating: 4.5, reviews: 900, tags: ["峡谷尽头", "怒族村", "徒步"],
+    desc: "怒江大峡谷最北的怒族村，徒步线终点",
+    description: "怒江大峡谷云南段最北的村子，再往前就是西藏。石板房、木楞屋依山而建，田园安静，教堂钟声在谷中回响。从丙中洛到秋那桶的徒步线，被誉为怒江最经典的一段，一路是峡谷、村寨与信仰。",
+    tips: "徒步强度较大、需体能与干季好天气；可请向导；尊重怒族村民生活。",
+    transport: "丙中洛驾车约1小时或徒步至秋那桶",
+    color: "#4E7A5E", xp: 100, isNearby: true,
+  },
+  {
+    id: 'njn3', name: "兰坪罗古箐", nameEn: "Laoguqing Meadow", emoji: "🌼",
+    district: "兰坪县", lat: 26.4500, lng: 99.4000,
+    peakTime: "5-8月（杜鹃草甸）", peakDays: "夏季高山杜鹃盛开", difficulty: "hard",
+    rating: 4.3, reviews: 600, tags: ["高山草甸", "杜鹃", "普米族"],
+    desc: "高山草甸与杜鹃花海，普米族情人坝",
+    description: "兰坪县的高山秘境，云岭深处的大羊场草甸与罗古箐峡谷，夏天高山杜鹃漫山、牛羊散落，普米族的「情人坝」传说流传于此。人少景野，是徒步与露营爱好者的小众之选。",
+    tips: "海拔高、夏季（5-8月）杜鹃最盛；徒步露营需装备与体能；兰坪在怒江东南、澜沧江畔，可与大理方向衔接。",
+    transport: "六库驾车约3小时至兰坪罗古箐",
+    color: "#7A9B4E", xp: 90, isNearby: true,
+  },
+]
+
+const nujiangItinerary = [
+  {
+    day: 1, title: "溯峡谷北上", date: "Day 1",
+    activities: [
+      { time: "全天", icon: "🚗", text: "六库出发沿怒江大峡谷北上，看石月亮", spotId: 'nj5' },
+      { time: "下午", icon: "⛪", text: "登老姆登、访知子罗记忆之城", spotId: 'nj4' },
+      { time: "晚上", icon: "🍲", text: "老姆登住宿，尝漆油鸡 + 手抓饭" },
+    ]
+  },
+  {
+    day: 2, title: "人神共居丙中洛", date: "Day 2",
+    activities: [
+      { time: "上午", icon: "🚗", text: "继续北上抵丙中洛，一路峡谷村寨", spotId: 'nj1' },
+      { time: "下午", icon: "🌀", text: "怒江第一湾观景，看桃花岛", spotId: 'nj2' },
+      { time: "傍晚", icon: "🌾", text: "丙中洛坝子田园慢走，看炊烟雪山" },
+    ]
+  },
+  {
+    day: 3, title: "挂壁古道秘境", date: "Day 3",
+    activities: [
+      { time: "上午", icon: "🏚️", text: "徒步挂壁古道进雾里村", spotId: 'nj6' },
+      { time: "下午", icon: "🥾", text: "深入秋那桶，峡谷尽头怒族村" },
+      { time: "晚上", icon: "🔥", text: "丙中洛住宿，围炉喝同心酒" },
+    ]
+  },
+  {
+    day: 4, title: "独龙江或返程", date: "Day 4",
+    activities: [
+      { time: "全天", icon: "🏔️", text: "深度探独龙江秘境（看天进）或南返" },
+      { time: "途中", icon: "♨️", text: "泸水登埂泡温泉，感受傈僳风情", spotId: 'nj7' },
+      { time: "傍晚", icon: "✈️", text: "返六库 / 前往下一站（大理、保山）" },
+    ]
+  },
+]
+
+const nujiangTips = [
+  { icon: "📅", title: "最佳季节", content: "干季（11-4月）路况最安全、是主游季；三月丙中洛桃花、怒江第一湾桃花岛最美。雨季（6-10月）峡谷公路常塌方、独龙江易封路，风险大。出发前务必查路况天气，留足弹性。" },
+  { icon: "🚗", title: "路况与车程", content: "怒江是狭长的大峡谷，景点沿江一线排开，六库到丙中洛就要5-6小时盘山路、独龙江更险。强烈建议包车或跟成熟车队、别自驾走夜路；随时可能落石塌方，谨慎慢行。" },
+  { icon: "🥾", title: "徒步与体能", content: "雾里村、秋那桶、丙中洛徒步线需要一定体能，挂壁古道临崖、注意脚下与落石。独龙江属高强度探险，务必结伴、请向导、量力而行。" },
+  { icon: "🙏", title: "尊重民族信仰", content: "怒江是傈僳、怒、独龙、普米等民族聚居地，基督教、天主教、藏传佛教、原始信仰并存。进教堂、寺庙守礼；独龙族纹面老人是活的文化遗产，拍照务必先征得同意、勿围观打扰。" },
+  { icon: "🧥", title: "峡谷气候", content: "峡谷海拔落差大、天气多变，一日之内可能晴雨交替，昼夜温差大。备防水冲锋衣、保暖层与防滑徒步鞋；高海拔点（独龙江、草甸）注意保暖与轻微高反。" },
+  { icon: "🛂", title: "边境登记", content: "独龙江、片马等靠近中缅边境，需带身份证、按规定登记，勿越境。偏远地区通讯、补给有限，备足现金、常用药与干粮。" },
+  { icon: "🍲", title: "峡谷味道", content: "傈僳手抓饭（簸箕饭）、漆油炖鸡、石板粑粑、侠辣、老窝火腿都是峡谷特色，就地取材、质朴够味。做客常有「同心酒」，量力而饮。" },
+]
+
+const nujiangFoods = [
+  { name: "傈僳手抓饭", emoji: "🍚", desc: "簸箕盛饭配烤肉时蔬，手抓着吃" },
+  { name: "漆油鸡", emoji: "🍲", desc: "漆油炖土鸡，暖身滋补的峡谷味" },
+  { name: "石板粑粑", emoji: "🫓", desc: "天然石板上烙的荞麦粑粑" },
+  { name: "侠辣", emoji: "🍶", desc: "肉与酒同焖，傈僳待客硬菜" },
+  { name: "老窝火腿", emoji: "🍖", desc: "泸水老窝高山腌制，咸香醇厚" },
+  { name: "漆油茶", emoji: "🍵", desc: "漆油打茶，峡谷人家的暖饮" },
+]
+
+const nujiangPackList = [
+  { icon: "🧥", text: "防水冲锋衣 + 保暖层（峡谷多变）" },
+  { icon: "👟", text: "防滑徒步鞋（挂壁古道临崖）" },
+  { icon: "💊", text: "常用药 + 少量氧气（偏远高海拔）" },
+  { icon: "🔦", text: "头灯 + 充电宝（补给通讯有限）" },
+  { icon: "💵", text: "足量现金（山区移动支付不稳）" },
+  { icon: "💳", text: "身份证（独龙江/片马边境登记）" },
+]
+
+const nujiangSeason = {
+  title: "最佳旅行季节",
+  sub: "三江并流，人神共居",
+  rows: [
+    { dot: "peak",  label: "☀️ 干季（11—4月）", date: "路况最安全，主游季", badge: "推荐" },
+    { dot: "early", label: "🌸 春（3月）", date: "丙中洛桃花、第一湾桃花岛" },
+    { dot: "late",  label: "⚠️ 雨季（6—10月）", date: "易塌方，独龙江常封路" },
+  ],
+}
+
 /* ════════════════ CITIES 汇总 ════════════════
    扩展新城市：复制上方一整套 daliXxx 常量，改名后
    在下面数组里追加一个对象即可。
@@ -2941,6 +3129,32 @@ export const CITIES = [
     foods: dehongFoods,
     packList: dehongPackList,
     seasonInfo: dehongSeason,
+  },
+  {
+    id: 'nujiang',
+    name: '怒江',
+    nameEn: 'Nujiang',
+    emoji: '⛰️',
+    country: '云南',
+    tagline: '三江并流，人神共居',
+    heroBadge: '怒江 · 云南',
+    heroTitle: '怒江大峡谷',
+    heroHighlight: '慢慢走吧！',
+    heroDesc: '丙中洛、独龙江与挂壁茶马古道',
+    heroGradient: 'linear-gradient(160deg, #1A413E 0%, #3E7E74 55%, #CBE2DA 100%)',
+    quickTips: [
+      { icon: '📅', text: '干季11-4月路况最安全' },
+      { icon: '🚗', text: '峡谷盘山路，建议包车' },
+      { icon: '⚠️', text: '雨季易塌方，独龙江封路' },
+      { icon: '🙏', text: '纹面老人，拍照先征得同意' },
+    ],
+    spots: nujiangSpots,
+    nearbySpots: nujiangNearby,
+    itineraryDays: nujiangItinerary,
+    tips: nujiangTips,
+    foods: nujiangFoods,
+    packList: nujiangPackList,
+    seasonInfo: nujiangSeason,
   },
 ]
 
