@@ -74,7 +74,7 @@ export default function AuthPage() {
         </div>
 
         <div className="auth-bottom">
-          <p className="auth-tagline">免费、好玩又实用的<br/>云贵川小城漫游手册</p>
+          <p className="auth-tagline">免费、好玩又实用的<br/>中国小城漫游手册</p>
           <div className="auth-features">
             <div className="auth-feature"><span className="af-icon">🗺️</span><span className="af-label">记录足迹</span></div>
             <div className="auth-feature"><span className="af-icon">⭐</span><span className="af-label">积累 XP</span></div>

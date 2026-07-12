@@ -3,12 +3,17 @@
    新城市上线时在此登记其景点 id 规则。 */
 /* 例外表优先：顺游景点行政区可能不属于所在城市的州市 */
 const SPOT_REGION_EXACT = {
-  ln1: 'yn-diqing',    // 虎跳峡行政属迪庆香格里拉
+  ln1:  'yn-diqing',   // 虎跳峡行政属迪庆香格里拉
+  lzn2: 'ad620400',    // 黄河石林行政属白银景泰
+  lzn3: 'ad622900',    // 刘家峡·炳灵寺行政属临夏永靖
 }
 
+/* 注意：云贵川三省沿用 sc-/gz-/yn- 前缀（踏印历史命名），
+   其他省份踏印用 adcode 格式（如兰州 ad620100） */
 const SPOT_REGION_RULES = [
-  { test: /^dn?\d+$/, region: 'yn-dali' },      // 大理：主景点 d1.. + 周边顺游 dn1..
-  { test: /^ln?\d+$/, region: 'yn-lijiang' },   // 丽江：主景点 l1.. + 周边顺游 ln1..
+  { test: /^lzn?\d+$/, region: 'ad620100' },    // 兰州：lz1.. / lzn1..（先于丽江规则不冲突，正则互斥）
+  { test: /^dn?\d+$/,  region: 'yn-dali' },     // 大理：d1.. / dn1..
+  { test: /^ln?\d+$/,  region: 'yn-lijiang' },  // 丽江：l1.. / ln1..
 ]
 
 export function regionOfSpot(spotId) {

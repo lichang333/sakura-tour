@@ -190,7 +190,7 @@ export default function MapPage({ goToSpot }) {
   return (
     <div className="map-page">
       <div className="map-header">
-        <div className="map-eyebrow">Footprints · 云贵川</div>
+        <div className="map-eyebrow">Footprints · 中国</div>
         <h2 className="page-title">我的地图</h2>
         <p className="page-sub">想去与已抵达的地方，一眼看清</p>
       </div>
