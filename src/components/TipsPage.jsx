@@ -1,6 +1,7 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { useCity } from '../context/CityContext'
 import { useUser } from '../context/UserContext'
+import { renderCityCard } from '../lib/shareCard'
 import './TipsPage.css'
 
 function loadPacked(cityId) {
@@ -17,6 +18,49 @@ export default function TipsPage({ goToSpot }) {
   const { user } = useUser()
   const [packed, setPacked] = useState(() => new Set(loadPacked(currentCity.id)))
   const [tasted, setTasted] = useState(() => new Set(loadTasted(currentCity.id)))
+  const [shareImg, setShareImg] = useState(null)   // dataURL，弹层预览
+  const [shareBusy, setShareBusy] = useState(false)
+  const [shareToast, setShareToast] = useState('')
+  const cardRef = useRef(null)                     // 生成的 canvas，供保存/分享复用
+
+  const openShare = async () => {
+    if (shareBusy) return
+    setShareBusy(true)
+    try {
+      const cv = await renderCityCard(currentCity, user)
+      cardRef.current = cv
+      setShareImg(cv.toDataURL('image/png'))
+    } catch {
+      setShareToast('生成失败，请重试')
+      setTimeout(() => setShareToast(''), 2000)
+    } finally {
+      setShareBusy(false)
+    }
+  }
+
+  const cardBlob = () => new Promise(res => cardRef.current.toBlob(res, 'image/png'))
+  const cardName = () => `${currentCity.name}攻略-SakuraTour.png`
+
+  const saveCard = async () => {
+    const blob = await cardBlob()
+    const a = document.createElement('a')
+    a.href = URL.createObjectURL(blob)
+    a.download = cardName()
+    document.body.appendChild(a); a.click(); a.remove()
+    setTimeout(() => URL.revokeObjectURL(a.href), 8000)
+    setShareToast('已存图 · 长按图片可发给微信好友')
+    setTimeout(() => setShareToast(''), 2500)
+  }
+
+  const shareCard = async () => {
+    const blob = await cardBlob()
+    const file = new File([blob], cardName(), { type: 'image/png' })
+    if (navigator.canShare && navigator.canShare({ files: [file] })) {
+      try { await navigator.share({ files: [file], title: `${currentCity.name}攻略`, text: `${currentCity.tagline} —— ${currentCity.name}小城攻略` }); return }
+      catch (e) { if (e.name === 'AbortError') return }
+    }
+    saveCard()
+  }
 
   useEffect(() => {
     setPacked(new Set(loadPacked(currentCity.id)))
@@ -53,8 +97,15 @@ export default function TipsPage({ goToSpot }) {
   return (
     <div className="tips-page">
       <div className="tips-header">
-        <h2 className="page-title">{currentCity.name}旅行攻略</h2>
-        <p className="page-sub">知己知彼，玩得更爽</p>
+        <div className="tips-head-row">
+          <div>
+            <h2 className="page-title">{currentCity.name}旅行攻略</h2>
+            <p className="page-sub">知己知彼，玩得更爽</p>
+          </div>
+          <button className="share-card-btn" onClick={openShare} disabled={shareBusy}>
+            {shareBusy ? '生成中…' : '📤 分享攻略卡'}
+          </button>
+        </div>
       </div>
 
       {/* Best Season */}
@@ -181,6 +232,22 @@ export default function TipsPage({ goToSpot }) {
           })}
         </div>
       </div>
+
+      {/* ── 分享卡弹层 ── */}
+      {shareImg && (
+        <div className="share-mask" onClick={e => { if (e.target === e.currentTarget) setShareImg(null) }}>
+          <div className="share-panel">
+            <img className="share-preview" src={shareImg} alt={`${currentCity.name}攻略分享卡`} />
+            <p className="share-hint">长按图片可直接发给微信好友，或</p>
+            <div className="share-actions">
+              <button className="share-act" onClick={saveCard}>保存图片</button>
+              <button className="share-act primary" onClick={shareCard}>分享</button>
+            </div>
+            <button className="share-close" onClick={() => setShareImg(null)} aria-label="关闭">✕</button>
+          </div>
+        </div>
+      )}
+      {shareToast && <div className="share-toast">{shareToast}</div>}
     </div>
   )
 }
