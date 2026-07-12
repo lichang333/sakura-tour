@@ -4,8 +4,8 @@
   "description": "成都樱花赏花旅行规划 - 花期预报、地点推荐、行程规划",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#FF6B9D",
-  "theme_color": "#FF6B9D",
+  "background_color": "#E7E0D0",
+  "theme_color": "#F3EEE3",
   "orientation": "portrait",
   "icons": [
     {
