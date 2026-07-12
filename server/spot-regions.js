@@ -15,6 +15,7 @@ const SPOT_REGION_RULES = [
   { test: /^dn?\d+$/,  region: 'yn-dali' },     // 大理：d1.. / dn1..
   { test: /^ln?\d+$/,  region: 'yn-lijiang' },  // 丽江：l1.. / ln1..
   { test: /^bnn?\d+$/, region: 'yn-xishuangbanna' },  // 版纳：bn1.. / bnn1..（全在版纳州内）
+  { test: /^bsn?\d+$/, region: 'yn-baoshan' },  // 保山：bs1.. / bsn1..（含龙陵/昌宁/施甸，均属保山）
 ]
 
 export function regionOfSpot(spotId) {

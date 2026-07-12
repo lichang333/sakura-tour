@@ -1081,6 +1081,198 @@ const bannaSeason = {
   ],
 }
 
+
+/* ════════════════ 保山 ════════════════ */
+const baoshanSpots = [
+  {
+    id: 'bs1', name: "高黎贡山·百花岭", nameEn: "Gaoligong Baihualing", emoji: "🦜",
+    district: "隆阳区", lat: 25.3000, lng: 98.8000,
+    peakTime: "全年（观鸟11-4月）", peakDays: "冬春观鸟旺季", difficulty: "medium",
+    rating: 4.7, reviews: 5200, tags: ["必去", "观鸟圣地", "生物多样性"],
+    isHot: true, ticket: "免费（向导/鸟塘另计）",
+    description: "「世界物种基因库」高黎贡山的东坡门户。百花岭是国内顶级观鸟地，五百多种鸟在此栖息，冬春季各地鸟人扛着长炮蹲鸟塘。除了鸟，还有原始森林、瀑布与南方丝绸之路古道，是徒步与自然爱好者的天堂。",
+    tips: "观鸟需请当地向导带进鸟塘（付费），清晨最佳；徒步高黎贡穿越线较硬核，量力而行。",
+    transport: "保山城区驾车约1小时至百花岭",
+    color: "#2E8B57", xp: 140,
+  },
+  {
+    id: 'bs2', name: "潞江坝·咖啡第一村", nameEn: "Lujiangba Coffee Village", emoji: "☕",
+    district: "隆阳区潞江镇", lat: 24.9500, lng: 98.8800,
+    peakTime: "全年（花季3月）", peakDays: "3月咖啡花开", difficulty: "easy",
+    rating: 4.5, reviews: 3100, tags: ["小粒咖啡", "热带河谷", "新寨村"],
+    isHot: true, ticket: "免费（庄园体验另计）",
+    description: "怒江大峡谷里的热带河谷，中国小粒咖啡的核心产区。新寨村号称「中国咖啡第一村」，漫山咖啡树间能采豆、烘豆、喝一杯从树到杯的手冲。三月咖啡花似雪，河谷还种芒果、香料，暖得像另一个季节。",
+    tips: "找正规咖啡庄园做采烘体验；河谷夏季酷热，防晒补水；顺路可看怒江大峡谷。",
+    transport: "保山城区驾车约1小时下到潞江坝",
+    color: "#8A5A2B", xp: 110,
+  },
+  {
+    id: 'bs3', name: "太保山公园", nameEn: "Taibao Mountain Park", emoji: "⛩️",
+    district: "隆阳区", lat: 25.1180, lng: 99.1550,
+    peakTime: "全年", peakDays: "全年 · 城市后山", difficulty: "easy",
+    rating: 4.3, reviews: 2600, tags: ["城市后山", "玉皇阁", "俯瞰保山坝"],
+    ticket: "免费",
+    description: "保山城西的后山公园，明代玉皇阁飞檐叠翠，文笔塔立于山巅。爬上去可俯瞰整个保山坝子，是本地人晨练喝茶遛弯的日常去处，古建与市井烟火气都有。",
+    tips: "上午本地生活气最浓；玉皇阁的斗拱彩绘值得细看。",
+    transport: "保山城区西侧，步行/打车可达",
+    color: "#C7592B", xp: 80,
+  },
+  {
+    id: 'bs4', name: "云岩卧佛寺", nameEn: "Wofo Temple", emoji: "🛕",
+    district: "隆阳区", lat: 25.1600, lng: 99.0700,
+    peakTime: "全年", peakDays: "全年 · 千年石佛", difficulty: "easy",
+    rating: 4.4, reviews: 1900, tags: ["唐代卧佛", "崖壁石窟", "古刹"],
+    ticket: "免费",
+    description: "云岩山崖壁上的千年古刹，主尊是一尊唐代天然崖石雕成的卧佛，是云南少见的早期石窟造像。寺依崖建、林木葱郁，清净幽深，比城里的香火庙多了几分山野气。",
+    tips: "与太保山可排同半天；山路石阶，穿舒适鞋。",
+    transport: "保山城区驾车约20分钟至云岩山",
+    color: "#A9702F", xp: 90,
+  },
+  {
+    id: 'bs5', name: "板桥青龙街", nameEn: "Banqiao Qinglong Street", emoji: "🏮",
+    district: "隆阳区板桥镇", lat: 25.2100, lng: 99.2000,
+    peakTime: "全年", peakDays: "赶集日最热闹", difficulty: "easy",
+    rating: 4.4, reviews: 2300, tags: ["茶马古道", "千年古街", "赶集"],
+    ticket: "免费",
+    description: "南方丝绸之路与茶马古道上的千年古驿。青龙街一里长的青石板路两旁是明清老铺、马店、手艺人作坊，赶集日更是人声鼎沸。没有过度商业化，是滇西保存最好的古集市之一。",
+    tips: "遇赶集日（当地农历逢集）最有生活气；街边小吃、竹编、老秤铺值得逛。",
+    transport: "保山城区驾车约25分钟至板桥镇",
+    color: "#B08968", xp: 90,
+  },
+  {
+    id: 'bs6', name: "玛御谷温泉", nameEn: "Mayugu Hot Spring", emoji: "♨️",
+    district: "隆阳区潞江镇", lat: 24.9800, lng: 98.9200,
+    peakTime: "全年（秋冬最惬意）", peakDays: "秋冬泡汤季", difficulty: "easy",
+    rating: 4.5, reviews: 3400, tags: ["天然温泉", "河谷度假", "养生"],
+    ticket: "门票约128元起",
+    description: "潞江坝热带河谷里的温泉度假区，背靠高黎贡、面朝怒江。多个露天汤池掩在棕榈与三角梅间，泡着温泉看河谷落日，是保山最舒服的慢下来方式，尤其秋冬。",
+    tips: "带泳衣；旺季周末人多，非节假日更清净；可与咖啡村排同一天。",
+    transport: "保山城区驾车约1小时至潞江坝",
+    color: "#3B6E86", xp: 90,
+  },
+  {
+    id: 'bs7', name: "金鸡古镇", nameEn: "Jinji Ancient Town", emoji: "🐓",
+    district: "隆阳区金鸡乡", lat: 25.1700, lng: 99.2300,
+    peakTime: "全年", peakDays: "全年 · 汉营古都", difficulty: "easy",
+    rating: 4.2, reviews: 1500, tags: ["哀牢古都", "汉营", "古庙戏台"],
+    ticket: "免费",
+    description: "两千多年前哀牢国、汉代不韦县的所在地，号称「先有金鸡、后有保山」。古镇里文昌宫、戏台、古庙格局犹存，青石巷子安静少人，藏着保山最古老的一段历史。",
+    tips: "与板桥青龙街同方向可顺游；镇上老茶馆能歇脚喝盖碗茶。",
+    transport: "保山城区驾车约20分钟至金鸡乡",
+    color: "#CE9A2B", xp: 80,
+  },
+]
+
+/* 周边顺游 —— 均在保山市内（龙陵/昌宁/施甸），派生同归保山 */
+const baoshanNearby = [
+  {
+    id: 'bsn1', name: "龙陵·松山战场遗址", nameEn: "Songshan WWII Battlefield", emoji: "🎖️",
+    district: "龙陵县", lat: 24.7000, lng: 98.9500,
+    peakTime: "全年", peakDays: "全年 · 抗战纪念", difficulty: "medium",
+    rating: 4.8, reviews: 3600, tags: ["滇西抗战", "远征军", "战壕遗址"],
+    ticket: "免费",
+    description: "滇西抗战最惨烈的战场之一。1944 年中国远征军血战三月收复松山，山上完整保留着战壕、弹坑与工事，402 座远征军雕塑列阵山坡，无声肃穆。是一堂沉重而必要的历史课。",
+    tips: "山顶徒步约2小时，庄重瞻仰；与龙陵邦腊掌温泉可排同天。",
+    transport: "保山驾车约1.5小时至龙陵松山",
+    color: "#6B4E3D", xp: 110, isNearby: true,
+  },
+  {
+    id: 'bsn2', name: "昌宁·右甸茶乡", nameEn: "Changning Tea Town", emoji: "🍵",
+    district: "昌宁县", lat: 24.8300, lng: 99.6000,
+    peakTime: "全年（春茶3-4月）", peakDays: "3-4月采春茶", difficulty: "easy",
+    rating: 4.3, reviews: 1200, tags: ["千年茶乡", "古茶树", "田园"],
+    ticket: "免费",
+    description: "全国唯一命名的「千年茶乡」，境内古茶树成群。右甸坝子稻田连片、茶山环抱，是滇西红茶与普洱的重要产区。春天采茶、看田园，慢悠悠住一晚很治愈。",
+    tips: "春茶季找茶农体验最地道；县城到茶山有距离，自驾方便。",
+    transport: "保山驾车约2小时至昌宁",
+    color: "#7A8B5A", xp: 80, isNearby: true,
+  },
+  {
+    id: 'bsn3', name: "施甸·善洲林场", nameEn: "Shandian Forest Farm", emoji: "🌲",
+    district: "施甸县", lat: 24.7300, lng: 99.1900,
+    peakTime: "全年", peakDays: "夏秋林木最盛", difficulty: "medium",
+    rating: 4.4, reviews: 900, tags: ["杨善洲精神", "林海", "徒步"],
+    ticket: "免费",
+    description: "老书记杨善洲退休后带人二十余年种出的一片人工林海，如今五万余亩郁郁葱葱。林场里能徒步、看老场部、听那段「把荒山变绿洲」的故事，是一处朴素动人的精神地标。",
+    tips: "海拔较高备薄外套；林间步道适合慢走，庄重感受。",
+    transport: "保山驾车约1.5小时至施甸大亮山",
+    color: "#4E7A5E", xp: 90, isNearby: true,
+  },
+]
+
+const baoshanItinerary = [
+  {
+    day: 1, title: "抵达·古城后山", date: "Day 1",
+    activities: [
+      { time: "下午", icon: "✈️", text: "抵达保山，入住城区" },
+      { time: "傍晚", icon: "⛩️", text: "太保山公园登玉皇阁，俯瞰保山坝", spotId: 'bs3' },
+      { time: "晚上", icon: "🥩", text: "城区吃火瓢牛肉 + 大薄片" },
+    ]
+  },
+  {
+    day: 2, title: "咖啡与河谷", date: "Day 2",
+    activities: [
+      { time: "上午", icon: "☕", text: "潞江坝咖啡第一村采豆手冲", spotId: 'bs2' },
+      { time: "下午", icon: "♨️", text: "玛御谷温泉泡汤，看河谷落日", spotId: 'bs6' },
+      { time: "晚上", icon: "🍜", text: "回城尝蒲缥甩饵丝 / 下村豆粉" },
+    ]
+  },
+  {
+    day: 3, title: "古镇与古佛", date: "Day 3",
+    activities: [
+      { time: "上午", icon: "🏮", text: "板桥青龙街逛千年茶马古集", spotId: 'bs5' },
+      { time: "下午", icon: "🛕", text: "云岩卧佛寺访唐代崖佛", spotId: 'bs4' },
+      { time: "傍晚", icon: "🐓", text: "金鸡古镇喝盖碗茶，访哀牢古都", spotId: 'bs7' },
+    ]
+  },
+  {
+    day: 4, title: "观鸟或抗战", date: "Day 4",
+    activities: [
+      { time: "全天", icon: "🦜", text: "高黎贡百花岭观鸟徒步 或 龙陵松山抗战遗址" },
+      { time: "下午", icon: "🎁", text: "选购小粒咖啡、永子围棋、昌宁红茶伴手礼" },
+      { time: "傍晚", icon: "✈️", text: "返程 / 前往下一站（腾冲、大理）" },
+    ]
+  },
+]
+
+const baoshanTips = [
+  { icon: "📅", title: "最佳季节", content: "全年温和，11-4月干季晴多路好、是观鸟旺季；3月咖啡花开、潞江坝暖如夏。5-10月雨季山路湿滑，怒江河谷闷热。城区海拔约1650米，气候舒适。" },
+  { icon: "🦜", title: "观鸟须知", content: "高黎贡百花岭观鸟需请当地向导带进付费鸟塘，清晨光线与鸟况最好。长焦、迷彩、耐心是三件套；徒步穿越线较硬核需专业向导。" },
+  { icon: "☕", title: "咖啡体验", content: "保山是中国小粒咖啡发源地之一。潞江坝新寨村可做采豆、日晒、烘焙、手冲全流程，认准正规庄园；带一包生豆或挂耳当伴手礼。" },
+  { icon: "🚕", title: "景点分散", content: "保山景点散在隆阳城区、潞江坝、龙陵、昌宁、施甸，跨度大，强烈建议自驾或包车，按片区分天走，别当天来回硬赶。" },
+  { icon: "🎖️", title: "抗战史迹", content: "松山、龙陵是滇西抗战主战场，遗址庄严，请肃穆瞻仰、勿喧哗嬉闹。保山城内还有滇西抗战纪念相关场馆可延伸了解。" },
+  { icon: "🍽️", title: "美食提醒", content: "火瓢牛肉（铜瓢现煮）、大薄片、蒲缥甩饵丝是保山名片。街边老店比景区地道；潞江坝的热带水果与手冲咖啡别错过。" },
+  { icon: "🪶", title: "永子文化", content: "保山是围棋「永子」的产地，以南红玛瑙、黄龙玉等原料烧制，温润著名。感兴趣可看永子非遗，是有分量的伴手礼。" },
+]
+
+const baoshanFoods = [
+  { name: "火瓢牛肉", emoji: "🥩", desc: "铜瓢炭火现煮，鲜香滚烫" },
+  { name: "大薄片", emoji: "🥓", desc: "猪头肉切透光薄片，蘸水解腻" },
+  { name: "蒲缥甩饵丝", emoji: "🍜", desc: "保山早餐顶流，汤鲜饵丝滑" },
+  { name: "下村豆粉", emoji: "🫘", desc: "豌豆粉凉热两吃，油辣子灵魂" },
+  { name: "潞江芒果", emoji: "🥭", desc: "热带河谷所产，甜糯多汁" },
+  { name: "保山小粒咖啡", emoji: "☕", desc: "本土手冲，果酸柔和" },
+]
+
+const baoshanPackList = [
+  { icon: "🧥", text: "薄外套（昼夜温差，山上更凉）" },
+  { icon: "🧴", text: "防晒（河谷日照强）" },
+  { icon: "👟", text: "徒步鞋（观鸟/松山山路）" },
+  { icon: "🔭", text: "长焦相机/望远镜（观鸟）" },
+  { icon: "👕", text: "泳衣（玛御谷温泉）" },
+  { icon: "💳", text: "身份证（住宿/购票）" },
+]
+
+const baoshanSeason = {
+  title: "最佳旅行季节",
+  sub: "高黎贡下，咖啡飘香",
+  rows: [
+    { dot: "peak",  label: "☀️ 最佳（11—4月）", date: "干季晴多路好，观鸟旺季", badge: "推荐" },
+    { dot: "early", label: "🌸 春（3月）", date: "咖啡花开，潞江坝暖如夏" },
+    { dot: "late",  label: "🌧️ 雨季（5—10月）", date: "山路湿滑，河谷闷热" },
+  ],
+}
+
 /* ════════════════ CITIES 汇总 ════════════════
    扩展新城市：复制上方一整套 daliXxx 常量，改名后
    在下面数组里追加一个对象即可。
@@ -1191,6 +1383,32 @@ export const CITIES = [
     foods: bannaFoods,
     packList: bannaPackList,
     seasonInfo: bannaSeason,
+  },
+  {
+    id: 'baoshan',
+    name: '保山',
+    nameEn: 'Baoshan',
+    emoji: '☕',
+    country: '云南',
+    tagline: '高黎贡下，咖啡飘香',
+    heroBadge: '保山 · 云南',
+    heroTitle: '高黎贡山',
+    heroHighlight: '慢慢品吧！',
+    heroDesc: '观鸟徒步、河谷咖啡、茶马古道',
+    heroGradient: 'linear-gradient(160deg, #22463C 0%, #4F7E6C 55%, #C6DED4 100%)',
+    quickTips: [
+      { icon: '📅', text: '11-4月干季观鸟旺季' },
+      { icon: '🦜', text: '百花岭观鸟请当地向导' },
+      { icon: '🚕', text: '景点分散，建议自驾' },
+      { icon: '☕', text: '潞江坝小粒咖啡产区' },
+    ],
+    spots: baoshanSpots,
+    nearbySpots: baoshanNearby,
+    itineraryDays: baoshanItinerary,
+    tips: baoshanTips,
+    foods: baoshanFoods,
+    packList: baoshanPackList,
+    seasonInfo: baoshanSeason,
   },
 ]
 
