@@ -215,9 +215,8 @@
 }
 
 .theme-icon {
-  font-size: 15px;
-  line-height: 1;
-  color: var(--text-mid);
+  display: block;
+  color: var(--text-mid);  /* SVG stroke 走 currentColor，单色跟主题 */
 }
 
 /* Desktop: the sidebar carries the brand, so drop the header logo */
