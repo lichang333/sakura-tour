@@ -886,6 +886,201 @@ const lanzhouSeason = {
   ],
 }
 
+
+/* ════════════════ 西双版纳 ════════════════ */
+const bannaSpots = [
+  {
+    id: 'bn1', name: "中科院热带植物园", nameEn: "Menglun Botanical Garden", emoji: "🌴",
+    district: "勐腊县勐仑", lat: 21.9130, lng: 101.2700,
+    peakTime: "全年皆宜", peakDays: "干季11-4月最舒适", difficulty: "easy",
+    rating: 4.8, reviews: 14200, tags: ["必去", "热带雨林", "王莲·独木成林"],
+    isHot: true, ticket: "门票约80元 + 园内电瓶车另计",
+    description: "中国面积最大的热带植物园，一座罗梭江环抱的绿岛。上万种热带植物：能坐人的王莲、见血封喉、绞杀榕、跳舞草，夜游还能看昙花与萤火虫。半天到一天都逛不完，是版纳雨林的浓缩课堂。",
+    tips: "园区极大务必租电瓶车或坐观光车；西区看棕榈、王莲，东区是原始雨林；夜游需另约。",
+    transport: "景洪客运站班车约1.5小时至勐仑",
+    color: "#3E9E63", xp: 140,
+  },
+  {
+    id: 'bn2', name: "野象谷", nameEn: "Wild Elephant Valley", emoji: "🐘",
+    district: "景洪市", lat: 22.1780, lng: 100.8560,
+    peakTime: "全年", peakDays: "清晨/傍晚遇象概率高", difficulty: "easy",
+    rating: 4.5, reviews: 11800, tags: ["必去", "亚洲象", "雨林索道"],
+    isHot: true, ticket: "门票约65元 + 索道约50元",
+    description: "中国唯一的亚洲野象栖息观测地。高架栈道穿行雨林树冠层，运气好能俯瞰到野象群饮水；园区有大象学校表演与蝴蝶园。看不到野象也有雨林和亚洲象博物馆兜底。",
+    tips: "野象随缘，别抱必见期望；坐索道进、栈道出最省力；雨林潮湿备防蚊防滑。",
+    transport: "景洪驾车约1小时，昆曼公路旁",
+    color: "#4E7A5E", xp: 130,
+  },
+  {
+    id: 'bn3', name: "告庄西双景·星光夜市", nameEn: "Gaozhuang Night Market", emoji: "🏮",
+    district: "景洪市", lat: 22.0280, lng: 100.8130,
+    peakTime: "晚上6点后", peakDays: "全年夜间 · 越晚越旺", difficulty: "easy",
+    rating: 4.6, reviews: 16500, tags: ["必去", "东南亚风情", "大金塔夜景"],
+    isHot: true, ticket: "免费进入",
+    description: "复刻古代景洪「景真」的傣泰风情城。大金塔在夜色里通体金亮，湄公河星光夜市几百个摊位卖傣装、手鼓、热带水果和东南亚小吃，穿一身傣裙拍照、放一盏水灯，是版纳夜生活的中心。",
+    tips: "傍晚先上大金塔看日落再逛夜市；周末有泼水与篝火；夜市溢价，水果按斤先问价。",
+    transport: "景洪市区，打车/步行可达",
+    color: "#E0A82E", xp: 100,
+  },
+  {
+    id: 'bn4', name: "曼听公园", nameEn: "Manting Park", emoji: "🕌",
+    district: "景洪市", lat: 21.9840, lng: 100.8100,
+    peakTime: "全年", peakDays: "傍晚看歌舞篝火", difficulty: "easy",
+    rating: 4.4, reviews: 7300, tags: ["傣王御花园", "泼水广场", "篝火晚会"],
+    ticket: "门票约40元（篝火晚会另计）",
+    description: "一千三百多年历史的傣王御花园，版纳最古老的公园。周恩来总理泼水节纪念铜像、白象与孔雀雕塑、总佛寺就在一带。傍晚的傣族歌舞、泼水与篝火狂欢晚会是招牌体验。",
+    tips: "白天逛园+总佛寺，晚上看《澜沧江·湄公河之夜》篝火晚会需另买票，建议提前订。",
+    transport: "景洪市区曼听路，打车可达",
+    color: "#C7592B", xp: 90,
+  },
+  {
+    id: 'bn5', name: "橄榄坝傣族园", nameEn: "Ganlanba Dai Park", emoji: "💦",
+    district: "景洪市勐罕", lat: 21.9040, lng: 100.9800,
+    peakTime: "全年", peakDays: "天天泼水节", difficulty: "easy",
+    rating: 4.3, reviews: 5600, tags: ["五个傣寨", "天天泼水", "贝叶经"],
+    ticket: "门票约50元",
+    description: "由五个原生傣族村寨组成的活态园区，村民就住在里面。曼春满古佛寺的贝叶经、竹楼里的手工织锦、每天下午的泼水广场狂欢，是不等泼水节也能被泼个痛快的地方。",
+    tips: "带一套换洗衣物参加泼水；想深度体验可住寨子里的傣家竹楼客栈。",
+    transport: "景洪驾车约40分钟至勐罕镇",
+    color: "#1CB0F6", xp: 90,
+  },
+  {
+    id: 'bn6', name: "望天树", nameEn: "Wangtianshu Canopy Walk", emoji: "🌳",
+    district: "勐腊县", lat: 21.6100, lng: 101.5800,
+    peakTime: "全年", peakDays: "干季栈道不滑", difficulty: "medium",
+    rating: 4.6, reviews: 4900, tags: ["空中树冠走廊", "补蚌雨林", "望天树"],
+    ticket: "门票约75元 + 空中走廊约60元",
+    description: "中国唯一能走进热带雨林树冠层的地方。高约40米的空中吊桥走廊在望天树巨冠间摇晃，脚下是密不透光的原始雨林，南腊河可乘船。名副其实的「雨林探险」。",
+    tips: "距景洪较远（约2.5小时），建议住勐腊或雨林里的树上旅馆；恐高者空中走廊慎入。",
+    transport: "景洪驾车约2.5小时至勐腊",
+    color: "#2E8B57", xp: 120,
+  },
+  {
+    id: 'bn7', name: "基诺山寨", nameEn: "Jino Ethnic Village", emoji: "🥁",
+    district: "景洪市基诺乡", lat: 22.1000, lng: 101.0500,
+    peakTime: "全年", peakDays: "全年 · 民族风情", difficulty: "easy",
+    rating: 4.2, reviews: 3100, tags: ["最后确认的民族", "太阳鼓", "普洱古茶"],
+    ticket: "门票约100元（含歌舞表演）",
+    description: "基诺族是中国最后一个被确认（1979年）的少数民族，全族聚居于此。太阳鼓舞、大鼓迎宾、卓巴长老讲寨史，山上就是普洱茶名产区攸乐古茶山，能喝到最地道的古树茶。",
+    tips: "与野象谷同方向可顺路；表演场次固定，进寨先看时间表。",
+    transport: "景洪驾车约50分钟，基诺山",
+    color: "#8A5A2B", xp: 90,
+  },
+]
+
+/* 周边顺游 —— 均在版纳州内（勐海/勐腊），派生同归西双版纳 */
+const bannaNearby = [
+  {
+    id: 'bnn1', name: "打洛·独树成林", nameEn: "Daluo Solitary Tree Forest", emoji: "🌲",
+    district: "勐海县打洛镇", lat: 21.7200, lng: 100.1200,
+    peakTime: "全年", peakDays: "干季边境通行顺", difficulty: "easy",
+    rating: 4.3, reviews: 2200, tags: ["中缅边境", "一树成林", "口岸"],
+    ticket: "独树成林约50元",
+    desc: "一棵大榕树气根落地成林，边境风情",
+    description: "中缅边境小镇打洛，一棵百年大青树的气根垂地生根、独木撑成一片小树林。旁边就是国境线与中缅第一寨勐景来，能感受到浓浓的边地口岸风情。",
+    tips: "近边境，带好身份证；可与勐景来、界碑一并打卡。",
+    transport: "景洪驾车约2小时至打洛镇",
+    color: "#4E7A5E", xp: 80, isNearby: true,
+  },
+  {
+    id: 'bnn2', name: "南糯山古茶园", nameEn: "Nannuo Ancient Tea Mountain", emoji: "🍵",
+    district: "勐海县", lat: 21.9500, lng: 100.5800,
+    peakTime: "全年（春茶3-4月）", peakDays: "3-4月采春茶", difficulty: "medium",
+    rating: 4.5, reviews: 1900, tags: ["普洱古茶山", "八百年茶王", "哈尼村寨"],
+    ticket: "免费（茶园体验另计）",
+    desc: "普洱茶圣地，八百年古茶树与哈尼茶农",
+    description: "勐海普洱茶的核心产区，山上有树龄八百余年的栽培型古茶王。云雾缭绕的梯级茶园间散落着哈尼族（爱伲人）村寨，可以住进茶农家，采茶、炒茶、喝一泡最地道的古树生普。",
+    tips: "春茶季（3-4月）最热闹但价高；找靠谱茶农深度体验，别在路边高价买茶。",
+    transport: "景洪驾车约1小时至勐海南糯山",
+    color: "#7A8B5A", xp: 90, isNearby: true,
+  },
+  {
+    id: 'bnn3', name: "中缅第一寨·勐景来", nameEn: "Mengjinglai Village", emoji: "🛕",
+    district: "勐海县打洛镇", lat: 21.7050, lng: 100.1350,
+    peakTime: "全年", peakDays: "全年 · 边境傣寨", difficulty: "easy",
+    rating: 4.2, reviews: 1600, tags: ["中缅边境", "傣族古寨", "佛塔"],
+    ticket: "门票约60元",
+    desc: "界河边的千年傣寨，塔林与竹楼",
+    description: "紧贴中缅界河打洛江的边境傣族古寨，塔林、佛寺、榕树、竹楼、章哈（傣族说唱）俱全。江对岸就是缅甸，走一段国境线、看一眼界碑，是版纳最有边地气息的一站。",
+    tips: "与独树成林同在打洛，顺路同游；带身份证过边检。",
+    transport: "景洪驾车约2小时至打洛",
+    color: "#C08A45", xp: 80, isNearby: true,
+  },
+]
+
+const bannaItinerary = [
+  {
+    day: 1, title: "抵达·傣泰夜色", date: "Day 1",
+    activities: [
+      { time: "下午", icon: "✈️", text: "抵达景洪，入住告庄或江景客栈" },
+      { time: "傍晚", icon: "🏮", text: "告庄大金塔看日落，星光夜市吃喝逛", spotId: 'bn3' },
+      { time: "晚上", icon: "💃", text: "曼听公园篝火泼水晚会（或江边喝一杯）", spotId: 'bn4' },
+    ]
+  },
+  {
+    day: 2, title: "雨林与野象", date: "Day 2",
+    activities: [
+      { time: "上午", icon: "🐘", text: "野象谷雨林栈道 + 索道，找野象", spotId: 'bn2' },
+      { time: "下午", icon: "🥁", text: "基诺山寨看太阳鼓，喝攸乐古树茶", spotId: 'bn7' },
+      { time: "晚上", icon: "🍢", text: "回景洪吃傣味烧烤 + 舂鸡脚" },
+    ]
+  },
+  {
+    day: 3, title: "植物园一日", date: "Day 3",
+    activities: [
+      { time: "上午", icon: "🌴", text: "中科院热带植物园西区：王莲、棕榈", spotId: 'bn1' },
+      { time: "下午", icon: "🌿", text: "植物园东区原始雨林，绞杀榕、见血封喉" },
+      { time: "傍晚", icon: "💦", text: "橄榄坝傣族园泼水，住傣家竹楼", spotId: 'bn5' },
+    ]
+  },
+  {
+    day: 4, title: "深雨林或边境", date: "Day 4",
+    activities: [
+      { time: "全天", icon: "🌳", text: "望天树空中走廊 或 打洛边境独树成林" },
+      { time: "下午", icon: "🎁", text: "选购小粒咖啡、普洱茶、傣族织锦伴手礼" },
+      { time: "傍晚", icon: "✈️", text: "返程 / 前往下一站（普洱、昆明）" },
+    ]
+  },
+]
+
+const bannaTips = [
+  { icon: "📅", title: "最佳季节", content: "11-4月干季最舒服：气候宜人、雨少路好。泼水节（傣历新年，公历4月中旬）是全年最盛的节庆，但机票房价翻倍需极早订。5-10月雨季闷热多阵雨，水果最便宜。" },
+  { icon: "🦟", title: "防蚊防晒", content: "热带高温高湿，蚊虫多。长效驱蚊液、防晒、透气长袖是三件套；雨林徒步穿防滑鞋，随身带雨具。" },
+  { icon: "🛂", title: "边境证件", content: "打洛、勐景来等中缅边境点务必带身份证过边检。切勿越境或购买来路不明商品。" },
+  { icon: "🚕", title: "景点分散", content: "版纳景点散在景洪/勐海/勐腊三地，望天树、打洛距景洪都要2小时以上，建议包车或按片区分天安排，别贪多。" },
+  { icon: "🍍", title: "热带水果", content: "菠萝蜜、山竹、莽吉柿、树番茄、鸡蛋果一年四季不断。夜市按斤称先问价；生冷混吃注意肠胃。" },
+  { icon: "☕", title: "咖啡与茶", content: "版纳产小粒咖啡与普洱古树茶。南糯山、攸乐山是名产区，找茶农喝一泡，比景区档口地道也划算。" },
+  { icon: "🙏", title: "民族习俗", content: "傣族全民信南传佛教，进佛寺脱鞋、不摸僧人头顶、不指佛像。尊重泼水的祝福含义，被泼是受祝福。" },
+]
+
+const bannaFoods = [
+  { name: "傣味包烧", emoji: "🍃", desc: "香茅芭蕉叶裹烤，鱼/猪肉都香" },
+  { name: "菠萝饭", emoji: "🍍", desc: "菠萝盅蒸糯米，酸甜有果香" },
+  { name: "香茅草烤鱼", emoji: "🐟", desc: "罗非鱼夹香茅炭烤，外焦里嫩" },
+  { name: "舂鸡脚", emoji: "🌶️", desc: "现舂酸辣，版纳夜市顶流" },
+  { name: "手抓饭", emoji: "🍛", desc: "一大盘紫米配烤肉时蔬，手抓着吃" },
+  { name: "泡鲁达", emoji: "🥥", desc: "椰奶西米面包干，东南亚风冰饮" },
+]
+
+const bannaPackList = [
+  { icon: "🦟", text: "长效驱蚊液（雨林蚊虫多）" },
+  { icon: "🧴", text: "高倍防晒 + 透气长袖" },
+  { icon: "🩴", text: "凉鞋/防滑鞋（泼水+雨林两用）" },
+  { icon: "🌂", text: "雨具（雨季随时阵雨）" },
+  { icon: "👕", text: "泼水节换洗衣物 + 防水袋" },
+  { icon: "💳", text: "身份证（边境边检查验）" },
+]
+
+const bannaSeason = {
+  title: "最佳旅行季节",
+  sub: "北回归线上的雨林",
+  rows: [
+    { dot: "peak",  label: "☀️ 最佳（11—4月）", date: "干季气候宜人，路况最好", badge: "推荐" },
+    { dot: "early", label: "💦 泼水节（4月中）", date: "傣历新年最盛，需极早订票" },
+    { dot: "late",  label: "🌧️ 雨季（5—10月）", date: "闷热多阵雨，水果最便宜" },
+  ],
+}
+
 /* ════════════════ CITIES 汇总 ════════════════
    扩展新城市：复制上方一整套 daliXxx 常量，改名后
    在下面数组里追加一个对象即可。
@@ -970,6 +1165,32 @@ export const CITIES = [
     foods: lanzhouFoods,
     packList: lanzhouPackList,
     seasonInfo: lanzhouSeason,
+  },
+  {
+    id: 'xishuangbanna',
+    name: '版纳',
+    nameEn: 'Xishuangbanna',
+    emoji: '🌴',
+    country: '云南',
+    tagline: '雨林、傣寨与泼水',
+    heroBadge: '西双版纳 · 云南',
+    heroTitle: '热带雨林',
+    heroHighlight: '泼一场水吧！',
+    heroDesc: '野象出没、金塔夜市，北回归线上的绿洲',
+    heroGradient: 'linear-gradient(160deg, #1B5E3A 0%, #3E9E63 55%, #BFE8C6 100%)',
+    quickTips: [
+      { icon: '📅', text: '11-4月干季最舒适' },
+      { icon: '🦟', text: '雨林蚊虫多，驱蚊必备' },
+      { icon: '🛂', text: '边境点需带身份证' },
+      { icon: '🍍', text: '热带水果全年不断' },
+    ],
+    spots: bannaSpots,
+    nearbySpots: bannaNearby,
+    itineraryDays: bannaItinerary,
+    tips: bannaTips,
+    foods: bannaFoods,
+    packList: bannaPackList,
+    seasonInfo: bannaSeason,
   },
 ]
 

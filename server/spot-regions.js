@@ -14,6 +14,7 @@ const SPOT_REGION_RULES = [
   { test: /^lzn?\d+$/, region: 'ad620100' },    // 兰州：lz1.. / lzn1..（先于丽江规则不冲突，正则互斥）
   { test: /^dn?\d+$/,  region: 'yn-dali' },     // 大理：d1.. / dn1..
   { test: /^ln?\d+$/,  region: 'yn-lijiang' },  // 丽江：l1.. / ln1..
+  { test: /^bnn?\d+$/, region: 'yn-xishuangbanna' },  // 版纳：bn1.. / bnn1..（全在版纳州内）
 ]
 
 export function regionOfSpot(spotId) {
