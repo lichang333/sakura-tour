@@ -408,6 +408,12 @@
   flex-shrink: 0;
 }
 
+/* 文字区吃掉剩余宽度 → 右侧动作列每张卡都贴齐右缘 */
+.nearby-info {
+  flex: 1;
+  min-width: 0;
+}
+
 .nearby-name {
   font-size: 14px;
   font-weight: 800;
