@@ -21,6 +21,7 @@ const SPOT_REGION_RULES = [
   { test: /^kmn?\d+$/, region: 'yn-kunming' },  // 昆明：km1.. / kmn1..（含东川/宜良/禄劝，均属昆明）
   { test: /^yyn?\d+$/, region: 'yn-honghe' },  // 元阳：yy1.. / yyn1..（含蒙自/泸西/红河县，均属红河州）
   { test: /^jsn?\d+$/, region: 'yn-honghe' },  // 建水：js1.. / jsn1..（含石屏/弥勒/泸西，均属红河州；与元阳共享红河格）
+  { test: /^pen?\d+$/, region: 'yn-puer' },  // 普洱：pe1.. / pen1..（含澜沧/西盟/景东/江城/孟连/墨江，均属普洱）
 ]
 
 export function regionOfSpot(spotId) {

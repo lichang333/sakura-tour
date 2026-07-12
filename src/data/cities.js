@@ -2237,6 +2237,199 @@ const jianshuiSeason = {
   ],
 }
 
+
+/* ════════════════ 普洱 ════════════════ */
+const puerSpots = [
+  {
+    id: 'pe1', name: "景迈山古茶林", nameEn: "Jingmai Ancient Tea Forests", emoji: "🍃",
+    district: "澜沧县", lat: 22.1800, lng: 100.0200,
+    peakTime: "春茶3-4月 / 全年", peakDays: "春采茶、干季云海", difficulty: "medium",
+    rating: 4.8, reviews: 5400, tags: ["必去", "世界遗产", "千年古茶林"],
+    isHot: true, ticket: "景区约80元起（含向导/接驳）",
+    description: "2023 年列入世界文化遗产的「普洱景迈山古茶林文化景观」——世界上保存最完整、连片最大的人工栽培古茶林。布朗族、傣族在森林里种茶上千年，茶树与大树混生、寨子藏在林间。翁基古寨的千年古柏、清晨的茶山云海，都美得不真实。",
+    tips: "山上寨子分散，请当地向导带最省心；春茶季（3-4月）最热闹价也高；喝一泡古树普洱、看螃蟹脚（寄生茶树的名贵草药）。",
+    transport: "普洱市区驾车约3小时至澜沧景迈",
+    color: "#3E8A6A", xp: 140,
+  },
+  {
+    id: 'pe2', name: "那柯里茶马古道", nameEn: "Nakeli Ancient Tea Road", emoji: "🐴",
+    district: "宁洱县", lat: 22.9000, lng: 101.2000,
+    peakTime: "全年", peakDays: "全年 · 古道驿站", difficulty: "easy",
+    rating: 4.4, reviews: 3200, tags: ["茶马古道", "马帮驿站", "石板古道"],
+    ticket: "免费",
+    description: "普洱是茶马古道的起点之一，那柯里是保存完好的一处古驿站。风雨桥、马店、被马蹄磨出凹痕的石板路都还在，当年马帮驮着普洱茶从这里出发，走向西藏与南亚。如今是安静的古道小村，可歇脚喝茶。",
+    tips: "距普洱市区不远、适合半日；石板路上还能看到马蹄印；配一杯烤茶感受古道气息。",
+    transport: "普洱市区驾车约40分钟至宁洱那柯里",
+    color: "#8A6A3B", xp: 90,
+  },
+  {
+    id: 'pe3', name: "中华普洱茶博览苑", nameEn: "Pu'er Tea Expo Garden", emoji: "🍵",
+    district: "思茅区", lat: 22.8000, lng: 100.9500,
+    peakTime: "全年", peakDays: "全年 · 万亩茶园", difficulty: "easy",
+    rating: 4.3, reviews: 2600, tags: ["万亩茶园", "采茶制茶", "茶文化"],
+    ticket: "门票约60元",
+    description: "营盘山万亩生态茶园里的茶文化园区，梯级茶垄一望无际，云雾缭绕。能亲手采茶、看杀青揉捻、压饼，系统了解普洱茶从鲜叶到茶饼、生普熟普的门道，是入门普洱茶的最佳一课。",
+    tips: "适合想搞懂普洱茶的人，采制体验需预约；茶园观景与拍照都好；离市区近可半日。",
+    transport: "普洱市区驾车约30分钟至营盘山",
+    color: "#4E7A5E", xp: 90,
+  },
+  {
+    id: 'pe4', name: "太阳河国家公园", nameEn: "Sun River National Park", emoji: "🐾",
+    district: "思茅区", lat: 22.6000, lng: 101.1000,
+    peakTime: "全年", peakDays: "全年 · 雨林萌宠", difficulty: "easy",
+    rating: 4.4, reviews: 3100, tags: ["热带雨林", "小熊猫", "犀牛坪"],
+    ticket: "门票约100元",
+    description: "普洱近郊的热带雨林公园，也叫犀牛坪。原始森林里能近距离看到小熊猫、蜂猴、犀鸟等萌宠，林间栈道、树屋酒店掩在绿荫里。是亲子与自然爱好者感受普洱「绿三角」雨林的便捷一站。",
+    tips: "适合带娃；小熊猫互动有固定时段；雨林潮湿备防蚊防滑；可住林中树屋。",
+    transport: "普洱市区驾车约1小时",
+    color: "#2E8B57", xp: 100,
+  },
+  {
+    id: 'pe5', name: "墨江北回归线标志园", nameEn: "Tropic of Cancer Park", emoji: "☀️",
+    district: "墨江县", lat: 23.4300, lng: 101.6900,
+    peakTime: "全年（夏至立竿无影）", peakDays: "夏至正午无影奇观", difficulty: "easy",
+    rating: 4.2, reviews: 1900, tags: ["北回归线", "双胞之乡", "太阳广场"],
+    ticket: "门票约60元",
+    description: "北回归线正好从墨江穿过，标志园用太阳广场、回归塔等把这条看不见的纬线具象化，夏至正午能看到「立竿无影」的天文奇观。墨江还是著名的「双胞胎之乡」，每年双胞胎节热闹非凡。",
+    tips: "夏至前后来能碰上立竿无影；墨江在普洱—玉溪高速沿线，适合路过顺游；了解北回归线的天文地理很有意思。",
+    transport: "普洱市区驾车约1.5小时至墨江",
+    color: "#C69A4C", xp: 80,
+  },
+  {
+    id: 'pe6', name: "澜沧老达保", nameEn: "Laodabao Lahu Village", emoji: "🎸",
+    district: "澜沧县", lat: 22.5500, lng: 99.9300,
+    peakTime: "全年", peakDays: "全年 · 拉祜歌舞", difficulty: "easy",
+    rating: 4.3, reviews: 1400, tags: ["拉祜族", "会唱歌的村寨", "芦笙吉他"],
+    ticket: "免费（表演/体验另计）",
+    description: "「快乐拉祜」的发源地，一个人人会弹吉他、会唱歌的拉祜族村寨。村民自组乐队、把芦笙与吉他玩到一起，《快乐拉祜》唱遍全国。夜里篝火边的歌舞不是表演给游客的，是他们真实的生活方式。",
+    tips: "与景迈山同在澜沧，可一并安排；听拉祜弹唱、看芦笙舞；尊重村民、别打赏式围观。",
+    transport: "普洱市区驾车约2.5小时至澜沧老达保",
+    color: "#B4472F", xp: 90,
+  },
+  {
+    id: 'pe7', name: "西盟龙摩爷圣地", nameEn: "Wa Longmoye Sacred Land", emoji: "🐃",
+    district: "西盟县", lat: 22.7000, lng: 99.6000,
+    peakTime: "全年（木鼓节最盛）", peakDays: "佤族木鼓节最震撼", difficulty: "medium",
+    rating: 4.3, reviews: 1100, tags: ["佤族", "牛头祭祀", "木鼓·甩发"],
+    ticket: "门票约40元",
+    description: "阿佤山深处的佤族圣地，山谷两侧密密麻麻挂满祭祀用的牛头，透着古老而神秘的原始气息。佤族的木鼓、甩发舞、司岗里传说在这里代代相传，是感受中国最后原始部落之一佤文化的震撼之地。",
+    tips: "路程较远、山路多，自驾或包车为宜；木鼓节（约5月）最盛大；尊重佤族祭祀习俗，勿嬉闹。",
+    transport: "普洱市区驾车约3.5小时至西盟",
+    color: "#6B4E3D", xp: 100,
+  },
+]
+
+/* 周边顺游 —— 均在普洱市辖区（景东/江城/孟连），派生同归普洱 */
+const puerNearby = [
+  {
+    id: 'pen1', name: "景东无量山樱花谷", nameEn: "Wuliang Cherry Valley", emoji: "🌸",
+    district: "景东县", lat: 24.4500, lng: 100.7800,
+    peakTime: "11月底-12月中", peakDays: "冬樱与茶园同框", difficulty: "easy",
+    rating: 4.5, reviews: 2200, tags: ["冬樱", "茶园", "无量山"],
+    ticket: "免费（茶庄自由参观）",
+    desc: "冬日茶园里粉樱盛开，一年一会",
+    description: "无量山深处的一片茶园，每年冬至前后，成片的冬樱在墨绿茶垄间粉白盛开，樱红衬着茶绿、云雾缭绕，是全国最独特的冬樱景观之一。花期极短，只在十一月底到十二月中的那么两三周。",
+    tips: "花期短且逐年略变，出发前查实时花况；清晨云雾中最美；山路较远，自驾住一晚拍晨光。",
+    transport: "普洱市区驾车约3小时至景东无量山",
+    color: "#C85C8E", xp: 90, isNearby: true,
+  },
+  {
+    id: 'pen2', name: "江城三国界碑", nameEn: "Three-Country Border", emoji: "🚩",
+    district: "江城县", lat: 22.5800, lng: 101.8600,
+    peakTime: "全年", peakDays: "全年 · 一城连三国", difficulty: "easy",
+    rating: 4.1, reviews: 700, tags: ["中老越交界", "界碑", "边境"],
+    desc: "一眼望中老越三国的边境小城",
+    description: "江城是全国唯一同时与老挝、越南接壤的县，「一城连三国」。中老越三国交界的十字界碑立在山间，站在这里一眼能望向三个国家。边境小城安静质朴，带着浓浓的东南亚边地气息。",
+    tips: "近边境带好身份证；界碑区域勿越境；与勐野江、整董傣寨可顺游。",
+    transport: "普洱市区驾车约3小时至江城",
+    color: "#B4472F", xp: 70, isNearby: true,
+  },
+  {
+    id: 'pen3', name: "孟连娜允古镇", nameEn: "Nayun Ancient Town", emoji: "🛕",
+    district: "孟连县", lat: 22.3300, lng: 99.5800,
+    peakTime: "全年", peakDays: "全年 · 傣族土司古镇", difficulty: "easy",
+    rating: 4.2, reviews: 900, tags: ["傣族土司", "宣抚司署", "边地古镇"],
+    desc: "中国最后的傣族古镇，土司衙署犹存",
+    description: "被称为「中国最后一个傣族古镇」，曾是孟连宣抚司（傣族土司）的治所。金色的宣抚司署、佛寺、傣家竹楼层层而上，泼水节、神鱼节等傣族节庆保留完整，边地风情浓郁而少商业气。",
+    tips: "与澜沧、西盟同一片区可串游；看宣抚司署古建、赶傣族集市；尊重南传佛教习俗。",
+    transport: "普洱市区驾车约3小时至孟连",
+    color: "#C7852B", xp: 80, isNearby: true,
+  },
+]
+
+const puerItinerary = [
+  {
+    day: 1, title: "抵达·茶城慢时光", date: "Day 1",
+    activities: [
+      { time: "下午", icon: "✈️", text: "抵达普洱，入住市区" },
+      { time: "傍晚", icon: "🐴", text: "那柯里茶马古道驿站，走石板古道", spotId: 'pe2' },
+      { time: "晚上", icon: "🍵", text: "尝佤族鸡肉烂饭 + 一泡古树普洱" },
+    ]
+  },
+  {
+    day: 2, title: "茶园与雨林", date: "Day 2",
+    activities: [
+      { time: "上午", icon: "🍵", text: "普洱茶博园采茶制茶，读懂普洱", spotId: 'pe3' },
+      { time: "下午", icon: "🐾", text: "太阳河国家公园看小熊猫、雨林", spotId: 'pe4' },
+      { time: "晚上", icon: "🔥", text: "普洱茶马古城闲逛，喝烤茶" },
+    ]
+  },
+  {
+    day: 3, title: "景迈山古茶林", date: "Day 3",
+    activities: [
+      { time: "上午", icon: "🍃", text: "景迈山世遗古茶林，翁基古寨", spotId: 'pe1' },
+      { time: "下午", icon: "☁️", text: "茶林云海、喝古树普洱、看螃蟹脚" },
+      { time: "傍晚", icon: "🎸", text: "澜沧老达保听拉祜弹唱", spotId: 'pe6' },
+    ]
+  },
+  {
+    day: 4, title: "阿佤山或边境", date: "Day 4",
+    activities: [
+      { time: "全天", icon: "🐃", text: "西盟龙摩爷佤族圣地 或 墨江北回归线" },
+      { time: "下午", icon: "🎁", text: "选购普洱茶饼、咖啡、螃蟹脚伴手礼" },
+      { time: "傍晚", icon: "✈️", text: "返程 / 前往下一站（西双版纳、临沧）" },
+    ]
+  },
+]
+
+const puerTips = [
+  { icon: "📅", title: "最佳季节", content: "普洱四季温暖、号称「天然氧吧」，全年可来。春茶季（3-4月）茶山最热闹；景东无量山冬樱在11月底-12月中；雨季（6-9月）湿热多雨、茶林云海多但山路湿滑。海拔适中，基本无高反。" },
+  { icon: "🍵", title: "普洱茶入门", content: "普洱分生茶（清苦回甘、越陈越香）与熟茶（渥堆发酵、温润）。景迈、易武、老班章等山头各有风味。想买茶找正规茶庄、试喝再买，警惕「古树」「老班章」低价陷阱与做旧茶。" },
+  { icon: "🛂", title: "边境证件", content: "江城、西盟、孟连等靠近中老越缅边境，务必带身份证过边检；界碑区域勿越境、勿购来路不明商品。" },
+  { icon: "🦟", title: "雨林防护", content: "普洱地处热带边缘，雨林湿热蚊虫多。长效驱蚊液、防晒、透气长袖必备；雨季路滑穿防滑鞋、带雨具。" },
+  { icon: "🚗", title: "景点分散", content: "景迈、西盟、孟连、景东都在偏远县，距市区常2-3小时山路，跨度大。强烈建议按片区分天、包车或自驾，别当天来回硬赶。" },
+  { icon: "🙏", title: "民族礼俗", content: "普洱是拉祜、佤、傣、哈尼等多民族聚居地。进佤寨尊重祭祀圣地、进傣寺脱鞋不摸佛像；听拉祜弹唱是分享而非表演，别居高临下地围观。" },
+  { icon: "☕", title: "茶与咖啡", content: "普洱不只有茶，也是云南小粒咖啡的重要产区。找一家茶庄或咖啡庄园坐下来，从一杯到一饼慢慢喝，是普洱最对的打开方式。" },
+]
+
+const puerFoods = [
+  { name: "普洱烤茶", emoji: "🍵", desc: "陶罐火上烤香再冲，焦香浓酽" },
+  { name: "鸡肉烂饭", emoji: "🍚", desc: "佤族名菜，鸡肉米饭同煮软糯" },
+  { name: "竹筒饭", emoji: "🎋", desc: "香米入竹筒炭烤，带竹清香" },
+  { name: "思茅米干", emoji: "🍜", desc: "米浆蒸成薄粉，配帽子鲜香" },
+  { name: "火烧干巴", emoji: "🥩", desc: "牛干巴炭火烤香撕食，越嚼越香" },
+  { name: "普洱咖啡", emoji: "☕", desc: "本土小粒咖啡，果酸柔和" },
+]
+
+const puerPackList = [
+  { icon: "🦟", text: "长效驱蚊液（热带雨林蚊虫多）" },
+  { icon: "🧴", text: "防晒 + 透气长袖" },
+  { icon: "🌂", text: "雨具（雨季随时阵雨）" },
+  { icon: "👟", text: "防滑鞋（茶山/雨林湿滑）" },
+  { icon: "🫖", text: "行李余量（带茶饼咖啡回家）" },
+  { icon: "💳", text: "身份证（边境边检查验）" },
+]
+
+const puerSeason = {
+  title: "最佳旅行季节",
+  sub: "茶马古道，天然氧吧",
+  rows: [
+    { dot: "peak",  label: "🍃 春（3—4月）", date: "春茶飘香，茶山最活", badge: "推荐" },
+    { dot: "early", label: "🌸 冬（11底—12中）", date: "景东无量山冬樱盛开" },
+    { dot: "late",  label: "🌧️ 雨季（6—9月）", date: "湿热多雨，茶林云海多" },
+  ],
+}
+
 /* ════════════════ CITIES 汇总 ════════════════
    扩展新城市：复制上方一整套 daliXxx 常量，改名后
    在下面数组里追加一个对象即可。
@@ -2503,6 +2696,32 @@ export const CITIES = [
     foods: jianshuiFoods,
     packList: jianshuiPackList,
     seasonInfo: jianshuiSeason,
+  },
+  {
+    id: 'puer',
+    name: '普洱',
+    nameEn: "Pu'er",
+    emoji: '🍵',
+    country: '云南',
+    tagline: '茶马古道，天然氧吧',
+    heroBadge: '普洱 · 云南',
+    heroTitle: '普洱茶乡',
+    heroHighlight: '慢慢泡吧！',
+    heroDesc: '千年古茶林、茶马古道与雨林萌宠',
+    heroGradient: 'linear-gradient(160deg, #1F4A3E 0%, #3E8A6E 55%, #C8E4D6 100%)',
+    quickTips: [
+      { icon: '🍃', text: '景迈山古茶林 2023 世遗' },
+      { icon: '🍵', text: '生普熟普，试喝再买' },
+      { icon: '🛂', text: '边境县需带身份证' },
+      { icon: '🚗', text: '茶山分散，建议自驾' },
+    ],
+    spots: puerSpots,
+    nearbySpots: puerNearby,
+    itineraryDays: puerItinerary,
+    tips: puerTips,
+    foods: puerFoods,
+    packList: puerPackList,
+    seasonInfo: puerSeason,
   },
 ]
 
