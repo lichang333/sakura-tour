@@ -2430,6 +2430,199 @@ const puerSeason = {
   ],
 }
 
+
+/* ════════════════ 德宏 ════════════════ */
+const dehongSpots = [
+  {
+    id: 'dh1', name: "勐焕大金塔", nameEn: "Mangshi Golden Pagoda", emoji: "🛕",
+    district: "芒市", lat: 24.4200, lng: 98.6000,
+    peakTime: "全年", peakDays: "傍晚金光最盛", difficulty: "easy",
+    rating: 4.6, reviews: 6100, tags: ["必去", "傣族金塔", "芒市地标"],
+    isHot: true, ticket: "门票约30元",
+    description: "立在芒市雷牙让山顶的傣王金塔，是德宏的地标。通体金黄的塔身高七十余米，在阳光下熠熠生辉，是国内最大的singhala式佛塔之一。登塔可俯瞰整个芒市坝子，傍晚金光与晚霞相映，最是壮观。",
+    tips: "傍晚金塔最上镜；与不远处的银塔可一并看；进塔脱鞋、着装得体、尊重佛门礼仪。",
+    transport: "芒市城区驾车约15分钟",
+    color: "#C79A3E", xp: 120,
+  },
+  {
+    id: 'dh2', name: "一寨两国", nameEn: "One Village Two Countries", emoji: "🚩",
+    district: "瑞丽市", lat: 24.0200, lng: 97.7500,
+    peakTime: "全年", peakDays: "全年 · 中缅同寨", difficulty: "easy",
+    rating: 4.4, reviews: 4800, tags: ["必去", "中缅边境", "银井·芒秀"],
+    isHot: true, ticket: "门票约50元",
+    description: "国境线正好从村寨中间穿过——中国的银井与缅甸的芒秀，本是一个村。一条田埂、一道竹篱就是两国，寨子里同赶一个集、同做一堂佛事，鸡犬之声相闻。「一寨两国」的秋千、水井、界碑，是感受边境最直观的地方。",
+    tips: "带身份证过边检；国境线立牌处勿越境；能看到跨国上学的孩子、跨国的市集。",
+    transport: "瑞丽市区驾车约20分钟至银井",
+    color: "#B4472F", xp: 100,
+  },
+  {
+    id: 'dh3', name: "莫里热带雨林瀑布", nameEn: "Moli Rainforest Waterfall", emoji: "💦",
+    district: "瑞丽市", lat: 24.1000, lng: 97.9500,
+    peakTime: "全年（雨季水最壮）", peakDays: "6-9月水量最大", difficulty: "medium",
+    rating: 4.3, reviews: 2700, tags: ["热带雨林", "瀑布", "扎朵温泉"],
+    ticket: "门票约50元",
+    description: "瑞丽近郊的一片原始热带雨林，沿溪徒步约半小时，尽头是从崖顶飞泻近百米的莫里瀑布，水气蒸腾、彩虹时现。林中古木参天、藤萝缠绕，还有相传释迦牟尼留下脚印的圣迹，清凉幽静。",
+    tips: "徒步进瀑约半小时、路面湿滑穿防滑鞋；雨季瀑布最壮观；备防蚊，林中蚊虫多。",
+    transport: "瑞丽市区驾车约30分钟",
+    color: "#2E8B57", xp: 100,
+  },
+  {
+    id: 'dh4', name: "树包塔", nameEn: "Tree-wrapped Pagoda", emoji: "🌳",
+    district: "芒市", lat: 24.4300, lng: 98.5900,
+    peakTime: "全年", peakDays: "全年 · 塔树共生", difficulty: "easy",
+    rating: 4.2, reviews: 2300, tags: ["塔树奇观", "菩提缠塔", "傣族古塔"],
+    ticket: "免费",
+    description: "芒市城中一处奇观：一棵大菩提树的根须从塔顶一路缠绕包裹住整座傣族古塔，塔树合为一体、生生不息，被视为吉祥的象征。二百多年过去，树越长越茂，塔仍稳稳立着，成了芒市最有故事的角落。",
+    tips: "在芒市城区、免费，顺路即可看；与勐巴娜西珍奇园相距不远可连游。",
+    transport: "芒市城区内，步行/打车可达",
+    color: "#4E7A5E", xp: 80,
+  },
+  {
+    id: 'dh5', name: "姐告口岸·瑞丽玉城", nameEn: "Jiegao Port & Jade City", emoji: "💎",
+    district: "瑞丽市", lat: 23.9800, lng: 97.8500,
+    peakTime: "全年", peakDays: "全年 · 边贸玉市", difficulty: "easy",
+    rating: 4.1, reviews: 3400, tags: ["国门口岸", "翡翠珠宝", "中缅边贸"],
+    ticket: "免费（国门参观区另计）",
+    description: "瑞丽是中缅边贸重镇，姐告是深入缅甸方向的国家级口岸，国门、界碑就在这里。周边的珠宝玉城、翡翠直播街是全国翡翠原石与成品的重要集散地，热闹喧腾，是感受边境商贸脉搏的地方。",
+    tips: "翡翠水深，非专业者切勿冲动高价购玉、谨防赌石与做假；国门区域按规定参观、勿越境。",
+    transport: "瑞丽市区驾车约15分钟至姐告",
+    color: "#3B8A9E", xp: 80,
+  },
+  {
+    id: 'dh6', name: "勐巴娜西珍奇园", nameEn: "Mengbanaxi Garden", emoji: "🌴",
+    district: "芒市", lat: 24.4300, lng: 98.5700,
+    peakTime: "全年", peakDays: "全年 · 奇木古树", difficulty: "easy",
+    rating: 4.2, reviews: 1800, tags: ["奇树古木", "傣族园林", "根雕盆景"],
+    ticket: "门票约50元",
+    description: "「勐巴娜西」在傣语里是「向往的好地方」。园子里收集了大量奇形古木、根雕与热带珍稀植物，配上傣式亭台水景，浓缩了德宏的热带风情与傣族园林审美，适合悠闲地逛一逛、拍拍照。",
+    tips: "在芒市城区、与树包塔顺路；园内古木根雕值得细看；适合慢逛半日。",
+    transport: "芒市城区内，打车可达",
+    color: "#7A8B5A", xp: 70,
+  },
+  {
+    id: 'dh7', name: "姐勒金塔", nameEn: "Jiele Golden Pagoda", emoji: "🏯",
+    district: "瑞丽市", lat: 24.0200, lng: 97.8800,
+    peakTime: "全年", peakDays: "全年 · 德宏最古金塔", difficulty: "easy",
+    rating: 4.2, reviews: 1500, tags: ["傣族古塔", "群塔", "南传佛教"],
+    ticket: "免费",
+    description: "瑞丽东郊的傣族古佛塔群，相传已有数百上千年，是德宏最古老的佛塔之一。主塔金黄、周围众多小塔簇拥，塔尖风铃在风中叮当作响。是当地傣族重要的礼佛之地，庄严而清净。",
+    tips: "免费、可与一寨两国、姐告同片区顺游；进塔区尊重礼佛习俗、着装得体。",
+    transport: "瑞丽市区驾车约15分钟",
+    color: "#C7852B", xp: 70,
+  },
+]
+
+/* 周边顺游 —— 均在德宏州内（盈江/梁河/畹町），派生同归德宏 */
+const dehongNearby = [
+  {
+    id: 'dhn1', name: "盈江犀鸟谷·石梯", nameEn: "Yingjiang Hornbill Valley", emoji: "🦜",
+    district: "盈江县", lat: 24.7000, lng: 97.7000,
+    peakTime: "全年（观鸟11-5月）", peakDays: "冬春观鸟旺季", difficulty: "medium",
+    rating: 4.6, reviews: 1600, tags: ["中国观鸟之乡", "犀鸟", "热带雨林"],
+    ticket: "免费（鸟塘/向导另计）",
+    desc: "中国观鸟胜地，看得到珍稀犀鸟",
+    description: "盈江是「中国犀鸟谷」，石梯村一带的热带雨林里栖息着五种犀鸟和数百种鸟类，是国内少有能稳定拍到野生犀鸟的地方。冬春观鸟季，各地鸟人扛着长炮进驻鸟塘，是观鸟与自然爱好者的圣地。",
+    tips: "观鸟需请当地向导带进付费鸟塘、清晨最佳；雨林潮湿备防蚊防滑；盈江还有榕树王、凯邦亚湖可顺游。",
+    transport: "芒市驾车约2.5小时至盈江石梯",
+    color: "#2E8B57", xp: 100, isNearby: true,
+  },
+  {
+    id: 'dhn2', name: "梁河南甸宣抚司署", nameEn: "Nandian Chieftain Mansion", emoji: "🏛️",
+    district: "梁河县", lat: 24.8000, lng: 98.3000,
+    peakTime: "全年", peakDays: "全年 · 傣族土司衙门", difficulty: "easy",
+    rating: 4.3, reviews: 800, tags: ["傣族土司", "衙署古建", "滇西土司文化"],
+    desc: "滇西保存最完整的傣族土司衙署",
+    description: "梁河的南甸宣抚司署是滇西规模最大、保存最完整的傣族土司衙门，五进四院、层层递进，融合了汉式官衙与傣族风格。走进去能读到明清以来中央与边地土司的一段治理史，古建考究、少有人挤。",
+    tips: "在芒市—腾冲之间，可作过渡顺游；古建群慢逛约一小时；了解滇西土司制度很有意思。",
+    transport: "芒市驾车约1.5小时至梁河",
+    color: "#8A6A3B", xp: 80, isNearby: true,
+  },
+  {
+    id: 'dhn3', name: "畹町·滇缅公路终点", nameEn: "Wanding Border Town", emoji: "🎖️",
+    district: "畹町", lat: 24.0800, lng: 98.0700,
+    peakTime: "全年", peakDays: "全年 · 抗战边关", difficulty: "easy",
+    rating: 4.2, reviews: 900, tags: ["滇缅公路", "南侨机工", "边境小城"],
+    desc: "滇缅公路终点，南洋华侨机工的抗战记忆",
+    description: "中缅边境上的袖珍小城，滇缅公路的终点、抗战时国际援华物资的入境口。畹町桥、南洋华侨机工回国抗日纪念碑记录着那段热血历史。小城安静，一桥connect两国，带着厚重的抗战边关记忆。",
+    tips: "近边境带身份证；畹町桥、纪念碑庄重瞻仰；与瑞丽同片区可顺游。",
+    transport: "瑞丽驾车约30分钟至畹町",
+    color: "#6B4E3D", xp: 80, isNearby: true,
+  },
+]
+
+const dehongItinerary = [
+  {
+    day: 1, title: "抵达·芒市金塔", date: "Day 1",
+    activities: [
+      { time: "下午", icon: "✈️", text: "抵达芒市（德宏门户），入住城区" },
+      { time: "傍晚", icon: "🛕", text: "勐焕大金塔看金光晚霞，俯瞰芒市坝", spotId: 'dh1' },
+      { time: "晚上", icon: "🍢", text: "尝傣味撒撇 + 过手米线" },
+    ]
+  },
+  {
+    day: 2, title: "芒市城中奇观", date: "Day 2",
+    activities: [
+      { time: "上午", icon: "🌳", text: "树包塔看塔树共生奇观", spotId: 'dh4' },
+      { time: "上午", icon: "🌴", text: "勐巴娜西珍奇园赏奇木古树", spotId: 'dh6' },
+      { time: "下午", icon: "🚗", text: "转往瑞丽（约1.5小时），入住边城" },
+    ]
+  },
+  {
+    day: 3, title: "瑞丽边境风情", date: "Day 3",
+    activities: [
+      { time: "上午", icon: "🚩", text: "一寨两国，脚踏中缅同一村", spotId: 'dh2' },
+      { time: "上午", icon: "🏯", text: "姐勒金塔、姐告口岸国门", spotId: 'dh7' },
+      { time: "下午", icon: "💦", text: "莫里热带雨林瀑布徒步", spotId: 'dh3' },
+    ]
+  },
+  {
+    day: 4, title: "观鸟或土司", date: "Day 4",
+    activities: [
+      { time: "全天", icon: "🦜", text: "盈江犀鸟谷观鸟 或 梁河南甸宣抚司署" },
+      { time: "下午", icon: "🎁", text: "选购傣族织锦、咖啡、坚果伴手礼（翡翠谨慎）" },
+      { time: "傍晚", icon: "✈️", text: "返程 / 前往下一站（腾冲、保山）" },
+    ]
+  },
+]
+
+const dehongTips = [
+  { icon: "📅", title: "最佳季节", content: "亚热带气候、全年温暖，干季（11-4月）晴多路好最舒适。傣族泼水节在4月中、景颇族目瑙纵歌节在1月，是最盛大的节庆但食宿紧张需早订。雨季（5-10月）湿热多雨。海拔低无高反。" },
+  { icon: "🛂", title: "边境证件", content: "瑞丽、畹町、盈江、一寨两国等紧邻中缅边境，务必带身份证过边检；国境线、界碑处勿越境；不参与、不购买任何跨境违禁物品。" },
+  { icon: "💎", title: "翡翠谨慎", content: "瑞丽是全国翡翠集散地，玉市繁荣但陷阱多。非专业者切勿冲动高价购玉、切勿参与赌石，谨防做假与直播套路。理性看待「捡漏」，量力而为。" },
+  { icon: "🦟", title: "防蚊防晒", content: "德宏热带湿热、蚊虫多，长效驱蚊液、防晒、透气长袖必备；雨林徒步穿防滑鞋、带雨具；注意防范蚊媒疾病。" },
+  { icon: "🙏", title: "傣景礼俗", content: "德宏是傣族、景颇族聚居地，全民信南传佛教。进佛寺脱鞋、不摸佛像与僧人头顶、不指佛塔；泼水节被泼是受祝福；尊重目瑙纵歌等民族节庆。" },
+  { icon: "🍜", title: "边地味道", content: "傣味撒撇（苦撒）、景颇过手米线、鬼鸡、火烧猪、泡鲁达都极具特色，口味偏酸辣生鲜，肠胃敏感者循序尝试、选正规店。" },
+  { icon: "🚗", title: "芒市瑞丽两城", content: "德宏以芒市（州府、机场所在）和瑞丽（边贸口岸）为两大中心，相距约1.5小时车程。行程可芒市进、瑞丽玩，盈江/梁河/畹町按兴趣顺游，建议自驾或包车。" },
+]
+
+const dehongFoods = [
+  { name: "傣味撒撇", emoji: "🥗", desc: "苦撒/柠檬撒，酸苦生鲜的傣家凉拌" },
+  { name: "过手米线", emoji: "🍜", desc: "景颇/阿昌名吃，米线托手上拌料吃" },
+  { name: "景颇鬼鸡", emoji: "🍗", desc: "凉拌手撕鸡配香料，鲜辣开胃" },
+  { name: "火烧猪", emoji: "🐷", desc: "稻草燎皮现片，蘸水解腻" },
+  { name: "泡鲁达", emoji: "🥥", desc: "椰奶西米面包干，东南亚风冰饮" },
+  { name: "泼水粑粑", emoji: "🍡", desc: "糯米红糖包芭蕉叶蒸，软糯清甜" },
+]
+
+const dehongPackList = [
+  { icon: "🦟", text: "长效驱蚊液（热带蚊虫多）" },
+  { icon: "🧴", text: "高倍防晒 + 透气长袖" },
+  { icon: "🩴", text: "凉鞋/防滑鞋（雨林瀑布）" },
+  { icon: "🌂", text: "雨具（雨季随时阵雨）" },
+  { icon: "🔭", text: "长焦（盈江观鸟）" },
+  { icon: "💳", text: "身份证（边境边检必查）" },
+]
+
+const dehongSeason = {
+  title: "最佳旅行季节",
+  sub: "孔雀之乡，一寨两国",
+  rows: [
+    { dot: "peak",  label: "☀️ 干季（11—4月）", date: "晴多路好，气候最舒适", badge: "推荐" },
+    { dot: "early", label: "💦 泼水节（4月中）", date: "傣族新年最盛，需早订" },
+    { dot: "late",  label: "🌧️ 雨季（5—10月）", date: "湿热多雨，瀑布最壮" },
+  ],
+}
+
 /* ════════════════ CITIES 汇总 ════════════════
    扩展新城市：复制上方一整套 daliXxx 常量，改名后
    在下面数组里追加一个对象即可。
@@ -2722,6 +2915,32 @@ export const CITIES = [
     foods: puerFoods,
     packList: puerPackList,
     seasonInfo: puerSeason,
+  },
+  {
+    id: 'dehong',
+    name: '德宏',
+    nameEn: 'Dehong',
+    emoji: '🦚',
+    country: '云南',
+    tagline: '孔雀之乡，一寨两国',
+    heroBadge: '德宏 · 云南',
+    heroTitle: '边地傣乡',
+    heroHighlight: '泼场水吧！',
+    heroDesc: '傣族金塔、中缅边境与热带雨林',
+    heroGradient: 'linear-gradient(160deg, #5A3E1A 0%, #B98A3E 55%, #ECDCB4 100%)',
+    quickTips: [
+      { icon: '📅', text: '11-4月干季最舒适' },
+      { icon: '🛂', text: '边境点需带身份证' },
+      { icon: '💎', text: '瑞丽翡翠水深，谨慎购玉' },
+      { icon: '🦜', text: '盈江观鸟看犀鸟' },
+    ],
+    spots: dehongSpots,
+    nearbySpots: dehongNearby,
+    itineraryDays: dehongItinerary,
+    tips: dehongTips,
+    foods: dehongFoods,
+    packList: dehongPackList,
+    seasonInfo: dehongSeason,
   },
 ]
 
