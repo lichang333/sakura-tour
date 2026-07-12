@@ -1273,6 +1273,201 @@ const baoshanSeason = {
   ],
 }
 
+
+/* ════════════════ 腾冲 ════════════════ */
+const tengchongSpots = [
+  {
+    id: 'tc1', name: "和顺古镇", nameEn: "Heshun Ancient Town", emoji: "🏯",
+    district: "腾冲市和顺镇", lat: 25.0000, lng: 98.4500,
+    peakTime: "全年皆宜", peakDays: "秋冬晴多光线好", difficulty: "easy",
+    rating: 4.7, reviews: 13800, tags: ["必去", "侨乡", "图书馆·洗衣亭"],
+    isHot: true, ticket: "古镇门票约55元",
+    description: "西南丝路上六百年的侨乡古镇。火山石铺成的巷道、中西合璧的宗祠与老宅、荷塘边的洗衣亭，还有全国最大的乡村图书馆。走马观花半日，慢住可两天，是腾冲最有书卷气的一站。",
+    tips: "清晨或黄昏古镇最静最出片；艾思奇纪念馆、弯楼子、图书馆都值得进；住镇内老宅客栈体验最好。",
+    transport: "腾冲城区驾车约20分钟",
+    color: "#B08968", xp: 120,
+  },
+  {
+    id: 'tc2', name: "热海景区", nameEn: "Rehai Hot Sea", emoji: "♨️",
+    district: "腾冲市", lat: 24.9500, lng: 98.4400,
+    peakTime: "全年（秋冬泡汤最惬意）", peakDays: "秋冬泡汤季", difficulty: "easy",
+    rating: 4.6, reviews: 16200, tags: ["必去", "大滚锅", "地热温泉"],
+    isHot: true, ticket: "门票约60元 + 泡池/浴谷另计",
+    description: "腾冲火山地热的招牌。九十多度的「大滚锅」翻涌喷雾，蛋能煮熟；热海浴谷的露天温泉群依山而建，边泡汤边听地心轰鸣。这是一座活着的火山给你的免费桑拿。",
+    tips: "买景区门票看大滚锅，泡温泉另买浴谷/美女池票；带泳衣，煮温泉蛋是保留项目。",
+    transport: "腾冲城区驾车约20分钟",
+    color: "#C7592B", xp: 130,
+  },
+  {
+    id: 'tc3', name: "火山地质公园", nameEn: "Volcano Geopark", emoji: "🌋",
+    district: "腾冲市马站乡", lat: 25.2200, lng: 98.4700,
+    peakTime: "全年", peakDays: "晴天登顶视野好", difficulty: "medium",
+    rating: 4.5, reviews: 9800, tags: ["休眠火山", "热气球", "大空山"],
+    ticket: "门票约40元（火山锥登顶/热气球另计）",
+    description: "腾冲是中国罕见的火山密集区，九十多座休眠火山散布坝子。大空山、小空山火山锥可徒步登顶俯瞰火山口，清晨还能坐热气球升空看火山群与田园——腾冲最出片的画面之一。",
+    tips: "热气球仅清晨无风时段飞，需提前预约、看天吃饭；火山锥登顶约半小时，穿舒适鞋。",
+    transport: "腾冲城区驾车约40分钟至马站",
+    color: "#8B4A3B", xp: 120,
+  },
+  {
+    id: 'tc4', name: "北海湿地", nameEn: "Beihai Wetland", emoji: "🌾",
+    district: "腾冲市", lat: 25.1300, lng: 98.5600,
+    peakTime: "3-5月草长莺飞", peakDays: "春季浮毯草甸最美", difficulty: "easy",
+    rating: 4.4, reviews: 6100, tags: ["浮毯草甸", "划船", "赏花"],
+    ticket: "门票约90元（含草排船）",
+    description: "云南唯一的国家湿地，一片浮在水上的「草毯」。人能坐草排船划进花海，脚下的草甸随水晃动。三到五月各色野花开满浮毯，是腾冲最清新的一处田园野趣。",
+    tips: "春季花最盛；草排船是特色；带防晒防蚊，木栈道慢走。",
+    transport: "腾冲城区驾车约25分钟",
+    color: "#4E7A5E", xp: 90,
+  },
+  {
+    id: 'tc5', name: "银杏村", nameEn: "Ginkgo Village", emoji: "🍂",
+    district: "腾冲市固东镇", lat: 25.4300, lng: 98.4200,
+    peakTime: "11月中-12月初", peakDays: "深秋银杏铺金", difficulty: "easy",
+    rating: 4.6, reviews: 7400, tags: ["古银杏", "秋色限定", "村居"],
+    ticket: "旺季门票约40元",
+    description: "固东江东村，三千余株古银杏散在村舍田间。深秋叶黄，金叶铺满屋顶、院落与小巷，村民就在金色里晒着秋。是全国最美的银杏季目的地之一，但只在十一月中到十二月初一小段时间。",
+    tips: "花期极短且逐年略变，出发前查当地实时黄叶情况；旺季人多，早去避人潮。",
+    transport: "腾冲城区驾车约1小时至固东",
+    color: "#E0A82E", xp: 100,
+  },
+  {
+    id: 'tc6', name: "国殇墓园·滇西抗战纪念馆", nameEn: "Guoshang Cemetery", emoji: "🎖️",
+    district: "腾冲市", lat: 25.0250, lng: 98.4900,
+    peakTime: "全年", peakDays: "全年 · 庄严瞻仰", difficulty: "easy",
+    rating: 4.8, reviews: 8600, tags: ["必去", "远征军", "抗战纪念"],
+    isHot: true, ticket: "免费（凭证件预约）",
+    description: "中国规模最大的抗战英烈陵园。1944 年远征军血战收复腾冲，小团坡上密密麻麻的墓碑按建制排列，旁边的滇西抗战纪念馆用上万件实物讲述那段血火历史。腾冲最厚重的一课。",
+    tips: "务必肃穆瞻仰，勿喧哗拍照嬉闹；纪念馆内容极翔实，预留两小时。",
+    transport: "腾冲城区来凤山下，打车可达",
+    color: "#6B4E3D", xp: 110,
+  },
+  {
+    id: 'tc7', name: "叠水河瀑布·来凤山", nameEn: "Dieshui Waterfall", emoji: "💦",
+    district: "腾冲市", lat: 25.0300, lng: 98.4850,
+    peakTime: "全年（雨季水最壮）", peakDays: "6-9月水量最大", difficulty: "easy",
+    rating: 4.2, reviews: 3200, tags: ["城边瀑布", "来凤山", "免费"],
+    ticket: "叠水河约20元 / 来凤山免费",
+    description: "城边就有的一挂瀑布，龙川江在此跌落成潭，「不须遥远访匡庐」。旁边来凤山国家森林公园登顶可俯瞰腾冲坝子与火山群，是清晨或傍晚散步的好去处。",
+    tips: "与国殇墓园同方向可顺游；雨季瀑布最壮观；来凤山步道适合慢爬。",
+    transport: "腾冲城区西南，打车约10分钟",
+    color: "#3B6E86", xp: 80,
+  },
+]
+
+/* 周边顺游 —— 均在腾冲市域内，派生同归保山 */
+const tengchongNearby = [
+  {
+    id: 'tcn1', name: "云峰山", nameEn: "Yunfeng Mountain", emoji: "⛰️",
+    district: "腾冲市瑞滇乡", lat: 25.4800, lng: 98.6500,
+    peakTime: "全年（晴天云海）", peakDays: "秋冬云海最佳", difficulty: "medium",
+    rating: 4.5, reviews: 2100, tags: ["道教名山", "索道", "云海"],
+    ticket: "门票+索道约120元",
+    desc: "刀削般的道教仙山，绝壁古道上云海",
+    description: "一座拔地而起、四面刀削的道教名山。索道半程后要攀几百级绝壁石阶到山顶道观，晴日云海翻涌如临仙境。腾冲香火最盛的求签之处，也是俯瞰高黎贡余脉的观景台。",
+    tips: "山顶风大带外套；绝壁段较陡，恐高谨慎；清晨云海概率高。",
+    transport: "腾冲城区驾车约1小时至瑞滇",
+    color: "#5A897B", xp: 100, isNearby: true,
+  },
+  {
+    id: 'tcn2', name: "固东·滇滩边关", nameEn: "Diantan Border", emoji: "🚩",
+    district: "腾冲市滇滩镇", lat: 25.6000, lng: 98.3300,
+    peakTime: "全年", peakDays: "干季边境通行顺", difficulty: "easy",
+    rating: 4.1, reviews: 800, tags: ["中缅边境", "口岸", "界碑"],
+    ticket: "免费",
+    desc: "中缅边境小镇，界碑与边地风情",
+    description: "腾冲西北的中缅边境镇，猴桥、滇滩口岸一带能看到界碑与边贸市场，感受滇西边地的口岸烟火。与银杏村同方向，赏完金叶顺路到边关走走。",
+    tips: "近边境带身份证；勿越境、勿购来路不明商品；与银杏村排同天。",
+    transport: "腾冲城区驾车约1.5小时至滇滩",
+    color: "#B4472F", xp: 70, isNearby: true,
+  },
+  {
+    id: 'tcn3', name: "樱花谷温泉", nameEn: "Sakura Valley Spring", emoji: "🌸",
+    district: "腾冲市界头镇", lat: 25.5500, lng: 98.6800,
+    peakTime: "2-3月冬樱 / 全年温泉", peakDays: "2-3月冬樱盛开", difficulty: "medium",
+    rating: 4.3, reviews: 1400, tags: ["高黎贡", "冬樱", "野溪温泉"],
+    ticket: "门票约60元",
+    desc: "高黎贡深处，冬樱与野溪温泉",
+    description: "高黎贡山东坡界头的一处秘境，二三月冬樱漫山，山谷里散落着天然野溪温泉。人少景野，是把「赏花+泡汤+雨林」揉在一起的小众玩法，也算和 Sakura 的一点呼应。",
+    tips: "路程较远山路多，自驾为宜；冬樱花期短，出发前确认；带泳衣泡野汤。",
+    transport: "腾冲城区驾车约2小时至界头",
+    color: "#E8409C", xp: 90, isNearby: true,
+  },
+]
+
+const tengchongItinerary = [
+  {
+    day: 1, title: "抵达·侨乡慢时光", date: "Day 1",
+    activities: [
+      { time: "下午", icon: "✈️", text: "抵达腾冲，入住和顺古镇老宅客栈" },
+      { time: "傍晚", icon: "🏯", text: "和顺古镇巷弄、图书馆、洗衣亭散步", spotId: 'tc1' },
+      { time: "晚上", icon: "🍲", text: "尝腾冲大救驾 + 土锅子" },
+    ]
+  },
+  {
+    day: 2, title: "火山与热海", date: "Day 2",
+    activities: [
+      { time: "清晨", icon: "🎈", text: "火山公园坐热气球看火山群（看天）", spotId: 'tc3' },
+      { time: "上午", icon: "🌋", text: "登大小空山火山锥俯瞰火山口" },
+      { time: "下午", icon: "♨️", text: "热海看大滚锅，浴谷泡温泉煮温泉蛋", spotId: 'tc2' },
+    ]
+  },
+  {
+    day: 3, title: "湿地与历史", date: "Day 3",
+    activities: [
+      { time: "上午", icon: "🌾", text: "北海湿地划草排船，赏浮毯花甸", spotId: 'tc4' },
+      { time: "下午", icon: "🎖️", text: "国殇墓园+滇西抗战纪念馆肃穆瞻仰", spotId: 'tc6' },
+      { time: "傍晚", icon: "💦", text: "叠水河瀑布 / 来凤山散步", spotId: 'tc7' },
+    ]
+  },
+  {
+    day: 4, title: "银杏或云峰", date: "Day 4",
+    activities: [
+      { time: "全天", icon: "🍂", text: "固东银杏村（深秋限定）或 云峰山云海" },
+      { time: "下午", icon: "🎁", text: "选购腾药、藤编、玉石、松花糕伴手礼" },
+      { time: "傍晚", icon: "✈️", text: "返程 / 前往下一站（保山、瑞丽）" },
+    ]
+  },
+]
+
+const tengchongTips = [
+  { icon: "📅", title: "最佳季节", content: "全年温和宜人。11月中-12月初银杏金黄（花期极短）；2-3月冬樱、油菜花；秋冬晴多、泡温泉最惬意。6-9月雨季瀑布水量最壮但山路湿滑。城区海拔约1650米，基本无高反。" },
+  { icon: "🎈", title: "热气球", content: "火山公园热气球仅清晨无风时段飞，极易因天气取消，务必提前预约并预留弹性时间；系留升空与自由飞价格不同，看清项目。" },
+  { icon: "♨️", title: "泡汤须知", content: "热海门票与温泉浴谷/美女池是分开收费的，想泡汤要单买；带泳衣、拖鞋；地热区雾大路滑，跟着栈道走勿靠近沸泉。" },
+  { icon: "🍂", title: "银杏花期", content: "固东银杏村黄叶期只有11月中到12月初短短两三周，且逐年略有浮动。计划专程赏银杏务必出发前查当地实时黄叶播报，避免扑空。" },
+  { icon: "🎖️", title: "抗战史迹", content: "国殇墓园、滇西抗战纪念馆是庄严的英烈纪念地，请肃穆瞻仰、勿喧哗嬉闹拍照。内容翔实，值得预留充足时间静心参观。" },
+  { icon: "🍽️", title: "美食提醒", content: "大救驾（炒饵块）、土锅子、稀豆粉、松花糕是腾冲名片。和顺古镇及城区老店比景区档口地道；腾冲也产小粒咖啡与好茶。" },
+  { icon: "💎", title: "玉石提醒", content: "腾冲是古代翡翠集散地，玉石市场繁荣但水深。非专业者切勿冲动高价购玉，谨防以次充好，理性看待「捡漏」故事。" },
+]
+
+const tengchongFoods = [
+  { name: "大救驾", emoji: "🍳", desc: "腾冲炒饵块，配料丰富，名字有典故" },
+  { name: "土锅子", emoji: "🍲", desc: "土陶锅层层码菜，炭火慢炖" },
+  { name: "稀豆粉", emoji: "🥣", desc: "豌豆熬糊配油条米线，早餐暖胃" },
+  { name: "松花糕", emoji: "🍡", desc: "松花粉裹豆沙，清甜不腻" },
+  { name: "饵丝", emoji: "🍜", desc: "腾冲饵丝爽滑，配头脑最地道" },
+  { name: "腾冲小粒咖啡", emoji: "☕", desc: "高黎贡余脉所产，风味柔和" },
+]
+
+const tengchongPackList = [
+  { icon: "🧥", text: "薄外套（昼夜温差，山上更凉）" },
+  { icon: "🧴", text: "防晒 + 保湿（高原干燥日照强）" },
+  { icon: "👕", text: "泳衣拖鞋（热海泡汤）" },
+  { icon: "👟", text: "徒步鞋（火山锥/来凤山）" },
+  { icon: "🌂", text: "雨具（雨季随时阵雨）" },
+  { icon: "💳", text: "身份证（墓园预约/边境查验）" },
+]
+
+const tengchongSeason = {
+  title: "最佳旅行季节",
+  sub: "火山热海，侨乡秋色",
+  rows: [
+    { dot: "early", label: "🍂 深秋（11月中-12初）", date: "银杏铺金，限定秋色", badge: "限定" },
+    { dot: "peak",  label: "☀️ 最佳（10—4月）", date: "晴多干爽，泡温泉最惬意" },
+    { dot: "late",  label: "🌧️ 雨季（6—9月）", date: "瀑布最壮，山路湿滑" },
+  ],
+}
+
 /* ════════════════ CITIES 汇总 ════════════════
    扩展新城市：复制上方一整套 daliXxx 常量，改名后
    在下面数组里追加一个对象即可。
@@ -1409,6 +1604,32 @@ export const CITIES = [
     foods: baoshanFoods,
     packList: baoshanPackList,
     seasonInfo: baoshanSeason,
+  },
+  {
+    id: 'tengchong',
+    name: '腾冲',
+    nameEn: 'Tengchong',
+    emoji: '🌋',
+    country: '云南',
+    tagline: '火山热海，侨乡秋色',
+    heroBadge: '腾冲 · 云南',
+    heroTitle: '火山热海',
+    heroHighlight: '泡个汤吧！',
+    heroDesc: '古镇侨乡、地热温泉、深秋银杏',
+    heroGradient: 'linear-gradient(160deg, #6B3320 0%, #B25A38 55%, #F0CDB6 100%)',
+    quickTips: [
+      { icon: '🍂', text: '11月中-12初银杏限定' },
+      { icon: '🎈', text: '火山热气球需清晨预约' },
+      { icon: '♨️', text: '热海泡汤需另购浴谷票' },
+      { icon: '🎖️', text: '国殇墓园肃穆瞻仰' },
+    ],
+    spots: tengchongSpots,
+    nearbySpots: tengchongNearby,
+    itineraryDays: tengchongItinerary,
+    tips: tengchongTips,
+    foods: tengchongFoods,
+    packList: tengchongPackList,
+    seasonInfo: tengchongSeason,
   },
 ]
 

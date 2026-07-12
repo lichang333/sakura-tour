@@ -16,6 +16,7 @@ const SPOT_REGION_RULES = [
   { test: /^ln?\d+$/,  region: 'yn-lijiang' },  // 丽江：l1.. / ln1..
   { test: /^bnn?\d+$/, region: 'yn-xishuangbanna' },  // 版纳：bn1.. / bnn1..（全在版纳州内）
   { test: /^bsn?\d+$/, region: 'yn-baoshan' },  // 保山：bs1.. / bsn1..（含龙陵/昌宁/施甸，均属保山）
+  { test: /^tcn?\d+$/, region: 'yn-baoshan' },  // 腾冲：tc1.. / tcn1..（腾冲是保山下辖县级市，同归保山）
 ]
 
 export function regionOfSpot(spotId) {
