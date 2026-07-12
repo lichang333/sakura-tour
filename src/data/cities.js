@@ -1855,6 +1855,195 @@ const kunmingSeason = {
   ],
 }
 
+
+/* ════════════════ 元阳 ════════════════ */
+const yuanyangSpots = [
+  {
+    id: 'yy1', name: "多依树梯田", nameEn: "Duoyishu Terraces", emoji: "🌅",
+    district: "元阳县", lat: 23.1000, lng: 102.7700,
+    peakTime: "11月-次年4月灌水期", peakDays: "冬春日出云海最美", difficulty: "easy",
+    rating: 4.8, reviews: 7600, tags: ["必去", "日出圣地", "云海"],
+    isHot: true, ticket: "梯田景区联票约100元",
+    description: "元阳梯田看日出的头号机位。天未亮时守在观景台上，云海在山谷间翻涌，太阳跃出的一刻，万亩水田被染成金红与靛蓝交错的镜面，哈尼村寨的炊烟浮在其间——这是元阳最负盛名的画面。",
+    tips: "看日出需摸黑早到占位，冬春晴天概率高；联票通打多依树/坝达/老虎嘴；备保暖衣，山里清晨很冷。",
+    transport: "新街镇驾车约40分钟",
+    color: "#C77E4A", xp: 140,
+  },
+  {
+    id: 'yy2', name: "老虎嘴梯田", nameEn: "Laohuzui Terraces", emoji: "🌄",
+    district: "元阳县", lat: 23.0500, lng: 102.6500,
+    peakTime: "11月-次年4月", peakDays: "冬春日落最壮", difficulty: "easy",
+    rating: 4.7, reviews: 5900, tags: ["必去", "日落名机位", "大气磅礴"],
+    isHot: true, ticket: "含于梯田联票",
+    description: "元阳看日落的王牌。山势在这里陡然下切，成千上万块梯田顺着深谷层层跌落，落日把水面烧成一片流金，气势磅礴到令人失语。晴天傍晚，整个观景台挤满了长枪短炮。",
+    tips: "傍晚日落前一小时到位；地势陡峭沿栈道走勿翻越护栏；与坝达同在一条日落线上。",
+    transport: "新街镇驾车约50分钟",
+    color: "#B4472F", xp: 130,
+  },
+  {
+    id: 'yy3', name: "坝达梯田", nameEn: "Bada Terraces", emoji: "🏞️",
+    district: "元阳县", lat: 23.0900, lng: 102.7200,
+    peakTime: "11月-次年4月", peakDays: "冬春连片最广", difficulty: "easy",
+    rating: 4.7, reviews: 4800, tags: ["万亩连片", "日落", "层层叠叠"],
+    description: "元阳三大观景区里连片面积最大的一处，上千级梯田从山顶一路铺到谷底，视野极开阔。日落时分整片山坡随光线由金转红再入靛蓝，层次感是三个机位里最丰富的。",
+    tips: "与多依树、老虎嘴联票通打；日落机位，午后到傍晚最佳；带长焦拍层叠肌理。",
+    transport: "新街镇驾车约30分钟",
+    color: "#C08A45", xp: 120,
+  },
+  {
+    id: 'yy4', name: "阿者科村", nameEn: "Azheke Village", emoji: "🍄",
+    district: "元阳县", lat: 23.0900, lng: 102.7600,
+    peakTime: "全年", peakDays: "全年 · 世遗古村", difficulty: "easy",
+    rating: 4.5, reviews: 2900, tags: ["世界遗产", "哈尼蘑菇房", "传统村落"],
+    ticket: "门票约30元（含向导）",
+    description: "哈尼梯田世界文化遗产的核心村落，完整保留着蘑菇房——蘑菇状茅草顶的哈尼族传统民居。村子被梯田与森林环抱，人、田、林、水四素同构的哈尼农耕智慧，在这里活生生地延续着。",
+    tips: "村子实行分红旅游、需请村向导带（含门票）；请尊重村民生活、勿闯入民居；雨后石板路滑。",
+    transport: "新街镇驾车约40分钟",
+    color: "#8A6A3B", xp: 100,
+  },
+  {
+    id: 'yy5', name: "箐口民俗村", nameEn: "Qingkou Hani Village", emoji: "🏘️",
+    district: "元阳县", lat: 23.1500, lng: 102.7400,
+    peakTime: "全年", peakDays: "全年 · 哈尼风情", difficulty: "easy",
+    rating: 4.2, reviews: 1800, tags: ["哈尼民俗", "蘑菇房", "近新街"],
+    description: "离新街镇最近的哈尼民俗村，成片的蘑菇房沿山坡而建，村前就是层层梯田。有哈尼民俗展示与歌舞，是时间紧、想就近感受哈尼村寨与梯田关系的便捷一站。",
+    tips: "离新街近、适合作为梯田日出日落之间的过渡；尊重村民、拍照先问；结合胜村一带同游。",
+    transport: "新街镇驾车约15分钟",
+    color: "#7A8B5A", xp: 80,
+  },
+  {
+    id: 'yy6', name: "哈尼小镇·新街", nameEn: "Xinjie Hani Town", emoji: "🏮",
+    district: "元阳县", lat: 23.2200, lng: 102.7500,
+    peakTime: "全年（长街宴农历十月）", peakDays: "哈尼长街宴最盛", difficulty: "easy",
+    rating: 4.1, reviews: 1500, tags: ["集散小镇", "长街宴", "红米集市"],
+    description: "元阳梯田游的大本营，客栈、餐馆、车站都在这一带。哈尼长街宴（农历十月哈尼年）时，家家把菜端上长桌连成一条街，路人也被热情邀入同席，是感受哈尼待客之道最生动的时刻。",
+    tips: "住这里方便调度日出日落两头跑；赶集日能买到梯田红米、哈尼刺绣；长街宴需赶上哈尼年（约公历11月）。",
+    transport: "元阳梯田游客集散中心",
+    color: "#C7852B", xp: 80,
+  },
+  {
+    id: 'yy7', name: "龙树坝·蓝调梯田", nameEn: "Longshuba Terraces", emoji: "💙",
+    district: "元阳县", lat: 23.2000, lng: 102.7300,
+    peakTime: "11月-次年3月傍晚", peakDays: "冬春蓝调倒影", difficulty: "easy",
+    rating: 4.4, reviews: 1300, tags: ["蓝调梯田", "倒影", "小众机位"],
+    description: "近年走红的小众机位。傍晚天光转为蓝调时，村舍、树影、云天倒映在灌满水的梯田里，像一块块打翻的蓝墨镜。人比三大观景区少，能安静地拍到不一样的元阳。",
+    tips: "蓝调时段短（日落后半小时），提前到位；灌水期（冬春）才有倒影；机位在村道边，勿踩踏田埂。",
+    transport: "新街镇驾车约20分钟",
+    color: "#3B6E86", xp: 90,
+  },
+]
+
+/* 周边顺游 —— 均在红河州内（蒙自/泸西/红河县），派生同归红河 */
+const yuanyangNearby = [
+  {
+    id: 'yyn1', name: "蒙自碧色寨", nameEn: "Bisezhai Station", emoji: "🚂",
+    district: "蒙自市", lat: 23.4200, lng: 103.3300,
+    peakTime: "全年", peakDays: "全年 · 法式老站", difficulty: "easy",
+    rating: 4.4, reviews: 3200, tags: ["滇越铁路", "法式车站", "芳华取景"],
+    ticket: "门票约30元",
+    desc: "百年滇越铁路的法式小站，电影《芳华》取景地",
+    description: "百年前滇越铁路上的法式车站，米黄色站房、法国钟、寸轨老铁道原样保留。电影《芳华》让它再度走红，站台上摆拍民国风的人络绎不绝，是一处凝固了时光的边地遗迹。蒙自还是过桥米线的发源地。",
+    tips: "与元阳梯田一南一北，可搭配蒙自过夜；顺尝正宗蒙自过桥米线；租民国服装拍照是特色。",
+    transport: "元阳驾车约2小时至蒙自",
+    color: "#B08968", xp: 90, isNearby: true,
+  },
+  {
+    id: 'yyn2', name: "阿庐古洞", nameEn: "Alu Cave", emoji: "🕳️",
+    district: "泸西县", lat: 24.5300, lng: 103.7600,
+    peakTime: "全年", peakDays: "全年 · 洞中恒温", difficulty: "easy",
+    rating: 4.3, reviews: 1600, tags: ["喀斯特溶洞", "地下河", "钟乳石"],
+    desc: "云南名洞，坐船穿行地下河与钟乳石宫",
+    description: "云南著名的喀斯特溶洞群，泸西县城西的地下奇观。三个溶洞相连、暗河贯通，能坐船在地下河上穿行，两岸钟乳石、石笋千姿百态。距昆明石林仅约80公里，可与石林、元阳串成一线。",
+    tips: "洞内恒温凉爽、地滑，带外套穿防滑鞋；位置在红河北部，靠近石林方向可顺路。",
+    transport: "元阳驾车约3小时至泸西（近石林）",
+    color: "#3B6E86", xp: 80, isNearby: true,
+  },
+  {
+    id: 'yyn3', name: "撒玛坝梯田", nameEn: "Samaba Terraces", emoji: "🌾",
+    district: "红河县", lat: 23.3700, lng: 102.4200,
+    peakTime: "11月-次年3月", peakDays: "冬春灌水期最美", difficulty: "medium",
+    rating: 4.5, reviews: 1100, tags: ["万亩连片", "人少", "哈尼梯田"],
+    desc: "号称连片最广的哈尼梯田，游人稀少",
+    description: "红河县宝华镇的一片哈尼梯田，号称单片连片面积最大，气势不输元阳三大观景区，却因交通稍远而游人稀少。想避开人潮、安静看一整面山坡的梯田倒影，这里是行家之选。",
+    tips: "路程较元阳更远、设施更简，自驾为宜；灌水期（冬春）观感最佳；备干粮，餐饮选择少。",
+    transport: "元阳驾车约2小时至红河县宝华",
+    color: "#7A8B5A", xp: 90, isNearby: true,
+  },
+]
+
+const yuanyangItinerary = [
+  {
+    day: 1, title: "抵达·哈尼小镇", date: "Day 1",
+    activities: [
+      { time: "下午", icon: "🚗", text: "抵达元阳新街，入住梯田观景客栈", spotId: 'yy6' },
+      { time: "傍晚", icon: "🌄", text: "坝达或老虎嘴守日落，看流金梯田", spotId: 'yy2' },
+      { time: "晚上", icon: "🍚", text: "尝梯田红米饭 + 哈尼蘸水鸡" },
+    ]
+  },
+  {
+    day: 2, title: "日出与古村", date: "Day 2",
+    activities: [
+      { time: "清晨", icon: "🌅", text: "多依树摸黑守日出云海", spotId: 'yy1' },
+      { time: "上午", icon: "🍄", text: "阿者科世遗村，看哈尼蘑菇房", spotId: 'yy4' },
+      { time: "下午", icon: "🏘️", text: "箐口民俗村，感受人田林水共生", spotId: 'yy5' },
+    ]
+  },
+  {
+    day: 3, title: "蓝调与慢逛", date: "Day 3",
+    activities: [
+      { time: "上午", icon: "🏮", text: "新街赶集，买红米、哈尼刺绣", spotId: 'yy6' },
+      { time: "下午", icon: "🚶", text: "梯田村道慢走，走访麻栗寨、全福庄" },
+      { time: "傍晚", icon: "💙", text: "龙树坝守蓝调梯田倒影", spotId: 'yy7' },
+    ]
+  },
+  {
+    day: 4, title: "顺游红河", date: "Day 4",
+    activities: [
+      { time: "全天", icon: "🚂", text: "蒙自碧色寨法式老站 + 过桥米线，或撒玛坝梯田" },
+      { time: "下午", icon: "🎁", text: "选购梯田红米、哈尼刺绣、紫陶伴手礼" },
+      { time: "傍晚", icon: "✈️", text: "返程 / 前往下一站（建水、昆明）" },
+    ]
+  },
+]
+
+const yuanyangTips = [
+  { icon: "📅", title: "最佳季节", content: "元阳梯田最美在灌水期——11月到次年4月，水田如镜、云海翻涌、日出日落最出彩，也是哈尼长街宴（约11月哈尼年）时节。6-9月插秧后是绿色梯田、雨多云海也多但路湿。5月前后收割后较素。" },
+  { icon: "🌅", title: "追光机位", content: "看日出去多依树、看日落去老虎嘴/坝达，是雷打不动的搭配。都要提前一小时占位，尤其冬春晴天的周末人极多。云海看天吃饭，晴后转阴或雨后初晴概率高。" },
+  { icon: "🧥", title: "早晚保暖", content: "梯田海拔较高，看日出的清晨很冷、湿气重，务必带厚外套、帽子。白天太阳下又晒，注意防晒。山路多雾湿滑，穿防滑鞋。" },
+  { icon: "🙏", title: "尊重哈尼村寨", content: "阿者科、箐口等是村民真实生活的村落，不是布景。勿擅入民居、勿踩踏田埂稻田；给村民拍照先征得同意；阿者科按规矩请向导、买门票（村民分红）。" },
+  { icon: "🚗", title: "交通与包车", content: "各观景区之间是盘山村道、彼此有距离，日出日落两头跑，强烈建议包车或跟当地车，别自己摸黑开夜路。梯田景区实行联票，进出各点核验。" },
+  { icon: "🍚", title: "梯田味道", content: "梯田红米是这里的主角，饭香有嚼劲。哈尼蘸水鸡、焖锅酒、竹筒饭都值得尝；顺游蒙自别错过过桥米线（发源地）。" },
+  { icon: "📷", title: "摄影准备", content: "日出日落光比大，带上长焦拍层叠肌理、广角拍云海全景；三脚架在弱光下很有用。尊重机位秩序、别为取景踩踏田埂。" },
+]
+
+const yuanyangFoods = [
+  { name: "梯田红米饭", emoji: "🍚", desc: "哈尼梯田所产红米，饭香有嚼劲" },
+  { name: "哈尼蘸水鸡", emoji: "🍗", desc: "土鸡配哈尼特调蘸水，鲜辣" },
+  { name: "焖锅酒", emoji: "🍶", desc: "哈尼自酿米酒，待客的暖酒" },
+  { name: "竹筒烤鱼", emoji: "🐟", desc: "梯田鱼夹香料竹筒炭烤" },
+  { name: "长街宴", emoji: "🍲", desc: "哈尼年家家出菜连成一条街" },
+  { name: "蒙自过桥米线", emoji: "🍜", desc: "过桥米线发源地，汤鲜料足" },
+]
+
+const yuanyangPackList = [
+  { icon: "🧥", text: "厚外套帽子（看日出清晨很冷）" },
+  { icon: "🧴", text: "防晒墨镜（白天梯田反光强）" },
+  { icon: "👟", text: "防滑鞋（田埂村道湿滑）" },
+  { icon: "📷", text: "长焦+广角+三脚架（追光拍摄）" },
+  { icon: "🔦", text: "头灯/手电（摸黑赶日出机位）" },
+  { icon: "💳", text: "身份证 + 现金（村寨小店）" },
+]
+
+const yuanyangSeason = {
+  title: "最佳旅行季节",
+  sub: "哈尼梯田，一山镜天",
+  rows: [
+    { dot: "peak",  label: "💧 灌水期（11—次年4月）", date: "水田如镜，日出云海最美", badge: "推荐" },
+    { dot: "early", label: "🌱 插秧（5—6月）", date: "梯田新绿，线条清晰" },
+    { dot: "late",  label: "🌧️ 雨季（6—9月）", date: "绿意浓、云海多但路湿" },
+  ],
+}
+
 /* ════════════════ CITIES 汇总 ════════════════
    扩展新城市：复制上方一整套 daliXxx 常量，改名后
    在下面数组里追加一个对象即可。
@@ -2069,6 +2258,32 @@ export const CITIES = [
     foods: kunmingFoods,
     packList: kunmingPackList,
     seasonInfo: kunmingSeason,
+  },
+  {
+    id: 'yuanyang',
+    name: '元阳',
+    nameEn: 'Yuanyang',
+    emoji: '🌅',
+    country: '云南',
+    tagline: '哈尼梯田，一山镜天',
+    heroBadge: '红河 · 云南',
+    heroTitle: '元阳梯田',
+    heroHighlight: '慢慢等光吧！',
+    heroDesc: '千年哈尼梯田，日出云海与蘑菇房',
+    heroGradient: 'linear-gradient(160deg, #6B4326 0%, #BC8149 55%, #EEDCBE 100%)',
+    quickTips: [
+      { icon: '📅', text: '11-次年4月灌水期最美' },
+      { icon: '🌅', text: '多依树日出/老虎嘴日落' },
+      { icon: '🧥', text: '看日出清晨很冷，带厚衣' },
+      { icon: '🙏', text: '哈尼村寨，尊重生活' },
+    ],
+    spots: yuanyangSpots,
+    nearbySpots: yuanyangNearby,
+    itineraryDays: yuanyangItinerary,
+    tips: yuanyangTips,
+    foods: yuanyangFoods,
+    packList: yuanyangPackList,
+    seasonInfo: yuanyangSeason,
   },
 ]
 

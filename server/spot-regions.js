@@ -19,6 +19,7 @@ const SPOT_REGION_RULES = [
   { test: /^tcn?\d+$/, region: 'yn-baoshan' },  // 腾冲：tc1.. / tcn1..（腾冲是保山下辖县级市，同归保山）
   { test: /^sgn?\d+$/, region: 'yn-diqing' },  // 香格里拉：sg1.. / sgn1..（含德钦，均属迪庆州）
   { test: /^kmn?\d+$/, region: 'yn-kunming' },  // 昆明：km1.. / kmn1..（含东川/宜良/禄劝，均属昆明）
+  { test: /^yyn?\d+$/, region: 'yn-honghe' },  // 元阳：yy1.. / yyn1..（含蒙自/泸西/红河县，均属红河州）
 ]
 
 export function regionOfSpot(spotId) {
