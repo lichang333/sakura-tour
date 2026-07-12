@@ -29,6 +29,7 @@ const SPOT_REGION_RULES = [
   { test: /^lcn?\d+$/, region: 'yn-lincang' },  // 临沧：lc1.. / lcn1..（含沧源/凤庆/双江/永德/耿马，均属临沧）
   { test: /^wsn?\d+$/, region: 'yn-wenshan' },  // 文山：ws1.. / wsn1..（含丘北/广南/麻栗坡/西畴/富宁/砚山/马关，均属文山州）
   { test: /^qjn?\d+$/, region: 'yn-qujing' },  // 曲靖：qj1.. / qjn1..（含罗平/陆良/会泽/沾益/师宗/宣威，均属曲靖）
+  { test: /^ztn?\d+$/, region: 'yn-zhaotong' },  // 昭通：zt1.. / ztn1..（含盐津/威信/大关/彝良/水富/巧家/镇雄/永善，均属昭通）
 ]
 
 export function regionOfSpot(spotId) {

@@ -3768,6 +3768,198 @@ const qujingSeason = {
   ],
 }
 
+
+/* ════════════════ 昭通 ════════════════ */
+const zhaotongSpots = [
+  {
+    id: 'zt1', name: "大山包", nameEn: "Dashanbao", emoji: "🕊️",
+    district: "昭阳区", lat: 27.3000, lng: 103.3000,
+    peakTime: "11-3月黑颈鹤 / 夏秋草甸", peakDays: "冬观鹤、夏秋看云海", difficulty: "medium",
+    rating: 4.7, reviews: 2600, tags: ["必去", "黑颈鹤", "高原草甸·大峡谷"],
+    isHot: true, ticket: "门票约低价",
+    description: "海拔三千多米的高原湿地草甸，国家级黑颈鹤自然保护区。每年冬天上千只黑颈鹤从青藏高原飞来越冬，晨雾中鹤影翩跹。鸡公山大峡谷在草甸尽头骤然深切千米、云海翻涌，夏秋绿草如茵、日出壮美，是乌蒙高原最震撼的一片天地。",
+    tips: "黑颈鹤冬季（约11月-次年3月）在，远观勿惊扰；海拔高、风大极冷，厚羽绒必备、注意高反；鸡公山大峡谷看日出云海要起早。",
+    transport: "昭通市区驾车约2小时至大山包",
+    color: "#4E7A80", xp: 130,
+  },
+  {
+    id: 'zt2', name: "豆沙关·五尺道", nameEn: "Dousha Pass", emoji: "🧗",
+    district: "盐津县", lat: 28.0500, lng: 104.3000,
+    peakTime: "全年", peakDays: "全年 · 秦道悬棺", difficulty: "easy",
+    rating: 4.4, reviews: 1800, tags: ["必去", "秦五尺道", "僰人悬棺"],
+    isHot: true, ticket: "门票约低价",
+    description: "关河峡谷里一处「一夫当关」的古险关。崖壁上还留着两千多年前秦代开凿的「五尺道」——中原通往云南的最早官道，石板上马蹄印深深。对面绝壁上悬挂着神秘的僰人悬棺，古镇、关楼、五道交汇于一谷，历史层层叠压，厚重而奇险。",
+    tips: "看秦五尺道石板马蹄印、隔崖望僰人悬棺；古镇可尝盐津小吃；峡谷路窄注意安全。",
+    transport: "昭通市区驾车约2小时至盐津豆沙关",
+    color: "#8A6A3B", xp: 110,
+  },
+  {
+    id: 'zt3', name: "扎西会议纪念馆", nameEn: "Zhaxi Meeting Memorial", emoji: "🎖️",
+    district: "威信县", lat: 27.8500, lng: 105.0500,
+    peakTime: "全年", peakDays: "全年 · 长征红色地标", difficulty: "easy",
+    rating: 4.5, reviews: 1200, tags: ["红色旅游", "长征", "扎西会议"],
+    ticket: "免费",
+    description: "1935 年红军长征途中在威信扎西召开了著名的「扎西会议」，是遵义会议的延续与完成。纪念馆、会议旧址完整保存，陈列着长征那段峥嵘岁月的实物与史料。是重走长征路、了解那段历史的重要红色地标，庄严而深刻。",
+    tips: "免费参观、庄重瞻仰；威信在昭通东部、近川黔；可与镇雄鸡鸣三省一并安排红色+地理之旅。",
+    transport: "昭通市区驾车约3小时至威信扎西",
+    color: "#B4472F", xp: 90,
+  },
+  {
+    id: 'zt4', name: "大关黄连河瀑布", nameEn: "Huanglianhe Waterfalls", emoji: "💦",
+    district: "大关县", lat: 27.7500, lng: 103.9000,
+    peakTime: "6-9月水最大", peakDays: "雨季瀑布最壮", difficulty: "medium",
+    rating: 4.2, reviews: 800, tags: ["瀑布群", "峡谷", "原始森林"],
+    ticket: "门票约低价",
+    description: "大关县的黄连河一带藏着大大小小数十道瀑布，飞泻在原始森林与深峡之间，水气弥漫、清凉幽静。最大的一道落差近百米，雨季轰鸣震谷。是乌蒙山区难得的一片飞瀑绿意，适合避暑与徒步。",
+    tips: "雨季（6-9月）水量最壮观；林中步道湿滑穿防滑鞋；夏天清凉适合避暑。",
+    transport: "昭通市区驾车约1.5小时至大关黄连河",
+    color: "#3B6E86", xp: 90,
+  },
+  {
+    id: 'zt5', name: "昭通古城·龙氏家祠", nameEn: "Zhaotong Old Town", emoji: "🏯",
+    district: "昭阳区", lat: 27.3400, lng: 103.7200,
+    peakTime: "全年", peakDays: "全年 · 老城人文", difficulty: "easy",
+    rating: 4.1, reviews: 900, tags: ["昭通老城", "龙云家祠", "会馆"],
+    ticket: "古城免费 / 家祠低价",
+    description: "昭通曾是滇川黔三省通衢的商贸重镇，老城里会馆、老街、四合院还留着当年的繁华底子。城郊的龙氏家祠是民国云南主席龙云的家族祠堂，中西合璧、气派讲究，砖石木雕精美，是了解昭通近代人文的一处窗口。",
+    tips: "古城慢逛、尝昭通小肉串与洋芋；龙氏家祠建筑值得细看；作为昭通中转的城内半日游。",
+    transport: "昭通市区内",
+    color: "#8A7A66", xp: 70,
+  },
+  {
+    id: 'zt6', name: "水富西部大峡谷温泉", nameEn: "Shuifu Canyon Spring", emoji: "♨️",
+    district: "水富市", lat: 28.6300, lng: 104.4200,
+    peakTime: "秋冬泡汤 / 全年", peakDays: "秋冬泡汤最惬意", difficulty: "easy",
+    rating: 4.3, reviews: 1100, tags: ["天然温泉", "金沙江畔", "峡谷度假"],
+    ticket: "门票约100元起",
+    description: "昭通最北的水富，地处金沙江与横江交汇、云川交界。西部大峡谷温泉水温高、水质好，几十个露天汤池依峡谷而建，泡着温泉看江峡，是川滇之间一处知名的温泉度假地。也是进出四川宜宾方向的门户。",
+    tips: "带泳衣；秋冬泡汤最舒服；水富紧邻四川宜宾，可作云川衔接的一站。",
+    transport: "昭通市区驾车约2.5小时至水富（近宜宾）",
+    color: "#3B8A9E", xp: 80,
+  },
+  {
+    id: 'zt7', name: "彝良小草坝", nameEn: "Xiaocaoba Forest", emoji: "🌿",
+    district: "彝良县", lat: 27.7500, lng: 104.2000,
+    peakTime: "夏秋 / 全年", peakDays: "夏秋林海最盛", difficulty: "medium",
+    rating: 4.2, reviews: 600, tags: ["天麻之乡", "原始森林", "瀑布"],
+    ticket: "门票约低价",
+    description: "彝良小草坝是「中国天麻之乡」的核心产区，也是一片保存完好的原始森林景区。古木参天、藤萝密布、飞瀑深潭，空气清冽。夏秋林海苍翠、云雾缭绕，可徒步、避暑、买地道的昭通天麻，是乌蒙深处的一处绿肺。",
+    tips: "夏秋林海最美、适合避暑徒步；买正宗小草坝天麻认准产地；林中湿滑带防滑鞋外套。",
+    transport: "昭通市区驾车约1.5小时至彝良小草坝",
+    color: "#2E6E4A", xp: 80,
+  },
+]
+
+/* 周边顺游 —— 均在昭通辖区（巧家/镇雄/永善），派生同归昭通 */
+const zhaotongNearby = [
+  {
+    id: 'ztn1', name: "巧家药山", nameEn: "Yaoshan Mountain", emoji: "🌼",
+    district: "巧家县", lat: 26.9500, lng: 103.1000,
+    peakTime: "4-5月杜鹃", peakDays: "春季高山杜鹃盛开", difficulty: "hard",
+    rating: 4.3, reviews: 400, tags: ["国家级保护区", "高山杜鹃", "金沙江畔"],
+    desc: "金沙江畔的杜鹃药山，春季花海云海",
+    description: "巧家药山是国家级自然保护区，滇东北的高山秘境，因盛产药材而得名。海拔落差极大，从金沙江河谷直上四千余米雪线，春天万亩高山杜鹃在山脊铺展、云海翻涌。人迹罕至、生物多样，是徒步与自然爱好者的小众之选。",
+    tips: "属硬核徒步、需向导与体能；春季（4-5月）杜鹃最盛；海拔落差大注意保暖与高反。",
+    transport: "昭通市区驾车约3小时至巧家药山",
+    color: "#C85C8E", xp: 90, isNearby: true,
+  },
+  {
+    id: 'ztn2', name: "镇雄鸡鸣三省", nameEn: "Three-Province Junction", emoji: "🚩",
+    district: "镇雄县", lat: 27.5500, lng: 105.2000,
+    peakTime: "全年", peakDays: "全年 · 云贵川交界", difficulty: "medium",
+    rating: 4.2, reviews: 500, tags: ["云贵川交界", "赤水河", "红色历史"],
+    desc: "一鸡鸣三省，云贵川交界的峡谷",
+    description: "赤水河与倒流河在此交汇，一处峡谷同时连着云南、贵州、四川三省，「鸡鸣三省」由此得名。悬崖对峙、大桥飞架，站在观景台一眼望三省。这里也是红军长征「鸡鸣三省会议」的所在，山河与历史在此交叠。",
+    tips: "看三省交界峡谷与大桥、了解鸡鸣三省会议历史；山路较远，与威信扎西可一并安排；注意峡谷安全。",
+    transport: "昭通市区驾车约3.5小时至镇雄鸡鸣三省",
+    color: "#6B4E3D", xp: 80, isNearby: true,
+  },
+  {
+    id: 'ztn3', name: "永善溪洛渡", nameEn: "Xiluodu Dam", emoji: "🏗️",
+    district: "永善县", lat: 28.2500, lng: 103.6000,
+    peakTime: "全年", peakDays: "全年 · 金沙江巨坝", difficulty: "easy",
+    rating: 4.1, reviews: 300, tags: ["金沙江大坝", "水电工程", "高峡平湖"],
+    desc: "金沙江上的巨型水电站，高峡出平湖",
+    description: "溪洛渡水电站是金沙江上的巨型水利工程，拦江大坝气势恢宏，蓄水后高峡出平湖，两岸青山倒映。是感受现代工程之力与金沙江峡谷风光的地方，永善县城临江而建，江风浩荡。",
+    tips: "参观大坝需按规定；金沙江河谷夏季酷热、备防晒；可与永善、绥江金沙江沿线顺游。",
+    transport: "昭通市区驾车约3小时至永善溪洛渡",
+    color: "#3B8AA6", xp: 70, isNearby: true,
+  },
+]
+
+const zhaotongItinerary = [
+  {
+    day: 1, title: "抵达·乌蒙老城", date: "Day 1",
+    activities: [
+      { time: "下午", icon: "🏯", text: "昭通古城、龙氏家祠，逛老街", spotId: 'zt5' },
+      { time: "傍晚", icon: "🍢", text: "尝昭通小肉串 + 天麻炖鸡" },
+      { time: "晚上", icon: "🥔", text: "洋芋全席，感受昭通土豆的百般吃法" },
+    ]
+  },
+  {
+    day: 2, title: "大山包观鹤看云海", date: "Day 2",
+    activities: [
+      { time: "清晨", icon: "🌄", text: "鸡公山大峡谷守日出云海", spotId: 'zt1' },
+      { time: "上午", icon: "🕊️", text: "大山包草甸远观黑颈鹤（冬）" },
+      { time: "下午", icon: "🥶", text: "高原草甸慢走，注意保暖返程" },
+    ]
+  },
+  {
+    day: 3, title: "秦道悬棺豆沙关", date: "Day 3",
+    activities: [
+      { time: "上午", icon: "🧗", text: "豆沙关走秦五尺道、望僰人悬棺", spotId: 'zt2' },
+      { time: "下午", icon: "💦", text: "大关黄连河瀑布群避暑徒步", spotId: 'zt4' },
+      { time: "傍晚", icon: "🌿", text: "或转彝良小草坝原始森林" },
+    ]
+  },
+  {
+    day: 4, title: "红色扎西或温泉", date: "Day 4",
+    activities: [
+      { time: "全天", icon: "🎖️", text: "威信扎西会议+镇雄鸡鸣三省 或 水富温泉" },
+      { time: "下午", icon: "🎁", text: "选购昭通苹果、天麻、昭通酱伴手礼" },
+      { time: "傍晚", icon: "✈️", text: "返程 / 前往下一站（四川宜宾、贵州）" },
+    ]
+  },
+]
+
+const zhaotongTips = [
+  { icon: "📅", title: "最佳季节", content: "滇东北高原、昼夜温差大。冬季（11-3月）大山包黑颈鹤越冬、是观鹤旺季但极寒；夏秋（6-9月）大山包草甸绿意云海、黄连河瀑布水壮、也是避暑好时节；春季巧家药山杜鹃盛开；秋天是昭通苹果季。" },
+  { icon: "🕊️", title: "大山包观鹤", content: "黑颈鹤是国家一级保护动物，冬季在大山包越冬。请远距离观赏拍摄、勿惊扰驱赶投喂。大山包海拔超三千米、风大极寒，务必厚羽绒、帽子手套，注意高反与保暖。" },
+  { icon: "🧥", title: "高原严寒", content: "大山包、药山等高海拔点即便夏天也很冷、冬天更是零下加大风，保暖装备一定要足；看日出云海要摸黑起早，头灯、热饮、防风衣备好。" },
+  { icon: "🚗", title: "山高路远", content: "昭通地处乌蒙山区、沟壑纵横，景点散在盐津、威信、巧家、水富等县，彼此常2-3.5小时山路。强烈建议自驾或包车、按片区分天走，山路弯多雾多，谨慎慢行、勿赶夜路。" },
+  { icon: "🎖️", title: "红色史迹", content: "扎西会议、鸡鸣三省会议是长征途中的重要节点，纪念馆与旧址请庄重瞻仰。昭通东部的威信、镇雄近川黔，红色历史与三省交界地理可串成一线。" },
+  { icon: "🍎", title: "昭通味道", content: "昭通苹果脆甜有名、天麻炖鸡滋补、昭通小肉串是网红、洋芋（土豆）吃法百变、昭通酱下饭。秋天来正逢苹果季，天麻、昭通酱都是好带的伴手礼。" },
+  { icon: "🚄", title: "云川黔门户", content: "昭通处于云南、四川、贵州三省交界，是滇东北的门户。水富紧邻四川宜宾、威信镇雄近贵州，进出可与川南、黔西北衔接，作为跨省环线的一站很方便。" },
+]
+
+const zhaotongFoods = [
+  { name: "天麻炖鸡", emoji: "🍲", desc: "昭通天麻炖土鸡，滋补清香" },
+  { name: "昭通小肉串", emoji: "🍢", desc: "小串炭烤蘸干料，昭通夜市顶流" },
+  { name: "洋芋全席", emoji: "🥔", desc: "昭通土豆百般吃法，粉糯管饱" },
+  { name: "昭通酱", emoji: "🫙", desc: "豆瓣发酵酱料，咸鲜下饭百搭" },
+  { name: "盐津竹笋", emoji: "🎋", desc: "关河竹笋鲜嫩，凉拌或煮汤" },
+  { name: "昭通苹果", emoji: "🍎", desc: "高原日照所产，脆甜多汁" },
+]
+
+const zhaotongPackList = [
+  { icon: "🧥", text: "厚羽绒（大山包高原严寒）" },
+  { icon: "🧢", text: "帽子手套（观鹤起早极冷）" },
+  { icon: "🔦", text: "头灯（大峡谷摸黑看日出）" },
+  { icon: "👟", text: "防滑徒步鞋（草甸/瀑布/林区）" },
+  { icon: "🔭", text: "长焦（远距离观黑颈鹤）" },
+  { icon: "💳", text: "身份证（红色场馆/跨省通行）" },
+]
+
+const zhaotongSeason = {
+  title: "最佳旅行季节",
+  sub: "乌蒙高原，云鹤之乡",
+  rows: [
+    { dot: "peak",  label: "🕊️ 冬（11—3月）", date: "大山包黑颈鹤越冬", badge: "推荐" },
+    { dot: "early", label: "🌄 夏秋（6—9月）", date: "草甸云海、瀑布水壮、苹果季" },
+    { dot: "late",  label: "🌼 春（4—5月）", date: "巧家药山高山杜鹃" },
+  ],
+}
+
 /* ════════════════ CITIES 汇总 ════════════════
    扩展新城市：复制上方一整套 daliXxx 常量，改名后
    在下面数组里追加一个对象即可。
@@ -4242,6 +4434,32 @@ export const CITIES = [
     foods: qujingFoods,
     packList: qujingPackList,
     seasonInfo: qujingSeason,
+  },
+  {
+    id: 'zhaotong',
+    name: '昭通',
+    nameEn: 'Zhaotong',
+    emoji: '🕊️',
+    country: '云南',
+    tagline: '乌蒙高原，云鹤之乡',
+    heroBadge: '昭通 · 云南',
+    heroTitle: '乌蒙昭通',
+    heroHighlight: '慢慢看吧！',
+    heroDesc: '大山包黑颈鹤、秦道悬棺与长征扎西',
+    heroGradient: 'linear-gradient(160deg, #2A4048 0%, #4E7A80 55%, #CADEDC 100%)',
+    quickTips: [
+      { icon: '🕊️', text: '大山包冬季看黑颈鹤' },
+      { icon: '🧥', text: '高原严寒，厚羽绒必备' },
+      { icon: '🚗', text: '乌蒙山路远，建议包车' },
+      { icon: '🍎', text: '秋天正逢昭通苹果季' },
+    ],
+    spots: zhaotongSpots,
+    nearbySpots: zhaotongNearby,
+    itineraryDays: zhaotongItinerary,
+    tips: zhaotongTips,
+    foods: zhaotongFoods,
+    packList: zhaotongPackList,
+    seasonInfo: zhaotongSeason,
   },
 ]
 
