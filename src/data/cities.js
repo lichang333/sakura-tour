@@ -2811,6 +2811,198 @@ const nujiangSeason = {
   ],
 }
 
+
+/* ════════════════ 楚雄 ════════════════ */
+const chuxiongSpots = [
+  {
+    id: 'cx1', name: "元谋土林", nameEn: "Yuanmou Earth Forest", emoji: "🏜️",
+    district: "元谋县", lat: 25.7000, lng: 101.8700,
+    peakTime: "全年（晨昏光影）", peakDays: "干季晨昏最出片", difficulty: "easy",
+    rating: 4.6, reviews: 4200, tags: ["必去", "土林奇观", "物茂·浪巴铺"],
+    isHot: true, ticket: "物茂/浪巴铺各约50元",
+    description: "流水千百年冲刷雕蚀出的土柱森林，成片黄土峰林如刀削斧劈，气势磅礴又光怪陆离。物茂土林规整壮观、浪巴铺土林色彩最丰富，晨昏斜光下土柱泛出金红，是摄影与探秘的奇景，也是多部影视的取景地。",
+    tips: "晨昏光影最美、正午暴晒；物茂、浪巴铺、班果几片各有特色；干季来路好，戴帽防晒备水。",
+    transport: "元谋县城驾车约30-40分钟至各土林",
+    color: "#B85A3A", xp: 130,
+  },
+  {
+    id: 'cx2', name: "彝人古镇", nameEn: "Yiren Ancient Town", emoji: "🔥",
+    district: "楚雄市", lat: 25.0300, lng: 101.5300,
+    peakTime: "全年（火把节最盛）", peakDays: "火把节狂欢最热闹", difficulty: "easy",
+    rating: 4.4, reviews: 6800, tags: ["必去", "彝族风情", "火把广场·夜景"],
+    isHot: true, ticket: "免费",
+    description: "楚雄城里一座大型彝族风情古镇，青瓦飞檐、水系环绕，夜里灯火璀璨、酒吧歌舞热闹。彝族的火把、左脚舞、服饰、美食在这里集中呈现，尤其火把节时篝火冲天、万人打跳，是感受彝族文化最方便的窗口。",
+    tips: "免费开放、夜景最美；火把节（农历六月廿四）来最震撼；德江城楼、毕摩广场值得看。",
+    transport: "楚雄市区内，打车可达",
+    color: "#C7452F", xp: 100,
+  },
+  {
+    id: 'cx3', name: "世界恐龙谷", nameEn: "Lufeng Dinosaur Valley", emoji: "🦕",
+    district: "禄丰市", lat: 25.1500, lng: 102.0800,
+    peakTime: "全年", peakDays: "全年 · 侏罗纪现场", difficulty: "easy",
+    rating: 4.4, reviews: 3900, tags: ["必去", "恐龙化石", "侏罗纪"],
+    isHot: true, ticket: "门票约100元",
+    description: "禄丰是「恐龙之乡」，出土了大量侏罗纪恐龙化石。世界恐龙谷里，遗址馆内原址埋藏的成群恐龙化石震撼陈列，另有恐龙骨架、复原景观与主题游乐，把一亿多年前的侏罗纪世界搬到眼前，是亲子科普的绝佳去处。",
+    tips: "适合带娃；遗址馆的原址化石群最值得看；离昆明也近，可作昆明—大理途中一站。",
+    transport: "楚雄市区驾车约1小时至禄丰恐龙谷",
+    color: "#4E7A5E", xp: 100,
+  },
+  {
+    id: 'cx4', name: "元谋人遗址", nameEn: "Yuanmou Man Site", emoji: "🦴",
+    district: "元谋县", lat: 25.7000, lng: 101.8800,
+    peakTime: "全年", peakDays: "全年 · 东方人类摇篮", difficulty: "easy",
+    rating: 4.2, reviews: 1600, tags: ["元谋人", "170万年", "人类摇篮"],
+    ticket: "博物馆约低价/免费",
+    description: "元谋人是迄今中国发现的最早的古人类之一，距今约170万年。元谋人博物馆与东方人类祭祖坛展示着那两枚著名的门齿化石与旧石器，讲述人类起源的一段远古史，与近旁的元谋土林可一并安排。",
+    tips: "与元谋土林同一县，可连游；博物馆内容偏科普人文；适合对历史考古感兴趣者。",
+    transport: "元谋县城内，近土林",
+    color: "#8A6A3B", xp: 80,
+  },
+  {
+    id: 'cx5', name: "紫溪山", nameEn: "Zixi Mountain", emoji: "🌸",
+    district: "楚雄市", lat: 25.0000, lng: 101.4500,
+    peakTime: "2-4月花海", peakDays: "春樱茶花杜鹃盛开", difficulty: "medium",
+    rating: 4.3, reviews: 2100, tags: ["森林公园", "茶花杜鹃", "彝族赛装"],
+    ticket: "门票约低价",
+    description: "楚雄城郊的国家森林公园，古木参天、云雾缭绕。春天山茶、樱花、杜鹃次第盛开，漫山花海；山间还有紫顶寺古刹与彝族赛装节的传说。是楚雄人踏青避暑、赏花礼佛的后花园。",
+    tips: "2-4月花期最盛；山上凉爽适合避暑；可徒步或自驾环山，带件外套。",
+    transport: "楚雄市区驾车约40分钟",
+    color: "#C85C8E", xp: 90,
+  },
+  {
+    id: 'cx6', name: "武定狮子山", nameEn: "Wuding Lion Mountain", emoji: "🦁",
+    district: "武定县", lat: 25.5300, lng: 102.4000,
+    peakTime: "3-4月牡丹", peakDays: "春季牡丹盛开", difficulty: "medium",
+    rating: 4.3, reviews: 1700, tags: ["佛教名山", "建文帝", "牡丹"],
+    ticket: "门票约60元",
+    description: "形如伏狮的佛教名山，正续禅寺古柏参天，相传明代建文帝曾在此出家避难，留下诸多遗迹与传说。每年三四月牡丹盛放，「西南第一山」的古刹在花海古木间格外清幽，是礼佛赏花的好去处。",
+    tips: "3-4月牡丹花期最美；山上古寺清幽，慢逛半日；从楚雄或昆明方向可达。",
+    transport: "楚雄市区驾车约1.5小时至武定",
+    color: "#B4472F", xp: 90,
+  },
+  {
+    id: 'cx7', name: "黑井古镇", nameEn: "Heijing Ancient Town", emoji: "🧂",
+    district: "禄丰市", lat: 25.1500, lng: 101.7500,
+    peakTime: "全年", peakDays: "全年 · 千年盐都", difficulty: "easy",
+    rating: 4.4, reviews: 2300, tags: ["千年盐都", "盐马古道", "红砂石古镇"],
+    ticket: "门票约30元",
+    description: "龙川江畔一座因盐而兴的千年古镇，明清时富甲一方。红砂石铺就的老街、节孝坊、古盐井、大龙祠还在，游人稀少、原汁原味。可看古法制盐、尝一口盐焖鸡，感受盐马古道上曾经的繁华与如今的沉静。",
+    tips: "有小火车/绿皮车可达，别有情调；游人少、适合慢逛住一晚；尝黑井盐焖鸡、看古盐井。",
+    transport: "楚雄/禄丰驾车约1.5小时，或乘小火车至黑井",
+    color: "#8A5A3B", xp: 90,
+  },
+]
+
+/* 周边顺游 —— 均在楚雄州内（大姚/姚安/南华），派生同归楚雄 */
+const chuxiongNearby = [
+  {
+    id: 'cxn1', name: "大姚石羊古镇", nameEn: "Shiyang Ancient Town", emoji: "🏛️",
+    district: "大姚县", lat: 25.7200, lng: 101.3200,
+    peakTime: "全年", peakDays: "全年 · 盐都孔庙", difficulty: "easy",
+    rating: 4.2, reviews: 900, tags: ["千年盐都", "孔庙大铜像", "古镇"],
+    desc: "盐都古镇，供着全国最大孔子铜像",
+    description: "大姚的石羊古镇也是一座因盐而兴的千年古镇，最有名的是孔庙里那尊全国最大的孔子铜坐像，庄严古朴。青石老街、古盐井、七宝楼散落其间，文脉与盐脉在此交织，安静少商业气。",
+    tips: "与大姚、姚安一片可串游；看孔庙铜像、古盐井；尝石羊豆腐。",
+    transport: "楚雄市区驾车约2小时至大姚石羊",
+    color: "#8A6A3B", xp: 80, isNearby: true,
+  },
+  {
+    id: 'cxn2', name: "姚安光禄古镇", nameEn: "Guanglu Ancient Town", emoji: "🪷",
+    district: "姚安县", lat: 25.5500, lng: 101.2800,
+    peakTime: "夏季荷花 / 全年", peakDays: "夏季荷塘最盛", difficulty: "easy",
+    rating: 4.2, reviews: 700, tags: ["历史名镇", "高氏土司", "荷花"],
+    desc: "高氏土司故里，夏日荷塘环绕的古镇",
+    description: "姚安光禄是国家历史文化名镇，曾是高氏土司的世居之地，「一座姚州城，半部云南史」。古镇格局完整，文昌宫、高雪君祠、德丰寺古朴，夏天四周荷塘连片、荷香满镇，是滇中少见的静美古镇。",
+    tips: "夏季看荷花最美；古镇慢逛半日；与大姚、楚雄可串成滇中古镇线。",
+    transport: "楚雄市区驾车约1.5小时至姚安光禄",
+    color: "#5E9B7E", xp: 80, isNearby: true,
+  },
+  {
+    id: 'cxn3', name: "南华咪依噜·菌乡", nameEn: "Nanhua Mushroom Town", emoji: "🍄",
+    district: "南华县", lat: 25.1900, lng: 101.2800,
+    peakTime: "6-9月野生菌季", peakDays: "夏秋菌子上市最旺", difficulty: "easy",
+    rating: 4.3, reviews: 1000, tags: ["野生菌之乡", "咪依噜风情谷", "彝族"],
+    desc: "中国野生菌之乡，夏秋满市松茸鸡枞",
+    description: "南华是「中国野生菌之乡」，夏秋菌子季，松茸、鸡枞、牛肝菌堆满交易市场，鲜香四溢。咪依噜风情谷里彝族风情浓郁，可看歌舞、住彝家。想吃最地道最新鲜的云南菌子，这里是源头。",
+    tips: "野生菌季（6-9月）来最对；菌子务必吃熟吃对、不混食不喝酒；市场买菌先认清品种。",
+    transport: "楚雄市区驾车约40分钟至南华",
+    color: "#7A8B5A", xp: 80, isNearby: true,
+  },
+]
+
+const chuxiongItinerary = [
+  {
+    day: 1, title: "抵达·彝乡火风情", date: "Day 1",
+    activities: [
+      { time: "下午", icon: "✈️", text: "抵达楚雄，入住市区" },
+      { time: "傍晚", icon: "🔥", text: "彝人古镇看夜景，火把广场打跳", spotId: 'cx2' },
+      { time: "晚上", icon: "🍖", text: "尝彝家坨坨肉 + 全羊汤锅" },
+    ]
+  },
+  {
+    day: 2, title: "恐龙与花山", date: "Day 2",
+    activities: [
+      { time: "上午", icon: "🦕", text: "世界恐龙谷，看侏罗纪化石群", spotId: 'cx3' },
+      { time: "下午", icon: "🌸", text: "紫溪山赏茶花杜鹃（春），避暑徒步", spotId: 'cx5' },
+      { time: "晚上", icon: "🍄", text: "回城尝野生菌火锅（夏秋）" },
+    ]
+  },
+  {
+    day: 3, title: "元谋土林", date: "Day 3",
+    activities: [
+      { time: "清晨", icon: "🏜️", text: "元谋土林晨光土柱峰林", spotId: 'cx1' },
+      { time: "上午", icon: "🦴", text: "元谋人遗址，探东方人类摇篮", spotId: 'cx4' },
+      { time: "傍晚", icon: "🌇", text: "浪巴铺土林守日落金光" },
+    ]
+  },
+  {
+    day: 4, title: "盐都或名山", date: "Day 4",
+    activities: [
+      { time: "全天", icon: "🧂", text: "黑井千年盐都古镇 或 武定狮子山" },
+      { time: "下午", icon: "🎁", text: "选购牟定油腐乳、菌子干货、彝绣伴手礼" },
+      { time: "傍晚", icon: "✈️", text: "返程 / 前往下一站（昆明、大理）" },
+    ]
+  },
+]
+
+const chuxiongTips = [
+  { icon: "🔥", title: "火把节", content: "彝族火把节（农历六月廿四，约公历7-8月）是楚雄一年最盛大的狂欢——篝火冲天、万人打跳、斗牛赛装。想体验请早订食宿。此外彝族赛装节（正月）被誉为「世界最古老的乡村T台」，也很值得赶。" },
+  { icon: "📅", title: "最佳季节", content: "楚雄气候温和、全年可玩。春（2-4月）紫溪山、狮子山花海最盛；夏秋（6-9月）是野生菌季；火把节在盛夏。海拔适中、无高反。" },
+  { icon: "🍄", title: "野生菌须知", content: "南华是野生菌之乡，夏秋菌子鲜美但部分有毒。务必去正规餐馆，菌子炒熟炒透、不混食、不喝酒，切勿自采自食，出现不适立即就医。" },
+  { icon: "🏜️", title: "土林攻略", content: "元谋土林晨昏斜光下最出片、正午暴晒难受。物茂、浪巴铺、班果几片风格不同，可挑一到两片；干季路好，戴帽、防晒、备足水。" },
+  { icon: "🚄", title: "区位便利", content: "楚雄正处昆明与大理之间，高铁、高速穿境，是滇中旅游的中转站。恐龙谷、黑井离昆明方向近，元谋土林在北往攀枝花方向，按路线顺势安排。" },
+  { icon: "🍖", title: "彝家味道", content: "彝家坨坨肉（大块煮肉蘸料）、全羊汤锅、荞粑粑蘸蜂蜜、牟定油腐乳都是特色，质朴够味。火塘边的彝家饭与「敬酒歌」很有氛围，量力而饮。" },
+  { icon: "🧵", title: "彝绣之乡", content: "楚雄是彝绣的重要产地，纹样绚烂、针法讲究，近年频登时装周。彝人古镇、赛装节可淘到手工彝绣，是有分量又好看的伴手礼。" },
+]
+
+const chuxiongFoods = [
+  { name: "彝家坨坨肉", emoji: "🍖", desc: "大块煮肉蘸辣料，彝家硬菜" },
+  { name: "全羊汤锅", emoji: "🍲", desc: "整羊下锅慢炖，鲜香暖身" },
+  { name: "荞粑粑蘸蜂蜜", emoji: "🥞", desc: "苦荞烙饼蘸蜂蜜，粗粮清香" },
+  { name: "野生菌", emoji: "🍄", desc: "南华菌乡所产，须炒熟吃对" },
+  { name: "牟定油腐乳", emoji: "🧈", desc: "牟定名产，红亮咸香下饭" },
+  { name: "元谋凉鸡", emoji: "🍗", desc: "元谋土鸡白斩凉拌，皮脆肉嫩" },
+]
+
+const chuxiongPackList = [
+  { icon: "🧢", text: "遮阳帽 + 防晒（土林暴晒）" },
+  { icon: "🧥", text: "薄外套（紫溪山/狮子山凉）" },
+  { icon: "👟", text: "舒适步行鞋（土林/古镇多走）" },
+  { icon: "📷", text: "相机（土林晨昏光影）" },
+  { icon: "💧", text: "足量饮水（土林无遮荫）" },
+  { icon: "💳", text: "身份证（高铁/景区实名）" },
+]
+
+const chuxiongSeason = {
+  title: "最佳旅行季节",
+  sub: "彝州火乡，土林恐龙",
+  rows: [
+    { dot: "peak",  label: "🔥 火把节（农历六月廿四·约7—8月）", date: "彝族狂欢，篝火打跳", badge: "推荐" },
+    { dot: "early", label: "🌸 春（2—4月）", date: "紫溪山、狮子山花海" },
+    { dot: "late",  label: "🍄 夏秋（6—9月）", date: "野生菌季，须吃熟吃对" },
+  ],
+}
+
 /* ════════════════ CITIES 汇总 ════════════════
    扩展新城市：复制上方一整套 daliXxx 常量，改名后
    在下面数组里追加一个对象即可。
@@ -3155,6 +3347,32 @@ export const CITIES = [
     foods: nujiangFoods,
     packList: nujiangPackList,
     seasonInfo: nujiangSeason,
+  },
+  {
+    id: 'chuxiong',
+    name: '楚雄',
+    nameEn: 'Chuxiong',
+    emoji: '🔥',
+    country: '云南',
+    tagline: '彝州火乡，土林恐龙',
+    heroBadge: '楚雄 · 云南',
+    heroTitle: '彝州楚雄',
+    heroHighlight: '打跳起来吧！',
+    heroDesc: '元谋土林、侏罗纪恐龙与彝族火把',
+    heroGradient: 'linear-gradient(160deg, #6B2E1E 0%, #B85A3A 55%, #EDD2BC 100%)',
+    quickTips: [
+      { icon: '🔥', text: '火把节7-8月最盛' },
+      { icon: '🏜️', text: '土林晨昏光影最美' },
+      { icon: '🦕', text: '禄丰恐龙谷亲子科普' },
+      { icon: '🍄', text: '南华野生菌须吃熟吃对' },
+    ],
+    spots: chuxiongSpots,
+    nearbySpots: chuxiongNearby,
+    itineraryDays: chuxiongItinerary,
+    tips: chuxiongTips,
+    foods: chuxiongFoods,
+    packList: chuxiongPackList,
+    seasonInfo: chuxiongSeason,
   },
 ]
 

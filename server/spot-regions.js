@@ -24,6 +24,7 @@ const SPOT_REGION_RULES = [
   { test: /^pen?\d+$/, region: 'yn-puer' },  // 普洱：pe1.. / pen1..（含澜沧/西盟/景东/江城/孟连/墨江，均属普洱）
   { test: /^dhn?\d+$/, region: 'yn-dehong' },  // 德宏：dh1.. / dhn1..（芒市/瑞丽/盈江/梁河/畹町，均属德宏州）
   { test: /^njn?\d+$/, region: 'yn-nujiang' },  // 怒江：nj1.. / njn1..（含泸水/福贡/贡山/兰坪，均属怒江州）
+  { test: /^cxn?\d+$/, region: 'yn-chuxiong' },  // 楚雄：cx1.. / cxn1..（含元谋/禄丰/武定/大姚/姚安/南华，均属楚雄州）
 ]
 
 export function regionOfSpot(spotId) {
