@@ -61,6 +61,7 @@ function StarRating({ spotId, current, onRate }) {
 
 export default function SpotsPage({ pendingSpot, clearPendingSpot, openMap }) {
   const [selected,      setSelected]      = useState(null)
+  const [hideVisited,   setHideVisited]   = useState(false)  // 「只看未去」筛选
   const [reviewDraft,   setReviewDraft]   = useState('')
   const [reviewSaved,   setReviewSaved]   = useState(false)
   const [uploadingPhoto, setUploadingPhoto] = useState(false)
@@ -94,6 +95,10 @@ export default function SpotsPage({ pendingSpot, clearPendingSpot, openMap }) {
 
   const checkedIds  = new Set(user?.checkedSpots  || [])
   const visitedIds  = new Set(user?.visitedSpots  || [])
+
+  // 「只看未去」筛选：开启时收起已抵达的景点（默认全显示，保留集章成就感）
+  const visitedCount  = spots.filter(s => visitedIds.has(s.id)).length
+  const visibleSpots  = hideVisited ? spots.filter(s => !visitedIds.has(s.id)) : spots
 
   const recommendedIds = new Map(
     (user?.recommendedSpots || []).map(r =>
@@ -501,6 +506,16 @@ export default function SpotsPage({ pendingSpot, clearPendingSpot, openMap }) {
           <div className="pm-legend">
             <span><span className="pm-dot green" />去过</span>
             <span><span className="pm-dot blue" />想去</span>
+            {visitedCount > 0 && (
+              <button
+                className={`only-unvisited ${hideVisited ? 'on' : ''}`}
+                onClick={() => setHideVisited(v => !v)}
+                aria-pressed={hideVisited}
+              >
+                <span className="ou-check" aria-hidden="true">{hideVisited ? '✓' : ''}</span>
+                只看未去
+              </button>
+            )}
           </div>
         </div>
       </div>
@@ -514,7 +529,14 @@ export default function SpotsPage({ pendingSpot, clearPendingSpot, openMap }) {
       )}
 
       <div className="spots-list">
-        {spots.map(spot => {
+        {visibleSpots.length === 0 && (
+          <div className="spots-empty">
+            <span className="se-seal">抵</span>
+            <p className="se-title">这座城的景点都打卡啦</p>
+            <p className="se-sub">关掉「只看未去」可回看你的印记</p>
+          </div>
+        )}
+        {visibleSpots.map(spot => {
           const visited = visitedIds.has(spot.id)
           const checked = checkedIds.has(spot.id)
           return (

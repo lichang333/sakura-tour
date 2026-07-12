@@ -84,6 +84,76 @@
 .pm-dot.green { background: var(--jade); }
 .pm-dot.blue  { background: var(--indigo); }
 
+/* 「只看未去」筛选开关 —— 靠右，铜色描边，开启时填充 */
+.only-unvisited {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  border: 1.5px solid var(--border);
+  background: transparent;
+  color: var(--text-mid);
+  font-size: 11px;
+  font-weight: 700;
+  transition: background 0.18s ease, border-color 0.18s ease, color 0.18s ease;
+}
+
+.only-unvisited.on {
+  border-color: var(--copper);
+  background: var(--copper);
+  color: #FBF8F1;
+}
+
+.only-unvisited:active { transform: scale(0.95); }
+
+.ou-check {
+  font-size: 10px;
+  line-height: 1;
+  width: 8px;
+  text-align: center;
+}
+
+/* 全部打卡后的空态 */
+.spots-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.spots-empty .se-seal {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: var(--copper);
+  color: #FBF8F1;
+  font-family: var(--font-serif);
+  font-size: 24px;
+  font-weight: 700;
+  display: grid;
+  place-items: center;
+  transform: rotate(-5deg);
+  box-shadow: var(--shadow-card);
+}
+
+.spots-empty .se-title {
+  font-family: var(--font-serif);
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--text-dark);
+  margin-top: 4px;
+}
+
+.spots-empty .se-sub {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--text-mid);
+}
+
 /* Today Banner */
 .today-banner {
   display: flex;
