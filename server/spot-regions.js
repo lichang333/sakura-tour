@@ -20,6 +20,7 @@ const SPOT_REGION_RULES = [
   { test: /^sgn?\d+$/, region: 'yn-diqing' },  // 香格里拉：sg1.. / sgn1..（含德钦，均属迪庆州）
   { test: /^kmn?\d+$/, region: 'yn-kunming' },  // 昆明：km1.. / kmn1..（含东川/宜良/禄劝，均属昆明）
   { test: /^yyn?\d+$/, region: 'yn-honghe' },  // 元阳：yy1.. / yyn1..（含蒙自/泸西/红河县，均属红河州）
+  { test: /^jsn?\d+$/, region: 'yn-honghe' },  // 建水：js1.. / jsn1..（含石屏/弥勒/泸西，均属红河州；与元阳共享红河格）
 ]
 
 export function regionOfSpot(spotId) {

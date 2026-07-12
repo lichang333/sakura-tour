@@ -2044,6 +2044,199 @@ const yuanyangSeason = {
   ],
 }
 
+
+/* ════════════════ 建水 ════════════════ */
+const jianshuiSpots = [
+  {
+    id: 'js1', name: "建水古城·朝阳楼", nameEn: "Jianshui Ancient Town", emoji: "🏯",
+    district: "建水县", lat: 23.6300, lng: 102.8300,
+    peakTime: "全年", peakDays: "全年 · 文献名邦", difficulty: "easy",
+    rating: 4.7, reviews: 9800, tags: ["必去", "千年临安", "朝阳楼"],
+    isHot: true, ticket: "古城免费（朝阳楼登楼另计）",
+    description: "一座一千二百年的滇南古城，旧称临安，「文献名邦」。城东的朝阳楼建于明初，形制酷似缩小版天安门，是古城的门面。青石街巷里书院、老宅、古井、紫陶铺子错落，市井与斯文并存，比多数古镇都更有生活底气。",
+    tips: "古城本身免费、可随意逛；朝阳楼、各家花园单独收票；紫陶街淘一把建水紫陶壶；用古井水做的烧豆腐随处可尝。",
+    transport: "昆明南站高铁约1.5小时至建水站",
+    color: "#8A6A66", xp: 130,
+  },
+  {
+    id: 'js2', name: "朱家花园", nameEn: "Zhu's Family Garden", emoji: "🏛️",
+    district: "建水县", lat: 23.6300, lng: 102.8200,
+    peakTime: "全年", peakDays: "全年 · 滇南大观园", difficulty: "easy",
+    rating: 4.6, reviews: 7100, tags: ["必去", "清代宅院", "滇南大观园"],
+    isHot: true, ticket: "门票约40元",
+    description: "清末富商朱氏的家宅与祠堂，「滇南大观园」。四十二个天井、两百多间房环环相扣，水榭亭台、雕梁画栋精致到极致，布局复杂却井然。走在里头能真切摸到滇南士绅当年的排场与讲究。",
+    tips: "院子大、格局绕，慢慢逛约一小时；园内设客栈，住客免门票；与文庙、朝阳楼同在古城内可连游。",
+    transport: "建水古城内，步行可达",
+    color: "#7A5E52", xp: 110,
+  },
+  {
+    id: 'js3', name: "建水文庙", nameEn: "Confucius Temple", emoji: "🎓",
+    district: "建水县", lat: 23.6200, lng: 102.8200,
+    peakTime: "全年", peakDays: "周末有古乐表演", difficulty: "easy",
+    rating: 4.6, reviews: 5600, tags: ["必去", "全国第三大文庙", "大成殿"],
+    ticket: "门票约60元",
+    description: "有六百多年历史，规模仅次于曲阜、北京两座孔庙，全国第三大。学海（泮池）浩渺，大成殿飞檐叠拱、祀奉孔子，历代崇文重教的匾额碑刻满目。建水「文献名邦」的底气，一半在这里。",
+    tips: "每逢周末上午9:00、下午14:00有免费古乐表演（约两小时），可掐点去；殿宇多、碑刻值得细看。",
+    transport: "建水古城内，步行可达",
+    color: "#B4472F", xp: 100,
+  },
+  {
+    id: 'js4', name: "建水古城小火车", nameEn: "Vintage Meter-gauge Train", emoji: "🚂",
+    district: "建水县", lat: 23.6300, lng: 102.8000,
+    peakTime: "全年", peakDays: "全年 · 复古米轨", difficulty: "easy",
+    rating: 4.5, reviews: 6300, tags: ["必去", "百年米轨", "临安—团山"],
+    isHot: true, ticket: "往返约120元（含各站停留）",
+    description: "沿着百年滇越铁路支线跑的复古观光小火车，从临安站出发，一路停靠双龙桥、乡会桥、团山。绿皮车厢、米轨窄道、田园与古桥掠过窗外，是把建水几处精华串成一线的最惬意方式。",
+    tips: "班次固定、需提前订票；各站有停留时间下车逛（双龙桥、团山）；旺季一票难求，尽早预订。",
+    transport: "建水古城临安站发车",
+    color: "#4E7A5E", xp: 100,
+  },
+  {
+    id: 'js5', name: "双龙桥（十七孔桥）", nameEn: "Double Dragons Bridge", emoji: "🌉",
+    district: "建水县", lat: 23.6500, lng: 102.7800,
+    peakTime: "全年（黄昏最美）", peakDays: "日落逆光最出片", difficulty: "easy",
+    rating: 4.5, reviews: 4200, tags: ["十七孔石桥", "三阁楼", "日落"],
+    ticket: "免费",
+    description: "泸江与塌冲河交汇处的清代大石桥，十七个桥孔一字排开、桥上叠起三座阁楼，是云南现存最大的多孔连拱古桥。黄昏时逆光成剪影，与水面倒影连成一体，古意十足，也是小火车的一站。",
+    tips: "小火车会停靠，也可单独打车来；傍晚逆光与倒影最美；桥面可走，注意脚下石阶。",
+    transport: "建水城区驾车约15分钟，或乘小火车",
+    color: "#C08A45", xp: 90,
+  },
+  {
+    id: 'js6', name: "团山民居", nameEn: "Tuanshan Village", emoji: "🏘️",
+    district: "建水县", lat: 23.6800, lng: 102.7200,
+    peakTime: "全年", peakDays: "全年 · 古村大宅", difficulty: "easy",
+    rating: 4.4, reviews: 3100, tags: ["古民居群", "张家花园", "青砖白墙"],
+    ticket: "门票约50元",
+    description: "小火车终点的一座古村，保存着大片汉、彝合璧的清代民居。青瓦白墙、坐东朝西，天井是每户的中心，门窗上的木雕、彩绘、书法精细讲究。张家花园等大宅气派不输城里，却更多了村野的安静。",
+    tips: "多为小火车终点站顺游；村内大宅需门票，慢逛约一小时；尊重仍在居住的村民。",
+    transport: "建水城区驾车约25分钟，或乘小火车终点",
+    color: "#8A7A66", xp: 90,
+  },
+  {
+    id: 'js7', name: "燕子洞", nameEn: "Swallow Cave", emoji: "🕊️",
+    district: "建水县", lat: 23.6800, lng: 103.0000,
+    peakTime: "5-7月看群燕", peakDays: "春夏百万雨燕", difficulty: "easy",
+    rating: 4.3, reviews: 2600, tags: ["亚洲第一溶洞", "百万雨燕", "采燕窝"],
+    ticket: "门票约80元",
+    description: "号称「亚洲第一溶洞」，分干、湿两洞，钟乳石笋成林、暗河穿流。每年五到七月，上百万只雨燕在洞中筑巢，清晨与傍晚成群进出、遮天蔽日。每年还有徒手攀岩采燕窝、悬崖挂匾的绝技表演。",
+    tips: "看群燕要赶五到七月、清晨约9点或傍晚约5点；采燕窝表演在8月8日前后；洞内凉滑带外套。",
+    transport: "建水城区驾车约30分钟",
+    color: "#3B6E86", xp: 90,
+  },
+]
+
+/* 周边顺游 —— 均在红河州内（石屏/弥勒/泸西），派生同归红河 */
+const jianshuiNearby = [
+  {
+    id: 'jsn1', name: "石屏古城·异龙湖", nameEn: "Shiping & Yilong Lake", emoji: "🌊",
+    district: "石屏县", lat: 23.7100, lng: 102.4900,
+    peakTime: "全年（夏荷）", peakDays: "夏季荷花满湖", difficulty: "easy",
+    rating: 4.3, reviews: 1700, tags: ["状元故里", "石屏豆腐", "高原湖"],
+    ticket: "古城免费 / 异龙湖低价",
+    desc: "状元之乡的古城与万亩荷花湖",
+    description: "云南出过状元的书香古城，文庙、袁嘉谷故居、老街都还在，比建水更清净。城外的异龙湖是滇南大湖，夏天万亩荷花铺展。石屏豆腐用天然碱水点制，是与建水豆腐齐名的一绝。",
+    tips: "与建水同一方向可顺游；夏季看异龙湖荷花；尝石屏豆腐、八面煎鱼。",
+    transport: "建水驾车约1小时至石屏",
+    color: "#3B8AA6", xp: 80, isNearby: true,
+  },
+  {
+    id: 'jsn2', name: "弥勒·东风韵", nameEn: "Mile Dongfengyun", emoji: "🍷",
+    district: "弥勒市", lat: 24.4100, lng: 103.4300,
+    peakTime: "全年", peakDays: "全年 · 艺术小镇", difficulty: "easy",
+    rating: 4.4, reviews: 2800, tags: ["红砖艺术", "网红打卡", "温泉葡萄酒"],
+    desc: "红砖曲线堆出的艺术小镇，温泉与葡萄酒",
+    description: "以罗旦设计的红砖曲线建筑群走红的艺术小镇，万花筒般的拱洞与酒瓶塔极出片。弥勒还是云南的温泉与葡萄酒之乡，可邑小镇的阿细跳月、湖泉温泉都在附近，是慢生活度假的好去处。",
+    tips: "偏北、靠昆明方向，可作建水—昆明之间的过渡；泡温泉、尝弥勒葡萄酒；东风韵拍照人多趁早。",
+    transport: "建水驾车约2小时至弥勒",
+    color: "#B4472F", xp: 80, isNearby: true,
+  },
+  {
+    id: 'jsn3', name: "泸西城子古村", nameEn: "Chengzi Ancient Village", emoji: "🏚️",
+    district: "泸西县", lat: 24.3500, lng: 103.6600,
+    peakTime: "全年", peakDays: "全年 · 土掌房", difficulty: "medium",
+    rating: 4.2, reviews: 900, tags: ["彝族土掌房", "叠层古村", "人少"],
+    desc: "层层叠叠的彝族土掌房，云南布达拉宫",
+    description: "一座依山而建的彝族土掌房古村，上千间黄土平顶房顺着山坡层层叠压、屋顶连成通道，被称作「土掌房博物馆」「小布达拉宫」。人少、原始、光影极佳，是摄影与人文爱好者的秘境。",
+    tips: "路稍远、设施简朴，自驾为宜；晨昏光影最佳；尊重仍居住的村民，勿擅入院落。",
+    transport: "建水驾车约2小时至泸西城子",
+    color: "#B08968", xp: 80, isNearby: true,
+  },
+]
+
+const jianshuiItinerary = [
+  {
+    day: 1, title: "抵达·古城斯文", date: "Day 1",
+    activities: [
+      { time: "下午", icon: "🚄", text: "高铁抵建水，入住古城客栈" },
+      { time: "傍晚", icon: "🏯", text: "朝阳楼、临安古街，紫陶铺子闲逛", spotId: 'js1' },
+      { time: "晚上", icon: "🍢", text: "古井烧豆腐配草芽米线，数玉米粒吃豆腐" },
+    ]
+  },
+  {
+    day: 2, title: "宅院与文庙", date: "Day 2",
+    activities: [
+      { time: "上午", icon: "🏛️", text: "朱家花园（滇南大观园）", spotId: 'js2' },
+      { time: "下午", icon: "🎓", text: "建水文庙，赶周末古乐表演", spotId: 'js3' },
+      { time: "傍晚", icon: "🍲", text: "尝正宗汽锅鸡 + 糯米揣莲藕" },
+    ]
+  },
+  {
+    day: 3, title: "米轨小火车", date: "Day 3",
+    activities: [
+      { time: "上午", icon: "🚂", text: "临安站坐复古小火车", spotId: 'js4' },
+      { time: "上午", icon: "🌉", text: "双龙桥下车，十七孔桥漫步", spotId: 'js5' },
+      { time: "下午", icon: "🏘️", text: "团山古村访清代大宅", spotId: 'js6' },
+    ]
+  },
+  {
+    day: 4, title: "燕子洞或顺游", date: "Day 4",
+    activities: [
+      { time: "全天", icon: "🕊️", text: "燕子洞看群燕（5-7月）或 石屏/弥勒顺游" },
+      { time: "下午", icon: "🎁", text: "选购建水紫陶壶、草芽、汽锅伴手礼" },
+      { time: "傍晚", icon: "✈️", text: "返程 / 前往下一站（元阳、昆明）" },
+    ]
+  },
+]
+
+const jianshuiTips = [
+  { icon: "📅", title: "最佳季节", content: "亚热带气候、全年温和，春秋（3-5月、9-11月）最舒适。看燕子洞百万雨燕要赶5-7月。夏季（6-8月）多雨偏热，冬季温和少严寒，随时可来。" },
+  { icon: "🍢", title: "烧豆腐文化", content: "建水烧豆腐用城中古井水点制，小块炭火现烤，蘸干/湿两种蘸水。老店用玉米粒给你计数、吃几块数几粒，是建水最有仪式感的市井小吃，别错过板井一带的老摊。" },
+  { icon: "🚂", title: "小火车订票", content: "古城米轨小火车班次固定、旺季常满，务必提前订票；各站有停留时间下车游双龙桥、团山，算好车次衔接，别误了返程班次。" },
+  { icon: "🎓", title: "文庙古乐", content: "文庙周末上午9:00、下午14:00有免费古乐表演，想看请掐点前往。文庙、朱家花园等各家单独收票，古城本身免费，可按兴趣挑着进。" },
+  { icon: "🏺", title: "建水紫陶", content: "建水紫陶是中国四大名陶之一，以细腻紫泥、书画刻填、无釉磨光著称，做茶壶茶器尤佳。紫陶街可看制作、选购，认准手工正品，别买机制仿品。" },
+  { icon: "🍲", title: "临安味道", content: "汽锅鸡（此地为发源地之一）、草芽（建水独有的水生嫩蔬）、糯米揣莲藕、过桥米线都值得尝。老城小馆比景区地道。" },
+  { icon: "🚄", title: "交通便利", content: "昆明南站有高铁直达建水站约1.5小时，是滇南古城里最好到的一座。建水—元阳约80公里、车程1.5小时，两地常一并安排（古城+梯田）。" },
+]
+
+const jianshuiFoods = [
+  { name: "建水烧豆腐", emoji: "🍢", desc: "古井水点制，炭火现烤数粒计数" },
+  { name: "汽锅鸡", emoji: "🍲", desc: "汽锅蒸出原汁，滇味名菜发源地" },
+  { name: "草芽", emoji: "🌱", desc: "建水独有水生嫩蔬，清甜爽脆" },
+  { name: "糯米揣莲藕", emoji: "🪷", desc: "藕孔塞糯米油炸，外脆内糯" },
+  { name: "过桥米线", emoji: "🍜", desc: "滇南做法，汤鲜料足" },
+  { name: "曲江烤鸭", emoji: "🦆", desc: "建水曲江镇名产，皮脆肉香" },
+]
+
+const jianshuiPackList = [
+  { icon: "👟", text: "舒适步行鞋（古城青石街多走）" },
+  { icon: "🧥", text: "薄外套（燕子洞凉、早晚温差）" },
+  { icon: "🎫", text: "提前订小火车票（旺季常满）" },
+  { icon: "🧴", text: "防晒（滇南日照强）" },
+  { icon: "🫖", text: "余量行李空间（带紫陶壶回家）" },
+  { icon: "💳", text: "身份证 + 现金（老摊小店）" },
+]
+
+const jianshuiSeason = {
+  title: "最佳旅行季节",
+  sub: "千年临安，文献名邦",
+  rows: [
+    { dot: "peak",  label: "🌤️ 春秋（3—5 / 9—11月）", date: "气候宜人，古城最舒适", badge: "推荐" },
+    { dot: "early", label: "🕊️ 燕子季（5—7月）", date: "燕子洞百万雨燕进出" },
+    { dot: "late",  label: "🌧️ 夏（6—8月）", date: "多雨偏热，绿意最浓" },
+  ],
+}
+
 /* ════════════════ CITIES 汇总 ════════════════
    扩展新城市：复制上方一整套 daliXxx 常量，改名后
    在下面数组里追加一个对象即可。
@@ -2284,6 +2477,32 @@ export const CITIES = [
     foods: yuanyangFoods,
     packList: yuanyangPackList,
     seasonInfo: yuanyangSeason,
+  },
+  {
+    id: 'jianshui',
+    name: '建水',
+    nameEn: 'Jianshui',
+    emoji: '🏯',
+    country: '云南',
+    tagline: '千年临安，文献名邦',
+    heroBadge: '红河 · 云南',
+    heroTitle: '临安建水',
+    heroHighlight: '慢慢品吧！',
+    heroDesc: '古城书院、朱家花园与米轨小火车',
+    heroGradient: 'linear-gradient(160deg, #43323C 0%, #86685E 55%, #E6D8CC 100%)',
+    quickTips: [
+      { icon: '🚄', text: '昆明高铁直达约1.5小时' },
+      { icon: '🍢', text: '古井烧豆腐数粒计数' },
+      { icon: '🚂', text: '米轨小火车提前订票' },
+      { icon: '🏺', text: '建水紫陶四大名陶之一' },
+    ],
+    spots: jianshuiSpots,
+    nearbySpots: jianshuiNearby,
+    itineraryDays: jianshuiItinerary,
+    tips: jianshuiTips,
+    foods: jianshuiFoods,
+    packList: jianshuiPackList,
+    seasonInfo: jianshuiSeason,
   },
 ]
 
