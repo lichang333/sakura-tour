@@ -17,17 +17,19 @@ export default function TipsPage({ goToSpot }) {
   const { currentCity } = useCity()
   const { user, mintSsoCode } = useUser()
 
-  // 星探食堂共享同一账号：带一次性 SSO 码跳过去自动登录（同踏印）
-  const openStarScout = async (e) => {
+  // 关联 App 带一次性 SSO 码跳转，同账号自动登录
+  const openWithSso = async (e, base) => {
     if (!user) return
     e.preventDefault()
-    let url = 'https://star-scout.digitalvio.shop/'
+    let url = base
     try {
       const code = await mintSsoCode?.()
       if (code) url += `#sso=${code}`
     } catch { /* 铸码失败就裸跳 */ }
     window.open(url, '_blank', 'noreferrer')
   }
+  const openTayin     = (e) => openWithSso(e, 'https://tayin.digitalvio.shop/')
+  const openStarScout = (e) => openWithSso(e, 'https://star-scout.digitalvio.shop/')
   const [packed, setPacked] = useState(() => new Set(loadPacked(currentCity.id)))
   const [tasted, setTasted] = useState(() => new Set(loadTasted(currentCity.id)))
   const [shareImg, setShareImg] = useState(null)   // dataURL，弹层预览
@@ -235,7 +237,17 @@ export default function TipsPage({ goToSpot }) {
         </div>
       </div>
 
-      {/* 星探食堂 · 关联 App 入口（餐厅集星，独立账号，另开） */}
+      {/* 踏印 · 打卡地图入口（同账号 SSO 自动登录） */}
+      <a className="tayin-card" style={{ margin: '6px 16px 4px' }} href="https://tayin.digitalvio.shop/" target="_blank" rel="noreferrer" onClick={openTayin}>
+        <span className="tc-seal">印</span>
+        <span className="tc-info">
+          <span className="tc-title">踏印 · 中国打卡地图</span>
+          <span className="tc-sub">{user ? '走过点亮全国版图，打卡自动盖章' : '一地一印，点亮你的全国版图'}</span>
+        </span>
+        <span className="tc-go">去盖章 →</span>
+      </a>
+
+      {/* 星探食堂 · 关联 App 入口（餐厅集星，同账号 SSO） */}
       <a className="starscout-card" href="https://star-scout.digitalvio.shop/" target="_blank" rel="noreferrer" onClick={openStarScout}>
         <span className="ss-seal">星</span>
         <span className="ss-info">
