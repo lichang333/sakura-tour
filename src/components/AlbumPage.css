@@ -1,0 +1,98 @@
+.album-page {
+  padding: 0 0 24px;
+}
+
+.album-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 18px 16px 6px;
+}
+
+.album-back {
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-mid);
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.album-back:active { transform: scale(0.93); }
+
+.album-head-text { flex: 1; min-width: 0; }
+.album-head-text .page-sub { margin-top: 2px; }
+
+.album-progress {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--copper);
+  white-space: nowrap;
+  margin-top: 6px;
+}
+.album-progress b { font-size: 15px; }
+
+.album-group { margin-top: 14px; }
+
+.album-group-label {
+  font-family: var(--font-serif);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-mid);
+  letter-spacing: 0.1em;
+  padding: 0 18px 8px;
+}
+
+.album-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  padding: 0 16px;
+}
+
+.stamp-cell {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 10px 6px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  transition: transform 0.12s ease, border-color 0.18s ease;
+}
+.stamp-cell.earned { cursor: pointer; }
+.stamp-cell.earned:active { transform: scale(0.97); }
+@media (hover: hover) {
+  .stamp-cell.earned:hover { border-color: var(--copper); }
+}
+.stamp-cell.locked { opacity: 0.9; }
+
+.stamp-cell-name {
+  font-family: var(--font-serif);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-top: 2px;
+}
+.stamp-cell.locked .stamp-cell-name { color: var(--text-mid); }
+
+.stamp-cell-state {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-mid);
+  opacity: 0.7;
+}
+.stamp-cell-state.on { color: var(--jade); opacity: 1; }
+
+.album-foot {
+  text-align: center;
+  font-family: var(--font-serif);
+  font-size: 12.5px;
+  color: var(--text-mid);
+  letter-spacing: 0.15em;
+  margin-top: 22px;
+}

@@ -11,6 +11,7 @@ import PlanPage from './components/PlanPage'
 import TipsPage from './components/TipsPage'
 import MapPage from './components/MapPage'
 import ProfilePage from './components/ProfilePage'
+import AlbumPage from './components/AlbumPage'
 import './App.css'
 
 function AppInner() {
@@ -48,6 +49,7 @@ function AppInner() {
     tips:    <TipsPage goToSpot={goToSpot} />,
     map:     <MapPage goToSpot={goToSpot} openList={() => setActiveTab('spots')} />,
     profile: <ProfilePage goToSpot={goToSpot} />,
+    album:   <AlbumPage goBack={() => setActiveTab('home')} />,
   }
 
   return (

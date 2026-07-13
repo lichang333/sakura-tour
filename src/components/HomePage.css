@@ -410,3 +410,7 @@
   border: 1px solid var(--border);
   border-radius: 16px;
 }
+
+/* 足迹条右侧：印章排 + 「集章册 ›」入口提示 */
+.fs-right { display: flex; flex-direction: column; align-items: flex-end; gap: 7px; }
+.fs-album { font-size: 11.5px; font-weight: 700; color: var(--copper); white-space: nowrap; }

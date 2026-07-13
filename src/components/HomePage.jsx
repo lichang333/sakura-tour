@@ -135,12 +135,13 @@ export default function HomePage({ setActiveTab, goToSpot }) {
       </div>
 
       {/* 足迹钤印条 */}
-      <button className="footstrip" onClick={() => setActiveTab('map')}>
+      <button className="footstrip" onClick={() => setActiveTab('album')}>
         <div className="fs-left">
           <div className="fs-label">你的足迹</div>
           <div className="fs-count"><b>{cityVisited}</b> / {spotCount} 已抵达</div>
           <div className="fs-meta">{user?.xp ?? 0} XP · 连续 {user?.streak ?? 0} 天</div>
         </div>
+        <div className="fs-right">
         <div className="stamps">
           {Array.from({ length: Math.min(spotCount, 6) }).map((_, i) => {
             const spot = cityVisitedSpots[i]
@@ -154,6 +155,8 @@ export default function HomePage({ setActiveTab, goToSpot }) {
               >{spot ? spot.name.slice(0, 1) : ''}</span>
             )
           })}
+        </div>
+          <div className="fs-album">集章册 ›</div>
         </div>
       </button>
 

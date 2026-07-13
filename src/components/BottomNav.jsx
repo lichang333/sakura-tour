@@ -26,7 +26,7 @@ const TABS = [
 
 export default function BottomNav({ activeTab, setActiveTab }) {
   // 地图是景点的一种视图（页内切换），底栏归入「景点」高亮
-  const current = activeTab === 'map' ? 'spots' : activeTab
+  const current = activeTab === 'map' ? 'spots' : activeTab === 'album' ? 'home' : activeTab
   return (
     <nav className="bottom-nav">
       <div className="bn-brand">
