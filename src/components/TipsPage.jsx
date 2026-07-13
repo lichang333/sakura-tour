@@ -223,6 +223,16 @@ export default function TipsPage({ goToSpot }) {
         </div>
       </div>
 
+      {/* 星探食堂 · 关联 App 入口（餐厅集星，独立账号，另开） */}
+      <a className="starscout-card" href="https://star-scout.digitalvio.shop/" target="_blank" rel="noreferrer">
+        <span className="ss-seal">星</span>
+        <span className="ss-info">
+          <span className="ss-title">星探食堂 · 集星觅食</span>
+          <span className="ss-sub">米其林 · 黑珍珠 · 必吃榜，三榜合一餐厅打卡</span>
+        </span>
+        <span className="ss-go">去集星 →</span>
+      </a>
+
       {/* Packing List — checkable, persisted per city */}
       <div className="section">
         <div className="pack-head">

@@ -563,3 +563,56 @@
   box-shadow: 0 4px 14px rgba(0,0,0,0.3);
   white-space: nowrap;
 }
+
+/* ── 星探食堂 · 关联 App 入口卡（镜像踏印卡，金色「星」印） ── */
+.starscout-card {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  margin: 6px 16px 4px;
+  padding: 15px 16px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  box-shadow: var(--shadow-card);
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.2s, transform 0.15s;
+}
+
+.starscout-card:active { transform: scale(0.98); }
+
+@media (hover: hover) {
+  .starscout-card:hover { border-color: var(--duo-yellow, #C69A4C); }
+  .starscout-card:hover .ss-go { transform: translateX(3px); }
+}
+
+.ss-seal {
+  width: 42px;
+  height: 42px;
+  border-radius: 11px;
+  border: 2px solid var(--duo-yellow, #C69A4C);
+  background: var(--duo-yellow, #C69A4C);
+  color: #FFF6E8;
+  font-family: var(--font-serif);
+  font-size: 21px;
+  font-weight: 600;
+  display: grid;
+  place-items: center;
+  transform: rotate(-5deg);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.18);
+  flex-shrink: 0;
+}
+
+.ss-info  { display: flex; flex-direction: column; gap: 3px; flex: 1; min-width: 0; }
+.ss-title { font-family: var(--font-serif); font-size: 15.5px; font-weight: 700; color: var(--text-dark); }
+.ss-sub   { font-size: 12px; font-weight: 600; color: var(--text-mid); }
+
+.ss-go {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--duo-yellow, #C69A4C);
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: transform 0.15s ease;
+}
