@@ -242,15 +242,16 @@
   text-overflow: ellipsis;
 }
 
-.srow-state {
-  font-size: 11.5px;
-  font-weight: 600;
+/* 本地精选行右侧：轻量箭头，表示可点进详情（替代原「想去/待探索」标签） */
+.srow-go {
+  font-size: 22px;
+  line-height: 1;
+  font-weight: 400;
   color: var(--text-mid);
-  white-space: nowrap;
-  opacity: 0.65;
+  opacity: 0.5;
+  flex-shrink: 0;
+  padding-left: 4px;
 }
-.srow-state.visited { color: var(--jade); opacity: 1; }
-.srow-state.want    { color: var(--indigo); opacity: 1; }
 
 /* ── Dynamic Task Cards ── */
 .task-card {

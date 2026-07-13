@@ -167,8 +167,6 @@ export default function HomePage({ setActiveTab, goToSpot }) {
             <div className="curated-empty">这座城的精选都抵达啦 · 换个城继续探索 🎒</div>
           )}
           {curated.map(spot => {
-            const visited = visitedIds.includes(spot.id)
-            const checked = checkedIds.includes(spot.id)
             return (
               <button key={spot.id} className="spot-row" onClick={() => goToSpot?.(spot.id)}>
                 <div
@@ -185,9 +183,7 @@ export default function HomePage({ setActiveTab, goToSpot }) {
                   </div>
                   <div className="srow-sub">{spot.tags?.filter(t => t !== '必去').slice(0, 2).join(' · ')}</div>
                 </div>
-                <div className={`srow-state ${visited ? 'visited' : checked ? 'want' : ''}`}>
-                  {visited ? '已抵达' : checked ? '想去' : '待探索'}
-                </div>
+                <span className="srow-go" aria-hidden="true">›</span>
               </button>
             )
           })}
