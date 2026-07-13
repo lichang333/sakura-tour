@@ -94,12 +94,20 @@
 .fs-meta { font-size: 11px; color: var(--copper); font-weight: 600; margin-top: 4px; letter-spacing: 0.02em; }
 .stamps { display: flex; gap: 6px; }
 .stamp {
-  width: 26px; height: 26px; border-radius: 50%;
+  width: 28px; height: 28px; border-radius: 8px;
   display: grid; place-items: center;
-  font-family: var(--font-serif); font-size: 11px;
+  font-family: var(--font-serif); font-size: 14px; font-weight: 600;
   border: 1.5px dashed var(--border); color: var(--text-mid);
+  background: transparent;
+  flex-shrink: 0;
 }
-.stamp.on { border: 1.5px solid var(--copper); color: var(--copper); transform: rotate(-8deg); }
+/* 盖过的印：填充铜色方印 + 奶白字，手盖式微斜（旋转由内联样式按序错开） */
+.stamp.on {
+  border: 1.5px solid var(--copper);
+  background: var(--copper);
+  color: #FBF8F1;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.20);
+}
 
 /* Stats */
 .stats-row {

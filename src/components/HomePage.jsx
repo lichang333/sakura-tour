@@ -32,6 +32,8 @@ export default function HomePage({ setActiveTab, goToSpot }) {
   const citySpots   = currentCity.spots
   const cityChecked = checkedIds.filter(id => citySpots.some(s => s.id === id)).length
   const cityVisited = visitedIds.filter(id => citySpots.some(s => s.id === id)).length
+  // 已抵达景点（按城市顺序）—— 足迹条每枚印章盖各自景点名首字
+  const cityVisitedSpots = citySpots.filter(s => visitedIds.includes(s.id))
 
   // 本地精选 — 发现区，已抵达的不再出现；热门优先、再按评分
   const curated = citySpots
@@ -140,9 +142,18 @@ export default function HomePage({ setActiveTab, goToSpot }) {
           <div className="fs-meta">{user?.xp ?? 0} XP · 连续 {user?.streak ?? 0} 天</div>
         </div>
         <div className="stamps">
-          {Array.from({ length: Math.min(spotCount, 6) }).map((_, i) => (
-            <span key={i} className={`stamp ${i < cityVisited ? 'on' : ''}`}>{i < cityVisited ? '印' : '·'}</span>
-          ))}
+          {Array.from({ length: Math.min(spotCount, 6) }).map((_, i) => {
+            const spot = cityVisitedSpots[i]
+            const rot  = (i % 2 ? 1 : -1) * (4 + (i % 3) * 2)
+            return (
+              <span
+                key={i}
+                className={`stamp ${spot ? 'on' : ''}`}
+                style={spot ? { transform: `rotate(${rot}deg)` } : undefined}
+                title={spot?.name}
+              >{spot ? spot.name.slice(0, 1) : ''}</span>
+            )
+          })}
         </div>
       </button>
 
