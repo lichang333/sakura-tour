@@ -76,6 +76,7 @@ export default function PlanPage({ setActiveTab, goToSpot }) {
   const defaultDays = () => itineraryDays.map(d => ({
     day: d.day,
     title: d.title,
+    emoji: d.emoji,
     activities: [
       ...d.activities
         .map((a, i) => ({ id: makeKey(d.day, i), time: a.time, icon: a.icon, text: a.text, spotId: a.spotId ?? null }))
@@ -93,11 +94,12 @@ export default function PlanPage({ setActiveTab, goToSpot }) {
   }
   const rid = (p) => `${cityId}:${p}-${Date.now()}-${Math.round(Math.random() * 1e4)}`
   const editDayTitle = (di, v)          => forkEdit(d => { d[di].title = v })
+  const editDayEmoji = (di, v)          => forkEdit(d => { d[di].emoji = v })
   const editAct      = (di, ai, f, v)   => forkEdit(d => { d[di].activities[ai][f] = v })
   const addActRow    = (di)             => forkEdit(d => { d[di].activities.push({ id: rid('c'), time: '', icon: '📍', text: '', spotId: null }) })
   const delActRow    = (di, ai)         => forkEdit(d => { d[di].activities.splice(ai, 1) })
   const addSpotRow   = (di, spot)       => forkEdit(d => { d[di].activities.push({ id: rid('s'), time: '', icon: spot.emoji, text: `${spot.name}（${spot.district}）`, spotId: spot.id }) })
-  const addDayRow    = ()               => forkEdit(d => { d.push({ day: d.length + 1, title: `Day ${d.length + 1} · 新的一天`, activities: [] }) })
+  const addDayRow    = ()               => forkEdit(d => { d.push({ day: d.length + 1, title: `Day ${d.length + 1} · 新的一天`, emoji: '📅', activities: [] }) })
   const delDayRow    = (di)             => forkEdit(d => { d.splice(di, 1); d.forEach((x, i) => { x.day = i + 1 }) })
   const resetItin    = () => { if (confirm('恢复为默认行程？你的自定义改动将清除。')) { setCityItinerary(cityId, null); setEditMode(false) } }
 
@@ -261,7 +263,7 @@ export default function PlanPage({ setActiveTab, goToSpot }) {
                     <div className="dtc-day" style={isActive ? { color: 'rgba(255,255,255,0.85)' } : {}}>Day {day.day}</div>
                     {pct > 0 && !isActive && <div className="dtc-dot" style={{ background: theme.color }} />}
                   </div>
-                  <div className="dtc-icon">{theme.icon}</div>
+                  <div className="dtc-icon">{day.emoji || theme.icon}</div>
                   <div className="dtc-title" style={isActive ? { color: 'white' } : {}}>{day.title}</div>
                   {isActive && (
                     <div className="dtc-progress-text" style={{ color: 'rgba(255,255,255,0.85)' }}>
@@ -294,13 +296,23 @@ export default function PlanPage({ setActiveTab, goToSpot }) {
                   <div className="dhc-left">
                     <div className="dhc-label">Day {day.day}</div>
                     {editMode ? (
-                      <input
-                        className="dhc-title-input"
-                        value={day.title}
-                        onChange={e => editDayTitle(di, e.target.value)}
-                        placeholder="这一天的标题"
-                        maxLength={30}
-                      />
+                      <div className="dhc-edit-row">
+                        <input
+                          className="dhc-emoji-input"
+                          value={day.emoji || theme.icon}
+                          onChange={e => editDayEmoji(di, e.target.value)}
+                          maxLength={4}
+                          aria-label="这一天的图标 emoji"
+                          title="改这一天的图标"
+                        />
+                        <input
+                          className="dhc-title-input"
+                          value={day.title}
+                          onChange={e => editDayTitle(di, e.target.value)}
+                          placeholder="这一天的标题"
+                          maxLength={30}
+                        />
+                      </div>
                     ) : (
                       <div className="dhc-title">{day.title}</div>
                     )}

@@ -1088,8 +1088,10 @@
 .dac-label { font-size: 11px; font-weight: 700; }
 
 /* 天标题编辑 */
+.dhc-edit-row { display: flex; gap: 7px; align-items: stretch; margin: 2px 0 4px; }
 .dhc-title-input {
-  width: 100%;
+  flex: 1;
+  min-width: 0;
   background: rgba(255,255,255,0.18);
   border: 1px solid rgba(255,255,255,0.45);
   border-radius: 9px;
@@ -1098,9 +1100,20 @@
   font-family: var(--font-serif);
   font-size: 18px;
   font-weight: 800;
-  margin: 2px 0 4px;
 }
 .dhc-title-input::placeholder { color: rgba(255,255,255,0.6); }
+/* 天图标 emoji 输入：小方块，居中大字，点开就是系统 emoji 键盘 */
+.dhc-emoji-input {
+  width: 44px;
+  flex-shrink: 0;
+  background: rgba(255,255,255,0.18);
+  border: 1px solid rgba(255,255,255,0.45);
+  border-radius: 9px;
+  padding: 2px;
+  text-align: center;
+  font-size: 20px;
+  line-height: 1;
+}
 
 /* 活动行内编辑 */
 .act-emoji-input {
