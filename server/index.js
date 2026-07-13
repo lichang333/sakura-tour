@@ -2,6 +2,7 @@ import express from 'express'
 import cors from 'cors'
 import authRoutes    from './routes/auth.js'
 import userRoutes, { UPLOADS_DIR } from './routes/user.js'
+import starRoutes    from './routes/star.js'
 import reviewRoutes  from './routes/reviews.js'
 
 const app = express()
@@ -17,15 +18,17 @@ app.use(cors({
 const jsonSmall = express.json({ limit: '1mb' })
 const jsonLarge = express.json({ limit: '12mb' })
 app.use((req, res, next) =>
-  (req.path === '/api/user/photos' ? jsonLarge : jsonSmall)(req, res, next)
+  (req.path === '/api/user/photos' || req.path === '/api/star/user/photos'
+    ? jsonLarge : jsonSmall)(req, res, next)
 )
 
 // User-uploaded travel photos
 app.use('/uploads', express.static(UPLOADS_DIR, { maxAge: '30d', immutable: true }))
 
-app.use('/api/auth',    authRoutes)
-app.use('/api/user',    userRoutes)
-app.use('/api/reviews', reviewRoutes)
+app.use('/api/auth',      authRoutes)
+app.use('/api/user',      userRoutes)
+app.use('/api/star/user', starRoutes)   // 星探食堂：共享账号、独立餐厅数据
+app.use('/api/reviews',   reviewRoutes)
 
 app.get('/api/health', (_, res) => res.json({ ok: true }))
 

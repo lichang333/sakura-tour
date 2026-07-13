@@ -33,5 +33,8 @@ try { db.exec(`ALTER TABLE users ADD COLUMN removed_activities  TEXT NOT NULL DE
 try { db.exec(`ALTER TABLE users ADD COLUMN recommended_spots TEXT NOT NULL DEFAULT '[]'`) } catch {}
 try { db.exec(`ALTER TABLE users ADD COLUMN spot_photos         TEXT NOT NULL DEFAULT '{}'`) } catch {}
 try { db.exec(`ALTER TABLE users ADD COLUMN region_levels       TEXT NOT NULL DEFAULT '{}'`) } catch {}
+// 星探食堂共享同一账号，但其整套餐厅数据独立存这一列 JSON，
+// 与上面的 Sakura 景点列彻底隔离、互不污染（见 routes/star.js）
+try { db.exec(`ALTER TABLE users ADD COLUMN star_data           TEXT NOT NULL DEFAULT '{}'`) } catch {}
 
 export default db

@@ -15,7 +15,19 @@ function loadTasted(cityId) {
 export default function TipsPage({ goToSpot }) {
   const [expanded, setExpanded] = useState(null)
   const { currentCity } = useCity()
-  const { user } = useUser()
+  const { user, mintSsoCode } = useUser()
+
+  // 星探食堂共享同一账号：带一次性 SSO 码跳过去自动登录（同踏印）
+  const openStarScout = async (e) => {
+    if (!user) return
+    e.preventDefault()
+    let url = 'https://star-scout.digitalvio.shop/'
+    try {
+      const code = await mintSsoCode?.()
+      if (code) url += `#sso=${code}`
+    } catch { /* 铸码失败就裸跳 */ }
+    window.open(url, '_blank', 'noreferrer')
+  }
   const [packed, setPacked] = useState(() => new Set(loadPacked(currentCity.id)))
   const [tasted, setTasted] = useState(() => new Set(loadTasted(currentCity.id)))
   const [shareImg, setShareImg] = useState(null)   // dataURL，弹层预览
@@ -224,11 +236,11 @@ export default function TipsPage({ goToSpot }) {
       </div>
 
       {/* 星探食堂 · 关联 App 入口（餐厅集星，独立账号，另开） */}
-      <a className="starscout-card" href="https://star-scout.digitalvio.shop/" target="_blank" rel="noreferrer">
+      <a className="starscout-card" href="https://star-scout.digitalvio.shop/" target="_blank" rel="noreferrer" onClick={openStarScout}>
         <span className="ss-seal">星</span>
         <span className="ss-info">
           <span className="ss-title">星探食堂 · 集星觅食</span>
-          <span className="ss-sub">米其林 · 黑珍珠 · 必吃榜，三榜合一餐厅打卡</span>
+          <span className="ss-sub">{user ? '米其林 · 黑珍珠 · 必吃榜，同账号一键集星' : '米其林 · 黑珍珠 · 必吃榜，三榜合一餐厅打卡'}</span>
         </span>
         <span className="ss-go">去集星 →</span>
       </a>
