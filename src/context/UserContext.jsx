@@ -166,6 +166,16 @@ export function UserProvider({ children }) {
     return syncUser({ removedActivities: next })
   }
 
+  // 自定义行程：覆盖某城的整套行程（days=null 表示恢复默认，删除覆盖）
+  const setCityItinerary = (cityId, days) => {
+    const u = userRef.current
+    if (!u || !cityId) return
+    const next = { ...(u.customItineraries || {}) }
+    if (days == null) delete next[cityId]
+    else next[cityId] = days
+    return syncUser({ customItineraries: next })
+  }
+
   const reviewSpot = (spotId, text) => {
     const u = userRef.current
     if (!u) return
@@ -259,7 +269,7 @@ export function UserProvider({ children }) {
   }
 
   return (
-    <UserContext.Provider value={{ user, loading, signup, login, logout, addXP, toggleSpot, toggleActivity, toggleVisited, clearSpot, setRegionLevel, rateSpot, reviewSpot, removeActivity, restoreActivities, toggleRecommend, addSpotPhoto, removeSpotPhoto, mintSsoCode }}>
+    <UserContext.Provider value={{ user, loading, signup, login, logout, addXP, toggleSpot, toggleActivity, toggleVisited, clearSpot, setRegionLevel, rateSpot, reviewSpot, removeActivity, restoreActivities, setCityItinerary, toggleRecommend, addSpotPhoto, removeSpotPhoto, mintSsoCode }}>
       {children}
     </UserContext.Provider>
   )

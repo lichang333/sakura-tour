@@ -32,6 +32,7 @@ const toPublic = (user) => ({
   recommendedSpots:   JSON.parse(user.recommended_spots   || '[]'),
   spotPhotos:         JSON.parse(user.spot_photos         || '{}'),
   regionLevels:       JSON.parse(user.region_levels       || '{}'),
+  customItineraries:  JSON.parse(user.custom_itineraries  || '{}'),
   joinedAt: user.created_at,
 })
 
@@ -47,7 +48,7 @@ router.patch('/me', auth, (req, res) => {
   const user = db.prepare('SELECT * FROM users WHERE id = ?').get(req.userId)
   if (!user) return res.status(404).json({ error: '用户不存在' })
 
-  const { xp, checkedSpots, completedActivities, visitedSpots, spotRatings, spotReviews, removedActivities, recommendedSpots, regionLevels } = req.body
+  const { xp, checkedSpots, completedActivities, visitedSpots, spotRatings, spotReviews, removedActivities, recommendedSpots, regionLevels, customItineraries } = req.body
 
   const newXp               = xp                 !== undefined ? xp                                   : user.xp
   const newSpots            = checkedSpots        !== undefined ? JSON.stringify(checkedSpots)          : user.checked_spots
@@ -57,6 +58,7 @@ router.patch('/me', auth, (req, res) => {
   const newReviews          = spotReviews         !== undefined ? JSON.stringify(spotReviews)           : user.spot_reviews
   const newRemovedActs      = removedActivities   !== undefined ? JSON.stringify(removedActivities)     : user.removed_activities
   const newRecommended      = recommendedSpots    !== undefined ? JSON.stringify(recommendedSpots)      : user.recommended_spots
+  const newCustomItins      = customItineraries   !== undefined ? JSON.stringify(customItineraries)     : user.custom_itineraries
 
   // 打卡派生（服务端单一事实源）：已抵达景点所在州市的印记至少「玩过 3」，
   // 只升不降 —— Sakura 打卡会点亮踏印地图，踏印也无法把已打卡州市擦到 3 以下
@@ -72,9 +74,10 @@ router.patch('/me', auth, (req, res) => {
     UPDATE users
     SET xp = ?, checked_spots = ?, completed_activities = ?,
         visited_spots = ?, spot_ratings = ?, spot_reviews = ?,
-        removed_activities = ?, recommended_spots = ?, region_levels = ?
+        removed_activities = ?, recommended_spots = ?, region_levels = ?,
+        custom_itineraries = ?
     WHERE id = ?
-  `).run(newXp, newSpots, newActivities, newVisited, newRatings, newReviews, newRemovedActs, newRecommended, newRegionLevels, req.userId)
+  `).run(newXp, newSpots, newActivities, newVisited, newRatings, newReviews, newRemovedActs, newRecommended, newRegionLevels, newCustomItins, req.userId)
 
   const updated = db.prepare('SELECT * FROM users WHERE id = ?').get(req.userId)
   res.json(toPublic(updated))

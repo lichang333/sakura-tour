@@ -1039,3 +1039,143 @@
   border-color: var(--indigo);
   transform: scale(0.92);
 }
+
+/* ══════════ 行程编辑模式 ══════════ */
+.plan-edit-row {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  margin: 0 16px 10px;
+}
+.plan-edit-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 7px 14px;
+  border-radius: 12px;
+  border: 1.5px solid var(--copper);
+  background: transparent;
+  color: var(--copper);
+  font-size: 13px;
+  font-weight: 700;
+  transition: background 0.18s ease, transform 0.12s ease;
+}
+.plan-edit-toggle.on { background: var(--copper); color: #FBF8F1; }
+.plan-edit-toggle:active { transform: scale(0.96); }
+.plan-reset-btn {
+  padding: 7px 12px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-mid);
+  font-size: 12.5px;
+  font-weight: 700;
+}
+.plan-reset-btn:active { transform: scale(0.96); }
+
+/* 加一天卡 */
+.day-add-card {
+  display: flex !important;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  border-style: dashed !important;
+  color: var(--copper);
+}
+.dac-plus  { font-size: 22px; font-weight: 700; line-height: 1; }
+.dac-label { font-size: 11px; font-weight: 700; }
+
+/* 天标题编辑 */
+.dhc-title-input {
+  width: 100%;
+  background: rgba(255,255,255,0.18);
+  border: 1px solid rgba(255,255,255,0.45);
+  border-radius: 9px;
+  padding: 5px 9px;
+  color: #fff;
+  font-family: var(--font-serif);
+  font-size: 18px;
+  font-weight: 800;
+  margin: 2px 0 4px;
+}
+.dhc-title-input::placeholder { color: rgba(255,255,255,0.6); }
+
+/* 活动行内编辑 */
+.act-emoji-input {
+  width: 40px;
+  flex-shrink: 0;
+  text-align: center;
+  background: var(--bg-input);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 6px 2px;
+  font-size: 17px;
+}
+.act-text-input {
+  flex: 1;
+  min-width: 0;
+  background: var(--bg-input);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 7px 10px;
+  color: var(--text-dark);
+  font-size: 14px;
+  font-weight: 600;
+}
+.act-text-input:focus, .act-emoji-input:focus { outline: none; border-color: var(--copper); }
+
+.day-empty {
+  padding: 20px 16px;
+  text-align: center;
+  color: var(--text-mid);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* 编辑工具区 */
+.edit-tools {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 6px;
+}
+.et-add-btn {
+  padding: 11px;
+  border-radius: 13px;
+  border: 1.5px dashed var(--copper);
+  background: transparent;
+  color: var(--copper);
+  font-size: 14px;
+  font-weight: 700;
+}
+.et-add-btn:active { transform: scale(0.99); }
+.et-spots { background: var(--bg-card); border: 1px solid var(--border); border-radius: 14px; padding: 12px; }
+.et-spots-label { font-size: 12px; font-weight: 700; color: var(--text-mid); margin-bottom: 8px; }
+.et-spots-list { display: flex; flex-direction: column; gap: 6px; }
+.et-spot-btn {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 9px 11px;
+  border-radius: 11px;
+  border: 1px solid var(--border);
+  background: var(--bg-card2);
+  color: var(--text-dark);
+  font-size: 13.5px;
+  font-weight: 700;
+}
+.et-spot-emoji { font-size: 18px; }
+.et-spot-name  { flex: 1; text-align: left; min-width: 0; }
+.et-spot-add   { color: var(--copper); font-size: 16px; font-weight: 700; }
+.et-del-day {
+  padding: 10px;
+  border-radius: 12px;
+  border: 1px solid var(--border-red, rgba(180,71,47,0.3));
+  background: var(--bg-red-tint, rgba(180,71,47,0.08));
+  color: var(--duo-red, #B4472F);
+  font-size: 13px;
+  font-weight: 700;
+}
+.et-del-day:active { transform: scale(0.99); }

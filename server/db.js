@@ -36,5 +36,7 @@ try { db.exec(`ALTER TABLE users ADD COLUMN region_levels       TEXT NOT NULL DE
 // 星探食堂共享同一账号，但其整套餐厅数据独立存这一列 JSON，
 // 与上面的 Sakura 景点列彻底隔离、互不污染（见 routes/star.js）
 try { db.exec(`ALTER TABLE users ADD COLUMN star_data           TEXT NOT NULL DEFAULT '{}'`) } catch {}
+// 用户自定义行程（按城市 fork 覆盖内置行程，可编辑 emoji/文字/天标题/天数），跨设备同步
+try { db.exec(`ALTER TABLE users ADD COLUMN custom_itineraries  TEXT NOT NULL DEFAULT '{}'`) } catch {}
 
 export default db

@@ -42,10 +42,9 @@ function saveObj(key, o) { localStorage.setItem(key, JSON.stringify(o)) }
 export default function PlanPage({ setActiveTab, goToSpot }) {
   const [mode,      setMode]      = useState('template')
   const [activeDay, setActiveDay] = useState(1)
-  const [showAdd,   setShowAdd]   = useState(false)
-  const [customText, setCustomText] = useState('')
+  const [editMode,  setEditMode]  = useState(false)
 
-  const { user, toggleActivity, toggleSpot, toggleVisited, addXP, removeActivity, restoreActivities } = useUser()
+  const { user, toggleActivity, toggleSpot, toggleVisited, addXP, setCityItinerary } = useUser()
   const { currentCity } = useCity()
 
   // Per-city localStorage key (custom acts only)
@@ -60,100 +59,73 @@ export default function PlanPage({ setActiveTab, goToSpot }) {
   const visitedIds  = new Set(user?.visitedSpots || [])
   const mySpots     = citySpots.filter(s => checkedIds.includes(s.id))
 
-  /* 每日行程 — 完成 */
+  /* 每日行程 — 完成状态（按活动 id 记录；内置活动 id = cityId:day-index，兼容旧数据） */
   const completedSet = new Set(user?.completedActivities || [])
+  const removedActs  = new Set(user?.removedActivities || [])
+  const [legacyCustom, setLegacyCustom] = useState(() => loadObj(CUSTOM_KEY))
+  useEffect(() => { setLegacyCustom(loadObj(`sakura_custom_acts_${currentCity.id}`)) }, [currentCity.id])
 
-  /* 每日行程 — 移除 (DB via user state) */
-  const removedActs = new Set(user?.removedActivities || [])
-  const [customActs, setCustomActs] = useState(() => loadObj(CUSTOM_KEY))
+  const cityId  = currentCity.id
+  const makeKey = (day, i) => `${cityId}:${day}-${i}`
 
-  // 城市切换时重新从 localStorage 加载自定义活动
-  useEffect(() => {
-    setCustomActs(loadObj(`sakura_custom_acts_${currentCity.id}`))
-  }, [currentCity.id])
+  /* ── 有效行程 ──
+     优先用用户自定义覆盖（DB）；否则由内置行程合成（应用旧的隐藏/自定义活动），
+     每条活动带稳定 id，一旦编辑就整体 fork 进账号覆盖，之后完全以覆盖为准。 */
+  const override = user?.customItineraries?.[cityId] || null
+  const isForked = !!override
+  const defaultDays = () => itineraryDays.map(d => ({
+    day: d.day,
+    title: d.title,
+    activities: [
+      ...d.activities
+        .map((a, i) => ({ id: makeKey(d.day, i), time: a.time, icon: a.icon, text: a.text, spotId: a.spotId ?? null }))
+        .filter(a => !removedActs.has(a.id)),
+      ...((legacyCustom[String(d.day)] || []).map(a => ({ id: a.id, time: a.time || '自定义', icon: a.icon, text: a.text, spotId: a.spotId ?? null }))),
+    ],
+  }))
+  const days = isForked ? override : defaultDays()
 
-  const cityCustomKey = CUSTOM_KEY
+  /* ── 编辑：任何结构性改动都 fork 当前视图到账号（DB） ── */
+  const forkEdit = (mutate) => {
+    const draft = JSON.parse(JSON.stringify(days))
+    mutate(draft)
+    setCityItinerary(cityId, draft)
+  }
+  const rid = (p) => `${cityId}:${p}-${Date.now()}-${Math.round(Math.random() * 1e4)}`
+  const editDayTitle = (di, v)          => forkEdit(d => { d[di].title = v })
+  const editAct      = (di, ai, f, v)   => forkEdit(d => { d[di].activities[ai][f] = v })
+  const addActRow    = (di)             => forkEdit(d => { d[di].activities.push({ id: rid('c'), time: '', icon: '📍', text: '', spotId: null }) })
+  const delActRow    = (di, ai)         => forkEdit(d => { d[di].activities.splice(ai, 1) })
+  const addSpotRow   = (di, spot)       => forkEdit(d => { d[di].activities.push({ id: rid('s'), time: '', icon: spot.emoji, text: `${spot.name}（${spot.district}）`, spotId: spot.id }) })
+  const addDayRow    = ()               => forkEdit(d => { d.push({ day: d.length + 1, title: `Day ${d.length + 1} · 新的一天`, activities: [] }) })
+  const delDayRow    = (di)             => forkEdit(d => { d.splice(di, 1); d.forEach((x, i) => { x.day = i + 1 }) })
+  const resetItin    = () => { if (confirm('恢复为默认行程？你的自定义改动将清除。')) { setCityItinerary(cityId, null); setEditMode(false) } }
 
-  /* ── 每日行程操作 ── */
-  const makeKey = (day, i) => `${currentCity.id}:${day}-${i}`
-
-  /* 勾选活动：若关联景点且未抵达，顺带盖章（visited+20XP 合并一次 PATCH）；
-     取消勾选只扣 XP，不撤销打卡——「取消安排」不等于「没去过」，
-     撤销打卡请去景点页操作 */
+  /* 勾选活动：关联景点且未抵达则顺带盖章（+20XP）；取消只扣 XP、不撤销打卡 */
   const completeAct = (act, wasDone) => {
     const sid = act?.spotId
-    if (!wasDone) {
-      if (sid != null && !visitedIds.has(sid)) toggleVisited(sid, 20)
-      else addXP(20)
-    } else {
-      addXP(-20)
-    }
+    if (!wasDone) { if (sid != null && !visitedIds.has(sid)) toggleVisited(sid, 20); else addXP(20) }
+    else addXP(-20)
   }
-
-  const handleToggle = (key, act) => {
-    if (removedActs.has(key)) return
-    const wasDone = completedSet.has(key)
-    toggleActivity(key)
-    completeAct(act, wasDone)
-  }
-
-  const removeAct = (key, e) => {
-    e.stopPropagation()
-    removeActivity(key)
-  }
-
-  const restoreAll = () => {
-    restoreActivities(currentCity.id)
-  }
-
-  /* ── 从清单加入今日 ── */
-  const dayCustom = (dayNum) => customActs[String(dayNum)] || []
-
-  const addSpotToDay = (spot) => {
-    const id    = `custom-${spot.id}-d${activeDay}`
-    const dk    = String(activeDay)
-    const exist = customActs[dk] || []
-    if (exist.some(a => a.id === id)) return
-    const next = { ...customActs, [dk]: [...exist, { id, icon: spot.emoji, text: `${spot.name}（${spot.district}）`, time: '自定义', spotId: spot.id }] }
-    setCustomActs(next); saveObj(cityCustomKey, next)
-    setShowAdd(false)
-  }
-
-  const addTextToDay = () => {
-    const text = customText.trim()
-    if (!text) return
-    const dk    = String(activeDay)
-    const exist = customActs[dk] || []
-    const next = { ...customActs, [dk]: [...exist, { id: `custom-txt-${Date.now()}`, icon: '✏️', text, time: '自定义', spotId: null }] }
-    setCustomActs(next); saveObj(cityCustomKey, next)
-    setCustomText('')
-  }
-
-  const removeCustomAct = (act, e) => {
-    e.stopPropagation()
-    const dk   = String(activeDay)
-    const next = { ...customActs, [dk]: (customActs[dk] || []).filter(a => a.id !== act.id) }
-    setCustomActs(next); saveObj(cityCustomKey, next)
-  }
-
-  const handleCustomToggle = (act) => {
+  const toggleAct = (act) => {
+    if (editMode) return
     const wasDone = completedSet.has(act.id)
     toggleActivity(act.id)
     completeAct(act, wasDone)
   }
 
-  /* ── 统计（每日行程） ── */
-  const totalAll     = itineraryDays.reduce((a, d) => a + d.activities.filter((_, i) => !removedActs.has(makeKey(d.day, i))).length, 0)
-  const completedAll = itineraryDays.reduce((a, d) => a + d.activities.filter((_, i) => !removedActs.has(makeKey(d.day, i)) && completedSet.has(makeKey(d.day, i))).length, 0)
-  const hasRemoved   = removedActs.size > 0
+  /* 统计 + 可加景点 */
+  const allActs        = days.flatMap(d => d.activities)
+  const totalAll       = allActs.length
+  const completedAll   = allActs.filter(a => completedSet.has(a.id)).length
+  const plannedSpotIds = new Set(allActs.map(a => a.spotId).filter(id => id != null))
+  const addableSpots   = mySpots.filter(s => !plannedSpotIds.has(s.id) && !visitedIds.has(s.id))
 
-  /* 当前天可加景点（未加过任意一天 + 未去过） */
-  const allCustomSpotIds = new Set(
-    Object.values(customActs).flat().map(a => a.spotId).filter(id => id != null)
-  )
-  const addableSpots = mySpots.filter(s =>
-    !allCustomSpotIds.has(s.id) && !visitedIds.has(s.id)
-  )
+  // 删天/切城后，当前选中天可能越界 → 钳回第一天
+  useEffect(() => {
+    if (days.length && !days.some(d => d.day === activeDay)) setActiveDay(days[0].day)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [days.length, cityId])
 
   return (
     <div className="plan-page">
@@ -252,12 +224,22 @@ export default function PlanPage({ setActiveTab, goToSpot }) {
       {/* ════════════ 每日行程 ════════════ */}
       {mode === 'template' && (
         <>
+          {/* 编辑开关 */}
+          <div className="plan-edit-row">
+            <button className={`plan-edit-toggle ${editMode ? 'on' : ''}`} onClick={() => setEditMode(v => !v)}>
+              {editMode ? '✓ 完成编辑' : '✏️ 编辑行程'}
+            </button>
+            {editMode && isForked && (
+              <button className="plan-reset-btn" onClick={resetItin}>↺ 恢复默认</button>
+            )}
+          </div>
+
           {/* Day Tabs — 含进度环 */}
           <div className="day-tabs-scroll">
-            {itineraryDays.map((day, di) => {
+            {days.map((day, di) => {
               const theme    = DAY_THEMES[di % DAY_THEMES.length]
-              const doneN    = day.activities.filter((_, i) => !removedActs.has(makeKey(day.day, i)) && completedSet.has(makeKey(day.day, i))).length
-              const totalN   = day.activities.filter((_, i) => !removedActs.has(makeKey(day.day, i))).length
+              const totalN   = day.activities.length
+              const doneN    = day.activities.filter(a => completedSet.has(a.id)).length
               const pct      = totalN > 0 ? doneN / totalN : 0
               const isActive = activeDay === day.day
               return (
@@ -275,20 +257,26 @@ export default function PlanPage({ setActiveTab, goToSpot }) {
                   <div className="dtc-title" style={isActive ? { color: 'white' } : {}}>{day.title}</div>
                   {isActive && (
                     <div className="dtc-progress-text" style={{ color: 'rgba(255,255,255,0.85)' }}>
-                      {doneN}/{totalN + (dayCustom(day.day).length)} 项
+                      {doneN}/{totalN} 项
                     </div>
                   )}
                 </button>
               )
             })}
+            {editMode && (
+              <button className="day-tab-card day-add-card" onClick={addDayRow}>
+                <div className="dac-plus">＋</div>
+                <div className="dac-label">加一天</div>
+              </button>
+            )}
           </div>
 
           {/* Active Day 内容 */}
-          {itineraryDays.map((day, di) => {
+          {days.map((day, di) => {
             if (activeDay !== day.day) return null
             const theme   = DAY_THEMES[di % DAY_THEMES.length]
-            const doneN   = day.activities.filter((_, i) => !removedActs.has(makeKey(day.day, i)) && completedSet.has(makeKey(day.day, i))).length
-            const totalN  = day.activities.filter((_, i) => !removedActs.has(makeKey(day.day, i))).length + dayCustom(day.day).length
+            const totalN  = day.activities.length
+            const doneN   = day.activities.filter(a => completedSet.has(a.id)).length
             const pct     = totalN > 0 ? doneN / totalN : 0
 
             return (
@@ -297,82 +285,79 @@ export default function PlanPage({ setActiveTab, goToSpot }) {
                 <div className="day-hero-card" style={{ background: theme.gradient }}>
                   <div className="dhc-left">
                     <div className="dhc-label">Day {day.day}</div>
-                    <div className="dhc-title">{day.title}</div>
+                    {editMode ? (
+                      <input
+                        className="dhc-title-input"
+                        value={day.title}
+                        onChange={e => editDayTitle(di, e.target.value)}
+                        placeholder="这一天的标题"
+                        maxLength={30}
+                      />
+                    ) : (
+                      <div className="dhc-title">{day.title}</div>
+                    )}
                     <div className="dhc-sub">{doneN}/{totalN} 项已完成</div>
                   </div>
                   <ProgressRing pct={pct} size={56} stroke={5} />
                 </div>
 
-                {/* 恢复提示 */}
-                {hasRemoved && (
-                  <div className="restore-bar">
-                    <span>部分活动已隐藏</span>
-                    <button className="restore-btn" onClick={restoreAll}>恢复全部</button>
-                  </div>
-                )}
-
                 {/* Timeline 活动 */}
                 <div className="activities">
+                  {day.activities.length === 0 && !editMode && (
+                    <div className="day-empty">这一天还没有安排，点上方「编辑行程」添加</div>
+                  )}
                   {day.activities.map((act, i) => {
-                    const key  = makeKey(day.day, i)
-                    const done = completedSet.has(key)
-                    const gone = removedActs.has(key)
-                    if (gone) return null
-                    return (
-                      <div key={i} className={`activity-card ${done ? 'done' : ''}`} onClick={() => handleToggle(key, act)}>
-                        <div className="act-timeline">
-                          <div className={`act-dot ${done ? 'done' : ''}`} style={done ? {} : { borderColor: theme.color + '66' }} />
-                          {(i < day.activities.length - 1 || dayCustom(day.day).length > 0) && <div className="act-line" />}
-                        </div>
-                        <div className="act-body">
-                          <div className="act-time">{act.time}</div>
-                          <div className="act-card-inner">
-                            <span className="act-icon">{act.icon}</span>
-                            <span className="act-text">{act.text}</span>
-                            {act.spotId != null && (
-                              <button
-                                className="act-spot-jump"
-                                onClick={(e) => { e.stopPropagation(); goToSpot?.(act.spotId) }}
-                                title="查看对应景点"
-                              >📍</button>
-                            )}
-                            <button
-                              className="act-remove-btn"
-                              onClick={(e) => removeAct(key, e)}
-                              title="移除此活动"
-                            >✕</button>
-                            <div className={`act-check ${done ? 'done' : ''}`} style={!done ? { borderColor: theme.color + '66' } : {}}>
-                              {done ? '✓' : '○'}
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    )
-                  })}
-
-                  {/* 自定义活动（从景点加入的） */}
-                  {dayCustom(day.day).map((act, i) => {
                     const done = completedSet.has(act.id)
                     return (
-                      <div key={act.id} className={`activity-card custom ${done ? 'done' : ''}`}
-                        onClick={() => handleCustomToggle(act)}>
+                      <div key={act.id} className={`activity-card ${done && !editMode ? 'done' : ''}`}
+                        onClick={() => toggleAct(act)}>
                         <div className="act-timeline">
-                          <div className={`act-dot custom ${done ? 'done' : ''}`}
-                            style={done ? {} : { borderColor: theme.color, background: theme.color + '33' }} />
-                          {i < dayCustom(day.day).length - 1 && <div className="act-line" />}
+                          <div className={`act-dot ${done ? 'done' : ''}`} style={done ? {} : { borderColor: theme.color + '66' }} />
+                          {i < day.activities.length - 1 && <div className="act-line" />}
                         </div>
                         <div className="act-body">
-                          <div className="act-time">{act.time}</div>
-                          <div className="act-card-inner custom-act">
-                            <span className="act-icon">{act.icon}</span>
-                            <span className="act-text">{act.text}</span>
-                            <span className="custom-badge">自定义</span>
-                            <button className="act-remove-btn" onClick={(e) => removeCustomAct(act, e)}>✕</button>
-                            <div className={`act-check ${done ? 'done' : ''}`}
-                              style={!done ? { borderColor: theme.color + '66' } : {}}
-                              onClick={(e) => { e.stopPropagation(); handleCustomToggle(act) }}>
-                              {done ? '✓' : '○'}
-                            </div>
+                          {!editMode && <div className="act-time">{act.time}</div>}
+                          <div className="act-card-inner">
+                            {editMode ? (
+                              <>
+                                <input
+                                  className="act-emoji-input"
+                                  value={act.icon}
+                                  onChange={e => editAct(di, i, 'icon', e.target.value)}
+                                  onClick={e => e.stopPropagation()}
+                                  maxLength={4}
+                                  aria-label="图标"
+                                />
+                                <input
+                                  className="act-text-input"
+                                  value={act.text}
+                                  onChange={e => editAct(di, i, 'text', e.target.value)}
+                                  onClick={e => e.stopPropagation()}
+                                  placeholder="活动内容"
+                                  maxLength={40}
+                                />
+                                <button
+                                  className="act-remove-btn"
+                                  onClick={(e) => { e.stopPropagation(); delActRow(di, i) }}
+                                  title="删除此活动"
+                                >✕</button>
+                              </>
+                            ) : (
+                              <>
+                                <span className="act-icon">{act.icon}</span>
+                                <span className="act-text">{act.text}</span>
+                                {act.spotId != null && (
+                                  <button
+                                    className="act-spot-jump"
+                                    onClick={(e) => { e.stopPropagation(); goToSpot?.(act.spotId) }}
+                                    title="查看对应景点"
+                                  >📍</button>
+                                )}
+                                <div className={`act-check ${done ? 'done' : ''}`} style={!done ? { borderColor: theme.color + '66' } : {}}>
+                                  {done ? '✓' : '○'}
+                                </div>
+                              </>
+                            )}
                           </div>
                         </div>
                       </div>
@@ -380,52 +365,34 @@ export default function PlanPage({ setActiveTab, goToSpot }) {
                   })}
                 </div>
 
-                {/* XP 条 */}
-                <div className="day-xp-bar">🌟 完成今日行程获得 +250 XP</div>
-
-                {/* 编辑今日行程：从想去清单加入 / 手写自定义活动 */}
-                <div className="spots-add-section">
-                  <button
-                    className="sas-toggle"
-                    onClick={() => setShowAdd(v => !v)}
-                  >
-                    <span>✏️ 编辑今日行程</span>
-                    <span className="sas-arrow">{showAdd ? '▲' : '▼'}</span>
-                  </button>
-                  {showAdd && (
-                    <div className="sas-list">
-                      {addableSpots.length > 0 && addableSpots.map(spot => (
-                        <button
-                          key={spot.id}
-                          className="sas-spot-btn"
-                          onClick={() => addSpotToDay(spot)}
-                        >
-                          <span className="sas-emoji">{spot.emoji}</span>
-                          <span className="sas-name">{spot.name}</span>
-                          <span className="sas-add">+ 加入</span>
-                        </button>
-                      ))}
-                      {mySpots.length > 0 && addableSpots.length === 0 && (
-                        <div className="sas-empty">想去清单的景点已全部安排 ✓</div>
-                      )}
-                      <div className="sas-custom-row">
-                        <input
-                          className="sas-input"
-                          value={customText}
-                          onChange={e => setCustomText(e.target.value)}
-                          onKeyDown={e => { if (e.key === 'Enter') addTextToDay() }}
-                          placeholder="自定义活动，如：才村看日落"
-                          maxLength={40}
-                        />
-                        <button
-                          className="sas-custom-add"
-                          disabled={!customText.trim()}
-                          onClick={addTextToDay}
-                        >加入</button>
+                {editMode ? (
+                  /* 编辑工具：加活动 / 从想去清单加 / 删除本天 */
+                  <div className="edit-tools">
+                    <button className="et-add-btn" onClick={() => addActRow(di)}>＋ 加一项活动</button>
+                    {addableSpots.length > 0 && (
+                      <div className="et-spots">
+                        <div className="et-spots-label">从想去清单加入</div>
+                        <div className="et-spots-list">
+                          {addableSpots.map(spot => (
+                            <button key={spot.id} className="et-spot-btn" onClick={() => addSpotRow(di, spot)}>
+                              <span className="et-spot-emoji">{spot.emoji}</span>
+                              <span className="et-spot-name">{spot.name}</span>
+                              <span className="et-spot-add">＋</span>
+                            </button>
+                          ))}
+                        </div>
                       </div>
-                    </div>
-                  )}
-                </div>
+                    )}
+                    {days.length > 1 && (
+                      <button className="et-del-day" onClick={() => { if (confirm(`删除 Day ${day.day}？这一天的活动会一并删除。`)) delDayRow(di) }}>
+                        🗑 删除 Day {day.day}
+                      </button>
+                    )}
+                  </div>
+                ) : (
+                  /* XP 条 */
+                  totalN > 0 && <div className="day-xp-bar">🌟 完成今日行程获得 +250 XP</div>
+                )}
               </div>
             )
           })}
