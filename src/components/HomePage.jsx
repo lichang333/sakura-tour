@@ -33,8 +33,9 @@ export default function HomePage({ setActiveTab, goToSpot }) {
   const cityChecked = checkedIds.filter(id => citySpots.some(s => s.id === id)).length
   const cityVisited = visitedIds.filter(id => citySpots.some(s => s.id === id)).length
 
-  // 本地精选 — hot picks first, then by rating
-  const curated = [...citySpots]
+  // 本地精选 — 发现区，已抵达的不再出现；热门优先、再按评分
+  const curated = citySpots
+    .filter(s => !visitedIds.includes(s.id))
     .sort((a, b) => (b.isHot ? 1 : 0) - (a.isHot ? 1 : 0) || b.rating - a.rating)
     .slice(0, 3)
 
@@ -162,6 +163,9 @@ export default function HomePage({ setActiveTab, goToSpot }) {
           <button className="block-link" onClick={() => setActiveTab('spots')}>全部 →</button>
         </div>
         <div className="curated-list">
+          {curated.length === 0 && (
+            <div className="curated-empty">这座城的精选都抵达啦 · 换个城继续探索 🎒</div>
+          )}
           {curated.map(spot => {
             const visited = visitedIds.includes(spot.id)
             const checked = checkedIds.includes(spot.id)
