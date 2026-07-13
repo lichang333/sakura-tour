@@ -61,7 +61,13 @@ function StarRating({ spotId, current, onRate }) {
 
 export default function SpotsPage({ pendingSpot, clearPendingSpot, openMap }) {
   const [selected,      setSelected]      = useState(null)
-  const [hideVisited,   setHideVisited]   = useState(false)  // 「只看未去」筛选
+  // 「只看未去」筛选 —— 记住选择，刷新不丢（视图偏好存本机）
+  const [hideVisited, setHideVisited] = useState(() => localStorage.getItem('sakura_only_unvisited') === '1')
+  const toggleHideVisited = () => setHideVisited(v => {
+    const next = !v
+    localStorage.setItem('sakura_only_unvisited', next ? '1' : '0')
+    return next
+  })
   const [reviewDraft,   setReviewDraft]   = useState('')
   const [reviewSaved,   setReviewSaved]   = useState(false)
   const [uploadingPhoto, setUploadingPhoto] = useState(false)
@@ -509,7 +515,7 @@ export default function SpotsPage({ pendingSpot, clearPendingSpot, openMap }) {
             {visitedCount > 0 && (
               <button
                 className={`only-unvisited ${hideVisited ? 'on' : ''}`}
-                onClick={() => setHideVisited(v => !v)}
+                onClick={toggleHideVisited}
                 aria-pressed={hideVisited}
               >
                 <span className="ou-check" aria-hidden="true">{hideVisited ? '✓' : ''}</span>
