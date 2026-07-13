@@ -121,6 +121,14 @@ export default function PlanPage({ setActiveTab, goToSpot }) {
   const plannedSpotIds = new Set(allActs.map(a => a.spotId).filter(id => id != null))
   const addableSpots   = mySpots.filter(s => !plannedSpotIds.has(s.id) && !visitedIds.has(s.id))
 
+  // 已 fork 时，默认行程里被删掉的活动 → 编辑器内可单独恢复（替代旧的「部分活动已隐藏」条）
+  const forkedActIds    = new Set(allActs.map(a => a.id))
+  const deletedDefaults = isForked
+    ? itineraryDays.flatMap(d => d.activities.map((a, i) => ({ id: makeKey(d.day, i), icon: a.icon, text: a.text, spotId: a.spotId ?? null })))
+        .filter(a => !forkedActIds.has(a.id))
+    : []
+  const restoreDefaultAct = (di, act) => forkEdit(d => { d[di].activities.push({ id: act.id, time: '', icon: act.icon, text: act.text, spotId: act.spotId }) })
+
   // 删天/切城后，当前选中天可能越界 → 钳回第一天
   useEffect(() => {
     if (days.length && !days.some(d => d.day === activeDay)) setActiveDay(days[0].day)
@@ -378,6 +386,20 @@ export default function PlanPage({ setActiveTab, goToSpot }) {
                               <span className="et-spot-emoji">{spot.emoji}</span>
                               <span className="et-spot-name">{spot.name}</span>
                               <span className="et-spot-add">＋</span>
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                    {deletedDefaults.length > 0 && (
+                      <div className="et-spots">
+                        <div className="et-spots-label">恢复删掉的默认活动</div>
+                        <div className="et-spots-list">
+                          {deletedDefaults.map(act => (
+                            <button key={act.id} className="et-spot-btn" onClick={() => restoreDefaultAct(di, act)}>
+                              <span className="et-spot-emoji">{act.icon}</span>
+                              <span className="et-spot-name">{act.text}</span>
+                              <span className="et-spot-add">↺</span>
                             </button>
                           ))}
                         </div>
