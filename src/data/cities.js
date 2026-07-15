@@ -3960,6 +3960,198 @@ const zhaotongSeason = {
   ],
 }
 
+
+/* ════════════════ 绵阳 ════════════════ */
+const mianyangSpots = [
+  {
+    id: 'my1', name: "李白纪念馆·李白故里", nameEn: "Li Bai Memorial", emoji: "📜",
+    district: "江油市", lat: 31.7800, lng: 104.7400,
+    peakTime: "全年", peakDays: "全年 · 诗仙故里", difficulty: "easy",
+    rating: 4.5, reviews: 3200, tags: ["必去", "诗仙李白", "碑林古建"],
+    isHot: true, ticket: "门票约低价",
+    description: "唐代大诗人李白出生成长于江油。李白纪念馆与太白碑林里，历代书家把李白的诗篇刻满碑石，园林亭台、青莲故里、陇西院一带处处是「诗仙」的印记。念一句「蜀道之难」，在他的故乡读他的诗，别有意味。",
+    tips: "纪念馆与青莲镇（李白故里）分两处，可择一或连游；碑林书法值得细看；江油也是窦圌山所在，可一并安排。",
+    transport: "绵阳城区驾车约40分钟至江油",
+    color: "#8A6A3B", xp: 110,
+  },
+  {
+    id: 'my2', name: "王朗国家级自然保护区", nameEn: "Wanglang Reserve", emoji: "🐼",
+    district: "平武县", lat: 32.9800, lng: 104.1000,
+    peakTime: "全年（5-7月多雨）", peakDays: "秋色最盛、夏可避暑", difficulty: "hard",
+    rating: 4.6, reviews: 1600, tags: ["必去", "大熊猫", "白马藏族·原始森林"],
+    isHot: true, ticket: "门票约50元",
+    description: "1965 年为保护大熊猫而建的老牌保护区，横断山与岷山之间的一片原始秘境。冷杉云杉参天、溪流飞瀑如画，大熊猫、金丝猴、扭角羚在此栖息。深山里的白马藏族至今保留着独特的语言与「跳曹盖」等古老习俗，神秘而质朴。",
+    tips: "路远（绵阳到平武约3.5-4小时，再进保护区），建议住一晚；秋色最美、5-7月雨季路滑；尊重白马藏族习俗、爱护自然勿惊扰野生动物。",
+    transport: "绵阳驾车约4小时经平武至王朗",
+    color: "#2E6E4A", xp: 130,
+  },
+  {
+    id: 'my3', name: "北川羌城·地震纪念", nameEn: "Beichuan Qiang Zone", emoji: "🕯️",
+    district: "北川县", lat: 31.8300, lng: 104.4700,
+    peakTime: "全年", peakDays: "全年 · 缅怀与羌俗", difficulty: "easy",
+    rating: 4.6, reviews: 2400, tags: ["必去", "5·12地震纪念", "羌族民俗"],
+    isHot: true, ticket: "遗址与纪念馆免费",
+    description: "北川是 2008 年汶川特大地震的极重灾区。老县城地震遗址原样保留，「5·12」纪念馆庄严肃穆，记录着那场灾难与举国重建的历程。旁边的北川新县城与羌族民俗博物馆、羌寨，展示着羌族这一古老民族的文化与顽强重生。",
+    tips: "地震遗址与纪念馆请庄重肃穆缅怀、勿喧哗嬉笑拍照打卡；羌城可了解羌族碉楼、刺绣、羌笛等民俗；心怀敬意而来。",
+    transport: "绵阳城区驾车约1小时至北川",
+    color: "#6B4E3D", xp: 100,
+  },
+  {
+    id: 'my4', name: "报恩寺", nameEn: "Baoen Temple", emoji: "🛕",
+    district: "平武县", lat: 32.4100, lng: 104.5300,
+    peakTime: "全年", peakDays: "全年 · 深山国宝", difficulty: "easy",
+    rating: 4.5, reviews: 1100, tags: ["明代古寺", "转轮经藏", "深山藏国宝"],
+    ticket: "门票约低价",
+    description: "平武县城里一座明代古寺，全国重点文物，仿故宫布局、不施一钉的楠木大殿历经数百年与多次地震仍巍然屹立。殿内的千手观音、转轮经藏（能转动的木质藏经楼）、云龙金柱雕工绝伦，被誉为「深山藏国宝、明代小故宫」。",
+    tips: "在平武县城、去王朗途中可顺游；殿内木雕、转轮藏值得细看；尊重礼佛习俗。",
+    transport: "绵阳驾车约2.5小时至平武县城",
+    color: "#B4472F", xp: 90,
+  },
+  {
+    id: 'my5', name: "窦圌山", nameEn: "Doutuan Mountain", emoji: "⛰️",
+    district: "江油市", lat: 31.9000, lng: 104.7500,
+    peakTime: "全年", peakDays: "晴日看铁索飞渡", difficulty: "medium",
+    rating: 4.3, reviews: 1500, tags: ["丹霞奇峰", "铁索飞渡", "云岩寺"],
+    ticket: "门票+索道约低价",
+    description: "李白笔下「樵夫与耕者，出入画屏中」的奇山。三座丹霞石峰拔地而起、如刀削斧劈，峰顶各有小庙，峰与峰之间靠铁索相连——惊险的「铁索飞渡」绝技表演令人屏息。山脚云岩寺的飞天藏（宋代转轮经藏）也是国宝。",
+    tips: "与江油李白故里可连游；看铁索飞渡表演有固定场次；登山索道+步道结合，穿舒适鞋。",
+    transport: "绵阳驾车约1小时至江油窦圌山",
+    color: "#B85A3A", xp: 100,
+  },
+  {
+    id: 'my6', name: "越王楼", nameEn: "Yuewang Tower", emoji: "🏯",
+    district: "涪城区", lat: 31.4700, lng: 104.7500,
+    peakTime: "全年（傍晚夜景）", peakDays: "涪江夜景最美", difficulty: "easy",
+    rating: 4.2, reviews: 1900, tags: ["江边名楼", "李白登临", "涪江夜景"],
+    ticket: "门票约低价",
+    description: "屹立涪江之滨的仿唐名楼，历代文人登临题咏，李白、杜甫都曾在此留下诗篇，号称「唐代四大名楼」之一（今为复建）。登楼俯瞰三江汇流与绵阳城，入夜华灯映水，是这座科技城里最有诗意的一处凭栏。",
+    tips: "傍晚登楼看涪江夜景最美；在市区、方便顺游；了解越王楼与唐诗的渊源。",
+    transport: "绵阳城区内，打车可达",
+    color: "#3B6E86", xp: 80,
+  },
+  {
+    id: 'my7', name: "药王谷", nameEn: "Yaowang Valley", emoji: "🌸",
+    district: "北川县", lat: 31.7500, lng: 104.3000,
+    peakTime: "3月辛夷花 / 全年养生", peakDays: "3月辛夷花海最盛", difficulty: "medium",
+    rating: 4.3, reviews: 1300, tags: ["辛夷花海", "中医药养生", "高山"],
+    ticket: "门票约低价",
+    description: "北川与安州之间的高山养生谷，以千年种植的辛夷（玉兰的一种，也是药材）闻名。每年三月，漫山辛夷花在云雾中粉白盛开，如临仙境。这里是「中华药王孙思邈」传说的养生之地，森林温泉、药膳、慢生活让人身心舒展。",
+    tips: "辛夷花期约3月、短且逐年略变，赏花务必查实时花况；山路盘绕、雾多注意安全；可泡温泉、住山中养生。",
+    transport: "绵阳驾车约1.5小时至药王谷",
+    color: "#C85C8E", xp: 90,
+  },
+]
+
+/* 周边顺游 —— 均在绵阳市辖区（梓潼/安州/三台），派生同归绵阳 */
+const mianyangNearby = [
+  {
+    id: 'myn1', name: "梓潼七曲山大庙", nameEn: "Qiqushan Temple", emoji: "🌲",
+    district: "梓潼县", lat: 31.6600, lng: 105.1500,
+    peakTime: "全年", peakDays: "全年 · 文昌祖庭", difficulty: "easy",
+    rating: 4.3, reviews: 900, tags: ["文昌帝君祖庭", "千年古柏", "翠云廊"],
+    desc: "文昌帝君发祥地，古柏参天的翠云廊",
+    description: "梓潼七曲山是「文昌帝君」（主管功名文运的神祇）的祖庭，古庙依山而建、殿宇恢宏。庙外的翠云廊是古蜀道上遗存的千年古柏长廊，苍劲参天、绿荫如盖，走一段仿佛穿越时光。求学问、访古道的人常来。",
+    tips: "与剑门蜀道一脉相承，可看古柏翠云廊；文昌祖庭香火盛；在绵阳东北、近广元方向。",
+    transport: "绵阳驾车约1.5小时至梓潼",
+    color: "#4E7A5E", xp: 80, isNearby: true,
+  },
+  {
+    id: 'myn2', name: "安州寻龙山", nameEn: "Xunlong Mountain", emoji: "🕳️",
+    district: "安州区", lat: 31.5300, lng: 104.3500,
+    peakTime: "全年", peakDays: "全年 · 丹霞溶洞温泉", difficulty: "easy",
+    rating: 4.2, reviews: 800, tags: ["丹霞", "卧龙溶洞", "罗浮山温泉"],
+    desc: "丹霞奇观与卧龙洞，近罗浮山温泉",
+    description: "安州的寻龙山以丹霞地貌与「卧龙洞」奇观著称，红岩、幽洞、竹海相映，《西游记》曾在此取景。旁边的罗浮山温泉是川西北知名的疗养温泉，逛完丹霞泡个汤，惬意十足。",
+    tips: "寻龙山+罗浮山温泉可排同天；离绵阳城区近、适合周末；带泳衣泡汤。",
+    transport: "绵阳驾车约50分钟至安州",
+    color: "#B85A3A", xp: 70, isNearby: true,
+  },
+  {
+    id: 'myn3', name: "三台郪江古镇", nameEn: "Qijiang Ancient Town", emoji: "🏘️",
+    district: "三台县", lat: 30.9800, lng: 105.2800,
+    peakTime: "全年", peakDays: "全年 · 汉墓古镇", difficulty: "easy",
+    rating: 4.1, reviews: 500, tags: ["千年古镇", "汉代崖墓", "郪江"],
+    desc: "郪江畔千年古镇，成群的汉代崖墓",
+    description: "三台南部郪江边的千年古镇，曾是古郪国故地。老街、吊脚楼、宫庙沿江而建，古朴少商业。周边山崖上密布着成群的汉代崖墓（郪江崖墓群），是研究汉代丧葬与生活的珍贵遗存，人文厚重、游人稀少。",
+    tips: "古镇+汉墓群一并看；游人少、原生态；路稍远，自驾为宜。",
+    transport: "绵阳驾车约1.5小时至三台郪江",
+    color: "#8A7A66", xp: 70, isNearby: true,
+  },
+]
+
+const mianyangItinerary = [
+  {
+    day: 1, title: "抵达·诗城涪江", date: "Day 1",
+    activities: [
+      { time: "下午", icon: "🚄", text: "高铁抵绵阳，入住城区" },
+      { time: "傍晚", icon: "🏯", text: "越王楼登临，看涪江三江夜景", spotId: 'my6' },
+      { time: "晚上", icon: "🍜", text: "尝一碗地道绵阳米粉 + 席凉粉" },
+    ]
+  },
+  {
+    day: 2, title: "李白故里江油", date: "Day 2",
+    activities: [
+      { time: "上午", icon: "📜", text: "李白纪念馆、太白碑林访诗仙", spotId: 'my1' },
+      { time: "下午", icon: "⛰️", text: "窦圌山看丹霞奇峰、铁索飞渡", spotId: 'my5' },
+      { time: "晚上", icon: "🍲", text: "江油肥肠 + 罐罐汤暖胃" },
+    ]
+  },
+  {
+    day: 3, title: "北川羌城缅怀", date: "Day 3",
+    activities: [
+      { time: "上午", icon: "🕯️", text: "北川老县城地震遗址、5·12纪念馆缅怀", spotId: 'my3' },
+      { time: "下午", icon: "🌸", text: "药王谷辛夷花海（春）或养生温泉", spotId: 'my7' },
+      { time: "傍晚", icon: "🧵", text: "羌城了解碉楼、羌绣、羌笛民俗" },
+    ]
+  },
+  {
+    day: 4, title: "深山国宝与熊猫", date: "Day 4",
+    activities: [
+      { time: "全天", icon: "🐼", text: "平武报恩寺+王朗保护区（深山一日或住一晚）" },
+      { time: "下午", icon: "🎁", text: "选购梓潼酥饼、羌绣、茶叶伴手礼" },
+      { time: "傍晚", icon: "✈️", text: "返程 / 前往下一站（成都、九寨沟）" },
+    ]
+  },
+]
+
+const mianyangTips = [
+  { icon: "📅", title: "最佳季节", content: "亚热带季风气候、年均19-21℃，四季分明、冬季偏暖，全年皆宜，尤以春（3-5月）、秋（10月）最舒适。3月药王谷辛夷花海、秋季王朗层林尽染；5-7月多雨，进山路况注意。" },
+  { icon: "🕯️", title: "缅怀之地", content: "北川老县城是「5·12」汶川地震遗址，长眠着许多同胞。请以敬畏、肃穆之心参观缅怀，勿喧哗嬉笑、勿摆拍打卡。这是一堂关于生命、灾难与重生的沉重课。" },
+  { icon: "🐼", title: "进山须知", content: "王朗、小寨子沟等保护区路远（离市区3-4小时）、生态脆弱，务必走成熟路线、爱护环境、勿惊扰野生动物、勿投喂；秋色最美但5-7月雨季路滑，备好补给与保暖。" },
+  { icon: "🧵", title: "羌族·白马藏族", content: "绵阳北部的北川、平武是羌族与白马藏族聚居地，碉楼、羌绣、羌笛、跳曹盖等文化独特。尊重民族习俗、拍照先征得同意；羌绣是很有味道的伴手礼。" },
+  { icon: "🚄", title: "交通便利", content: "绵阳有南郊机场与高铁站，成绵高铁约30-40分钟通达成都，也可作前往九寨沟、剑门蜀道方向的中转。市内景点分散在江油、平武、北川等地，建议高铁进+包车按片区走。" },
+  { icon: "🍜", title: "绵州味道", content: "绵阳米粉（细如发丝、清汤或红汤，本地人的早餐）、席凉粉、江油肥肠、菜豆花、片粉、梓潼酥饼都是地道川味小吃，价廉味美，老店比景区地道。" },
+  { icon: "📜", title: "诗与科技", content: "绵阳是「李白故里」也是「中国科技城」。除了访诗仙、看丹霞名楼，两弹城（梓潼「两弹一星」旧址）等红色科技景点也可延伸了解，是一座诗意与硬核并存的城。" },
+]
+
+const mianyangFoods = [
+  { name: "绵阳米粉", emoji: "🍜", desc: "细如发丝，清汤红汤皆宜，本地早餐" },
+  { name: "席凉粉", emoji: "🥢", desc: "米凉粉浇红油蘸水，酸辣爽口" },
+  { name: "江油肥肠", emoji: "🍲", desc: "江油名吃，红烧肥肠软糯入味" },
+  { name: "梓潼酥饼", emoji: "🥮", desc: "梓潼名产，酥脆香甜，宜作伴手礼" },
+  { name: "罐罐汤", emoji: "🍵", desc: "小陶罐慢炖，一人一罐鲜香滋补" },
+  { name: "菜豆花", emoji: "🥣", desc: "嫩豆花配特调蘸水，绵软下饭" },
+]
+
+const mianyangPackList = [
+  { icon: "🧥", text: "外套（进山早晚凉、雨季偏冷）" },
+  { icon: "🌂", text: "雨具（5-7月多雨）" },
+  { icon: "👟", text: "徒步鞋（窦圌山/王朗山路）" },
+  { icon: "🧴", text: "防晒 + 驱蚊（河谷林区）" },
+  { icon: "🕯️", text: "一颗肃穆的心（北川地震遗址）" },
+  { icon: "💳", text: "身份证（高铁/景区/温泉实名）" },
+]
+
+const mianyangSeason = {
+  title: "最佳旅行季节",
+  sub: "李白故里，科技新城",
+  rows: [
+    { dot: "peak",  label: "🌤️ 春秋（3—5 / 10月）", date: "气候最宜人", badge: "推荐" },
+    { dot: "early", label: "🌸 春（3月）", date: "药王谷辛夷花海" },
+    { dot: "late",  label: "🍂 秋 / 夏避暑", date: "王朗层林尽染、深山清凉" },
+  ],
+}
+
 /* ════════════════ CITIES 汇总 ════════════════
    扩展新城市：复制上方一整套 daliXxx 常量，改名后
    在下面数组里追加一个对象即可。
@@ -4460,6 +4652,32 @@ export const CITIES = [
     foods: zhaotongFoods,
     packList: zhaotongPackList,
     seasonInfo: zhaotongSeason,
+  },
+  {
+    id: 'mianyang',
+    name: '绵阳',
+    nameEn: 'Mianyang',
+    emoji: '📜',
+    country: '四川',
+    tagline: '李白故里，科技新城',
+    heroBadge: '绵阳 · 四川',
+    heroTitle: '诗城绵阳',
+    heroHighlight: '慢慢念吧！',
+    heroDesc: '李白故里、王朗熊猫与羌城涪江',
+    heroGradient: 'linear-gradient(160deg, #1E4E52 0%, #3E8E86 55%, #CBE6E0 100%)',
+    quickTips: [
+      { icon: '📜', text: '李白故里，太白碑林' },
+      { icon: '🐼', text: '王朗大熊猫保护区' },
+      { icon: '🕯️', text: '北川地震遗址，肃穆缅怀' },
+      { icon: '🚄', text: '高铁30分钟到成都' },
+    ],
+    spots: mianyangSpots,
+    nearbySpots: mianyangNearby,
+    itineraryDays: mianyangItinerary,
+    tips: mianyangTips,
+    foods: mianyangFoods,
+    packList: mianyangPackList,
+    seasonInfo: mianyangSeason,
   },
 ]
 
