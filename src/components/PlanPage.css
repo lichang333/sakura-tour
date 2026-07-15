@@ -1192,3 +1192,58 @@
   font-weight: 700;
 }
 .et-del-day:active { transform: scale(0.99); }
+
+/* ── Emoji 选择器（天/活动图标，点按弹网格） ── */
+.emoji-pick { position: relative; display: inline-flex; flex-shrink: 0; }
+
+.emoji-pick-btn {
+  width: 34px; height: 34px;
+  border-radius: 9px;
+  border: 1px solid var(--border);
+  background: var(--bg-input, var(--bg-card));
+  font-size: 18px;
+  line-height: 1;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+}
+.emoji-pick-btn:active { transform: scale(0.94); }
+
+.emoji-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+}
+
+.emoji-popover {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  z-index: 41;
+  width: 250px;
+  max-height: 190px;
+  overflow-y: auto;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 2px;
+  padding: 8px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  box-shadow: var(--shadow-card);
+}
+
+.emoji-opt {
+  aspect-ratio: 1;
+  border: none;
+  background: transparent;
+  border-radius: 8px;
+  font-size: 18px;
+  line-height: 1;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: background 0.12s ease;
+}
+.emoji-opt:hover { background: var(--nav-active-bg); }
+.emoji-opt:active { transform: scale(0.9); }

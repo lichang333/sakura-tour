@@ -39,7 +39,24 @@ function ProgressRing({ pct, size = 48, stroke = 4 }) {
 function loadObj(key)    { try { return JSON.parse(localStorage.getItem(key) || '{}') } catch { return {} } }
 function saveObj(key, o) { localStorage.setItem(key, JSON.stringify(o)) }
 
+/* 旅行主题 emoji 选择器（点图标弹网格挑选，桌面/手机都可用） */
+const EMOJI_CHOICES = ['✈️','🚄','🚗','🚕','🚌','🚲','🛵','⛴️','🚠','⛰️','🏔️','🗻','🌋','🏞️','🏕️','🏖️','🏝️','🏜️','🌅','🌄','🌊','🏯','🏰','⛩️','🛕','⛪','🏛️','🏘️','🏮','🎋','🎎','🌸','🌺','🌼','🌾','🌲','🍃','🐘','🦜','🕊️','🐎','🐟','🦋','🍜','🍲','🍵','☕','🍶','🍢','🥘','🍡','🍑','🔥','💦','♨️','🎫','📸','🎒','🗺️','🧭','🌙','⭐','🏆','📅']
+
+function EmojiPopover({ onPick, onClose }) {
+  return (
+    <>
+      <div className="emoji-backdrop" onClick={(e) => { e.stopPropagation(); onClose() }} />
+      <div className="emoji-popover" onClick={e => e.stopPropagation()}>
+        {EMOJI_CHOICES.map(em => (
+          <button key={em} type="button" className="emoji-opt" onClick={() => onPick(em)}>{em}</button>
+        ))}
+      </div>
+    </>
+  )
+}
+
 export default function PlanPage({ setActiveTab, goToSpot }) {
+  const [picker, setPicker] = useState(null)
   const [mode,      setMode]      = useState('template')
   const [activeDay, setActiveDay] = useState(1)
   const [editMode,  setEditMode]  = useState(false)
@@ -297,14 +314,16 @@ export default function PlanPage({ setActiveTab, goToSpot }) {
                     <div className="dhc-label">Day {day.day}</div>
                     {editMode ? (
                       <div className="dhc-edit-row">
-                        <input
-                          className="dhc-emoji-input"
-                          value={day.emoji || theme.icon}
-                          onChange={e => editDayEmoji(di, e.target.value)}
-                          maxLength={4}
-                          aria-label="这一天的图标 emoji"
-                          title="改这一天的图标"
-                        />
+                        <span className="emoji-pick">
+                          <button type="button" className="emoji-pick-btn"
+                            onClick={(e) => { e.stopPropagation(); setPicker(p => (p && p.di === di && p.ai == null) ? null : { di, ai: null }) }}
+                            aria-label="选择这一天的图标">
+                            {day.emoji || theme.icon}
+                          </button>
+                          {picker && picker.di === di && picker.ai == null && (
+                            <EmojiPopover onPick={(em) => { editDayEmoji(di, em); setPicker(null) }} onClose={() => setPicker(null)} />
+                          )}
+                        </span>
                         <input
                           className="dhc-title-input"
                           value={day.title}
@@ -340,14 +359,16 @@ export default function PlanPage({ setActiveTab, goToSpot }) {
                           <div className="act-card-inner">
                             {editMode ? (
                               <>
-                                <input
-                                  className="act-emoji-input"
-                                  value={act.icon}
-                                  onChange={e => editAct(di, i, 'icon', e.target.value)}
-                                  onClick={e => e.stopPropagation()}
-                                  maxLength={4}
-                                  aria-label="图标"
-                                />
+                                <span className="emoji-pick">
+                                  <button type="button" className="emoji-pick-btn"
+                                    onClick={(e) => { e.stopPropagation(); setPicker(p => (p && p.di === di && p.ai === i) ? null : { di, ai: i }) }}
+                                    aria-label="选择图标">
+                                    {act.icon}
+                                  </button>
+                                  {picker && picker.di === di && picker.ai === i && (
+                                    <EmojiPopover onPick={(em) => { editAct(di, i, 'icon', em); setPicker(null) }} onClose={() => setPicker(null)} />
+                                  )}
+                                </span>
                                 <input
                                   className="act-text-input"
                                   value={act.text}
