@@ -82,6 +82,7 @@ export default function MapPage({ goToSpot, openList }) {
   const mapElRef = useRef(null)
   const mapRef = useRef(null)
   const markersRef = useRef([])
+  const geoRef = useRef(null)          // 高德定位插件实例
   // AMap 脚本加载是异步的：加载期间用户可能切主题，
   // 建图时从 ref 读最新值，而不是 init effect 闭包里的旧值
   const themeRef = useRef(theme)
@@ -89,6 +90,8 @@ export default function MapPage({ goToSpot, openList }) {
   const [filter, setFilter] = useState('all')
   const [mapError, setMapError] = useState('')
   const [ready, setReady] = useState(false)
+  const [locating, setLocating] = useState(false)
+  const [geoMsg, setGeoMsg] = useState('')
 
   const checkedIds = new Set(user?.checkedSpots || [])
   const visitedIds = new Set(user?.visitedSpots || [])
@@ -113,6 +116,19 @@ export default function MapPage({ goToSpot, openList }) {
     goToSpot?.(spot.id)
   }
 
+  // 定位到我：插件自动放标记/精度圈并平移缩放到当前位置
+  const locateMe = () => {
+    if (!geoRef.current) { setGeoMsg('定位未就绪，请稍候再试'); setTimeout(() => setGeoMsg(''), 2500); return }
+    setLocating(true)
+    geoRef.current.getCurrentPosition((status, result) => {
+      setLocating(false)
+      if (status !== 'complete') {
+        setGeoMsg('定位失败，请在浏览器/系统里允许定位权限')
+        setTimeout(() => setGeoMsg(''), 3200)
+      }
+    })
+  }
+
   // Init map once. The container has a static CSS height (.map-canvas),
   // so its layout is already settled by the time this effect runs — no
   // need to defer marker creation behind rAF/timeout gimmicks.
@@ -131,10 +147,26 @@ export default function MapPage({ goToSpot, openList }) {
       })
       mapRef.current.resize()
       setReady(true)
+
+      // GPS 定位插件（返回 GCJ-02，与高德底图对齐；国内不漂移）
+      AMap.plugin('AMap.Geolocation', () => {
+        if (cancelled || !mapRef.current) return
+        geoRef.current = new AMap.Geolocation({
+          enableHighAccuracy: true,
+          timeout: 10000,
+          showButton: false,      // 用我们自己的定位按钮
+          showMarker: true,       // 插件自动放「我的位置」标记
+          showCircle: true,       // 精度圈
+          panToLocation: true,
+          zoomToAccuracy: true,
+        })
+        mapRef.current.addControl(geoRef.current)
+      })
     }).catch(err => setMapError(err.message))
 
     return () => {
       cancelled = true
+      geoRef.current = null
       mapRef.current?.destroy()
       mapRef.current = null
     }
@@ -227,6 +259,19 @@ export default function MapPage({ goToSpot, openList }) {
         ) : (
           <div className="map-canvas" ref={mapElRef} />
         )}
+        {!mapError && (
+          <button className="map-locate-btn" onClick={locateMe} disabled={locating} aria-label="定位到我的位置" title="定位到我">
+            {locating ? (
+              <span className="mlb-spin" aria-hidden="true" />
+            ) : (
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor"
+                strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="3.2" /><path d="M12 2v3M12 19v3M2 12h3M19 12h3" />
+              </svg>
+            )}
+          </button>
+        )}
+        {geoMsg && <div className="map-geo-msg">{geoMsg}</div>}
         <div className="map-legend">
           <span className="ml-item"><span className="ml-seal">印</span>已抵达</span>
           <span className="ml-item"><span className="ml-dot want" />想去</span>
