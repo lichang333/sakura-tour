@@ -75,6 +75,31 @@ function TayinCard({ user, mintSsoCode }) {
   )
 }
 
+/* 星探食堂互跳卡 —— 吃与办公由姊妹站承载（同一账号），带 SSO 免登跳转 */
+function StarScoutCard({ user, mintSsoCode }) {
+  const openWithSso = async (e) => {
+    if (!user) return
+    e.preventDefault()
+    let url = 'https://star-scout.digitalvio.shop/'
+    try {
+      const code = await mintSsoCode?.()
+      if (code) url += `#sso=${code}`
+    } catch { /* 铸码失败就裸跳 */ }
+    window.open(url, '_blank', 'noreferrer')
+  }
+
+  return (
+    <a className="tayin-card" href="https://star-scout.digitalvio.shop/" target="_blank" rel="noreferrer" onClick={openWithSso}>
+      <span className="tc-seal">食</span>
+      <span className="tc-info">
+        <span className="tc-title">星探食堂 · 吃与办公</span>
+        <span className="tc-sub">玩累了吃什么？米其林/黑珍珠/必吃榜与办公空间，同一账号直接用</span>
+      </span>
+      <span className="tc-go">去觅食 →</span>
+    </a>
+  )
+}
+
 export default function MapPage({ goToSpot, openList }) {
   const { user, mintSsoCode } = useUser()
   const { CITIES, selectCity } = useCity()
@@ -234,6 +259,7 @@ export default function MapPage({ goToSpot, openList }) {
       </div>
 
       <TayinCard user={user} mintSsoCode={mintSsoCode} />
+      <StarScoutCard user={user} mintSsoCode={mintSsoCode} />
 
       <div className="map-list-section">
         {visible.length === 0 ? (
