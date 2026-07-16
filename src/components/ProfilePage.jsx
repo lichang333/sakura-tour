@@ -3,6 +3,7 @@ import { useCity } from '../context/CityContext'
 import { CITIES } from '../data/cities'
 import { REC_TAGS } from './SpotsPage'
 import CityStamp from './CityStamp'
+import AchBadge from './AchBadge'
 import './ProfilePage.css'
 
 // Gather all spots across all cities (周边顺游也可想去/打卡)
@@ -126,7 +127,7 @@ export default function ProfilePage({ goToSpot, openAlbum }) {
               onClick={b.album ? openAlbum : undefined}
               role={b.album ? 'button' : undefined}
             >
-              <span className="ach-icon">{b.icon}</span>
+              <span className="ach-icon"><AchBadge kind={b.id} unlocked={b.unlocked} size={40} /></span>
               <span className="ach-main">
                 <span className="ach-name">{b.name}</span>
                 <span className="ach-desc">{b.desc}{b.album ? ' · 看集章册 ›' : ''}</span>

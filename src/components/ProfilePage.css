@@ -395,10 +395,9 @@
 }
 .ach-row:first-child { border-top: none; }
 .ach-row.clickable { cursor: pointer; }
-.ach-row.locked { opacity: 0.5; }
-.ach-row.locked .ach-icon { filter: grayscale(1); }
+.ach-row.locked .ach-name, .ach-row.locked .ach-desc { opacity: 0.55; }
 
-.ach-icon { font-size: 20px; flex-shrink: 0; width: 28px; text-align: center; }
+.ach-icon { flex-shrink: 0; width: 40px; display: grid; place-items: center; }
 .ach-main { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 1px; }
 .ach-name { font-size: 13.5px; font-weight: 700; color: var(--text-dark); }
 .ach-desc { font-size: 11.5px; color: var(--text-mid); }
