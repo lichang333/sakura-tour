@@ -2,12 +2,13 @@ import { useUser } from '../context/UserContext'
 import { useCity } from '../context/CityContext'
 import { CITIES } from '../data/cities'
 import { REC_TAGS } from './SpotsPage'
+import CityStamp from './CityStamp'
 import './ProfilePage.css'
 
 // Gather all spots across all cities (周边顺游也可想去/打卡)
 const allSpots = CITIES.flatMap(c => [...c.spots, ...(c.nearbySpots || [])])
 
-export default function ProfilePage({ goToSpot }) {
+export default function ProfilePage({ goToSpot, openAlbum }) {
   const { user, logout } = useUser()
   const { selectCity } = useCity()
 
@@ -39,16 +40,20 @@ export default function ProfilePage({ goToSpot }) {
   const visitedCount = visitedSpots.length
   const checkedCount = checkedSpots.length
 
+  // 集章册联动：一城任一景点已抵达即算「盖到」该城
+  const earnedCities = CITIES.filter(c =>
+    [...c.spots, ...(c.nearbySpots || [])].some(sp => user.visitedSpots?.includes(sp.id)))
+
   const badges = [
-    { id: 'first',    seal: '初行', name: '初来乍到',  desc: '完成注册',         unlocked: true },
-    { id: 'spot1',    seal: '一站', name: '第一站',    desc: '加入第1个地点',     unlocked: checkedCount >= 1 },
-    { id: 'spot3',    seal: '探索', name: '探索者',    desc: '加入3个地点',       unlocked: checkedCount >= 3 },
-    { id: 'visited1', seal: '出发', name: '首次出发',  desc: '第1个已抵达',       unlocked: visitedCount >= 1 },
-    { id: 'visited3', seal: '达人', name: '旅行达人',  desc: '抵达3个地点',       unlocked: visitedCount >= 3 },
-    { id: 'visited5', seal: '资深', name: '资深旅人',  desc: '抵达5个地点',       unlocked: visitedCount >= 5 },
-    { id: 'xp200',    seal: '新星', name: '积分新星',  desc: '累计200 XP',        unlocked: totalXP >= 200 },
-    { id: 'streak3',  seal: '连日', name: '坚持打卡',  desc: '连续3天登录',       unlocked: (user.streak || 0) >= 3 },
-    { id: 'city2',    seal: '多城', name: '多城旅人',  desc: '抵达2个城市',       unlocked: new Set(CITIES.filter(c => c.spots.some(s => user.visitedSpots?.includes(s.id))).map(c => c.id)).size >= 2 },
+    { id: 'first',    icon: '🎒', name: '初来乍到',  desc: '完成注册',         unlocked: true },
+    { id: 'spot1',    icon: '📍', name: '第一站',    desc: '加入第1个地点',     unlocked: checkedCount >= 1 },
+    { id: 'spot3',    icon: '🧭', name: '探索者',    desc: '加入3个地点',       unlocked: checkedCount >= 3 },
+    { id: 'visited1', icon: '🚩', name: '首次出发',  desc: '第1个已抵达',       unlocked: visitedCount >= 1 },
+    { id: 'visited3', icon: '🏔️', name: '旅行达人',  desc: '抵达3个地点',       unlocked: visitedCount >= 3 },
+    { id: 'visited5', icon: '🎖️', name: '资深旅人',  desc: '抵达5个地点',       unlocked: visitedCount >= 5 },
+    { id: 'xp200',    icon: '⭐', name: '积分新星',  desc: '累计200 XP',        unlocked: totalXP >= 200 },
+    { id: 'streak3',  icon: '🔥', name: '坚持打卡',  desc: '连续3天登录',       unlocked: (user.streak || 0) >= 3 },
+    { id: 'city2',    icon: '🗺️', name: '多城旅人',  desc: '抵达2个城市',       unlocked: earnedCities.length >= 2, album: true },
   ]
 
   return (
@@ -95,14 +100,38 @@ export default function ProfilePage({ goToSpot }) {
         <div className="level-next">再获得 {200 - xpInLevel} XP 升至 Lv.{level + 1}</div>
       </div>
 
-      {/* Badges — 圆形钤印 */}
+      {/* 集章册入口 —— 印章视觉专属集章册，这里是展厅入口 */}
+      <button className="album-entry" onClick={openAlbum}>
+        <div className="ae-info">
+          <div className="ae-title">集章册</div>
+          <div className="ae-sub">已集 <b>{earnedCities.length}</b> / {CITIES.length} 城</div>
+        </div>
+        <div className="ae-stamps">
+          {earnedCities.slice(-3).map(c => (
+            <span key={c.id} className="ae-stamp"><CityStamp city={c} earned size={52} /></span>
+          ))}
+          {earnedCities.length === 0 && <span className="ae-empty">还没盖章，去打卡第一城</span>}
+        </div>
+        <span className="ae-go">›</span>
+      </button>
+
+      {/* 旅行成就 —— 行为里程碑，轻量徽章清单（印章形态让位给集章册） */}
       <div className="profile-section">
-        <h3 className="section-title">成就印章</h3>
-        <div className="seals-grid">
+        <h3 className="section-title">旅行成就</h3>
+        <div className="ach-list">
           {badges.map(b => (
-            <div key={b.id} className={`seal-badge ${b.unlocked ? 'unlocked' : 'locked'}`} title={b.desc}>
-              <span className="seal-badge-mark">{b.seal.slice(0, 1)}<br />{b.seal.slice(1)}</span>
-              <span className="seal-badge-name">{b.name}</span>
+            <div
+              key={b.id}
+              className={`ach-row ${b.unlocked ? 'unlocked' : 'locked'} ${b.album ? 'clickable' : ''}`}
+              onClick={b.album ? openAlbum : undefined}
+              role={b.album ? 'button' : undefined}
+            >
+              <span className="ach-icon">{b.icon}</span>
+              <span className="ach-main">
+                <span className="ach-name">{b.name}</span>
+                <span className="ach-desc">{b.desc}{b.album ? ' · 看集章册 ›' : ''}</span>
+              </span>
+              <span className={`ach-state ${b.unlocked ? 'on' : ''}`}>{b.unlocked ? '✓' : '·'}</span>
             </div>
           ))}
         </div>

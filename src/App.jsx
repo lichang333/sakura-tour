@@ -48,7 +48,7 @@ function AppInner() {
     plan:    <PlanPage setActiveTab={setActiveTab} goToSpot={goToSpot} />,
     tips:    <TipsPage goToSpot={goToSpot} />,
     map:     <MapPage goToSpot={goToSpot} openList={() => setActiveTab('spots')} />,
-    profile: <ProfilePage goToSpot={goToSpot} />,
+    profile: <ProfilePage goToSpot={goToSpot} openAlbum={() => setActiveTab('album')} />,
     album:   <AlbumPage goBack={() => setActiveTab('home')} />,
   }
 

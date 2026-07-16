@@ -141,57 +141,6 @@
 }
 
 /* Badges — 圆形钤印 */
-.seals-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 14px 10px;
-  justify-content: flex-start;
-}
-
-.seal-badge {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 7px;
-  width: calc((100% - 40px) / 5);
-  min-width: 56px;
-}
-
-.seal-badge-mark {
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  border: 1.5px dashed var(--border);
-  color: var(--text-mid);
-  opacity: 0.6;
-  font-family: var(--font-serif);
-  font-size: 13px;
-  font-weight: 600;
-  line-height: 1.15;
-  display: grid;
-  place-items: center;
-  text-align: center;
-  letter-spacing: 0.06em;
-  transition: all 0.2s;
-}
-
-.seal-badge.unlocked .seal-badge-mark {
-  border: 2px solid var(--copper);
-  border-radius: 50%;
-  color: var(--copper);
-  opacity: 1;
-  transform: rotate(-8deg);
-}
-
-.seal-badge-name {
-  font-size: 10.5px;
-  font-weight: 600;
-  color: var(--text-mid);
-  text-align: center;
-  white-space: nowrap;
-}
-.seal-badge.unlocked .seal-badge-name { color: var(--text-dark); }
-.seal-badge.locked .seal-badge-name { opacity: 0.55; }
 
 /* Checked Spots */
 .empty-spots {
@@ -400,3 +349,65 @@
   background: rgba(28,176,246,0.15);
   color: var(--indigo);
 }
+
+/* ── 集章册入口卡（我的页） ── */
+.album-entry {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: calc(100% - 32px);
+  margin: 14px 16px 0;
+  padding: 12px 14px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  box-shadow: var(--shadow-card);
+  text-align: left;
+}
+.album-entry:active { transform: scale(0.98); }
+@media (hover: hover) { .album-entry:hover { border-color: var(--copper); } }
+
+.ae-info { flex-shrink: 0; }
+.ae-title { font-family: var(--font-serif); font-size: 15.5px; font-weight: 700; color: var(--text-dark); }
+.ae-sub { font-size: 12px; color: var(--text-mid); margin-top: 3px; }
+.ae-sub b { color: var(--copper); font-size: 15px; font-family: var(--font-serif); }
+
+.ae-stamps { flex: 1; display: flex; justify-content: flex-end; gap: 2px; min-width: 0; }
+.ae-stamp { flex-shrink: 0; }
+.ae-empty { font-size: 12px; color: var(--text-mid); align-self: center; }
+
+.ae-go { font-size: 22px; color: var(--text-mid); opacity: 0.5; flex-shrink: 0; }
+
+/* ── 旅行成就（轻量徽章清单） ── */
+.ach-list {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 2px 14px;
+}
+
+.ach-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 0;
+  border-top: 1px solid var(--border);
+}
+.ach-row:first-child { border-top: none; }
+.ach-row.clickable { cursor: pointer; }
+.ach-row.locked { opacity: 0.5; }
+.ach-row.locked .ach-icon { filter: grayscale(1); }
+
+.ach-icon { font-size: 20px; flex-shrink: 0; width: 28px; text-align: center; }
+.ach-main { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 1px; }
+.ach-name { font-size: 13.5px; font-weight: 700; color: var(--text-dark); }
+.ach-desc { font-size: 11.5px; color: var(--text-mid); }
+
+.ach-state {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-mid);
+  opacity: 0.5;
+  flex-shrink: 0;
+}
+.ach-state.on { color: var(--jade); opacity: 1; }
