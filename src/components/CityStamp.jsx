@@ -168,6 +168,13 @@ const EMBLEMS = {
       <path d="M 48 64 h 18 M 48 70 h 12" stroke={C} strokeWidth="1.5" strokeLinecap="round" />
     </g>
   ),
+  shenzhen: (
+    <g>
+      <path d="M 57 72 V 44 L 60 36 L 63 44 V 72 Z" fill={C} />
+      <path d="M 44 72 V 54 h 8 v 18 Z M 68 72 V 50 h 8 v 22 Z M 36 72 v -12 h 6 v 12 Z M 78 72 v -14 h 6 v 14 Z" fill={C} opacity="0.7" />
+      <path d="M 34 79 q 6 -3.5 13 0 t 13 0 t 13 0 t 13 0" fill="none" stroke={C} strokeWidth="1.6" strokeLinecap="round" />
+    </g>
+  ),
   chengdu: (
     <g>
       <circle cx="60" cy="60" r="16" fill="none" stroke={C} strokeWidth="2.2" />
@@ -200,6 +207,7 @@ const SHAPE_OF = {
   puer: 'oval', yuanyang: 'oval', qujing: 'oval',
   xishuangbanna: 'postage', dehong: 'postage',
   nujiang: 'diamond',
+  shenzhen: 'circle',
 }
 
 const OCTA = 'M 60 8 L 96.8 23.2 L 112 60 L 96.8 96.8 L 60 112 L 23.2 96.8 L 8 60 L 23.2 23.2 Z'

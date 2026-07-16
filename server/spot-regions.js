@@ -33,6 +33,7 @@ const SPOT_REGION_RULES = [
   { test: /^ztn?\d+$/, region: 'yn-zhaotong' },  // 昭通：zt1.. / ztn1..（含盐津/威信/大关/彝良/水富/巧家/镇雄/永善，均属昭通）
   { test: /^myn?\d+$/, region: 'sc-mianyang' },  // 绵阳：my1.. / myn1..（含江油/平武/北川/梓潼/安州/三台，均属绵阳；首座四川城）
   { test: /^cdn?\d+$/, region: 'sc-chengdu' },   // 成都：cd1.. / cdn1..（都江堰/青城山属成都；三星堆走例外表→德阳）
+  { test: /^szn?\d+$/, region: 'ad440300' },     // 深圳：sz1.. / szn1..（大鹏/沙头角均属深圳；首座大湾区城）
 ]
 
 export function regionOfSpot(spotId) {

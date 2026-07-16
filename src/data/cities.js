@@ -4344,6 +4344,199 @@ const chengduSeason = {
   ],
 }
 
+
+/* ════════════════ 深圳 ════════════════ */
+const shenzhenSpots = [
+  {
+    id: 'sz1', name: "深圳湾公园", nameEn: "Shenzhen Bay Park", emoji: "🌉",
+    district: "南山区", lat: 22.5200, lng: 113.9500,
+    peakTime: "全年（9-3月候鸟）", peakDays: "傍晚海风与对岸香港夜色", difficulty: "easy",
+    rating: 4.6, reviews: 18000, tags: ["必去", "海滨绿道", "遥望香港"],
+    isHot: true, ticket: "免费",
+    description: "沿深圳湾铺开的十余公里海滨公园，骑行道与步道穿红树林而过，对岸就是香港的山与楼。傍晚海风、日落、觅食的白鹭与远处流光的天际线同框，是这座奇迹之城最松弛的一面。冬季成千上万候鸟来湾区越冬。",
+    tips: "租共享单车刷完全程最爽；日落前一小时到红树林段最出片；9-3月观候鸟，勿投喂惊扰。",
+    transport: "地铁9号线深圳湾公园站直达",
+    color: "#3B8AA6", xp: 110,
+  },
+  {
+    id: 'sz2', name: "莲花山公园", nameEn: "Lianhua Hill Park", emoji: "⛰️",
+    district: "福田区", lat: 22.5560, lng: 114.0600,
+    peakTime: "全年（周五六晚灯光秀）", peakDays: "山顶看灯光秀最震撼", difficulty: "easy",
+    rating: 4.6, reviews: 15000, tags: ["必去", "邓小平像", "市民中心灯光秀"],
+    isHot: true, ticket: "免费",
+    description: "福田 CBD 边的城市绿肺，登顶山顶广场（深圳最高的户外广场），邓小平铜像前俯瞰整片摩天森林。每逢周五、周六及节假日晚上，市民中心 43 栋楼、百万盏灯的灯光秀在脚下上演，是读懂「深圳速度」最好的观景台。",
+    tips: "灯光秀 19/20/21 点各一场（周五六及节假日），提前占山顶机位；山不高、步道好走；夏天凤凰木开花满园红。",
+    transport: "地铁3/4号线少年宫站步行可达",
+    color: "#4E7A5E", xp: 100,
+  },
+  {
+    id: 'sz3', name: "世界之窗", nameEn: "Window of the World", emoji: "🗼",
+    district: "南山区", lat: 22.5350, lng: 113.9730,
+    peakTime: "全年（夜场灯光）", peakDays: "下午进园接夜场最划算", difficulty: "easy",
+    rating: 4.4, reviews: 21000, tags: ["主题公园", "环球地标", "埃菲尔铁塔"],
+    ticket: "门票约220元",
+    description: "把埃菲尔铁塔、金字塔、吴哥窟、雅典卫城等世界名胜按比例收进一园，一天「环游世界」。傍晚亮灯后的铁塔与各国歌舞表演别有气氛，是深圳主题公园时代的开山之作，也是几代人的记忆。",
+    tips: "下午进园、待到夜场看亮灯与表演最划算；园区大穿舒适鞋；与锦绣中华民俗村相邻可二选一。",
+    transport: "地铁1/2号线世界之窗站直达",
+    color: "#6E5E8A", xp: 100,
+  },
+  {
+    id: 'sz4', name: "华强北", nameEn: "Huaqiangbei Electronics", emoji: "🔌",
+    district: "福田区", lat: 22.5460, lng: 114.0880,
+    peakTime: "全年（白天营业）", peakDays: "工作日逛档口最全", difficulty: "easy",
+    rating: 4.3, reviews: 9000, tags: ["中国电子第一街", "赛格广场", "极客朝圣"],
+    ticket: "免费",
+    description: "「中国电子第一街」，亚洲最大的电子元器件集散地——传说在这里能配齐一部手机的所有零件。赛格、华强电子世界里档口密如蜂巢，从芯片到无人机应有尽有。对科技爱好者，这里比任何景点都「深圳」。",
+    tips: "想淘配件先比三家、验货再付；不买也值得逛一圈看「硬核市井」；地铁华强北站直达，商圈地下街也庞大。",
+    transport: "地铁2/7号线华强北站直达",
+    color: "#B4472F", xp: 80,
+  },
+  {
+    id: 'sz5', name: "大梅沙海滨公园", nameEn: "Dameisha Beach", emoji: "🏖️",
+    district: "盐田区", lat: 22.5930, lng: 114.3100,
+    peakTime: "5-10月玩水", peakDays: "夏季周末人最旺", difficulty: "easy",
+    rating: 4.3, reviews: 16000, tags: ["免费海滩", "水上运动", "天长地久雕塑"],
+    ticket: "免费（需预约）",
+    description: "深圳最出名的城市海滩，近两公里金沙滩免费开放。游泳、摩托艇、滑翔伞、沙滩排球一应俱全，标志性的彩色「天长地久」雕塑立在沙滩上。节假日人山人海，本地人则更爱旁边收费但清净的小梅沙。",
+    tips: "旺季需线上预约入园；节假日人极多，想清净去小梅沙或东部大鹏；防晒必备，海边留意台风预警。",
+    transport: "地铁8号线盐田路站转公交/打车",
+    color: "#C79A3E", xp: 90,
+  },
+  {
+    id: 'sz6', name: "梧桐山", nameEn: "Wutong Mountain", emoji: "🌫️",
+    district: "罗湖区", lat: 22.5780, lng: 114.2200,
+    peakTime: "全年（春看毛棉杜鹃）", peakDays: "3-4月杜鹃花海", difficulty: "hard",
+    rating: 4.5, reviews: 8000, tags: ["深圳第一峰", "云雾山径", "毛棉杜鹃"],
+    ticket: "免费",
+    description: "深圳最高峰（好汉坡登顶 943 米），城市边缘的一片云雾青山。沿溪谷步道登顶，可望深圳与香港两城天际线；三四月毛棉杜鹃盛开，「十里杜鹃」漫山浅粉，是这座钢铁森林难得的野趣。山脚有仙湖植物园与弘法寺。",
+    tips: "登顶约3-4小时、备水和防滑鞋；雨后多雾路滑；仙湖植物园+弘法寺可作轻量替代。",
+    transport: "地铁2/8号线莲塘站转公交至登山口",
+    color: "#2E6E4A", xp: 110,
+  },
+  {
+    id: 'sz7', name: "蛇口海上世界", nameEn: "Shekou Sea World", emoji: "🚢",
+    district: "南山区", lat: 22.4850, lng: 113.9170,
+    peakTime: "全年（夜景）", peakDays: "夜晚明华轮亮灯最美", difficulty: "easy",
+    rating: 4.3, reviews: 10000, tags: ["明华轮", "音乐喷泉", "滨海夜生活"],
+    ticket: "免费",
+    description: "以永久停泊的「明华轮」为中心的滨海街区——邓小平题写「海上世界」由此得名。夜里巨轮亮灯如宫殿，广场音乐喷泉起舞，四周酒吧与各国餐厅环绕，是深圳最有异国气氛的夜生活据点，也是蛇口开放史的见证。",
+    tips: "晚上来，看喷泉配一顿露天晚餐；旁边海上世界文化艺术中心（设计互联）值得进；蛇口港可轮渡直达香港机场/珠海。",
+    transport: "地铁2号线海上世界站直达",
+    color: "#3B6E86", xp: 90,
+  },
+]
+
+/* 周边顺游 —— 大鹏半岛与沙头角，均属深圳（无需例外表） */
+const shenzhenNearby = [
+  {
+    id: 'szn1', name: "西涌·杨梅坑", nameEn: "Xichong & Yangmeikeng", emoji: "🌊",
+    district: "大鹏新区", lat: 22.4800, lng: 114.5100,
+    peakTime: "5-10月（防台风）", peakDays: "夏季下海露营最佳", difficulty: "medium",
+    rating: 4.5, reviews: 7000, tags: ["中国最美海滩", "露营观星", "环海骑行"],
+    ticket: "西涌约18元 / 杨梅坑免费",
+    desc: "大鹏半岛的原生态海岸，露营观星胜地",
+    description: "大鹏半岛南端的西涌是深圳最长最原生态的海滩（4.5 公里，「东方夏威夷」），也是国际暗夜社区——晚上真能看见银河。旁边杨梅坑被称为「深圳最美溪谷海岸」，环海骑行、快艇出海、《美人鱼》取景地都在这。",
+    tips: "西涌需预约购票、可租帐篷过夜观星；杨梅坑租自行车环海；台风季（7-9月）出发前看预警。",
+    transport: "市区驾车约1.5小时至大鹏南澳",
+    color: "#3B8AA6", xp: 100, isNearby: true,
+  },
+  {
+    id: 'szn2', name: "大鹏所城", nameEn: "Dapeng Fortress", emoji: "🏯",
+    district: "大鹏新区", lat: 22.6000, lng: 114.5500,
+    peakTime: "全年", peakDays: "全年 · 600年海防", difficulty: "easy",
+    rating: 4.3, reviews: 4000, tags: ["明清海防", "深圳之根", "将军府第"],
+    ticket: "免费",
+    description: "深圳这座「没有历史的城市」其实有 600 年的根——「深圳」旧称「鹏城」正源于此。明清海防要塞的城门、石街、将军府第保存完好，是全国保存最完整的海防所城之一。逛完古城，隔壁较场尾的海边民宿村可以住一晚。",
+    tips: "免费开放、慢逛约2小时；与较场尾、杨梅坑同片区连玩；周末较场尾民宿需早订。",
+    transport: "市区驾车约1.5小时至大鹏",
+    color: "#8A6A3B", xp: 90, isNearby: true,
+  },
+  {
+    id: 'szn3', name: "中英街", nameEn: "Chung Ying Street", emoji: "🛂",
+    district: "盐田区沙头角", lat: 22.5500, lng: 114.2300,
+    peakTime: "全年", peakDays: "全年 · 一街两制", difficulty: "easy",
+    rating: 4.1, reviews: 3500, tags: ["一街两制", "界碑", "免税购物"],
+    ticket: "免费（需办通行证）",
+    description: "一条 250 米的小街，东侧是深圳、西侧是香港——「一国两制」在这里具体到了一条街的两排店铺。街心的百年界碑、两侧迥异的建筑、往来购物的人流，加上中英街历史博物馆，是一堂生动的近代史课。",
+    tips: "进街需提前线上办理「中英街通行证」（本地人预约、外地凭身份证办理）；周末名额紧张，提前申请。",
+    transport: "地铁8号线沙头角站转公交",
+    color: "#B4472F", xp: 80, isNearby: true,
+  },
+]
+
+const shenzhenItinerary = [
+  {
+    day: 1, title: "抵达·湾区日落", date: "Day 1",
+    activities: [
+      { time: "下午", icon: "🌉", text: "深圳湾公园租单车，红树林海滨绿道", spotId: 'sz1' },
+      { time: "傍晚", icon: "🌇", text: "湾畔看日落，遥望对岸香港" },
+      { time: "晚上", icon: "🚢", text: "蛇口海上世界，明华轮夜色配晚餐", spotId: 'sz7' },
+    ]
+  },
+  {
+    day: 2, title: "都市与灯光秀", date: "Day 2",
+    activities: [
+      { time: "上午", icon: "🔌", text: "华强北逛中国电子第一街", spotId: 'sz4' },
+      { time: "下午", icon: "⛰️", text: "莲花山登顶，俯瞰福田 CBD", spotId: 'sz2' },
+      { time: "晚上", icon: "✨", text: "山顶看市民中心灯光秀（周五六/节假日）" },
+    ]
+  },
+  {
+    day: 3, title: "主题园或第一峰", date: "Day 3",
+    activities: [
+      { time: "全天", icon: "🗼", text: "世界之窗一日环游世界（待到夜场）", spotId: 'sz3' },
+      { time: "替代", icon: "🌫️", text: "或登梧桐山，春季看毛棉杜鹃", spotId: 'sz6' },
+      { time: "晚上", icon: "🍜", text: "东门老街夜市，吃遍南北小吃" },
+    ]
+  },
+  {
+    day: 4, title: "东部山海", date: "Day 4",
+    activities: [
+      { time: "全天", icon: "🌊", text: "大鹏半岛：大鹏所城+杨梅坑/西涌，或大梅沙", spotId: 'sz5' },
+      { time: "下午", icon: "🎁", text: "带点科技小物、茶点手信返程" },
+      { time: "傍晚", icon: "✈️", text: "返程 / 轮渡香港、高铁广州下一站" },
+    ]
+  },
+]
+
+const shenzhenTips = [
+  { icon: "📅", title: "最佳季节", content: "亚热带海洋性气候，11月-次年1月秋高气爽最舒适；5-9月炎热多雨、7-9月留意台风预警（海滩会关闭）。全年无冬，短袖季很长，防晒常备。" },
+  { icon: "✨", title: "灯光秀时刻", content: "市民中心灯光秀只在周五、周六及节假日晚上 19:00/20:00/21:00 各一场（约15分钟），43栋楼百万盏灯联动。莲花山顶是最佳机位，提前半小时占位。" },
+  { icon: "🎫", title: "预约文化", content: "大梅沙、西涌等海滩旺季需线上预约入园；中英街要提前办通行证（周末名额紧）；各大主题公园线上购票比现场便宜。" },
+  { icon: "🚇", title: "交通提示", content: "地铁网极发达，市内景点几乎都通地铁；东部大鹏半岛（西涌/所城）无地铁，需自驾或打车约1.5小时。深圳与香港陆路口岸众多，福田/罗湖/深圳湾过关很方便。" },
+  { icon: "🌀", title: "台风与海滩", content: "7-9月台风季，海滩随预警关闭，出发前查「深圳天气」官方通知；下海认准有救生员的泳区，西涌外海浪大勿远游。" },
+  { icon: "🍽️", title: "移民城市吃法", content: "深圳是移民城市，「八大菜系齐聚」；本地味道找客家菜（盆菜/酿豆腐）、沙井生蚝、大鹏海鲜。早茶文化承广府一脉，周末喝早茶要排队。" },
+  { icon: "🔌", title: "科技之城玩法", content: "华强北配件市场、腾讯滨海大厦、大疆天空之城……科技迷可以把深圳当「未来展厅」逛。无人机在管制区域禁飞，起飞前查禁飞图。" },
+]
+
+const shenzhenFoods = [
+  { name: "沙井生蚝", emoji: "🦪", desc: "本地百年蚝乡，炭烤蒜蓉最惹味" },
+  { name: "客家盆菜", emoji: "🍲", desc: "层层叠料一盆宴，本地客家传统" },
+  { name: "广式早茶", emoji: "🥟", desc: "虾饺烧卖凤爪，周末排队的仪式" },
+  { name: "椰子鸡", emoji: "🥥", desc: "清甜椰汤涮文昌鸡，深圳人心头好" },
+  { name: "大鹏海鲜", emoji: "🦐", desc: "南澳码头现捞现做，鲜字当头" },
+  { name: "潮汕牛肉火锅", emoji: "🥩", desc: "移民城市标配，吊龙匙柄涮几秒" },
+]
+
+const shenzhenPackList = [
+  { icon: "🧴", text: "高倍防晒（全年日照强）" },
+  { icon: "🩱", text: "泳衣沙滩装（大梅沙/西涌）" },
+  { icon: "🌂", text: "折叠伞（夏季骤雨说来就来）" },
+  { icon: "👟", text: "舒适鞋（梧桐山/绿道暴走）" },
+  { icon: "📱", text: "提前预约（海滩/中英街/灯光秀机位）" },
+  { icon: "💳", text: "身份证（过关口岸/通行证办理）" },
+]
+
+const shenzhenSeason = {
+  title: "最佳旅行季节",
+  sub: "奇迹之城，山海湾区",
+  rows: [
+    { dot: "peak",  label: "🍂 秋冬（11—1月）", date: "秋高气爽，湾区候鸟至", badge: "推荐" },
+    { dot: "early", label: "🌸 春（3—4月）", date: "梧桐山毛棉杜鹃盛开" },
+    { dot: "late",  label: "🌀 夏（7—9月）", date: "玩水旺季，留意台风预警" },
+  ],
+}
+
 /* ════════════════ CITIES 汇总 ════════════════
    扩展新城市：复制上方一整套 daliXxx 常量，改名后
    在下面数组里追加一个对象即可。
@@ -4896,6 +5089,32 @@ export const CITIES = [
     foods: chengduFoods,
     packList: chengduPackList,
     seasonInfo: chengduSeason,
+  },
+  {
+    id: 'shenzhen',
+    name: '深圳',
+    nameEn: 'Shenzhen',
+    emoji: '🌆',
+    country: '大湾区',
+    tagline: '奇迹之城，山海湾区',
+    heroBadge: '深圳 · 大湾区',
+    heroTitle: '鹏城深圳',
+    heroHighlight: '慢慢闯吧！',
+    heroDesc: '四十年长出的天际线，与它背后的山海',
+    heroGradient: 'linear-gradient(160deg, #232A5C 0%, #4E5EA6 55%, #CBD2F0 100%)',
+    quickTips: [
+      { icon: '✨', text: '灯光秀周五六 19/20/21 点' },
+      { icon: '🎫', text: '海滩/中英街需预约' },
+      { icon: '🚇', text: '地铁极发达，大鹏需自驾' },
+      { icon: '🌀', text: '7-9月留意台风预警' },
+    ],
+    spots: shenzhenSpots,
+    nearbySpots: shenzhenNearby,
+    itineraryDays: shenzhenItinerary,
+    tips: shenzhenTips,
+    foods: shenzhenFoods,
+    packList: shenzhenPackList,
+    seasonInfo: shenzhenSeason,
   },
 ]
 
