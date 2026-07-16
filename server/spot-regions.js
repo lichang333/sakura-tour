@@ -34,6 +34,7 @@ const SPOT_REGION_RULES = [
   { test: /^myn?\d+$/, region: 'sc-mianyang' },  // 绵阳：my1.. / myn1..（含江油/平武/北川/梓潼/安州/三台，均属绵阳；首座四川城）
   { test: /^cdn?\d+$/, region: 'sc-chengdu' },   // 成都：cd1.. / cdn1..（都江堰/青城山属成都；三星堆走例外表→德阳）
   { test: /^szn?\d+$/, region: 'ad440300' },     // 深圳：sz1.. / szn1..（大鹏/沙头角均属深圳；首座大湾区城）
+  { test: /^hkn?\d+$/, region: 'ad810000' },     // 香港：hk1.. / hkn1..（离岛/西贡均属香港特区）
 ]
 
 export function regionOfSpot(spotId) {

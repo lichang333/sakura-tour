@@ -175,6 +175,16 @@ const EMBLEMS = {
       <path d="M 34 79 q 6 -3.5 13 0 t 13 0 t 13 0 t 13 0" fill="none" stroke={C} strokeWidth="1.6" strokeLinecap="round" />
     </g>
   ),
+  hongkong: (
+    <g>
+      <path d="M 56 66 V 40 M 56 44 q 14 4 0 18 M 56 44 q -11 5 0 16" fill="none" stroke={C} strokeWidth="2" />
+      <path d="M 56 44 q 14 6 0 18 Z" fill={C} opacity="0.75" />
+      <path d="M 56 44 q -11 5 0 16 Z" fill={C} opacity="0.45" />
+      <path d="M 42 68 h 28 l -5 7 h -18 Z" fill={C} />
+      <path d="M 34 80 q 6 -3.5 12 0 t 12 0 t 12 0 t 12 0" fill="none" stroke={C} strokeWidth="1.6" strokeLinecap="round" />
+      <path d="M 76 62 v -10 h 4 v 10 M 82 62 v -7 h 4 v 7" fill="none" stroke={C} strokeWidth="1.6" />
+    </g>
+  ),
   chengdu: (
     <g>
       <circle cx="60" cy="60" r="16" fill="none" stroke={C} strokeWidth="2.2" />
@@ -208,6 +218,7 @@ const SHAPE_OF = {
   xishuangbanna: 'postage', dehong: 'postage',
   nujiang: 'diamond',
   shenzhen: 'circle',
+  hongkong: 'octagon',
 }
 
 const OCTA = 'M 60 8 L 96.8 23.2 L 112 60 L 96.8 96.8 L 60 112 L 23.2 96.8 L 8 60 L 23.2 23.2 Z'

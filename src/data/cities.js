@@ -4537,6 +4537,201 @@ const shenzhenSeason = {
   ],
 }
 
+
+/* ════════════════ 香港 ════════════════ */
+const hongkongSpots = [
+  {
+    id: 'hk1', name: "太平山顶", nameEn: "Victoria Peak", emoji: "🚋",
+    district: "港岛·中西区", lat: 22.2710, lng: 114.1500,
+    peakTime: "全年（傍晚进夜景）", peakDays: "日落前上山接夜景", difficulty: "easy",
+    rating: 4.8, reviews: 42000, tags: ["必去", "山顶缆车", "维港全景"],
+    isHot: true, ticket: "缆车+凌霄阁套票约港币148起",
+    description: "俯瞰维港两岸的最经典视角。百年山顶缆车以近乎「躺着」的坡度爬升，凌霄阁摩天台 428 与卢吉道观景点将整片摩天森林与维多利亚港尽收眼底。傍晚上山，一次看齐日落、蓝调与万家灯火，是香港的第一张明信片。",
+    tips: "傍晚时段缆车排队最长，可网上购票或改乘 15 路巴士上山；卢吉道栈道免费且视角绝佳；山顶风大备外套。",
+    transport: "中环花园道山顶缆车总站",
+    color: "#3B6E86", xp: 130,
+  },
+  {
+    id: 'hk2', name: "维多利亚港·天星小轮", nameEn: "Victoria Harbour", emoji: "⛴️",
+    district: "维港两岸", lat: 22.2930, lng: 114.1680,
+    peakTime: "全年（20:00灯光秀）", peakDays: "每晚幻彩咏香江", difficulty: "easy",
+    rating: 4.7, reviews: 38000, tags: ["必去", "幻彩咏香江", "百年渡轮"],
+    isHot: true, ticket: "天星小轮约港币4-6.5",
+    description: "全球最便宜的「豪华游船」——几块港币的百年天星小轮横渡维港，两岸天际线扑面而来。每晚 20:00 的《幻彩咏香江》灯光音乐汇演点亮两岸数十栋大厦。尖沙咀海滨长廊与星光大道是最佳观演位。",
+    tips: "灯光秀每晚20:00约10分钟，尖沙咀钟楼一带视野最好；小轮上层景观佳；夜游维港游船（鸭灵号红帆船）值得一次。",
+    transport: "尖沙咀/中环/湾仔天星码头",
+    color: "#232A5C", xp: 120,
+  },
+  {
+    id: 'hk3', name: "庙街夜市", nameEn: "Temple Street Night Market", emoji: "🏮",
+    district: "九龙·油麻地", lat: 22.3050, lng: 114.1700,
+    peakTime: "傍晚后", peakDays: "入夜后摊档全开", difficulty: "easy",
+    rating: 4.4, reviews: 15000, tags: ["港片名场面", "大排档", "夜市烟火"],
+    ticket: "免费",
+    description: "港片里出镜率最高的江湖夜市。入夜后霓虹亮起，摊档摆满杂货古玩，粤曲声从榕树头飘来，大排档的煲仔饭与炒蟹镬气冲天。从油麻地一路逛到佐敦，是九龙最浓的市井烟火。",
+    tips: "傍晚6点后摊档才齐；大排档先看标价再点；与旺角女人街、金鱼街可串成九龙夜行线。",
+    transport: "港铁油麻地站C出口",
+    color: "#B4472F", xp: 90,
+  },
+  {
+    id: 'hk4', name: "中环·兰桂坊·大馆", nameEn: "Central & Lan Kwai Fong", emoji: "🏙️",
+    district: "港岛·中环", lat: 22.2810, lng: 114.1550,
+    peakTime: "全年（夜生活）", peakDays: "周末兰桂坊最热", difficulty: "easy",
+    rating: 4.5, reviews: 20000, tags: ["半山扶梯", "夜生活地标", "古迹活化"],
+    ticket: "免费",
+    description: "香港的心脏：全球最长的半山自动扶梯穿行唐楼与摩天楼之间，石板街、大馆（旧中区警署活化群）沉淀着殖民地记忆，入夜后兰桂坊的酒吧街人声鼎沸——一条街走完香港的百年与不夜。",
+    tips: "半山扶梯上午10点前下行、之后上行；大馆免费入场展览丰富；兰桂坊酒吧周末爆满、注意酒价。",
+    transport: "港铁中环站D出口",
+    color: "#6E5E8A", xp: 100,
+  },
+  {
+    id: 'hk5', name: "香港迪士尼乐园", nameEn: "Hong Kong Disneyland", emoji: "🏰",
+    district: "大屿山·竹篙湾", lat: 22.3130, lng: 114.0410,
+    peakTime: "全年（避周末）", peakDays: "工作日人最少", difficulty: "easy",
+    rating: 4.6, reviews: 30000, tags: ["奇妙梦想城堡", "冰雪奇缘园区", "烟花"],
+    ticket: "一日票约港币639起",
+    description: "全球最「迷你」却最从容的迪士尼——排队短、节奏松，全球首个《冰雪奇缘》主题园区「魔雪奇缘世界」是招牌。傍晚奇妙梦想城堡前的烟花汇演，是无数人心里「香港的一天」的完美收尾。",
+    tips: "工作日去排队减半；App 领取预约等候卡；烟花通常晚间举行、提前占城堡正面位；港铁迪士尼线主题列车本身就值得体验。",
+    transport: "港铁迪士尼站直达",
+    color: "#C85C8E", xp: 110,
+  },
+  {
+    id: 'hk6', name: "大屿山·天坛大佛", nameEn: "Lantau & Big Buddha", emoji: "🛕",
+    district: "大屿山·昂坪", lat: 22.2540, lng: 113.9050,
+    peakTime: "全年（晴日缆车）", peakDays: "晴天水晶缆车最震撼", difficulty: "medium",
+    rating: 4.6, reviews: 22000, tags: ["昂坪360缆车", "天坛大佛", "宝莲禅寺"],
+    ticket: "昂坪360往返约港币270起",
+    description: "昂坪 360 缆车凌空 25 分钟跨海越山（水晶车厢脚下全透明），世界最大的户外青铜坐佛——天坛大佛在山巅静候。宝莲禅寺的香火、昂坪市集的禅意、再加大澳渔村的棚屋水乡，大屿山是香港的「山海慢面」。",
+    tips: "缆车排队长、网上预订省时；268 级台阶登佛免费；顺游大澳渔村看棚屋、坐小船寻中华白海豚。",
+    transport: "港铁东涌站转昂坪360缆车",
+    color: "#8A6A3B", xp: 110,
+  },
+  {
+    id: 'hk7', name: "海洋公园", nameEn: "Ocean Park", emoji: "🐬",
+    district: "港岛·南区", lat: 22.2350, lng: 114.1760,
+    peakTime: "全年", peakDays: "工作日体验最佳", difficulty: "easy",
+    rating: 4.5, reviews: 25000, tags: ["登山缆车", "海洋馆", "过山车看海"],
+    ticket: "门票约港币498",
+    description: "香港土生土长的老牌乐园，一半是海洋馆与大熊猫，一半是挂在海崖上的过山车——登山缆车横跨山海的一段，本身就是全港最美的「机动游戏」。水母万花筒、寻鲨探秘，大小同乐。",
+    tips: "缆车上山、海洋列车下山的动线最顺；山上机动区风大、恐高者量力；与赤柱/浅水湾同在港岛南可连游。",
+    transport: "港铁海洋公园站直达",
+    color: "#3B8AA6", xp: 100,
+  },
+]
+
+/* 周边顺游 —— 离岛与西贡，均属香港 */
+const hongkongNearby = [
+  {
+    id: 'hkn1', name: "南丫岛", nameEn: "Lamma Island", emoji: "🏝️",
+    district: "离岛区", lat: 22.2080, lng: 114.1270,
+    peakTime: "全年（周末渡轮密）", peakDays: "晴日徒步最舒服", difficulty: "medium",
+    rating: 4.4, reviews: 8000, tags: ["离岛徒步", "海鲜大餐", "文艺渔村"],
+    ticket: "渡轮约港币20-40",
+    desc: "文艺渔村与家庭径徒步，海鲜收尾",
+    description: "中环坐半小时渡轮就到的「香港后花园」。榕树湾的文艺小店、索罟湾的海鲜排档，中间一条一小时的家庭径翻山看海。没有汽车、只有单车与海风，是港人周末逃离都市的标配。",
+    tips: "经典走法：榕树湾进→徒步→索罟湾吃海鲜→渡轮返中环；周末渡轮班次密；防晒备水。",
+    transport: "中环4号码头渡轮约30分钟",
+    color: "#4E7A5E", xp: 90, isNearby: true,
+  },
+  {
+    id: 'hkn2', name: "西贡", nameEn: "Sai Kung", emoji: "🚤",
+    district: "新界·西贡区", lat: 22.3830, lng: 114.2700,
+    peakTime: "全年（夏玩水）", peakDays: "晴日出海跳岛", difficulty: "medium",
+    rating: 4.5, reviews: 9000, tags: ["香港后花园", "地质公园", "海鲜街"],
+    ticket: "免费（出海船费另计）",
+    desc: "地质公园跳岛、桥咀洲与海鲜街",
+    description: "「香港后花园」西贡：海鲜街的水缸里活蹦乱跳，码头小艇招揽跳岛出海——桥咀洲的连岛沙洲、粮船湾的六角火山岩柱（世界级地质公园）都在船程之内。城市半小时外就是山海野趣。",
+    tips: "海鲜街先问价再点；桥咀洲退潮才能走连岛沙洲，看好潮汐表；麦理浩径二段（浪茄/西湾）是进阶徒步。",
+    transport: "港铁彩虹站转小巴至西贡码头",
+    color: "#3B8AA6", xp: 90, isNearby: true,
+  },
+  {
+    id: 'hkn3', name: "长洲岛", nameEn: "Cheung Chau", emoji: "🥟",
+    district: "离岛区", lat: 22.2080, lng: 114.0280,
+    peakTime: "全年（太平清醮5月）", peakDays: "包山节最热闹", difficulty: "easy",
+    rating: 4.3, reviews: 7000, tags: ["太平清醮", "平安包", "张保仔洞"],
+    ticket: "渡轮约港币14-27",
+    desc: "哑铃小岛，平安包与海盗传说",
+    description: "哑铃形的离岛小城，庙街般热闹的海傍街、驰名的平安包与芒果糯米糍、海盗张保仔藏宝的岩洞。每年佛诞的「太平清醮」抢包山与飘色巡游是全港最奇的民俗嘉年华（被列入国家级非遗）。",
+    tips: "环岛步行约2-3小时，租单车更惬意；平安包认准郭锦记等老店；太平清醮（约5月佛诞）人山人海需早去。",
+    transport: "中环5号码头渡轮约35-60分钟",
+    color: "#C79A3E", xp: 80, isNearby: true,
+  },
+]
+
+const hongkongItinerary = [
+  {
+    day: 1, title: "抵达·维港初见", date: "Day 1",
+    activities: [
+      { time: "下午", icon: "🚇", text: "抵港，办八达通，入住九龙或港岛" },
+      { time: "傍晚", icon: "⛴️", text: "天星小轮渡维港，尖沙咀海滨看20:00灯光秀", spotId: 'hk2' },
+      { time: "晚上", icon: "🏮", text: "庙街夜市大排档，煲仔饭配冻柠茶", spotId: 'hk3' },
+    ]
+  },
+  {
+    day: 2, title: "港岛经典线", date: "Day 2",
+    activities: [
+      { time: "上午", icon: "🏙️", text: "中环半山扶梯、大馆、石板街", spotId: 'hk4' },
+      { time: "下午", icon: "🚋", text: "山顶缆车上太平山，卢吉道看维港", spotId: 'hk1' },
+      { time: "晚上", icon: "🍸", text: "下山兰桂坊小酌，或再看一遍夜景" },
+    ]
+  },
+  {
+    day: 3, title: "大屿山禅意", date: "Day 3",
+    activities: [
+      { time: "上午", icon: "🛕", text: "昂坪360水晶缆车，登天坛大佛", spotId: 'hk6' },
+      { time: "下午", icon: "🛶", text: "大澳渔村看棚屋，坐船寻白海豚" },
+      { time: "替代", icon: "🏰", text: "亲子改去迪士尼一整天", spotId: 'hk5' },
+    ]
+  },
+  {
+    day: 4, title: "乐园或离岛", date: "Day 4",
+    activities: [
+      { time: "全天", icon: "🐬", text: "海洋公园 或 南丫岛/西贡跳岛徒步", spotId: 'hk7' },
+      { time: "下午", icon: "🥟", text: "茶餐厅最后一餐：菠萝油+丝袜奶茶" },
+      { time: "傍晚", icon: "🚄", text: "高铁/口岸返深，或续飞下一站" },
+    ]
+  },
+]
+
+const hongkongTips = [
+  { icon: "🛂", title: "证件与通关", content: "内地居民需持港澳通行证及有效香港签注（个人旅游/团队旅游签均可）；高铁西九龙站「一地两检」最方便，福田/罗湖/深圳湾口岸也可。回程留意口岸开放时间（多数至午夜，皇岗24小时）。" },
+  { icon: "💳", title: "八达通与支付", content: "落地先办一张八达通（Octopus），地铁巴士渡轮便利店通刷；微信/支付宝在港大部分商户可用，但茶餐厅小店常只收现金，换少量港币傍身。" },
+  { icon: "📅", title: "最佳季节", content: "10-12月秋高气爽最舒适；5-9月湿热多雨且有台风（挂8号风球时交通景点停摆）；圣诞/新年维港灯饰最盛但酒店最贵。全年短袖为主，室内冷气强备薄外套。" },
+  { icon: "🚇", title: "交通贴士", content: "港铁四通八达是首选；的士分红（市区）绿（新界）蓝（大屿山）三色、按表收费；巴士叮叮车靠左行驶，过马路先看右边！机场快线市区预办登机很好用。" },
+  { icon: "🍜", title: "茶餐厅文化", content: "菠萝油配丝袜奶茶是标配；「走冰」=去冰、「靓仔」=白饭、下午茶时段（14:30-17:30）有优惠套餐；茶餐厅节奏快、拼桌常见，落单干脆些更地道。" },
+  { icon: "💰", title: "消费与小费", content: "餐厅多收一成服务费（账单看清）；讲价只在庙街女人街等市集适用，商场明码实价；药房买东西认准「正版正货」标志，电子产品建议去官方店或丰泽/百老汇。" },
+  { icon: "🎆", title: "夜的玩法", content: "每晚20:00维港《幻彩咏香江》；兰桂坊、尖沙咀诺士佛台是酒吧聚落；鸭灵号红帆船夜游维港很出片；台风季夜航可能停驶，出发前查天文台预警。" },
+]
+
+const hongkongFoods = [
+  { name: "菠萝油+丝袜奶茶", emoji: "🍞", desc: "茶餐厅灵魂搭配，冰火菠萝油" },
+  { name: "云吞面", emoji: "🍜", desc: "竹升面弹牙，大地鱼汤底鲜甜" },
+  { name: "烧腊双拼", emoji: "🍖", desc: "叉烧烧鹅油亮蜜香，配白饭一流" },
+  { name: "港式点心", emoji: "🥟", desc: "虾饺烧卖凤爪，一盅两件叹早茶" },
+  { name: "鸡蛋仔", emoji: "🧇", desc: "街头现烤，外脆内软的港味零食" },
+  { name: "煲仔饭", emoji: "🍚", desc: "庙街大排档炭火煲，饭焦是精华" },
+]
+
+const hongkongPackList = [
+  { icon: "🛂", text: "港澳通行证+有效签注（必备）" },
+  { icon: "💳", text: "八达通/少量港币现金" },
+  { icon: "🔌", text: "英式三脚转换插头" },
+  { icon: "🧥", text: "薄外套（室内冷气极强）" },
+  { icon: "👟", text: "好走的鞋（港岛坡多梯多）" },
+  { icon: "📱", text: "开通漫游或办本地流量卡" },
+]
+
+const hongkongSeason = {
+  title: "最佳旅行季节",
+  sub: "东方之珠，山海不夜",
+  rows: [
+    { dot: "peak",  label: "🍂 秋（10—12月）", date: "秋高气爽，户外离岛最佳", badge: "推荐" },
+    { dot: "early", label: "🎄 节庆（12—2月）", date: "圣诞新年灯饰，酒店偏贵" },
+    { dot: "late",  label: "🌀 夏（5—9月）", date: "湿热多雨，留意台风预警" },
+  ],
+}
+
 /* ════════════════ CITIES 汇总 ════════════════
    扩展新城市：复制上方一整套 daliXxx 常量，改名后
    在下面数组里追加一个对象即可。
@@ -5115,6 +5310,32 @@ export const CITIES = [
     foods: shenzhenFoods,
     packList: shenzhenPackList,
     seasonInfo: shenzhenSeason,
+  },
+  {
+    id: 'hongkong',
+    name: '香港',
+    nameEn: 'Hong Kong',
+    emoji: '⛴️',
+    country: '大湾区',
+    tagline: '东方之珠，山海不夜',
+    heroBadge: '香港 · 大湾区',
+    heroTitle: '香江香港',
+    heroHighlight: '慢慢叹吧！',
+    heroDesc: '维港渡轮、山顶缆车与茶餐厅的一盅两件',
+    heroGradient: 'linear-gradient(160deg, #1A2A4A 0%, #40548E 55%, #C9D4EC 100%)',
+    quickTips: [
+      { icon: '🛂', text: '通行证+香港签注必备' },
+      { icon: '💳', text: '落地先办八达通' },
+      { icon: '🎆', text: '每晚20:00幻彩咏香江' },
+      { icon: '🔌', text: '英式插头，靠左行驶' },
+    ],
+    spots: hongkongSpots,
+    nearbySpots: hongkongNearby,
+    itineraryDays: hongkongItinerary,
+    tips: hongkongTips,
+    foods: hongkongFoods,
+    packList: hongkongPackList,
+    seasonInfo: hongkongSeason,
   },
 ]
 
