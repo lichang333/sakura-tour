@@ -6,6 +6,7 @@ const SPOT_REGION_EXACT = {
   ln1:  'yn-diqing',   // 虎跳峡行政属迪庆香格里拉
   lzn2: 'ad620400',    // 黄河石林行政属白银景泰
   lzn3: 'ad622900',    // 刘家峡·炳灵寺行政属临夏永靖
+  cdn3: 'sc-deyang',   // 三星堆行政属德阳广汉
 }
 
 /* 注意：云贵川三省沿用 sc-/gz-/yn- 前缀（踏印历史命名），
@@ -31,6 +32,7 @@ const SPOT_REGION_RULES = [
   { test: /^qjn?\d+$/, region: 'yn-qujing' },  // 曲靖：qj1.. / qjn1..（含罗平/陆良/会泽/沾益/师宗/宣威，均属曲靖）
   { test: /^ztn?\d+$/, region: 'yn-zhaotong' },  // 昭通：zt1.. / ztn1..（含盐津/威信/大关/彝良/水富/巧家/镇雄/永善，均属昭通）
   { test: /^myn?\d+$/, region: 'sc-mianyang' },  // 绵阳：my1.. / myn1..（含江油/平武/北川/梓潼/安州/三台，均属绵阳；首座四川城）
+  { test: /^cdn?\d+$/, region: 'sc-chengdu' },   // 成都：cd1.. / cdn1..（都江堰/青城山属成都；三星堆走例外表→德阳）
 ]
 
 export function regionOfSpot(spotId) {

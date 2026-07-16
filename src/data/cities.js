@@ -4152,6 +4152,198 @@ const mianyangSeason = {
   ],
 }
 
+
+/* ════════════════ 成都 ════════════════ */
+const chengduSpots = [
+  {
+    id: 'cd1', name: "大熊猫繁育研究基地", nameEn: "Panda Base", emoji: "🐼",
+    district: "成华区", lat: 30.7330, lng: 104.1470,
+    peakTime: "全年（清晨最活跃）", peakDays: "开园即进看熊猫最活跃", difficulty: "easy",
+    rating: 4.7, reviews: 32000, tags: ["必去", "大熊猫", "全球顶流"],
+    isHot: true, ticket: "门票约55元",
+    description: "全球最负盛名的大熊猫科研繁育机构，上百只滚滚在竹林与产房里打滚啃竹。清晨开园时熊猫最活跃，幼崽区的奶膘团子萌化众生。作为成都的头号名片，值得起个大早专程来。",
+    tips: "务必早上开园就进（熊猫上午活跃、下午多在睡）；旺季提前实名购票；园区大可坐观光车；勿喂食勿喧哗。",
+    transport: "地铁3号线熊猫大道站转景区专线",
+    color: "#3E5A3A", xp: 130,
+  },
+  {
+    id: 'cd2', name: "武侯祠·锦里", nameEn: "Wuhou Shrine & Jinli", emoji: "🏮",
+    district: "武侯区", lat: 30.6420, lng: 104.0480,
+    peakTime: "全年（锦里夜景）", peakDays: "傍晚锦里灯笼最美", difficulty: "easy",
+    rating: 4.6, reviews: 21000, tags: ["必去", "三国圣地", "锦里古街"],
+    isHot: true, ticket: "武侯祠约50元 / 锦里免费",
+    description: "中国唯一君臣合祀的祠庙——刘备与诸葛亮同祀于此，是三国迷的朝圣地，红墙竹影一段更是名场面。出祠即是锦里古街，青瓦飞檐下小吃、戏台、灯笼延绵，夜里亮灯后是成都最浓的市井画卷。",
+    tips: "先逛武侯祠（红墙竹影在侧门夹道）再出锦里；傍晚亮灯后最美但人多；锦里小吃浅尝即可、老店在街深处。",
+    transport: "地铁3号线高升桥站步行可达",
+    color: "#B4472F", xp: 120,
+  },
+  {
+    id: 'cd3', name: "宽窄巷子", nameEn: "Kuanzhai Alleys", emoji: "🍵",
+    district: "青羊区", lat: 30.6700, lng: 104.0550,
+    peakTime: "全年", peakDays: "上午人少慢逛", difficulty: "easy",
+    rating: 4.4, reviews: 25000, tags: ["清代巷院", "盖碗茶", "掏耳朵"],
+    ticket: "免费",
+    description: "清代满城遗存的三条老巷——宽巷子、窄巷子、井巷子，青砖院落里藏着茶馆、川菜馆与老成都生活。坐下喝碗盖碗茶、体验一次长签掏耳朵，感受「快城市慢生活」的成都调性。",
+    tips: "上午人少、正午后人潮汹涌；院子里坐着喝茶比走马观花值；掏耳朵认准明码标价。",
+    transport: "地铁4号线宽窄巷子站直达",
+    color: "#8A7A66", xp: 100,
+  },
+  {
+    id: 'cd4', name: "杜甫草堂", nameEn: "Du Fu Cottage", emoji: "📜",
+    district: "青羊区", lat: 30.6590, lng: 104.0280,
+    peakTime: "全年（春季最雅）", peakDays: "春天梅竹最清雅", difficulty: "easy",
+    rating: 4.5, reviews: 12000, tags: ["诗圣故居", "园林", "茅屋"],
+    ticket: "门票约50元",
+    description: "杜甫流寓成都时的故居，「安得广厦千万间」就写于此。红墙夹道、梅竹掩映的园林里，茅屋、工部祠、诗史堂静静陈列着诗圣的沉郁与温度。是成都最有书卷气的一方园子。",
+    tips: "与青羊宫、浣花溪公园同片区可连游；红墙夹道是经典机位；春季梅花、竹径最雅。",
+    transport: "地铁4号线草堂北路站步行可达",
+    color: "#4E7A5E", xp: 100,
+  },
+  {
+    id: 'cd5', name: "金沙遗址博物馆", nameEn: "Jinsha Site Museum", emoji: "🌞",
+    district: "青羊区", lat: 30.6810, lng: 104.0120,
+    peakTime: "全年", peakDays: "全年 · 古蜀文明", difficulty: "easy",
+    rating: 4.6, reviews: 9000, tags: ["太阳神鸟", "古蜀王都", "遗址现场"],
+    ticket: "门票约70元",
+    description: "三千年前古蜀王国的都邑遗址，「太阳神鸟」金饰（中国文化遗产标志）就出土于此。遗迹馆保留着考古发掘现场，陈列馆里金面具、玉器、象牙层层惊艳——与三星堆一脉相承的古蜀文明，神秘瑰丽。",
+    tips: "太阳神鸟真品在陈列馆负一层；与三星堆一起看更完整（先金沙后三星堆或反之皆可）；预留2-3小时。",
+    transport: "地铁7号线金沙博物馆站直达",
+    color: "#C79A3E", xp: 100,
+  },
+  {
+    id: 'cd6', name: "人民公园·鹤鸣茶社", nameEn: "People's Park Teahouse", emoji: "🫖",
+    district: "青羊区", lat: 30.6630, lng: 104.0570,
+    peakTime: "全年（晴日满座）", peakDays: "晴天下午茶客最盛", difficulty: "easy",
+    rating: 4.5, reviews: 11000, tags: ["百年茶社", "市井成都", "相亲角"],
+    ticket: "公园免费（茶位约20-40元）",
+    description: "成都人生活方式的活标本。百年鹤鸣茶社里竹椅盖碗一位难求，茶客晒太阳、摆龙门阵、掏耳朵；旁边相亲角的「简历墙」自成奇观。想懂成都为什么叫「慢城」，来这坐一下午就懂了。",
+    tips: "晴天下午最有氛围、也最难占座，早点去；一碗茶可续水坐一天；掏耳朵、采耳师傅穿梭其间，明码议价。",
+    transport: "地铁2号线人民公园站直达",
+    color: "#5E9B7E", xp: 90,
+  },
+  {
+    id: 'cd7', name: "春熙路·太古里", nameEn: "Chunxi Road & Taikoo Li", emoji: "🛍️",
+    district: "锦江区", lat: 30.6570, lng: 104.0810,
+    peakTime: "全年（夜景）", peakDays: "夜幕华灯最摩登", difficulty: "easy",
+    rating: 4.4, reviews: 18000, tags: ["潮流地标", "IFS爬墙熊猫", "大慈古寺"],
+    ticket: "免费",
+    description: "成都的摩登面孔：春熙路商圈与远洋太古里的川西院落式街区，奢牌与古刹大慈寺一墙之隔。IFS 楼顶的爬墙大熊猫是必打卡机位，夜里霓虹映青瓦，古今同框，是「安逸」之外成都的另一种气质。",
+    tips: "IFS 七楼雕塑庭院看爬墙熊猫全身；太古里夜景最出片；大慈寺闹中取静值得进。",
+    transport: "地铁2/3号线春熙路站直达",
+    color: "#3B6E86", xp: 80,
+  },
+]
+
+/* 周边顺游 —— 都江堰/青城山属成都代管，三星堆在广汉行政属德阳（例外表） */
+const chengduNearby = [
+  {
+    id: 'cdn1', name: "都江堰", nameEn: "Dujiangyan", emoji: "🌊",
+    district: "都江堰市", lat: 31.0100, lng: 103.6060,
+    peakTime: "全年（放水节4月）", peakDays: "清明放水节最盛", difficulty: "medium",
+    rating: 4.7, reviews: 15000, tags: ["世界遗产", "李冰治水", "两千年活水利"],
+    ticket: "门票约80元",
+    description: "公元前 256 年李冰父子主持修建的无坝引水工程，两千多年至今仍在灌溉成都平原——「天府之国」由此而来。鱼嘴分水、飞沙堰泄洪、宝瓶口引流，站在安澜索桥上看岷江奔涌，敬意油然而生。世界文化遗产。",
+    tips: "顺序建议离堆公园进→宝瓶口→飞沙堰→鱼嘴→安澜索桥→二王庙；与青城山同日常见但都值半天以上；高铁犀浦-离堆公园直达。",
+    transport: "成都高铁约30分钟至离堆公园站",
+    color: "#3B6E86", xp: 120, isNearby: true,
+  },
+  {
+    id: 'cdn2', name: "青城山", nameEn: "Qingcheng Mountain", emoji: "⛰️",
+    district: "都江堰市", lat: 30.9000, lng: 103.5700,
+    peakTime: "全年（夏避暑）", peakDays: "夏季清幽避暑最佳", difficulty: "medium",
+    rating: 4.5, reviews: 12000, tags: ["世界遗产", "道教发源地", "青城天下幽"],
+    ticket: "前山约80元 + 索道",
+    description: "中国道教发源地之一，张道陵在此创教。「青城天下幽」名不虚传——古木蔽日、宫观错落，上清宫、天师洞香火绵延。前山看道教文化，后山走山水野趣，与都江堰同列世界文化遗产。",
+    tips: "前山文化后山风景、二选一为宜；夏天清凉是成都人避暑后花园；索道+步行搭配省力。",
+    transport: "成都高铁约40分钟至青城山站",
+    color: "#2E6E4A", xp: 110, isNearby: true,
+  },
+  {
+    id: 'cdn3', name: "三星堆博物馆", nameEn: "Sanxingdui Museum", emoji: "👁️",
+    district: "广汉市（德阳）", lat: 30.9920, lng: 104.2100,
+    peakTime: "全年", peakDays: "全年 · 古蜀谜团", difficulty: "easy",
+    rating: 4.8, reviews: 14000, tags: ["青铜神树", "纵目面具", "沉睡三千年"],
+    ticket: "门票约72元",
+    description: "「沉睡三千年，一醒惊天下」。三星堆的青铜大立人、纵目面具、神树与金杖，呈现出与中原截然不同的古蜀文明，神秘得近乎科幻。新馆宏大震撼，是全国最值得专程一去的博物馆之一。",
+    tips: "务必提前实名预约（常约满）；讲解或语音导览强烈建议；与金沙遗址呼应着看更完整；行政属德阳广汉，成都出发约1小时。",
+    transport: "成都驾车约1小时至广汉三星堆",
+    color: "#C79A3E", xp: 120, isNearby: true,
+  },
+]
+
+const chengduItinerary = [
+  {
+    day: 1, title: "抵达·市井成都", date: "Day 1",
+    activities: [
+      { time: "下午", icon: "🍵", text: "宽窄巷子慢逛，盖碗茶配掏耳朵", spotId: 'cd3' },
+      { time: "傍晚", icon: "🫖", text: "人民公园鹤鸣茶社坐一坐", spotId: 'cd6' },
+      { time: "晚上", icon: "🌶️", text: "头一顿正宗川味火锅" },
+    ]
+  },
+  {
+    day: 2, title: "滚滚与三国", date: "Day 2",
+    activities: [
+      { time: "清晨", icon: "🐼", text: "开园冲熊猫基地，看滚滚最活跃", spotId: 'cd1' },
+      { time: "下午", icon: "🏮", text: "武侯祠红墙竹影，锦里等亮灯", spotId: 'cd2' },
+      { time: "晚上", icon: "🎭", text: "看一场川剧变脸（锦里/蜀风雅韵）" },
+    ]
+  },
+  {
+    day: 3, title: "古蜀与诗圣", date: "Day 3",
+    activities: [
+      { time: "上午", icon: "🌞", text: "金沙遗址看太阳神鸟", spotId: 'cd5' },
+      { time: "下午", icon: "📜", text: "杜甫草堂红墙竹径访诗圣", spotId: 'cd4' },
+      { time: "晚上", icon: "🛍️", text: "春熙路太古里夜景，IFS爬墙熊猫", spotId: 'cd7' },
+    ]
+  },
+  {
+    day: 4, title: "世遗一日", date: "Day 4",
+    activities: [
+      { time: "全天", icon: "🌊", text: "都江堰+青城山 或 三星堆专程一日" },
+      { time: "下午", icon: "🎁", text: "选购蜀锦蜀绣、熊猫周边、花椒调料伴手礼" },
+      { time: "傍晚", icon: "✈️", text: "返程 / 前往下一站（绵阳、乐山）" },
+    ]
+  },
+]
+
+const chengduTips = [
+  { icon: "📅", title: "最佳季节", content: "3-6月与9-11月最舒适。夏天闷热多雨（可去青城山避暑）、冬天湿冷少见太阳——成都人见太阳如过节。全年多云是常态，「蜀犬吠日」不是玩笑。" },
+  { icon: "🐼", title: "熊猫攻略", content: "熊猫基地一定赶早——开园即进，上午滚滚进食活动最欢；下午多呼呼大睡。旺季线上实名购票、月子中心（幼崽区）人最多。都江堰熊猫谷、卧龙基地是人少的替代选择。" },
+  { icon: "🎫", title: "预约文化", content: "三星堆、金沙、杜甫草堂等热门馆所旺季常约满，务必提前几天在官方公众号实名预约；周一多数博物馆闭馆，排行程注意避开。" },
+  { icon: "🌶️", title: "辣度生存", content: "成都火锅默认辣度对外地人不友好，点鸳鸯锅不丢人；「微辣」已是别处的中辣。冒菜、串串、钵钵鸡、甜水面各有辣法，肠胃敏感者备好药、循序渐进。" },
+  { icon: "🚇", title: "交通便利", content: "成都地铁网密集，市区景点几乎都通地铁；都江堰、青城山有高铁直达（犀浦/西站方向）；双流+天府两座机场，注意别跑错。市区打车早晚高峰难，地铁优先。" },
+  { icon: "🫖", title: "慢生活体验", content: "成都的精髓不在景点在生活：茶馆坐一下午、掏个耳朵、看大爷下棋、苍蝇馆子吃冒烤鸭。行程别排太满，留半天「无所事事」才算来过成都。" },
+  { icon: "🎭", title: "川剧与夜生活", content: "川剧变脸吐火值得看一场（蜀风雅韵、锦里戏台）；九眼桥、玉林路（「成都」歌里那条）是酒吧夜生活聚集地；夜宵烧烤、兔头是深夜灵魂。" },
+]
+
+const chengduFoods = [
+  { name: "四川火锅", emoji: "🌶️", desc: "牛油红锅九宫格，成都之魂" },
+  { name: "串串香", emoji: "🍢", desc: "竹签万物，冷锅热锅皆销魂" },
+  { name: "担担面", emoji: "🍜", desc: "麻辣干拌小碗面，川味经典" },
+  { name: "钟水饺·龙抄手", emoji: "🥟", desc: "红油水饺配抄手，老字号双璧" },
+  { name: "兔头·冒菜", emoji: "🐰", desc: "双流老妈兔头，麻辣拆着吃" },
+  { name: "蛋烘糕", emoji: "🥞", desc: "街头小铜锅，甜咸馅任选" },
+]
+
+const chengduPackList = [
+  { icon: "🌂", text: "雨具（多云多雨，太阳稀客）" },
+  { icon: "👟", text: "舒适步行鞋（巷子古街暴走）" },
+  { icon: "💊", text: "肠胃药（辣度生存必备）" },
+  { icon: "🎫", text: "提前预约（三星堆/熊猫基地）" },
+  { icon: "🧥", text: "薄外套（春秋早晚凉、冬湿冷）" },
+  { icon: "💳", text: "身份证（博物馆实名/高铁）" },
+]
+
+const chengduSeason = {
+  title: "最佳旅行季节",
+  sub: "天府之国，快城慢活",
+  rows: [
+    { dot: "peak",  label: "🌸 春（3—6月）", date: "气候宜人，园林最雅", badge: "推荐" },
+    { dot: "early", label: "🍂 秋（9—11月）", date: "秋高气爽，银杏满城" },
+    { dot: "late",  label: "☔ 夏冬", date: "夏闷热可上青城山，冬湿冷" },
+  ],
+}
+
 /* ════════════════ CITIES 汇总 ════════════════
    扩展新城市：复制上方一整套 daliXxx 常量，改名后
    在下面数组里追加一个对象即可。
@@ -4678,6 +4870,32 @@ export const CITIES = [
     foods: mianyangFoods,
     packList: mianyangPackList,
     seasonInfo: mianyangSeason,
+  },
+  {
+    id: 'chengdu',
+    name: '成都',
+    nameEn: 'Chengdu',
+    emoji: '🐼',
+    country: '四川',
+    tagline: '天府之国，快城慢活',
+    heroBadge: '成都 · 四川',
+    heroTitle: '蓉城成都',
+    heroHighlight: '慢慢耍吧！',
+    heroDesc: '滚滚、盖碗茶与两千年不改的城名',
+    heroGradient: 'linear-gradient(160deg, #2A4A2A 0%, #5A8A54 55%, #D6E8CC 100%)',
+    quickTips: [
+      { icon: '🐼', text: '熊猫基地开园即进' },
+      { icon: '🎫', text: '三星堆/热门馆提前预约' },
+      { icon: '🌶️', text: '鸳鸯锅不丢人' },
+      { icon: '🫖', text: '留半天泡茶馆才算来过' },
+    ],
+    spots: chengduSpots,
+    nearbySpots: chengduNearby,
+    itineraryDays: chengduItinerary,
+    tips: chengduTips,
+    foods: chengduFoods,
+    packList: chengduPackList,
+    seasonInfo: chengduSeason,
   },
 ]
 
