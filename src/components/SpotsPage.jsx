@@ -105,6 +105,7 @@ export default function SpotsPage({ pendingSpot, clearPendingSpot, openMap }) {
   // 「只看未去」筛选：开启时收起已抵达的景点（默认全显示，保留集章成就感）
   const visitedCount  = spots.filter(s => visitedIds.has(s.id)).length
   const visibleSpots  = hideVisited ? spots.filter(s => !visitedIds.has(s.id)) : spots
+  const visibleNearby = hideVisited ? nearby.filter(s => !visitedIds.has(s.id)) : nearby
 
   const recommendedIds = new Map(
     (user?.recommendedSpots || []).map(r =>
@@ -598,12 +599,12 @@ export default function SpotsPage({ pendingSpot, clearPendingSpot, openMap }) {
       </div>
 
       {/* Nearby Spots — 点按在高德地图搜索 */}
-      {nearby && nearby.length > 0 && (
+      {visibleNearby.length > 0 && (
         <div className="nearby-section">
           <h3 className="nearby-title">周边小众景点</h3>
           <p className="nearby-sub">顺道一游 · 可加入想去清单，点卡片看详情</p>
           <div className="nearby-list">
-            {nearby.map((s) => (
+            {visibleNearby.map((s) => (
               <div
                 key={s.id}
                 className="nearby-card"
