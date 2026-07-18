@@ -92,29 +92,6 @@
 .fs-count { font-size: 14px; color: var(--text-mid); margin-top: 3px; }
 .fs-count b { color: var(--text-dark); font-size: 19px; font-family: var(--font-serif); }
 .fs-meta { font-size: 11px; color: var(--copper); font-weight: 600; margin-top: 4px; letter-spacing: 0.02em; }
-.stamps { display: flex; gap: 5px; }
-/* 足迹迷你圆章：与集章册同语言 —— 已盖=铜底双环白字微斜，未盖=虚线空位 */
-.stamp {
-  width: 26px; height: 26px; border-radius: 50%;
-  display: grid; place-items: center;
-  font-family: var(--font-serif); font-size: 12.5px; font-weight: 600;
-  border: 1.3px dashed var(--border); color: var(--text-mid);
-  background: transparent;
-  flex-shrink: 0;
-  position: relative;
-}
-.stamp:not(.on)::after {
-  content: '';
-  width: 3px; height: 3px; border-radius: 50%;
-  background: var(--border);
-}
-.stamp.on {
-  border: 1.5px solid var(--copper);
-  background: var(--copper);
-  color: #FBF8F1;
-  box-shadow: inset 0 0 0 1.5px rgba(251, 248, 241, 0.5), 0 1px 3px rgba(0, 0, 0, 0.22);
-}
-
 /* Stats */
 .stats-row {
   display: flex;
@@ -417,6 +394,9 @@
   border-radius: 16px;
 }
 
-/* 足迹条右侧：印章排 + 「集章册 ›」入口提示 */
-.fs-right { display: flex; flex-direction: column; align-items: flex-end; gap: 7px; }
+/* 足迹条右侧：进度环嵌本城印章 + 文案 */
+.fs-right { display: flex; align-items: center; gap: 11px; }
+.fs-ring { flex-shrink: 0; }
+.fs-ring-side { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; }
+.fs-remain { font-size: 11px; color: var(--text-mid); white-space: nowrap; }
 .fs-album { font-size: 11.5px; font-weight: 700; color: var(--copper); white-space: nowrap; }

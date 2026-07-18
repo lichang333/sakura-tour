@@ -1,5 +1,6 @@
 import { useUser } from '../context/UserContext'
 import { useCity } from '../context/CityContext'
+import { MiniCityStamp } from './CityStamp'
 import './HomePage.css'
 
 // Darken a #RRGGBB color by `amt` (0-1) for the woodcut thumb gradient
@@ -142,21 +143,21 @@ export default function HomePage({ setActiveTab, goToSpot }) {
           <div className="fs-meta">{user?.xp ?? 0} XP · 连续 {user?.streak ?? 0} 天</div>
         </div>
         <div className="fs-right">
-        <div className="stamps">
-          {Array.from({ length: Math.min(spotCount, 6) }).map((_, i) => {
-            const spot = cityVisitedSpots[i]
-            const rot  = (i % 2 ? 1 : -1) * (4 + (i % 3) * 2)
-            return (
-              <span
-                key={i}
-                className={`stamp ${spot ? 'on' : ''}`}
-                style={spot ? { transform: `rotate(${rot}deg)` } : undefined}
-                title={spot?.name}
-              >{spot ? spot.name.slice(0, 1) : ''}</span>
-            )
-          })}
-        </div>
-          <div className="fs-album">集章册 ›</div>
+          <svg className="fs-ring" width="58" height="58" viewBox="0 0 58 58" aria-hidden="true">
+            <circle cx="29" cy="29" r="25" fill="none" stroke="var(--border)" strokeWidth="3.5" />
+            <circle cx="29" cy="29" r="25" fill="none" stroke="var(--copper)" strokeWidth="3.5"
+              strokeLinecap="round" transform="rotate(-90 29 29)"
+              strokeDasharray={`${(spotCount ? cityVisited / spotCount : 0) * 157} 157`} />
+            <foreignObject x="12" y="12" width="34" height="34">
+              <MiniCityStamp city={currentCity} size={34} />
+            </foreignObject>
+          </svg>
+          <div className="fs-ring-side">
+            <div className="fs-remain">
+              {cityVisited >= spotCount ? `${currentCity.name} · 已集齐` : `${currentCity.name} · 差 ${spotCount - cityVisited} 处集齐`}
+            </div>
+            <div className="fs-album">集章册 ›</div>
+          </div>
         </div>
       </button>
 

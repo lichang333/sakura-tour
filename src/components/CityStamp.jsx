@@ -289,6 +289,26 @@ function StampText({ shape, uid, name, region }) {
   </g>)
 }
 
+/* 迷你城章：淡铜底圆 + 描边 + 城市专属图案（无文字），供首页足迹条进度环内嵌 */
+export function MiniCityStamp({ city, size = 34 }) {
+  const uid = String(city.id)
+  return (
+    <svg width={size} height={size} viewBox="0 0 60 60" aria-hidden="true"
+      style={{ color: 'var(--copper)', display: 'block' }}>
+      <g transform="rotate(-5 30 30)">
+        <circle cx="30" cy="30" r="28" fill={C} opacity="0.12" />
+        <circle cx="30" cy="30" r="28" fill="none" stroke={C} strokeWidth="1.8" />
+        <g clipPath={`url(#mini-${uid})`}>
+          <defs><clipPath id={`mini-${uid}`}><circle cx="30" cy="30" r="26" /></clipPath></defs>
+          <g transform="translate(30 30) scale(0.62) translate(-60 -62)">
+            {EMBLEMS[uid] || fallbackEmblem(uid)}
+          </g>
+        </g>
+      </g>
+    </svg>
+  )
+}
+
 export default function CityStamp({ city, earned = false, size = 120 }) {
   const uid = String(city.id)
   const name = city.name
