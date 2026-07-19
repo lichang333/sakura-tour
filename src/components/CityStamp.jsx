@@ -185,13 +185,20 @@ const EMBLEMS = {
       <path d="M 76 62 v -10 h 4 v 10 M 82 62 v -7 h 4 v 7" fill="none" stroke={C} strokeWidth="1.6" />
     </g>
   ),
-  chengdu: (
+  chengdu: (   /* 抱竹熊猫（P2）：歪头脸 + 眼神光 + 一枝竹叶 */
     <g>
-      <circle cx="60" cy="60" r="16" fill="none" stroke={C} strokeWidth="2.2" />
-      <circle cx="48" cy="46" r="5.5" fill={C} /><circle cx="72" cy="46" r="5.5" fill={C} />
-      <ellipse cx="53.5" cy="58" rx="4.2" ry="5.5" transform="rotate(-18 53.5 58)" fill={C} />
-      <ellipse cx="66.5" cy="58" rx="4.2" ry="5.5" transform="rotate(18 66.5 58)" fill={C} />
-      <ellipse cx="60" cy="67" rx="2.6" ry="2" fill={C} />
+      <g transform="rotate(-7 58 60)">
+        <circle cx="57" cy="61" r="15.5" fill="none" stroke={C} strokeWidth="2.2" />
+        <circle cx="46" cy="49" r="5.8" fill={C} /><circle cx="68" cy="49" r="5.8" fill={C} />
+        <ellipse cx="50.6" cy="58" rx="4" ry="5.4" transform="rotate(-24 50.6 58)" fill={C} />
+        <ellipse cx="63.4" cy="58" rx="4" ry="5.4" transform="rotate(24 63.4 58)" fill={C} />
+        <circle cx="51.4" cy="57" r="1.4" fill="var(--bg-card, #FBF8F1)" />
+        <circle cx="62.6" cy="57" r="1.4" fill="var(--bg-card, #FBF8F1)" />
+        <ellipse cx="57" cy="65" rx="2.7" ry="1.9" fill={C} />
+      </g>
+      <path d="M 70 76 q 7 -3 10 -13" fill="none" stroke={C} strokeWidth="2" strokeLinecap="round" />
+      <path d="M 80 66 q 5 -2 7.5 0.6 q -3 3 -7.5 -0.6 Z" fill={C} />
+      <path d="M 76 71 q 5 -2 7.5 0.6 q -3 3 -7.5 -0.6 Z" fill={C} />
     </g>
   ),
 }
@@ -226,42 +233,44 @@ const OCTA_IN = 'M 60 15 L 91.8 28.2 L 105 60 L 91.8 91.8 L 60 105 L 28.2 91.8 L
 const DIAM = 'M 60 6 L 114 60 L 60 114 L 6 60 Z'
 const DIAM_IN = 'M 60 14 L 106 60 L 60 106 L 14 60 Z'
 
-function Frame({ shape, dashed = false }) {
+function Frame({ shape, dashed = false, sheen = null }) {
   const sw1 = dashed ? 1.6 : 2.4
   const dash = dashed ? { strokeDasharray: '3 4', opacity: 0.7 } : {}
   const inner = !dashed
+  // 烫金态：外环改用金色渐变描边（sheen），作「镀金升级」；否则单色/虚线
+  const outer = sheen ? { stroke: sheen, strokeWidth: 3 } : { stroke: C, strokeWidth: sw1, ...dash }
   switch (shape) {
     case 'square': return (<g>
       {inner && <rect x="14" y="14" width="92" height="92" rx="12" fill={C} opacity="0.09" />}
-      <rect x="12" y="12" width="96" height="96" rx="13" fill="none" stroke={C} strokeWidth={sw1} {...dash} />
+      <rect x="12" y="12" width="96" height="96" rx="13" fill="none" {...outer} />
       {inner && <rect x="18" y="18" width="84" height="84" rx="9" fill="none" stroke={C} strokeWidth="1" />}
     </g>)
     case 'octagon': return (<g>
       {inner && <path d={OCTA_IN} fill={C} opacity="0.09" />}
-      <path d={OCTA} fill="none" stroke={C} strokeWidth={sw1} {...dash} />
+      <path d={OCTA} fill="none" {...outer} />
       {inner && <path d={OCTA_IN} fill="none" stroke={C} strokeWidth="1" />}
     </g>)
     case 'oval': return (<g>
       {inner && <ellipse cx="60" cy="60" rx="52" ry="43" fill={C} opacity="0.09" />}
-      <ellipse cx="60" cy="60" rx="55" ry="46" fill="none" stroke={C} strokeWidth={sw1} {...dash} />
+      <ellipse cx="60" cy="60" rx="55" ry="46" fill="none" {...outer} />
       {inner && <ellipse cx="60" cy="60" rx="48" ry="39" fill="none" stroke={C} strokeWidth="1" />}
     </g>)
     case 'postage': return (<g>
       <rect x="14" y="14" width="92" height="92" rx="3" fill={C} opacity={dashed ? 0 : 0.09} />
-      <rect x="14" y="14" width="92" height="92" rx="3" fill="none" stroke={C} strokeWidth={dashed ? 1.4 : 2}
-        {...(dashed ? { strokeDasharray: '3 4', opacity: 0.7 } : {})} />
-      {!dashed && <rect x="8" y="8" width="104" height="104" rx="6" fill="none" stroke={C}
+      <rect x="14" y="14" width="92" height="92" rx="3" fill="none"
+        {...(sheen ? { stroke: sheen, strokeWidth: 2.6 } : { stroke: C, strokeWidth: dashed ? 1.4 : 2, ...(dashed ? { strokeDasharray: '3 4', opacity: 0.7 } : {}) })} />
+      {!dashed && <rect x="8" y="8" width="104" height="104" rx="6" fill="none" stroke={sheen || C}
         strokeWidth="3.4" strokeDasharray="0.1 9" strokeLinecap="round" />}
       {!dashed && <rect x="20" y="20" width="80" height="80" fill="none" stroke={C} strokeWidth="1" />}
     </g>)
     case 'diamond': return (<g>
       {inner && <path d={DIAM_IN} fill={C} opacity="0.09" />}
-      <path d={DIAM} fill="none" stroke={C} strokeWidth={sw1} {...dash} />
+      <path d={DIAM} fill="none" {...outer} />
       {inner && <path d={DIAM_IN} fill="none" stroke={C} strokeWidth="1" />}
     </g>)
     default: return (<g>
       {inner && <circle cx="60" cy="60" r="48" fill={C} opacity="0.09" />}
-      <circle cx="60" cy="60" r="52" fill="none" stroke={C} strokeWidth={sw1} {...dash} />
+      <circle cx="60" cy="60" r="52" fill="none" {...outer} />
       {inner && <circle cx="60" cy="60" r="46" fill="none" stroke={C} strokeWidth="1" />}
     </g>)
   }
@@ -309,13 +318,16 @@ export function MiniCityStamp({ city, size = 34 }) {
   )
 }
 
-export default function CityStamp({ city, earned = false, size = 120 }) {
+/* 按状态变色：未抵达=淡墨，已抵达=铜，集齐一省=烫金
+   （tone 优先；否则由 earned 推导 locked / copper） */
+export default function CityStamp({ city, earned = false, tone, size = 120 }) {
   const uid = String(city.id)
   const name = city.name
   const region = city.country || city.province || '云南'
   const shape = SHAPE_OF[uid] || 'circle'
+  const state = tone || (earned ? 'copper' : 'locked')
 
-  if (!earned) {
+  if (state === 'locked') {
     return (
       <svg width={size} viewBox="0 0 120 120" role="img" style={{ color: 'var(--text-mid)' }}>
         <title>{`${name} · 未抵达`}</title>
@@ -326,11 +338,21 @@ export default function CityStamp({ city, earned = false, size = 120 }) {
     )
   }
 
+  const gold = state === 'gold'
+  const stateDesc = gold ? '已集齐所在地区，烫金' : '已抵达'
   return (
-    <svg width={size} viewBox="0 0 120 120" role="img" style={{ color: 'var(--copper)' }}>
+    <svg width={size} viewBox="0 0 120 120" role="img"
+      style={{ color: gold ? 'var(--gold)' : 'var(--copper)' }}>
       <title>{`${name} 旅行印章`}</title>
-      <desc>{`${region}${name}，专属图案${shape}形印章，已抵达`}</desc>
-      <Frame shape={shape} />
+      <desc>{`${region}${name}，专属图案${shape}形印章，${stateDesc}`}</desc>
+      {gold && (
+        <defs><linearGradient id={`gold-${uid}`} x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stopColor="var(--gold-bright)" />
+          <stop offset="0.5" stopColor="var(--gold)" />
+          <stop offset="1" stopColor="var(--gold-bright)" />
+        </linearGradient></defs>
+      )}
+      <Frame shape={shape} sheen={gold ? `url(#gold-${uid})` : null} />
       <StampText shape={shape} uid={uid} name={name} region={region} />
       {EMBLEMS[uid] || fallbackEmblem(uid)}
     </svg>

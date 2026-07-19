@@ -11,6 +11,8 @@
   --jade: #4E7A5E;         /* 竹青 — nature / success */
   --copper: #A9702F;       /* 铜印 — highlight / stamp */
   --copper-soft: #C08A45;
+  --gold: #C7962F;         /* 烫金 — 集齐一省的升级色 */
+  --gold-bright: #E0B34E;
 
   /* Legacy accent names, remapped to the new palette so the whole app re-skins */
   --sakura-pink: #294B6B;
@@ -59,6 +61,8 @@
   --jade: #83B090;
   --copper: #CD9B5C;
   --copper-soft: #B7863F;
+  --gold: #E5BE6A;         /* 烫金 — 集齐一省的升级色（暗色更亮） */
+  --gold-bright: #F2D48A;
 
   --sakura-pink: #7CA6CB;
   --sakura-light: #9DBEDC;

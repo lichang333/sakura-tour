@@ -22,6 +22,8 @@ export default function AlbumPage({ goBack }) {
     if (!g) { g = { key, cities: [] }; groups.push(g) }
     g.cities.push(c)
   }
+  // 集齐一省 → 该组全部城章升级为烫金
+  for (const g of groups) g.complete = g.cities.every(isEarned)
 
   const openCity = (c) => {
     if (!isEarned(c)) return
@@ -47,21 +49,25 @@ export default function AlbumPage({ goBack }) {
 
       {groups.map(g => (
         <div key={g.key} className="album-group">
-          <div className="album-group-label">{g.key}</div>
+          <div className="album-group-label">
+            {g.key}
+            {g.complete && <span className="album-group-gold">✦ 已集齐</span>}
+          </div>
           <div className="album-grid">
             {g.cities.map(c => {
               const earned = isEarned(c)
+              const tone = !earned ? 'locked' : g.complete ? 'gold' : 'copper'
               return (
                 <button
                   key={c.id}
-                  className={`stamp-cell ${earned ? 'earned' : 'locked'}`}
+                  className={`stamp-cell ${earned ? 'earned' : 'locked'} ${tone === 'gold' ? 'gold' : ''}`}
                   onClick={() => openCity(c)}
                   disabled={!earned}
                 >
-                  <CityStamp city={c} earned={earned} size={128} />
+                  <CityStamp city={c} tone={tone} size={128} />
                   <span className="stamp-cell-name">{c.name}</span>
-                  <span className={`stamp-cell-state ${earned ? 'on' : ''}`}>
-                    {earned ? '已抵达' : '未抵达'}
+                  <span className={`stamp-cell-state ${earned ? 'on' : ''} ${tone === 'gold' ? 'gold' : ''}`}>
+                    {tone === 'gold' ? '烫金 · 已集齐' : earned ? '已抵达' : '未抵达'}
                   </span>
                 </button>
               )
