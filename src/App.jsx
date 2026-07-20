@@ -18,6 +18,8 @@ function AppInner() {
   const { user, loading } = useUser()
   const [activeTab, setActiveTab] = useState('home')
   const [pendingSpot, setPendingSpot] = useState(null)
+  // origin: 记录从哪进的详情（如 'map'），详情「返回」时回到来处
+  const [spotOrigin, setSpotOrigin] = useState(null)
 
   /* 加载期间由 index.html 内联开屏顶着（bundle 下载起即可见），
      登录态确认后淡出移除，避免开屏和 React 两套加载 UI 叠放 */
@@ -40,14 +42,15 @@ function AppInner() {
     )
   }
 
-  const goToSpot = (spotId) => { setPendingSpot(spotId); setActiveTab('spots') }
+  const goToSpot = (spotId, origin = null) => { setPendingSpot(spotId); setSpotOrigin(origin); setActiveTab('spots') }
 
   const pages = {
     home:    <HomePage setActiveTab={setActiveTab} goToSpot={goToSpot} />,
-    spots:   <SpotsPage pendingSpot={pendingSpot} clearPendingSpot={() => setPendingSpot(null)} openMap={() => setActiveTab('map')} />,
+    spots:   <SpotsPage pendingSpot={pendingSpot} clearPendingSpot={() => setPendingSpot(null)} openMap={() => setActiveTab('map')}
+      detailOrigin={spotOrigin} onDetailBack={() => { setSpotOrigin(null); setActiveTab('map') }} clearOrigin={() => setSpotOrigin(null)} />,
     plan:    <PlanPage setActiveTab={setActiveTab} goToSpot={goToSpot} />,
     tips:    <TipsPage goToSpot={goToSpot} />,
-    map:     <MapPage goToSpot={goToSpot} openList={() => setActiveTab('spots')} />,
+    map:     <MapPage goToSpot={(id) => goToSpot(id, 'map')} openList={() => setActiveTab('spots')} />,
     profile: <ProfilePage goToSpot={goToSpot} openAlbum={() => setActiveTab('album')} />,
     album:   <AlbumPage goBack={() => setActiveTab('home')} />,
   }

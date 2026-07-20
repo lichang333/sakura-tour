@@ -59,7 +59,7 @@ function StarRating({ spotId, current, onRate }) {
   )
 }
 
-export default function SpotsPage({ pendingSpot, clearPendingSpot, openMap }) {
+export default function SpotsPage({ pendingSpot, clearPendingSpot, openMap, detailOrigin, onDetailBack, clearOrigin }) {
   const [selected,      setSelected]      = useState(null)
   // 「只看未去」筛选 —— 记住选择，刷新不丢（视图偏好存本机）
   const [hideVisited, setHideVisited] = useState(() => localStorage.getItem('sakura_only_unvisited') === '1')
@@ -217,7 +217,11 @@ export default function SpotsPage({ pendingSpot, clearPendingSpot, openMap }) {
     return (
       <div className="spots-page">
         <div className="spot-detail">
-          <button className="back-btn" onClick={() => { setSelected(null); setReviewDraft(''); setReviewSaved(false) }}>← 返回</button>
+          <button className="back-btn" onClick={() => {
+            setSelected(null); setReviewDraft(''); setReviewSaved(false)
+            // 从地图点进来的，返回地图而非列表
+            if (detailOrigin === 'map') onDetailBack?.()
+          }}>← 返回</button>
           <div className="detail-hero" style={{ background: `linear-gradient(155deg, ${spot.color} -20%, #16283A 120%)` }}>
             <div className="detail-chips">
               {spot.isHot && <span className="detail-chip must">必去</span>}
@@ -550,7 +554,7 @@ export default function SpotsPage({ pendingSpot, clearPendingSpot, openMap }) {
             <div
               key={spot.id}
               className={`spot-card ${visited ? 'visited' : checked ? 'checked' : ''} ${spot.isHot ? 'hot' : ''}`}
-              onClick={() => setSelected(spot.id)}
+              onClick={() => { clearOrigin?.(); setSelected(spot.id) }}
               style={{ '--spot-color': spot.color }}
             >
               {spot.isHot && !visited && <div className="hot-ribbon">必去</div>}
@@ -608,7 +612,7 @@ export default function SpotsPage({ pendingSpot, clearPendingSpot, openMap }) {
               <div
                 key={s.id}
                 className="nearby-card"
-                onClick={() => setSelected(s.id)}
+                onClick={() => { clearOrigin?.(); setSelected(s.id) }}
               >
                 <span className="nearby-emoji">{s.emoji}</span>
                 <div className="nearby-info">
