@@ -1247,3 +1247,42 @@
 }
 .emoji-opt:hover { background: var(--nav-active-bg); }
 .emoji-opt:active { transform: scale(0.9); }
+
+/* ── 「排进行程」选天底部面板 ── */
+.plansheet-mask {
+  position: fixed; inset: 0; z-index: 90;
+  background: rgba(10, 14, 20, 0.45);
+  display: flex; align-items: flex-end;
+}
+.plansheet {
+  width: 100%;
+  background: var(--bg-card);
+  border-top-left-radius: 22px; border-top-right-radius: 22px;
+  padding: 20px 18px calc(20px + env(safe-area-inset-bottom));
+  animation: sheetUp 0.22s ease;
+}
+@keyframes sheetUp { from { transform: translateY(40%); opacity: 0.4; } to { transform: none; opacity: 1; } }
+@media (prefers-reduced-motion: reduce) { .plansheet { animation: none; } }
+.plansheet-title {
+  font-size: 15px; font-weight: 700; color: var(--text-dark);
+  margin-bottom: 14px; text-align: center;
+}
+.plansheet-days { display: flex; flex-direction: column; gap: 8px; max-height: 46vh; overflow-y: auto; }
+.plansheet-day {
+  display: flex; align-items: center; gap: 10px;
+  background: var(--bg-card2);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 12px 14px;
+  text-align: left;
+}
+.plansheet-day:active { border-color: var(--indigo); }
+.psd-emoji { font-size: 18px; flex-shrink: 0; }
+.psd-label { font-size: 13px; font-weight: 700; color: var(--indigo); flex-shrink: 0; }
+.psd-title { flex: 1; font-size: 13px; color: var(--text-dark); font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.psd-count { font-size: 11px; color: var(--text-mid); flex-shrink: 0; }
+.plansheet-cancel {
+  width: 100%; margin-top: 12px; padding: 11px;
+  background: transparent; border: 1px solid var(--border); border-radius: 13px;
+  font-size: 14px; font-weight: 700; color: var(--text-mid);
+}

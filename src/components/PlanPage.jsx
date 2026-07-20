@@ -57,6 +57,7 @@ function EmojiPopover({ onPick, onClose }) {
 
 export default function PlanPage({ setActiveTab, goToSpot }) {
   const [picker, setPicker] = useState(null)
+  const [planPick, setPlanPick] = useState(null)   // 「排进行程」待选天的景点
   const [mode,      setMode]      = useState('template')
   const [activeDay, setActiveDay] = useState(1)
   const [editMode,  setEditMode]  = useState(false)
@@ -156,6 +157,29 @@ export default function PlanPage({ setActiveTab, goToSpot }) {
 
   return (
     <div className="plan-page">
+      {planPick && (
+        <div className="plansheet-mask" onClick={() => setPlanPick(null)}>
+          <div className="plansheet" onClick={e => e.stopPropagation()}>
+            <div className="plansheet-title">把「{planPick.emoji} {planPick.name}」排进哪一天？</div>
+            <div className="plansheet-days">
+              {days.map((d, di) => (
+                <button key={d.day} className="plansheet-day" onClick={() => {
+                  addSpotRow(di, planPick)
+                  setActiveDay(d.day)
+                  setMode('template')
+                  setPlanPick(null)
+                }}>
+                  <span className="psd-emoji">{d.emoji || '📅'}</span>
+                  <span className="psd-label">Day {d.day}</span>
+                  <span className="psd-title">{d.title.replace(/^Day \d+ ?·? ?/, '')}</span>
+                  <span className="psd-count">{d.activities.length} 项</span>
+                </button>
+              ))}
+            </div>
+            <button className="plansheet-cancel" onClick={() => setPlanPick(null)}>取消</button>
+          </div>
+        </div>
+      )}
       {/* ── 顶部 Header ── */}
       <div className="plan-header">
         <h2 className="page-title">我的行程</h2>
@@ -232,8 +256,8 @@ export default function PlanPage({ setActiveTab, goToSpot }) {
                           {!visitedIds.has(spot.id) && (
                             <button
                               className="msc-plan-btn"
-                              onClick={() => { setMode('template'); setShowAdd(true) }}
-                              title="切到每日行程，把它排进某一天"
+                              onClick={() => setPlanPick(spot)}
+                              title="把它排进某一天的行程"
                             >📅 排进行程</button>
                           )}
                         </div>
