@@ -1306,6 +1306,9 @@
 
 /* 详情页一键高德导航 */
 .nav-amap-btn {
+  background: transparent;
+  cursor: pointer;
+  font-family: inherit;
   display: inline-flex;
   align-items: center;
   gap: 6px;

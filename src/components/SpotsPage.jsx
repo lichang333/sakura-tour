@@ -3,6 +3,7 @@ import { useUser } from '../context/UserContext'
 import { useCity } from '../context/CityContext'
 import { useReviews } from '../hooks/useReviews'
 import { compressImage } from '../utils/image'
+import { navToAmap } from '../utils/amapNav'
 import './SpotsPage.css'
 
 export const REC_TAGS = [
@@ -279,12 +280,10 @@ export default function SpotsPage({ pendingSpot, clearPendingSpot, openMap, deta
               <h3>🚇 交通</h3>
               <p>{spot.transport}</p>
               {spot.lat && spot.lng && (
-                /* 高德官方 URI：手机唤起高德 App 导航，未装则落 H5，桌面开网页版 */
-                <a
-                  className="nav-amap-btn"
-                  href={`https://uri.amap.com/navigation?to=${spot.lng},${spot.lat},${encodeURIComponent(spot.name)}&mode=car&callnative=1&src=sakuratour`}
-                  target="_blank" rel="noreferrer"
-                >🧭 高德导航去这里</a>
+                /* Scheme 直接唤起高德 App，未装 2 秒后回退 H5（见 utils/amapNav） */
+                <button className="nav-amap-btn" onClick={() => navToAmap(spot)}>
+                  🧭 高德导航去这里
+                </button>
               )}
             </div>
 
