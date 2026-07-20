@@ -148,7 +148,8 @@ export default function SpotsPage({ pendingSpot, clearPendingSpot, openMap, deta
   }
 
   /* ── 三态按钮渲染 ── */
-  /* 盖章式三态：未加入（描边「想去」）→ 想去（实心靛蓝）→ 已抵达（铜色圆印） */
+  /* 按钮永远写「下一步动作」：＋想去 → ✓打卡（标记抵达）→ 抵（铜印，点击清除）
+     旧版已想去态仍显示「♡ 想去」，点击却是标记抵达，文案与行为错位 */
   const SpotStateBtn = ({ id }) => {
     const visited = visitedIds.has(id)
     const checked = checkedIds.has(id)
@@ -164,8 +165,8 @@ export default function SpotsPage({ pendingSpot, clearPendingSpot, openMap, deta
       <button
         className="check-btn done"
         onClick={(e) => handleCheckBtn(id, e)}
-        title="想去 · 点击标记已抵达"
-      >♡ 想去</button>
+        title="已在想去清单 · 点击标记抵达"
+      >✓ 打卡</button>
     )
     return (
       <button
