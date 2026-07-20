@@ -278,6 +278,14 @@ export default function SpotsPage({ pendingSpot, clearPendingSpot, openMap, deta
             <div className="detail-section">
               <h3>🚇 交通</h3>
               <p>{spot.transport}</p>
+              {spot.lat && spot.lng && (
+                /* 高德官方 URI：手机唤起高德 App 导航，未装则落 H5，桌面开网页版 */
+                <a
+                  className="nav-amap-btn"
+                  href={`https://uri.amap.com/navigation?to=${spot.lng},${spot.lat},${encodeURIComponent(spot.name)}&mode=car&callnative=1&src=sakuratour`}
+                  target="_blank" rel="noreferrer"
+                >🧭 高德导航去这里</a>
+              )}
             </div>
 
             {isVisited ? (
