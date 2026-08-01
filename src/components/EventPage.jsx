@@ -75,6 +75,15 @@ export default function EventPage({ goBack, goToSpot }) {
         </div>
       </div>
 
+      {g.bayPoints && (
+        <div className="event-section">
+          <h3 className="event-h3">🌆 滨海湾同框区（烟花+城景一起收）</h3>
+          <div className="event-baypoints">
+            {g.bayPoints.map((b, i) => <span key={i} className="ebp-chip">{b}</span>)}
+          </div>
+        </div>
+      )}
+
       <div className="event-section">
         <h3 className="event-h3">🍢 晚饭接烟花动线</h3>
         <div className="event-dinner">

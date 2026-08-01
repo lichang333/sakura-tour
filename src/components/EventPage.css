@@ -99,3 +99,11 @@
 .event-venue-desc { font-size: 13px; line-height: 1.75; color: var(--text-dark); margin: 8px 0 10px; }
 .event-venue-points { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 7px; }
 .event-venue-points li { font-size: 12.5px; line-height: 1.6; color: var(--text-mid); }
+
+/* 滨海湾同框区 chips */
+.event-baypoints { display: flex; flex-wrap: wrap; gap: 7px; }
+.ebp-chip {
+  font-size: 12px; font-weight: 600; color: var(--text-dark);
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: 20px; padding: 6px 12px;
+}
