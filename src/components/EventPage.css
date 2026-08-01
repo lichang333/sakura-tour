@@ -1,0 +1,86 @@
+/* 限定活动攻略页 */
+.event-page { padding: 14px 16px 90px; }
+.event-back {
+  background: transparent; border: none; padding: 6px 0;
+  font-size: 14.5px; font-weight: 700; color: var(--text-mid);
+}
+.event-empty { text-align: center; color: var(--text-mid); padding: 60px 0; }
+
+.event-hero {
+  text-align: center;
+  background: var(--bg-card);
+  border: 1.5px solid var(--copper);
+  border-radius: 18px;
+  padding: 22px 16px 18px;
+  margin: 8px 0 14px;
+  box-shadow: var(--shadow-card);
+}
+.event-hero-emoji { font-size: 40px; display: block; }
+.event-hero-name {
+  font-family: var(--font-serif); font-size: 22px; font-weight: 600;
+  color: var(--text-dark); margin: 8px 0 0;
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+}
+.event-hero-badge {
+  font-size: 10px; font-weight: 700; color: var(--copper);
+  border: 1px solid var(--copper); border-radius: 5px;
+  padding: 1px 6px; letter-spacing: 0.08em;
+}
+.event-hero-date { font-size: 14px; font-weight: 700; color: var(--copper); margin-top: 7px; }
+.event-hero-place { font-size: 12.5px; color: var(--text-mid); margin-top: 4px; }
+
+.event-intro {
+  font-size: 13.5px; line-height: 1.8; color: var(--text-mid);
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: 14px; padding: 13px 15px; margin: 0 0 6px;
+}
+
+.event-section { margin-top: 20px; }
+.event-h3 { font-size: 16px; font-weight: 700; color: var(--text-dark); margin: 0 0 10px; }
+
+/* 时间线 */
+.event-timeline { background: var(--bg-card); border: 1px solid var(--border); border-radius: 14px; padding: 6px 15px; }
+.etl-row { display: flex; align-items: baseline; gap: 10px; padding: 9px 0; border-top: 1px solid var(--border); }
+.etl-row:first-child { border-top: none; }
+.etl-time { flex-shrink: 0; width: 44px; font-size: 13px; font-weight: 700; color: var(--indigo); font-variant-numeric: tabular-nums; }
+.etl-dot { flex-shrink: 0; width: 6px; height: 6px; border-radius: 50%; background: var(--copper); position: relative; top: -2px; }
+.etl-text { flex: 1; font-size: 13px; line-height: 1.6; color: var(--text-dark); }
+
+/* 机位卡 */
+.event-vps { display: flex; flex-direction: column; gap: 10px; }
+.evp-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 14px; padding: 13px 15px; }
+.evp-head { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; margin-bottom: 7px; }
+.evp-name { font-size: 14px; font-weight: 700; color: var(--text-dark); }
+.evp-stars { font-size: 13px; color: var(--copper); letter-spacing: 2px; flex-shrink: 0; }
+.evp-row { font-size: 12.5px; line-height: 1.6; margin-top: 3px; }
+.evp-row.good { color: var(--jade); }
+.evp-row.bad { color: var(--text-mid); }
+.evp-foot { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-top: 8px; }
+.evp-tip { font-size: 12px; color: var(--copper); font-weight: 600; flex: 1; line-height: 1.5; }
+.evp-nav {
+  flex-shrink: 0; background: transparent;
+  border: 1.5px solid var(--indigo); border-radius: 10px;
+  color: var(--indigo); font-size: 12px; font-weight: 700;
+  padding: 5px 10px; cursor: pointer;
+}
+
+/* 晚饭动线 */
+.event-dinner { background: var(--bg-card); border: 1px solid var(--border); border-radius: 14px; padding: 4px 15px; }
+.edn-row { padding: 11px 0; border-top: 1px solid var(--border); }
+.edn-row:first-child { border-top: none; }
+.edn-main { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+.edn-name { font-size: 13.5px; font-weight: 700; color: var(--text-dark); }
+.edn-walk { font-size: 11.5px; font-weight: 700; color: var(--jade); flex-shrink: 0; }
+.edn-desc { font-size: 12px; color: var(--text-mid); margin-top: 3px; line-height: 1.6; }
+
+/* FAQ */
+.efq { background: var(--bg-card); border: 1px solid var(--border); border-radius: 14px; padding: 12px 15px; margin-bottom: 8px; }
+.efq-q { font-size: 13.5px; font-weight: 700; color: var(--text-dark); }
+.efq-a { font-size: 12.5px; color: var(--text-mid); line-height: 1.7; margin-top: 4px; }
+
+.event-spot-link {
+  width: 100%; margin-top: 18px; padding: 13px;
+  background: var(--indigo); border: none; border-radius: 14px;
+  color: #F3EEE3; font-size: 14.5px; font-weight: 700;
+}
+[data-theme="dark"] .event-spot-link { color: #101319; }

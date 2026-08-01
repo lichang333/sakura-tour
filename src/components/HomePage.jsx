@@ -11,7 +11,7 @@ function shade(hex, amt = 0.28) {
   return `rgb(${r},${g},${b})`
 }
 
-export default function HomePage({ setActiveTab, goToSpot }) {
+export default function HomePage({ setActiveTab, goToSpot, openEvent }) {
   const { user } = useUser()
   const { currentCity } = useCity()
 
@@ -142,7 +142,7 @@ export default function HomePage({ setActiveTab, goToSpot }) {
 
       {/* 限定活动卡（时间窗内自动出现/消失） */}
       {evLive && (
-        <button className="special-event" onClick={() => ev.spotId && goToSpot?.(ev.spotId)}>
+        <button className="special-event" onClick={() => ev.guide ? openEvent?.() : (ev.spotId && goToSpot?.(ev.spotId))}>
           <span className="se-emoji">{ev.emoji}</span>
           <div className="se-info">
             <div className="se-name">{ev.name}<span className="se-badge">限定</span></div>

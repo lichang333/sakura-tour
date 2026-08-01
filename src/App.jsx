@@ -12,6 +12,7 @@ import TipsPage from './components/TipsPage'
 import MapPage from './components/MapPage'
 import ProfilePage from './components/ProfilePage'
 import AlbumPage from './components/AlbumPage'
+import EventPage from './components/EventPage'
 import './App.css'
 
 function AppInner() {
@@ -45,7 +46,7 @@ function AppInner() {
   const goToSpot = (spotId, origin = null) => { setPendingSpot(spotId); setSpotOrigin(origin); setActiveTab('spots') }
 
   const pages = {
-    home:    <HomePage setActiveTab={setActiveTab} goToSpot={goToSpot} />,
+    home:    <HomePage setActiveTab={setActiveTab} goToSpot={goToSpot} openEvent={() => setActiveTab('event')} />,
     spots:   <SpotsPage pendingSpot={pendingSpot} clearPendingSpot={() => setPendingSpot(null)} openMap={() => setActiveTab('map')}
       detailOrigin={spotOrigin} onDetailBack={() => { setSpotOrigin(null); setActiveTab('map') }} clearOrigin={() => setSpotOrigin(null)} />,
     plan:    <PlanPage setActiveTab={setActiveTab} goToSpot={goToSpot} />,
@@ -53,6 +54,7 @@ function AppInner() {
     map:     <MapPage goToSpot={(id) => goToSpot(id, 'map')} openList={() => setActiveTab('spots')} />,
     profile: <ProfilePage goToSpot={goToSpot} openAlbum={() => setActiveTab('album')} />,
     album:   <AlbumPage goBack={() => setActiveTab('home')} />,
+    event:   <EventPage goBack={() => setActiveTab('home')} goToSpot={goToSpot} />,
   }
 
   return (
