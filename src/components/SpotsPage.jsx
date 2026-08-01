@@ -3,7 +3,7 @@ import { useUser } from '../context/UserContext'
 import { useCity } from '../context/CityContext'
 import { useReviews } from '../hooks/useReviews'
 import { compressImage } from '../utils/image'
-import { navToAmap } from '../utils/amapNav'
+import { navToAmap, navToGmaps } from '../utils/amapNav'
 import './SpotsPage.css'
 
 export const REC_TAGS = [
@@ -282,8 +282,8 @@ export default function SpotsPage({ pendingSpot, clearPendingSpot, openMap, deta
               <p>{spot.transport}</p>
               {spot.lat && spot.lng && (
                 /* Scheme 直接唤起高德 App，未装 2 秒后回退 H5（见 utils/amapNav） */
-                <button className="nav-amap-btn" onClick={() => navToAmap(spot)}>
-                  🧭 高德导航去这里
+                <button className="nav-amap-btn" onClick={() => (currentCity.overseas ? navToGmaps : navToAmap)(spot)}>
+                  🧭 {currentCity.overseas ? 'Google 导航去这里' : '高德导航去这里'}
                 </button>
               )}
             </div>

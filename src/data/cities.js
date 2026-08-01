@@ -5530,6 +5530,7 @@ export const CITIES = [
   {
     id: 'singapore',
     name: '新加坡',
+    overseas: true,
     nameEn: 'Singapore',
     emoji: '🦁',
     country: '新加坡',
@@ -5594,7 +5595,7 @@ export const CITIES = [
       },
     },
     quickTips: [
-      { icon: '🎆', text: '8·9 国庆烟花在加冷体育场' },
+      { icon: '🎆', text: '8·9 国庆烟花在加冷体育场', event: true },
       { icon: '🛂', text: '中国护照免签30天' },
       { icon: '🚇', text: '闪付卡拍卡坐地铁' },
       { icon: '🌂', text: '伞与防晒随身带' },

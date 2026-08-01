@@ -32,3 +32,9 @@ export function navToAmap({ lat, lng, name }) {
   setTimeout(() => { if (!cancelled && !document.hidden) window.location.href = h5 }, 2000)
   window.location.href = scheme
 }
+
+/* 海外城市用 Google Maps：universal link 在手机自动唤起 App，桌面开网页 */
+export function navToGmaps({ lat, lng, name }) {
+  const url = `https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}&travelmode=walking`
+  window.open(url, '_blank', 'noreferrer')
+}

@@ -260,10 +260,18 @@ export default function HomePage({ setActiveTab, goToSpot, openEvent }) {
         <h2 className="section-title">快速提示</h2>
         <div className="quick-tips">
           {currentCity.quickTips.map((tip, i) => (
-            <div key={i} className="quick-tip">
-              <span className="qt-icon">{tip.icon}</span>
-              <span>{tip.text}</span>
-            </div>
+            tip.event && currentCity.specialEvent?.guide ? (
+              <button key={i} className="quick-tip qt-event" onClick={() => openEvent?.()}>
+                <span className="qt-icon">{tip.icon}</span>
+                <span>{tip.text}</span>
+                <span className="qt-go">›</span>
+              </button>
+            ) : (
+              <div key={i} className="quick-tip">
+                <span className="qt-icon">{tip.icon}</span>
+                <span>{tip.text}</span>
+              </div>
+            )
           ))}
         </div>
       </div>

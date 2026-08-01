@@ -1,5 +1,5 @@
 import { useCity } from '../context/CityContext'
-import { navToAmap } from '../utils/amapNav'
+import { navToAmap, navToGmaps } from '../utils/amapNav'
 import './EventPage.css'
 
 /* 限定活动攻略页 —— 渲染 currentCity.specialEvent.guide：
@@ -7,6 +7,7 @@ import './EventPage.css'
 export default function EventPage({ goBack, goToSpot }) {
   const { currentCity } = useCity()
   const ev = currentCity.specialEvent
+  const nav = currentCity.overseas ? navToGmaps : navToAmap
 
   if (!ev?.guide) {
     return (
@@ -57,7 +58,7 @@ export default function EventPage({ goBack, goToSpot }) {
               <div className="evp-row bad">👎 {v.cons}</div>
               <div className="evp-foot">
                 <span className="evp-tip">💡 {v.tip}</span>
-                <button className="evp-nav" onClick={() => navToAmap(v)}>🧭 导航</button>
+                <button className="evp-nav" onClick={() => nav(v)}>🧭 导航</button>
               </div>
             </div>
           ))}
