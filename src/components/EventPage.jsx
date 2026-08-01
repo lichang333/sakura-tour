@@ -80,6 +80,27 @@ export default function EventPage({ goBack, goToSpot }) {
         </div>
       </div>
 
+      {g.restaurants && (
+        <div className="event-section">
+          <h3 className="event-h3">🍽 观景餐厅（边吃边看）</h3>
+          <div className="event-vps">
+            {g.restaurants.map((r, i) => (
+              <div key={i} className="evp-card">
+                <div className="evp-head">
+                  <span className="evp-name">{r.name}</span>
+                  <span className="evp-dist">{r.dist}</span>
+                </div>
+                <div className="evp-row good">👀 {r.view}</div>
+                <div className="evp-foot">
+                  <span className="evp-tip">💡 {r.note}</span>
+                  <button className="evp-nav" onClick={() => nav(r)}>🧭 导航</button>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
       <div className="event-section">
         <h3 className="event-h3">❓ 常见问题</h3>
         {g.faqs.map((f, i) => (
