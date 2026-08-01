@@ -4732,6 +4732,196 @@ const hongkongSeason = {
   ],
 }
 
+
+/* ════════════════ 新加坡 ════════════════ */
+const singaporeSpots = [
+  {
+    id: 'sin1', name: "鱼尾狮公园·滨海湾", nameEn: "Merlion Park & Marina Bay", emoji: "🦁",
+    district: "市中心·滨海湾", lat: 1.2868, lng: 103.8545,
+    peakTime: "全年（傍晚进夜景）", peakDays: "8月国庆季烟花在此上空", difficulty: "easy",
+    rating: 4.7, reviews: 52000, tags: ["必去", "狮城地标", "天际线"],
+    isHot: true, ticket: "免费",
+    description: "狮城的第一张明信片：鱼尾狮向滨海湾喷水，对岸是金沙三塔与榴莲壳歌剧院。傍晚到夜里最迷人——20:00/21:00 金沙对岸有免费灯光秀 Spectra。8月国庆季，National Day 的烟花就在这片湾区上空绽放，整个滨海湾都是观礼台。",
+    tips: "看烟花别挤鱼尾狮正面，人最爆；滨海堤坝或 Esplanade 滨水步道更从容；平日晚来看两场灯光秀足矣。",
+    transport: "地铁 Raffles Place 站步行8分钟",
+    color: "#3B6E86", xp: 130,
+  },
+  {
+    id: 'sin2', name: "滨海湾花园", nameEn: "Gardens by the Bay", emoji: "🌳",
+    district: "滨海湾南", lat: 1.2816, lng: 103.8636,
+    peakTime: "全年（晚上灯光秀）", peakDays: "19:45/20:45 擎天树灯光秀", difficulty: "easy",
+    rating: 4.8, reviews: 48000, tags: ["必去", "擎天树", "云雾林"],
+    isHot: true, ticket: "户外免费 / 两馆约新币53",
+    description: "未来感花园：18 棵擎天树白天是垂直花园，夜里 19:45 与 20:45 两场 Garden Rhapsody 灯光音乐秀免费开放，躺在草坪上看树冠流光。冷室「云雾林」里 35 米室内瀑布云雾缭绕，「花穹」四季换展，是赤道上的四季花房。",
+    tips: "傍晚进园：先逛两馆，出来正好躺草坪看灯光秀；OCBC 空中步道看金沙视角绝佳；馆内冷气极强带外套。",
+    transport: "地铁 Gardens by the Bay 站直达",
+    color: "#4E7A5E", xp: 120,
+  },
+  {
+    id: 'sin3', name: "圣淘沙岛", nameEn: "Sentosa Island", emoji: "🏖️",
+    district: "南部离岛", lat: 1.2494, lng: 103.8303,
+    peakTime: "全年（工作日人少）", peakDays: "环球影城避周末", difficulty: "easy",
+    rating: 4.6, reviews: 40000, tags: ["环球影城", "海滩", "亲子天堂"],
+    ticket: "入岛免费起 / 环球影城约新币83",
+    description: "新加坡的度假后花园：环球影城的变形金刚与木乃伊过山车、S.E.A. 海洋馆的鲸鲨大洋池、西乐索海滩的沙滩酒吧，一岛玩一天。傍晚在 Palawan 海滩走吊桥到「亚洲大陆最南端」看日落，节奏立刻慢下来。",
+    tips: "环球影城开园即进、先冲变形金刚；从怡丰城坐圣淘沙捷运或步行栈道入岛最省；沙滩免费、日落时分最美。",
+    transport: "地铁 HarbourFront 站转圣淘沙捷运",
+    color: "#C79A3E", xp: 120,
+  },
+  {
+    id: 'sin4', name: "牛车水·麦士威熟食中心", nameEn: "Chinatown & Maxwell", emoji: "🏮",
+    district: "牛车水", lat: 1.2838, 
+    lng: 103.8443,
+    peakTime: "全年", peakDays: "午市海南鸡饭排队最旺", difficulty: "easy",
+    rating: 4.5, reviews: 30000, tags: ["唐人街", "佛牙寺", "小贩中心"],
+    ticket: "免费",
+    description: "南洋华人的百年街区：佛牙寺金顶庄严，戏楼街骑楼刷成糖果色，麦士威熟食中心里天天排队的天天海南鸡饭就在这。小贩中心（Hawker Centre）文化已列入人类非遗——十几新币吃遍鸡饭、叉烧、粿条，是新加坡最真实的烟火。",
+    tips: "天天海南鸡饭 11 点前到少排队；佛牙寺免费入内需着装得体；傍晚逛完直接步行去滨海湾看夜景。",
+    transport: "地铁 Chinatown 站直达",
+    color: "#B4472F", xp: 100,
+  },
+  {
+    id: 'sin5', name: "小印度·甘榜格南", nameEn: "Little India & Kampong Glam", emoji: "🕌",
+    district: "梧槽·甘榜格南", lat: 1.3040, lng: 103.8560,
+    peakTime: "全年", peakDays: "周末市集最热闹", difficulty: "easy",
+    rating: 4.5, reviews: 22000, tags: ["苏丹回教堂", "哈芝巷", "多元文化"],
+    ticket: "免费",
+    description: "一条地铁线串起两个世界：小印度的维拉玛卡里雅曼庙色彩炸裂、香料与花环味扑面；甘榜格南的金顶苏丹回教堂下，哈芝巷的涂鸦墙和买手店是全城最出片的小巷。一个下午走完印度、马来、阿拉伯三种风情。",
+    tips: "哈芝巷下午光线最好；进回教堂着长裤长袖（门口可借袍）；小印度周日晚劳工聚集较嘈杂，白天逛更舒服。",
+    transport: "地铁 Little India / Bugis 站",
+    color: "#6E5E8A", xp: 100,
+  },
+  {
+    id: 'sin6', name: "新加坡动物园·河川生态园", nameEn: "Singapore Zoo", emoji: "🦧",
+    district: "万礼", lat: 1.4043, lng: 103.7930,
+    peakTime: "全年（早上动物活跃）", peakDays: "开园即进最凉快", difficulty: "medium",
+    rating: 4.7, reviews: 26000, tags: ["无栏杆动物园", "红毛猩猩", "亲子"],
+    ticket: "动物园约新币49",
+    description: "世界公认的顶级动物园：无栏杆的开放式设计，红毛猩猩在头顶荡过，与它们共进早餐是招牌项目。隔壁河川生态园有大熊猫与亚马逊漫游船，夜间动物园（Night Safari）则是全球首创——坐游览车穿过夜色里的兽径。",
+    tips: "早上开园就进（动物活跃且凉快）；夜间动物园需另购票、英文导览车提前订；从市区打车约30分钟。",
+    transport: "地铁 Khatib 站转 Mandai 接驳车",
+    color: "#2E6E4A", xp: 110,
+  },
+  {
+    id: 'sin7', name: "克拉码头·新加坡河", nameEn: "Clarke Quay", emoji: "🛥️",
+    district: "新加坡河畔", lat: 1.2906, lng: 103.8465,
+    peakTime: "全年（夜晚）", peakDays: "入夜后河畔酒吧全开", difficulty: "easy",
+    rating: 4.4, reviews: 20000, tags: ["游船", "河畔夜生活", "辣椒螃蟹"],
+    ticket: "免费（游船约新币28）",
+    description: "殖民时代的驳船码头变身夜生活心脏：糖果色仓库群里酒吧餐厅林立，珍宝海鲜的辣椒螃蟹是无数人的新加坡第一餐。坐一趟传统驳船（Bumboat）顺新加坡河而下，从克拉码头一路看到鱼尾狮和金沙，夜景全收。",
+    tips: "游船傍晚班次最佳（日落+夜景各看一半）；辣椒螃蟹人均新币50-80、记得配炸馒头；河畔露天位湿热，选有风扇的。",
+    transport: "地铁 Clarke Quay 站直达",
+    color: "#C85C8E", xp: 100,
+  },
+]
+
+/* 周边顺游 —— 樟宜/加东/南部山脊，均在新加坡本岛 */
+const singaporeNearby = [
+  {
+    id: 'sinn1', name: "星耀樟宜", nameEn: "Jewel Changi", emoji: "💎",
+    district: "樟宜机场", lat: 1.3602, lng: 103.9897,
+    peakTime: "全年", peakDays: "返程日提早3小时到机场", difficulty: "easy",
+    rating: 4.7, reviews: 25000, tags: ["室内瀑布", "机场奇观", "返程顺游"],
+    ticket: "瀑布区免费",
+    desc: "全球最美机场的40米室内瀑布",
+    description: "把热带雨林和 40 米高的「雨旋涡」瀑布装进机场——星耀樟宜是返程日的完美句点。瀑布晚间有灯光音乐秀，环形森林谷步道免费开放，顶层星空花园的迷宫与蹦床适合放电。提早三小时到机场，逛吃一圈再安检，毫不浪费。",
+    tips: "瀑布免费、无需订票；晚间整点有灯光秀；行李可先在早托服务寄存再逛。",
+    transport: "地铁 Changi Airport 站直达",
+    color: "#3B8AA6", xp: 90, isNearby: true,
+  },
+  {
+    id: 'sinn2', name: "加东·东海岸", nameEn: "Katong & East Coast", emoji: "🏘️",
+    district: "东部", lat: 1.3039, lng: 103.9056,
+    peakTime: "全年（早晚凉爽）", peakDays: "周末骑行野餐最多", difficulty: "easy",
+    rating: 4.4, reviews: 12000, tags: ["娘惹文化", "彩色骑楼", "海岸骑行"],
+    ticket: "免费",
+    desc: "娘惹彩楼与海岸骑行的慢半天",
+    description: "如切路（Joo Chiat）的娘惹骑楼刷满马卡龙色，是土生华人文化的活标本——328 加东叻沙就在这条街上。往南两公里就是东海岸公园：租辆自行车沿海骑行，看货轮排在海平线上，本地家庭在椰树下烧烤，是游客区之外的真实新加坡。",
+    tips: "娘惹彩楼在 Koon Seng Road 转角最集中；328 叻沙用勺不用筷是仪式；傍晚海边骑行最凉快。",
+    transport: "地铁 Marine Parade 站（TEL线）",
+    color: "#C79A3E", xp: 80, isNearby: true,
+  },
+  {
+    id: 'sinn3', name: "南部山脊·亨德森波浪桥", nameEn: "Southern Ridges", emoji: "🌉",
+    district: "南部", lat: 1.2760, lng: 103.8180,
+    peakTime: "全年（清晨/傍晚）", peakDays: "日落时分桥上最美", difficulty: "medium",
+    rating: 4.5, reviews: 8000, tags: ["城市徒步", "树冠步道", "免费日落"],
+    ticket: "免费",
+    desc: "波浪木桥串起的树冠徒步线",
+    description: "一条 10 公里的城市山脊步道，把花柏山、亨德森波浪桥和园艺园林串成绿色长廊。波浪状的木桥是新加坡最高的人行桥（36 米），日落时分桥身亮起暖灯；树冠步道与雨林齐平，偶有犀鸟掠过——在花园城市里徒步，不出城就进了雨林。",
+    tips: "傍晚从花柏山走到波浪桥看日落最舒服；全程走完约3小时、走精华段1小时足矣；备水和防蚊。",
+    transport: "地铁 HarbourFront 站起步",
+    color: "#4E7A5E", xp: 90, isNearby: true,
+  },
+]
+
+const singaporeItinerary = [
+  {
+    day: 1, title: "城心·滨海湾之夜", date: "Day 1",
+    activities: [
+      { time: "上午", icon: "🏮", text: "牛车水：佛牙寺+麦士威午餐（天天海南鸡饭）", spotId: 'sin4' },
+      { time: "下午", icon: "🦁", text: "鱼尾狮公园沿湾步行，殖民区打卡", spotId: 'sin1' },
+      { time: "傍晚", icon: "🌳", text: "滨海湾花园：云雾林+擎天树灯光秀", spotId: 'sin2' },
+      { time: "晚上", icon: "🎆", text: "国庆季：老巴刹沙爹晚饭→滨海堤坝看烟花（详见攻略）" },
+    ]
+  },
+  {
+    day: 2, title: "圣淘沙一整天", date: "Day 2",
+    activities: [
+      { time: "全天", icon: "🎢", text: "环球影城（开园冲变形金刚）或海洋馆+海滩", spotId: 'sin3' },
+      { time: "傍晚", icon: "🌅", text: "Palawan 吊桥看日落，捷运返回本岛" },
+      { time: "晚上", icon: "🦀", text: "克拉码头辣椒螃蟹+驳船夜游新加坡河", spotId: 'sin7' },
+    ]
+  },
+  {
+    day: 3, title: "多元文化·星耀返程", date: "Day 3",
+    activities: [
+      { time: "上午", icon: "🕌", text: "小印度兴都庙→甘榜格南苏丹回教堂+哈芝巷", spotId: 'sin5' },
+      { time: "中午", icon: "🍜", text: "加东 328 叻沙，看娘惹彩色骑楼" },
+      { time: "下午", icon: "💎", text: "提早去星耀樟宜：雨旋涡瀑布+逛吃到登机" },
+      { time: "替代", icon: "🦧", text: "多留半天的话：上午改去动物园", spotId: 'sin6' },
+    ]
+  },
+]
+
+const singaporeTips = [
+  { icon: "🎆", title: "国庆烟花攻略", content: "国庆日 8月9日晚 National Day 庆典（Padang 主会场）尾声约 20 点后在滨海湾上空放烟花，且国庆前数周的周六傍晚多有预演（同样放烟花）。最佳免费机位：滨海堤坝 Marina Barrage 草坪（视野开阔最从容，可铺野餐垫）；Esplanade 滨水步道（离得近、散场方便）；金沙活动广场与 Promontory 草坪（正面但早早占位）。鱼尾狮公园正面最挤，慎选。提前 1.5-2 小时到，散场地铁限流需耐心。" },
+  { icon: "🍢", title: "晚饭接烟花动线", content: "看烟花的晚饭就近解决：Makansutra 诚食街（Esplanade 旁，沙爹烤串+炒粿条，走 3 分钟到湾边）；老巴刹 Lau Pa Sat 沙爹街 19 点后马路开烤（步行 10 分钟到 Promontory）；或牛车水麦士威打包到堤坝草坪野餐。吃完直接步行进机位，别再坐地铁绕路。" },
+  { icon: "🛂", title: "签证与入境", content: "中国护照免签停留 30 天；起飞前 3 天内在官网/App 填 SG Arrival Card（电子入境卡，免费），落地走电子通道刷护照秒过。回程航站楼提前确认，樟宜四个航站楼距离不小。" },
+  { icon: "🚇", title: "交通贴士", content: "地铁（MRT）覆盖所有景点，直接拍银联/Visa 闪付卡进闸最省事（无需买卡）；打车用 Grab；圣淘沙从怡丰城步行栈道入岛免费。地铁内禁饮食（含水），罚款是真的执行。" },
+  { icon: "💰", title: "消费与小费", content: "小贩中心吃饭人均新币 5-10 最实惠且是非遗体验；餐厅账单含 10% 服务费+9% GST，无需再给小费。纸巾占座是本地风俗——看到桌上有纸巾包即「有人」。" },
+  { icon: "⚖️", title: "法规提醒", content: "口香糖禁售禁带、乱丢垃圾/地铁饮食/闯红灯均有罚款；酒类 22:30 后便利店停售、公共场所禁饮。守规矩，狮城就是最省心的旅行地。" },
+  { icon: "🌦️", title: "天气与装备", content: "赤道气候全年 26-33℃，随时可能一场骤雨——伞必带、防晒必涂；室内冷气极猛，薄外套救命。11-1 月雨季雨更频，午后雷阵雨常 1 小时内停，躲进商场等它过。" },
+]
+
+const singaporeFoods = [
+  { name: "海南鸡饭", emoji: "🍗", desc: "天天/文东记，油饭配嫩鸡的国民饭" },
+  { name: "辣椒螃蟹", emoji: "🦀", desc: "酱汁蘸炸馒头才是灵魂吃法" },
+  { name: "叻沙", emoji: "🍜", desc: "椰浆咖喱汤粉，328加东最有名" },
+  { name: "肉骨茶", emoji: "🍖", desc: "胡椒汤底排骨，松发老字号" },
+  { name: "沙爹烤串", emoji: "🍢", desc: "老巴刹沙爹街，花生酱蘸着吃" },
+  { name: "咖椰吐司", emoji: "🍞", desc: "亚坤配半熟蛋+南洋咖啡的早餐" },
+]
+
+const singaporePackList = [
+  { icon: "🛂", text: "护照+SG入境卡（行前3天内填）" },
+  { icon: "🌂", text: "折叠伞（骤雨说来就来）" },
+  { icon: "🧴", text: "高倍防晒（赤道紫外线）" },
+  { icon: "🧥", text: "薄外套（室内冷气极强）" },
+  { icon: "💳", text: "闪付卡（拍卡直接坐地铁）" },
+  { icon: "🧻", text: "纸巾（小贩中心占座神器）" },
+]
+
+const singaporeSeason = {
+  title: "最佳旅行季节",
+  sub: "狮城常夏，花园之国",
+  rows: [
+    { dot: "peak",  label: "🎆 国庆季（8月）", date: "8·9 国庆烟花，滨海湾最燃", badge: "应季" },
+    { dot: "early", label: "🌤 2—9月", date: "相对少雨，全年皆宜" },
+    { dot: "late",  label: "🌧 雨季（11—1月）", date: "午后雷阵雨频，室内馆备选" },
+  ],
+}
+
 /* ════════════════ CITIES 汇总 ════════════════
    扩展新城市：复制上方一整套 daliXxx 常量，改名后
    在下面数组里追加一个对象即可。
@@ -5336,6 +5526,32 @@ export const CITIES = [
     foods: hongkongFoods,
     packList: hongkongPackList,
     seasonInfo: hongkongSeason,
+  },
+  {
+    id: 'singapore',
+    name: '新加坡',
+    nameEn: 'Singapore',
+    emoji: '🦁',
+    country: '新加坡',
+    tagline: '狮城常夏，花园之国',
+    heroBadge: '新加坡 · 东南亚',
+    heroTitle: '狮城新加坡',
+    heroHighlight: '慢慢 jalan 吧！',
+    heroDesc: '鱼尾狮、擎天树与小贩中心的一日三餐',
+    heroGradient: 'linear-gradient(160deg, #123A34 0%, #2E7A6E 55%, #C8E8DC 100%)',
+    quickTips: [
+      { icon: '🎆', text: '8·9 国庆滨海湾烟花' },
+      { icon: '🛂', text: '中国护照免签30天' },
+      { icon: '🚇', text: '闪付卡拍卡坐地铁' },
+      { icon: '🌂', text: '伞与防晒随身带' },
+    ],
+    spots: singaporeSpots,
+    nearbySpots: singaporeNearby,
+    itineraryDays: singaporeItinerary,
+    tips: singaporeTips,
+    foods: singaporeFoods,
+    packList: singaporePackList,
+    seasonInfo: singaporeSeason,
   },
 ]
 

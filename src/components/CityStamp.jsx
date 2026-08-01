@@ -185,6 +185,17 @@ const EMBLEMS = {
       <path d="M 76 62 v -10 h 4 v 10 M 82 62 v -7 h 4 v 7" fill="none" stroke={C} strokeWidth="1.6" />
     </g>
   ),
+  singapore: (
+    <g>
+      <path d="M 60 38 q -12 4 -13 14 q 13 -2 13 -6 q 0 4 13 6 q -1 -10 -13 -14 Z" fill={C} />
+      <path d="M 57.6 50 h 4.8 l -1 22 h -2.8 Z" fill={C} />
+      <path d="M 40 48 q -8 3 -9 10 q 9 -1.5 9 -4.5 q 0 3 9 4.5 q -1 -7 -9 -10 Z" fill={C} opacity="0.72" />
+      <path d="M 38.4 56 h 3.2 l -0.7 16 h -1.8 Z" fill={C} opacity="0.72" />
+      <path d="M 80 48 q -8 3 -9 10 q 9 -1.5 9 -4.5 q 0 3 9 4.5 q -1 -7 -9 -10 Z" fill={C} opacity="0.72" />
+      <path d="M 78.4 56 h 3.2 l -0.7 16 h -1.8 Z" fill={C} opacity="0.72" />
+      <path d="M 34 78 q 6.5 -3.5 13 0 t 13 0 t 13 0" fill="none" stroke={C} strokeWidth="1.6" strokeLinecap="round" />
+    </g>
+  ),
   chengdu: (   /* 抱竹熊猫（P2）：歪头脸 + 眼神光 + 一枝竹叶 */
     <g>
       <g transform="rotate(-7 58 60)">
@@ -226,6 +237,7 @@ const SHAPE_OF = {
   nujiang: 'diamond',
   shenzhen: 'circle',
   hongkong: 'octagon',
+  singapore: 'oval',
 }
 
 const OCTA = 'M 60 8 L 96.8 23.2 L 112 60 L 96.8 96.8 L 60 112 L 23.2 96.8 L 8 60 L 23.2 23.2 Z'
