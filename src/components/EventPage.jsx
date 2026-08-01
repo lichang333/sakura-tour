@@ -30,6 +30,16 @@ export default function EventPage({ goBack, goToSpot }) {
         <div className="event-hero-place">{ev.place}</div>
       </div>
 
+      {g.venue && (
+        <div className="event-venue">
+          <div className="event-venue-name">📍 {g.venue.name}</div>
+          <p className="event-venue-desc">{g.venue.desc}</p>
+          <ul className="event-venue-points">
+            {g.venue.points.map((p, i) => <li key={i}>{p}</li>)}
+          </ul>
+        </div>
+      )}
+
       <p className="event-intro">{g.intro}</p>
 
       <div className="event-section">

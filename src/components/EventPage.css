@@ -86,3 +86,16 @@
 [data-theme="dark"] .event-spot-link { color: #101319; }
 
 .evp-dist { font-size: 11.5px; font-weight: 700; color: var(--jade); flex-shrink: 0; }
+
+/* 主会场置顶区 */
+.event-venue {
+  background: var(--bg-card);
+  border: 1.5px solid var(--copper);
+  border-radius: 14px;
+  padding: 14px 16px;
+  margin-bottom: 12px;
+}
+.event-venue-name { font-size: 15px; font-weight: 700; color: var(--copper); }
+.event-venue-desc { font-size: 13px; line-height: 1.75; color: var(--text-dark); margin: 8px 0 10px; }
+.event-venue-points { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 7px; }
+.event-venue-points li { font-size: 12.5px; line-height: 1.6; color: var(--text-mid); }
