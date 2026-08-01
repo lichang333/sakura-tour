@@ -27,6 +27,11 @@ export default function HomePage({ setActiveTab, goToSpot }) {
 
   const peakSeason = currentCity.seasonInfo?.rows?.find(r => r.dot === 'peak')
 
+  // 限定活动：仅在时间窗（月-日，每年循环）内显示
+  const ev = currentCity.specialEvent
+  const mmdd = (() => { const d = new Date(); return `${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}` })()
+  const evLive = ev && mmdd >= ev.from && mmdd <= ev.to
+
   // ── User progress for current city ──
   const checkedIds  = user?.checkedSpots  || []
   const visitedIds  = user?.visitedSpots  || []
@@ -134,6 +139,20 @@ export default function HomePage({ setActiveTab, goToSpot }) {
           )}
         </div>
       </div>
+
+      {/* 限定活动卡（时间窗内自动出现/消失） */}
+      {evLive && (
+        <button className="special-event" onClick={() => ev.spotId && goToSpot?.(ev.spotId)}>
+          <span className="se-emoji">{ev.emoji}</span>
+          <div className="se-info">
+            <div className="se-name">{ev.name}<span className="se-badge">限定</span></div>
+            <div className="se-date">{ev.date}</div>
+            <div className="se-place">{ev.place}</div>
+            <div className="se-desc">{ev.desc}</div>
+          </div>
+          <span className="se-go">›</span>
+        </button>
+      )}
 
       {/* 足迹钤印条 */}
       <button className="footstrip" onClick={() => setActiveTab('album')}>

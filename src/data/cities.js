@@ -5539,6 +5539,15 @@ export const CITIES = [
     heroHighlight: '慢慢 jalan 吧！',
     heroDesc: '鱼尾狮、擎天树与小贩中心的一日三餐',
     heroGradient: 'linear-gradient(160deg, #123A34 0%, #2E7A6E 55%, #C8E8DC 100%)',
+    specialEvent: {
+      emoji: '🎆',
+      name: '国庆日烟花秀',
+      date: '8月9日 约20:00 · 预演周六同放',
+      place: '滨海湾上空 · 滨海堤坝/Esplanade 机位最佳',
+      desc: 'National Day 庆典尾声全湾烟花，晚饭就近老巴刹/诚食街，提前1.5小时占位',
+      from: '07-15', to: '08-09',
+      spotId: 'sin1',
+    },
     quickTips: [
       { icon: '🎆', text: '8·9 国庆滨海湾烟花' },
       { icon: '🛂', text: '中国护照免签30天' },
