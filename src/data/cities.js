@@ -5601,7 +5601,7 @@ export const CITIES = [
             note: "国庆晚露天座靠抢，17点前落座才稳；吃完出门就是机位" },
           { name: "CÉ LA VI（金沙57层天台）", dist: "约2.9km 远眺", lat: 1.2834, lng: 103.8607,
             view: "高空东北向可望加冷上空，烟花较小但全城夜景打底",
-            note: "国庆季需提前订位并注明要东北朝向；有最低消费" },
+            note: "官网 Reservations（SevenRooms）或邮件直订，备注 NDP fireworks view 东北朝向；烟花夜提前2-4周、常设套餐低消；金沙北塔 Tower 3 专梯直上57层，着装 smart casual" },
           { name: "SKAI（史丹福瑞士酒店70层）", dist: "约3.3km 远眺", lat: 1.2931, lng: 103.8535,
             view: "全岛最高餐厅视野之一，东北窗位可收烟花+天际线",
             note: "扒房正餐节奏慢，19:00 前入座才赶得上尾声烟花" },
